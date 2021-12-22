@@ -1,11 +1,21 @@
 import * as React from "react";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Modal from "react-native-modal";
+
 import * as navigate from "../navigator/RootNavigation";
 
 import { Styles } from "../styles";
 
+import Modal_changeLang from "../component/Login_component/modal_changeLanguage";
+
 export default function Login() {
+  const [changeLang, setChangeLang] = React.useState(false);
+
+  function selectLang() {
+    setChangeLang(false);
+  }
+
   return (
     <LinearGradient
       colors={["#fbd4d4", "#fff4f3", "#fffefe"]}
@@ -13,8 +23,8 @@ export default function Login() {
     >
       <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p40]}>
         <View style={[Styles.w100, Styles.al_end]}>
-          <TouchableOpacity>
-            <Text style={[Styles.f_16]}>TH / EN</Text>
+          <TouchableOpacity onPress={() => setChangeLang(true)}>
+            <Text style={[Styles.f_16, Styles.mainColor_text]}>TH / EN</Text>
           </TouchableOpacity>
         </View>
         <Image
@@ -26,6 +36,7 @@ export default function Login() {
             สำหรับลูกบ้าน
           </Text>
           <TouchableOpacity
+            onPress={() => navigate.navigate("Signin")}
             style={[
               Styles.w100,
               Styles.p20,
@@ -33,13 +44,12 @@ export default function Login() {
               Styles.al_center,
               Styles.br_5,
               Styles.mt15,
-              Styles.boxWithShadow
-
+              Styles.boxWithShadow,
             ]}
           >
             <Text
               style={[
-                Styles.f_16,
+                Styles.f_14,
                 Styles.mainFont,
                 Styles.white_text,
                 Styles.text_center,
@@ -48,7 +58,14 @@ export default function Login() {
               เข้าสู่ระบบด้วยเลขประจำตัวประชาชน หรือ{"\n"}หมายเลขหนังสือเดินทาง
             </Text>
           </TouchableOpacity>
-          <Text style={[Styles.f_16, Styles.mainFont, Styles.mainColor_text, Styles.mt20]}>
+          <Text
+            style={[
+              Styles.f_16,
+              Styles.mainFont,
+              Styles.mainColor_text,
+              Styles.mt20,
+            ]}
+          >
             สำหรับสมาชิกทั่วไป
           </Text>
           <TouchableOpacity
@@ -64,7 +81,7 @@ export default function Login() {
           >
             <Text
               style={[
-                Styles.f_16,
+                Styles.f_14,
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.text_center,
@@ -76,11 +93,9 @@ export default function Login() {
         </View>
       </View>
       <Text style={[Styles.f_16, Styles.mainFont, Styles.mainColor_text]}>
-            ติดต่อเจ้าหน้าที่ 021 613 000
+        ติดต่อเจ้าหน้าที่ 021 613 000
       </Text>
-      <Text style={[Styles.f_16, Styles.mt10]}>
-            Version 1.0.0
-      </Text>
+      <Text style={[Styles.f_16, Styles.mt10]}>Version 1.0.0</Text>
       <Image
         source={require("../../assets/image/bottom-bg2.png")}
         style={[
@@ -91,6 +106,9 @@ export default function Login() {
           Styles.opacity01,
         ]}
       />
+      <Modal isVisible={changeLang} style={Styles.al_center}>
+        <Modal_changeLang selectLang={selectLang} />
+      </Modal>
     </LinearGradient>
   );
 }

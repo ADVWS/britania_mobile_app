@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import {
   RecoilRoot,
@@ -8,9 +8,18 @@ import {
   useRecoilValue,
 } from "recoil";
 import AllNavigator from "./src/navigator";
-
+import * as Font from "expo-font";
 
 export default function App() {
+  const [loaded, setLoaded] = useState(false);
+  _loadFontsAsync = async () => {
+    let isLoaded = await Font.loadAsync({
+      Prompt: require("./assets/fonts/Prompt-Medium.ttf"),
+      Prompt_exl: require("./assets/fonts/Prompt-ExtraLight.ttf")
+    });
+    setLoaded(isLoaded)
+  };
+  _loadFontsAsync();
   return (
     <RecoilRoot>
       <AllNavigator />

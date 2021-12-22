@@ -94,8 +94,23 @@ export const Styles = StyleSheet.create({
   mt20: {
     marginTop: 20,
   },
+  mt30: {
+    marginTop: 30,
+  },
+  mt40: {
+    marginTop: 40,
+  },
+  mt50: {
+    marginTop: 50,
+  },
   mt60: {
     marginTop: 60,
+  },
+  mt70: {
+    marginTop: 70,
+  },
+  mt80: {
+    marginTop: 80,
   },
   mt35per: {
     marginTop: "35%",
@@ -132,6 +147,9 @@ export const Styles = StyleSheet.create({
   },
   p10: {
     padding: 10,
+  },
+  p12: {
+    padding: 12,
   },
   p15: {
     padding: 15,
@@ -229,6 +247,9 @@ export const Styles = StyleSheet.create({
   pink: {
     backgroundColor: "#e93f59",
   },
+  pink_light: {
+    backgroundColor: "#ffcfcf",
+  },
   transparent: {
     backgroundColor: "transparent",
   },
@@ -244,6 +265,9 @@ export const Styles = StyleSheet.create({
   white_text: {
     color: "#fff",
   },
+  black_gray_text: {
+    color: "#5c5c5c"
+  },
   mainColor_text: {
     color: "#f1645e",
   },
@@ -251,7 +275,10 @@ export const Styles = StyleSheet.create({
     backgroundColor: "#f1645e",
   },
   mainFont: {
-    fontFamily: "Prompt_400Regular",
+    fontFamily: "Prompt",
+  },
+  mainFont_thin: {
+    fontFamily: "Prompt_exl"
   },
   f_bold: {
     fontWeight: "bold",
@@ -268,11 +295,31 @@ export const Styles = StyleSheet.create({
   f_20: {
     fontSize: 20,
   },
+  f_22: {
+    fontSize: 22,
+  },
+  f_24: {
+    fontSize: 24,
+  },
+  f_26: {
+    fontSize: 26,
+  },
   bottomMin20: {
     bottom: -20,
   },
+  circle: {
+    borderRadius: 200,
+  },
   br_5: {
     borderRadius: 5,
+  },
+  br_5_left: {
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+  },
+  br_5_right: {
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
   },
   border_btn: {
     borderWidth: 2,
