@@ -8,6 +8,7 @@ import * as navigate from "../navigator/RootNavigation";
 import { Styles } from "../styles";
 
 import Modal_changeLang from "../component/Login_component/modal_changeLanguage";
+import FooterSignin from "../component/footer_signin";
 
 export default function Login() {
   const [changeLang, setChangeLang] = React.useState(false);
@@ -96,16 +97,7 @@ export default function Login() {
         ติดต่อเจ้าหน้าที่ 021 613 000
       </Text>
       <Text style={[Styles.f_16, Styles.mt10]}>Version 1.0.0</Text>
-      <Image
-        source={require("../../assets/image/bottom-bg2.png")}
-        style={[
-          Styles.w55,
-          Styles.h35,
-          Styles.absolute,
-          Styles.bottomMin20,
-          Styles.opacity01,
-        ]}
-      />
+      <FooterSignin/>
       <Modal isVisible={changeLang} style={Styles.al_center}>
         <Modal_changeLang selectLang={selectLang} />
       </Modal>

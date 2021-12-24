@@ -6,6 +6,7 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import * as navigate from "../navigator/RootNavigation";
 
 import { Styles } from "../styles";
+import FooterSignin from "../component/footer_signin";
 
 export default function Signin() {
 
@@ -128,16 +129,7 @@ export default function Signin() {
           </TouchableOpacity>
         </View>
       </View>
-      <Image
-        source={require("../../assets/image/bottom-bg2.png")}
-        style={[
-          Styles.w55,
-          Styles.h35,
-          Styles.absolute,
-          Styles.bottomMin20,
-          Styles.opacity01,
-        ]}
-      />
+      <FooterSignin/>
     </LinearGradient>
   );
 }

@@ -55,6 +55,9 @@ export const Styles = StyleSheet.create({
   h80: {
     height: "80%",
   },
+  h75: {
+    height: "75%",
+  },
   h70: {
     height: "70%",
   },
@@ -73,8 +76,14 @@ export const Styles = StyleSheet.create({
   h30: {
     height: "30%",
   },
+  h25: {
+    height: "25%",
+  },
   h20: {
     height: "20%",
+  },
+  h15: {
+    height: "15%",
   },
   h10: {
     height: "10%",
@@ -266,7 +275,7 @@ export const Styles = StyleSheet.create({
     color: "#fff",
   },
   black_gray_text: {
-    color: "#5c5c5c"
+    color: "#5c5c5c",
   },
   mainColor_text: {
     color: "#f1645e",
@@ -278,7 +287,7 @@ export const Styles = StyleSheet.create({
     fontFamily: "Prompt",
   },
   mainFont_thin: {
-    fontFamily: "Prompt_exl"
+    fontFamily: "Prompt_exl",
   },
   f_bold: {
     fontWeight: "bold",
@@ -343,5 +352,12 @@ export const Styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 2,
+  },
+  otpbox: {
+    width: "13%",
+    height: 45,
+    backgroundColor: "#ffcfcf",
+    borderRadius: 5,
+    textAlign: "center",
   },
 });
