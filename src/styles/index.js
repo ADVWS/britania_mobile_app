@@ -142,6 +142,9 @@ export const Styles = StyleSheet.create({
   ml5: {
     marginLeft: "5%",
   },
+  ml10: {
+    marginLeft: "10%",
+  },
   mr5: {
     marginRight: "5%",
   },
@@ -301,6 +304,9 @@ export const Styles = StyleSheet.create({
   f_16: {
     fontSize: 16,
   },
+  f_17: {
+    fontSize: 17,
+  },
   f_18: {
     fontSize: 18,
   },
@@ -363,4 +369,12 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: "center",
   },
+  spacing5: {
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  spacing10: {
+    marginTop: 10,
+    marginBottom: 10,
+  }
 });
