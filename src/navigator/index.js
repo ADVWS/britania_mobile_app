@@ -10,7 +10,7 @@ import SigninScreen from "../screen/Signin_screen";
 import OTPScreen from "../screen/OTP_screen";
 import InputOTP from "../screen/InputOTP_screen";
 import Home from "../screen/Home_screen";
-import AllTabButtom from "../navigator_footer";
+import AllTabBottom from "../navigator_footer";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -22,7 +22,7 @@ function AllNavigator() {
         <Stack.Screen name="Signin" component={SigninScreen} />
         <Stack.Screen name="OTP" component={OTPScreen} />
         <Stack.Screen name="InputOTP" component={InputOTP} />
-        <Stack.Screen name="TabFooter" component={AllTabButtom} />
+        <Stack.Screen name="TabFooter" component={AllTabBottom} />
       </Stack.Navigator>
     </NavigationContainer>
   );

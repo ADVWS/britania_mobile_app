@@ -56,7 +56,7 @@ const Tab = createBottomTabNavigator();
 //         </Tab.Navigator>
 //     )
 // }
-class AllTabButtom extends React.Component {
+class AllTabBottom extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -155,4 +155,4 @@ class AllTabButtom extends React.Component {
 }
 
 
-export default AllTabButtom
+export default AllTabBottom
