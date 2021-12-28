@@ -10,14 +10,14 @@ import {
 import { Styles } from "../../styles";
 
 //transparent f1645e
-export default class Menubt extends React.Component {
+export default class MenuBtn extends React.Component {
     state = {
         selectNotify: "#ffcfcf",
         selectHistory: "transparent"
     }
 
     onSelectMenu = (SELECT) => {
-        if(SELECT === "NOTIFY"){
+        if(SELECT === "INFORM"){
             this.setState({
                 selectNotify: "#ffcfcf",
                 selectHistory: "transparent"
@@ -36,7 +36,7 @@ export default class Menubt extends React.Component {
     render() {
         return (
             <View style={[Styles.w100, Styles.p15, Styles.row, { backgroundColor: "#ffecec" }]}>
-                <TouchableOpacity onPress={()=> this.onSelectMenu("NOTIFY")}
+                <TouchableOpacity onPress={()=> this.onSelectMenu("INFORM")}
                     style={[Styles.w40, Styles.p10, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectNotify }]}>
                     <Text style={[Styles.mainColor_text, Styles.f_16, Styles.mainFont]}>รายการแจ้งซ่อม</Text>
                 </TouchableOpacity>

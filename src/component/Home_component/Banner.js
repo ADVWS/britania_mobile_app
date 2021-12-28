@@ -33,8 +33,8 @@ export default class Banner extends React.Component {
                     }}
                     data={this.props.images}
                     renderItem={this._renderItem.bind(this)}
-                    sliderWidth={360}
-                    itemWidth={360}
+                    sliderWidth={400}
+                    itemWidth={400}
                     layout={'default'}
                     firstItem={0}
                     inactiveSlideOpacity={1}
