@@ -19,9 +19,10 @@ export default class ProfilePicCom extends React.Component {
                     <View style={[Styles.mt20]}>
                         <ImageBackground source={item.image} imageStyle= {Styles.circle} style={[{width:150,height:150,resizeMode:'cover'}]}>
                                 <View>
-                                    <Image style={[{width:35,height:35,resizeMode:'cover',backgroundColor:"#ffdfdf",position:"absolute",top:107.5,left:107.5},Styles.circle]}/>
-                                    <MaterialCommunityIcons name="image-plus" size={21} color="#f1645e" style={{position:"absolute",top:115,left:115}} />
+                                    <Image style={[{width:35,height:35,resizeMode:'cover',backgroundColor:"#ffdfdf",position:"absolute",top:106,left:106},Styles.circle]}/>
+                                    <MaterialCommunityIcons name="image-plus" size={21} color="#f1645e" style={{position:"absolute",top:112.5,left:112.5}} />
                                 </View>
+                                
                             </ImageBackground>
                     </View>
                 ))}

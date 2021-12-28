@@ -16,6 +16,7 @@ import ProfileHeader from "../component/Profile_component/ProfileHeader";
 import { Styles } from "../styles";
 import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import ProfileForm from "../component/Profile_component/ProfileForm";
+import MainHeader from "../component/mainHeader";
 //transparent f1645e
 
 export default function Profile_screen() {
@@ -26,7 +27,8 @@ export default function Profile_screen() {
             colors={["#FFF","#FFF"]}
             style={[Styles.flex, Styles.al_center]}>
                 <View style={[Styles.w100,Styles.h100,]}>
-                    <ProfileHeader/>
+                    {/* Single Quotes Only */}
+                    <MainHeader name={'ข้อมูลส่วนบุคคล'} backto={'Account'}></MainHeader>
                     <ProfilePicCom picture={picture}/>
                     <ProfileForm />
                 </View>

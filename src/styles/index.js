@@ -382,5 +382,17 @@ export const Styles = StyleSheet.create({
   spacing10: {
     marginTop: 10,
     marginBottom: 10,
-  }
+  },
+  confirm_btn: {
+    padding:15,
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f1645e",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
 });

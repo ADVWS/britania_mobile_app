@@ -14,6 +14,8 @@ import Profile from "../screen/Profile_screen"
 import AllTabBottom from "../navigator_footer";
 import Homecare from "../screen/Homecare_screen";
 import MyProject from "../screen/MyProject_screen";
+import Account from "../screen/Account_screen";
+import LanguageSetting from "../screen/LanguageSetting_Screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +28,9 @@ function AllNavigator() {
         <Stack.Screen name="Signin" component={SigninScreen} />
         <Stack.Screen name="OTP" component={OTPScreen} />
         <Stack.Screen name="InputOTP" component={InputOTP} />
+        <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Language" component={LanguageSetting} />
         <Stack.Screen name="TabFooter" component={AllTabBottom} />
         <Stack.Screen name="Homecare" component={Homecare} />
         <Stack.Screen name="Myproject" component={MyProject} />
