@@ -12,6 +12,7 @@ import InputOTP from "../screen/InputOTP_screen";
 import Home from "../screen/Home_screen";
 import AllTabBottom from "../navigator_footer";
 import Homecare from "../screen/Homecare_screen";
+import MyProject from "../screen/MyProject_screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ function AllNavigator() {
         <Stack.Screen name="InputOTP" component={InputOTP} />
         <Stack.Screen name="TabFooter" component={AllTabBottom} />
         <Stack.Screen name="Homecare" component={Homecare} />
+        <Stack.Screen name="Myproject" component={MyProject} />
       </Stack.Navigator>
     </NavigationContainer>
   );
