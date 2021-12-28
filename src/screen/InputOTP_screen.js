@@ -14,6 +14,7 @@ import * as navigate from "../navigator/RootNavigation";
 import { Styles } from "../styles";
 
 import FooterSignin from "../component/footer_signin";
+import TabBottom from "../navigator_footer";
 
 export default function InputOTP() {
   const [unit1, setUnit1] = React.useState("");
@@ -217,7 +218,9 @@ export default function InputOTP() {
             </View>
           </View>
           <TouchableOpacity
-            onPress={() => navigate.navigate("Home")}
+            onPress={() => { 
+              navigate.navigate("TabFooter")
+            }}
             style={[
               Styles.mt40,
               Styles.w100,

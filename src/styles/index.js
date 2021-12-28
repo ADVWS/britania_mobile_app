@@ -64,6 +64,9 @@ export const Styles = StyleSheet.create({
   h60: {
     height: "60%",
   },
+  h55: {
+    height: "55%",
+  },
   h50: {
     height: "50%",
   },
@@ -266,7 +269,7 @@ export const Styles = StyleSheet.create({
     color: "#e93f59",
   },
   gray_text: {
-    color: "#8f8f8f",
+    color: "#c5c5c5",
   },
   orange_text: {
     color: "#f5a425",
