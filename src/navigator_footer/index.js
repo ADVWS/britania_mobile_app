@@ -10,6 +10,7 @@ import { navigationRef } from "./RootNavigation";
 
 import HomeScreen from '../screen/Home_screen';
 import MyHomeScreen from '../screen/MyHome_screen';
+import Account from '../screen/Account_screen';
 
 const Tab = createBottomTabNavigator();
 //const page = useRecoilState(initialRouteName)
@@ -93,7 +94,7 @@ class AllTabBottom extends React.Component {
                             }} />
                         <Tab.Screen
                             name="Account"
-                            component={HomeScreen}
+                            component={Account}
                             options={{
                                 tabBarLabel: 'บัญชี',
                                 tabBarLabelStyle: { fontSize: 13 },
@@ -133,7 +134,7 @@ class AllTabBottom extends React.Component {
                             }} />
                         <Tab.Screen
                             name="Account"
-                            component={HomeScreen}
+                            component={Account}
                             options={{
                                 tabBarLabel: 'บัญชี',
                                 tabBarLabelStyle: { fontSize: 13 },
