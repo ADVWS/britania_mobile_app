@@ -12,26 +12,26 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Styles } from "../styles";
 
 import MainHeader from "../component/mainHeader";
-import Menubtn from "../component/Homecare_component/menu_btn";
-import NotifyList from "../component/Homecare_component/notifyList";
+import MenuBtn from "../component/Homecare_component/menu_btn";
+import InformList from "../component/Homecare_component/informList";
 import HistoryList from "../component/Homecare_component/historyList";
 
 //transparent f1645e
 export default function Homecare() {
 
-    const [selected, setSelected] = React.useState(<NotifyList />)
+    const [selected, setSelected] = React.useState(<InformList />)
 
     const selectMenu = (SELECT) => {
         console.log(SELECT)
         switch (SELECT) {
-            case 'NOTIFY':
-                setSelected(<NotifyList />)
+            case 'INFORM':
+                setSelected(<InformList />)
                 break
             case 'HISTORY':
                 setSelected(<HistoryList />)
                 break
             default:
-                setSelected(<NotifyList />)
+                setSelected(<InformList />)
                 break
         }
     }
@@ -59,7 +59,7 @@ export default function Homecare() {
                             <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.black_gray_text} />
                         </View>
                 </TouchableOpacity>
-                <Menubtn selectMenu={selectMenu} />
+                <MenuBtn selectMenu={selectMenu} />
                 {selected}
             </View>
         </View>

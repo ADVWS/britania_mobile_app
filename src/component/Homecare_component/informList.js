@@ -10,7 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import { Styles } from "../../styles";
 
-export default class NotifyList extends React.Component {
+export default class InformList extends React.Component {
     render() {
         return (
             <View style={[Styles.w100, Styles.p15]}>
