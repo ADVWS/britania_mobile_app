@@ -29,36 +29,31 @@ export default function Account() {
             last_name: "กฤษศิริสวัสดิ์"
         }
     ])
-
-    const testFn = () =>
-    {
-        alert("Test")
-    }
-
+    
     const [option, setOptions] = React.useState([
         {
             name: "ข้อมูลส่วนตัว",
-            func: testFn
+            nav: "Profile"
         },
         {
             name: "จัดการข้อมูลผุ้อยู่อาศัย/ผู้เช่า",
-            func: testFn
+            nav: ""
         },
         {
             name: "ตั้งค่าภาษา / Language",
-            func: testFn
+            nav: ""
         },
         {
             name: "นโยบายความเป็นส่วนตัว",
-            func: testFn
+            nav: ""
         },
         {
             name: "Call Center",
-            func: testFn
+            nav: ""
         },
         {
             name: "ออกจากระบบ",
-            func: testFn
+            nav: ""
         },
     ])
 

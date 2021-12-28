@@ -363,4 +363,10 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: "center",
   },
+  textfieldbox: {
+    borderRadius: 5,
+    padding: 10,
+    borderWidth: 1, 
+    borderColor: "#DDD",
+  }
 });
