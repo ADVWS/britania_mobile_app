@@ -8,7 +8,7 @@ import { Styles } from "../../styles";
 export default class Header extends React.Component {
     render() {
         return (
-            <View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, Styles.mainColor]}>
+            <View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, Styles.mainColor, Styles.boxWithShadow, Styles.mb5]}>
                 <View style={[Styles.w20]} />
                 <View style={[Styles.w60, Styles.al_center, Styles.jc_end, { bottom: 5 }]}>
                     <Image

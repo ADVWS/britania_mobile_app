@@ -9,17 +9,11 @@ import {
 import Header from "../component/MyHome_component/Header";
 import * as navigate from "../navigator/RootNavigation";
 import {MaterialIcons} from "@expo/vector-icons";
-import setScreen from "../navigator_footer";
-import { initialRouteName } from "../globalState"
-
 
 import { Styles } from "../styles";
-//transparent f1645e
-import { useRecoilState, atom, useRecoilValue } from "recoil";
 import TabBottom from "../navigator_footer";
 
 export default function MyHome() {
-    const [page, setPage] = useRecoilState(initialRouteName)
     return (
         <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
             <View
@@ -51,7 +45,7 @@ export default function MyHome() {
                             </Text>
                         </View>
                     </View>
-                    <TouchableOpacity onPress={()=>{TabBottom('HOME')}} style={[Styles.boxWithShadow, Styles.w100, Styles.p10, Styles.FFF, Styles.br_5, Styles.mt20, Styles.row]}>
+                    <TouchableOpacity onPress={()=>{navigate.navigate('Homecare')}} style={[Styles.boxWithShadow, Styles.w100, Styles.p10, Styles.FFF, Styles.br_5, Styles.mt20, Styles.row]}>
                         <View style={[Styles.w20, Styles.p10]}>
                             <Image source={require('../../assets/image/tool_icon.png')} style={[Styles.w100, { height: 45 }]} />
                         </View>
