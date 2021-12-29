@@ -356,7 +356,7 @@ export const Styles = StyleSheet.create({
     opacity: 0.1,
   },
   boxWithShadow: {
-    shadowColor: "#000",
+    shadowColor: "#8f8f8f",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
