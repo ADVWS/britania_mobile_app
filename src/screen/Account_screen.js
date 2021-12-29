@@ -38,8 +38,8 @@ export default function Account() {
             nav: "Profile"
         },
         {
-            name: "จัดการข้อมูลผุ้อยู่อาศัย/ผู้เช่า",
-            nav: ""
+            name: "จัดการข้อมูลผู้อยู่อาศัย/ผู้เช่า",
+            nav: "MemberManage"
         },
         {
             name: "ตั้งค่าภาษา / Language",
