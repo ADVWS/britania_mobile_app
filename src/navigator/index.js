@@ -17,6 +17,7 @@ import LanguageSetting from "../screen/LanguageSetting_Screen";
 import MemberManage from "../screen/MemberManage_screen";
 import MemberManageIndivi from "../screen/MemberManageIndivi_screen";
 import InformOrderScreen from "../screen/InformOrder_screen";
+import ResidentAdd from "../screen/ResidentAdd_screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ function AllNavigator() {
         <Stack.Screen name="MemberManage" component={MemberManage} />
         <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi} />
         <Stack.Screen name="Language" component={LanguageSetting} />
+        <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
         <Stack.Screen name="TabFooter" component={AllTabBottom} />
         <Stack.Screen name="Homecare" component={HomecareScreen} />
         <Stack.Screen name="Myproject" component={MyProject} />
