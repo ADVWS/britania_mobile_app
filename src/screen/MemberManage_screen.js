@@ -11,7 +11,7 @@ import HomeList from "../component/MemberManage_component/HomeList";
 
 import { Styles } from "../styles";
 
-export default function Account() {
+export default function MemberManage() {
     const [home,setHome] = React.useState([
         {
             name: "BELGRAVIA Bangna - Rama9",
