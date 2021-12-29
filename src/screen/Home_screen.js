@@ -11,7 +11,7 @@ import * as navigate from "../navigator/RootNavigation";
 
 import Banner from "../component/Home_component/Banner";
 import AnimatedHeader from "../component/Home_component/AnimationHeader";
-import Feeds from "../component/Home_component/Feeds";
+import Feed from "../component/Home_component/Feeds";
 
 import { Styles } from "../styles";
 //transparent f1645e
@@ -68,7 +68,7 @@ export default function Home() {
                                 ]}>
                                 ข่าวสาร & กิจกรรม
                             </Text>
-                            <Feeds feeds={feeds}/>
+                            <Feed feeds={feeds}/>
                         </View>
                     </ScrollView>
                 </View>

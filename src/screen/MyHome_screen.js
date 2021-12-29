@@ -11,7 +11,6 @@ import * as navigate from "../navigator/RootNavigation";
 import {MaterialIcons} from "@expo/vector-icons";
 
 import { Styles } from "../styles";
-import TabBottom from "../navigator_footer";
 
 export default function MyHome() {
     return (

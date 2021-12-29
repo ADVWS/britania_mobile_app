@@ -362,6 +362,13 @@ export const Styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
   },
+  boxWithShadow2: {
+    shadowColor: "#f7f7f7",
+    shadowOffset: { width: 0, height: 0.5 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 1,
+  },
   otpbox: {
     width: "13%",
     height: 45,
