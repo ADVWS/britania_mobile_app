@@ -9,13 +9,12 @@ import LoginScreen from "../screen/Login_screen";
 import SigninScreen from "../screen/Signin_screen";
 import OTPScreen from "../screen/OTP_screen";
 import InputOTP from "../screen/InputOTP_screen";
-import Home from "../screen/Home_screen";
 import Profile from "../screen/Profile_screen"
 import AllTabBottom from "../navigator_footer";
-import Homecare from "../screen/Homecare_screen";
+import HomecareScreen from "../screen/Homecare_screen";
 import MyProject from "../screen/MyProject_screen";
-import Account from "../screen/Account_screen";
 import LanguageSetting from "../screen/LanguageSetting_Screen";
+import InformOrderScreen from "../screen/InformOrder_screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,12 +27,12 @@ function AllNavigator() {
         <Stack.Screen name="Signin" component={SigninScreen} />
         <Stack.Screen name="OTP" component={OTPScreen} />
         <Stack.Screen name="InputOTP" component={InputOTP} />
-        <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Language" component={LanguageSetting} />
         <Stack.Screen name="TabFooter" component={AllTabBottom} />
-        <Stack.Screen name="Homecare" component={Homecare} />
+        <Stack.Screen name="Homecare" component={HomecareScreen} />
         <Stack.Screen name="Myproject" component={MyProject} />
+        <Stack.Screen name="InformOrder" component={InformOrderScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

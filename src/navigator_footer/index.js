@@ -12,7 +12,7 @@ import Script from "../script"
 
 import HomeScreen from '../screen/Home_screen';
 import MyHomeScreen from '../screen/MyHome_screen';
-import Account from '../screen/Account_screen';
+import AccountScreen from '../screen/Account_screen';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +51,7 @@ const AllTabBottom = () => {
                             }} />
                         <Tab.Screen
                             name="Account"
-                            component={Account}
+                            component={AccountScreen}
                             options={{
                                 tabBarLabel: 'บัญชี',
                                 tabBarLabelStyle: { fontSize: 13 },
