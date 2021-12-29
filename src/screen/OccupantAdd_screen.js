@@ -40,8 +40,8 @@ export default function OccupantAdd() {
            <Text style={[Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>ผู้อาศัยร่วม</Text>
            <Radio isSelectType={isSelectType} />
            </View>
-           {type === "THAI" && (<ThaiForm/>)}
-           {type === "FOREIGN" && (<ForeignForm/>)}
+           {type === "THAI" && (<ThaiForm />)}
+           {type === "FOREIGN" && (<ForeignForm />)}
            </ScrollView>
         </View>
     )
