@@ -16,8 +16,6 @@ import ProfilePicName from "../component/Account_component/ProfilePicName"
 import * as navigate from "../navigator/RootNavigation";
 import {MaterialIcons} from "@expo/vector-icons";
 
-import TabBottom from "../navigator_footer";
-
 import { Styles } from "../styles";
 //transparent f1645e
 
