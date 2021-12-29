@@ -24,6 +24,10 @@ export default class thai_form extends React.Component {
                 <View style={Styles.al_center}>
                     <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput>
                 </View>
+                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>วันที่สิทธิ์หมดอายุ</Text>
+                <View style={Styles.al_center}>
+                    <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput>
+                </View>
                 <View style={Styles.al_center}>
                 <TouchableOpacity style={[
                     Styles.w90,

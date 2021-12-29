@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import * as navigate from "../../navigator/RootNavigation";
 
 import { Styles } from "../../styles";
 
@@ -24,7 +25,7 @@ export default class HistoryList extends React.Component {
                     Styles.mainColor,
                     Styles.boxWithShadow,
                     Styles.row
-                ]}>
+                ]} onPress={() => navigate.navigate('OccupantAdd')}>
                     <MaterialIcons name="add" size={25} color={"#FFF"}/> 
                     <Text style={[Styles.white_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                         เพิ่มผู้เช่า
