@@ -22,6 +22,7 @@ function AllNavigator() {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="TabFooter" component={AllTabBottom} />
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signin" component={SigninScreen} />
@@ -29,7 +30,7 @@ function AllNavigator() {
         <Stack.Screen name="InputOTP" component={InputOTP} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Language" component={LanguageSetting} />
-        <Stack.Screen name="TabFooter" component={AllTabBottom} />
+        {/* <Stack.Screen name="TabFooter" component={AllTabBottom} /> */}
         <Stack.Screen name="Homecare" component={HomecareScreen} />
         <Stack.Screen name="Myproject" component={MyProject} />
         <Stack.Screen name="InformOrder" component={InformOrderScreen} />

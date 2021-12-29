@@ -22,11 +22,18 @@ export default class mainHeader extends React.Component {
         }
     }
 
+    setData(){
+        if(this.props.call){
+            callfunction()
+        }
+        navigate.navigate(this.state.back_btn)
+    }
+
     render() {
         return (
             <View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, Styles.mainColor, Styles.boxWithShadow, Styles.mb5]}>
                 <View style={[Styles.w10, Styles.al_start, Styles.jc_end, Styles.p5]}>
-                    <TouchableOpacity onPress={() => navigate.navigate(this.state.back_btn)}>
+                    <TouchableOpacity onPress={() => this.setData()}>
                         <MaterialIcons name="arrow-back" size={32} color="#fff" />
                     </TouchableOpacity>
                 </View>

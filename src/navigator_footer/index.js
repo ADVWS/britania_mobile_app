@@ -81,7 +81,7 @@ const AllTabBottom = () => {
                             }} />
                         <Tab.Screen
                             name="HomeDetail"
-                            component={MyHomeScreen}
+                            component={MyHome}
                             options={{
                                 tabBarLabel: 'ข้อมูลบ้าน',
                                 tabBarLabelStyle: { fontSize: 13 },
@@ -91,7 +91,7 @@ const AllTabBottom = () => {
                             }} />
                         <Tab.Screen
                             name="Account"
-                            component={Account}
+                            component={AccountScreen}
                             options={{
                                 tabBarLabel: 'บัญชี',
                                 tabBarLabelStyle: { fontSize: 13 },
@@ -131,7 +131,7 @@ const AllTabBottom = () => {
                             }} />
                         <Tab.Screen
                             name="Account"
-                            component={Account}
+                            component={AccountScreen}
                             options={{
                                 tabBarLabel: 'บัญชี',
                                 tabBarLabelStyle: { fontSize: 13 },

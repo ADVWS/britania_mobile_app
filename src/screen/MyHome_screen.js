@@ -10,9 +10,37 @@ import Header from "../component/MyHome_component/Header";
 import * as navigate from "../navigator/RootNavigation";
 import {MaterialIcons} from "@expo/vector-icons";
 
+import { useSetRecoilState, useRecoilState } from "recoil";
+
+import * as Global from "../globalState"
+
 import { Styles } from "../styles";
 
-export default function MyHome() {
+const MyHome = () => {
+    const [thisDataMyHome, setThisDataMyHome] = useRecoilState(Global.dataMyHome)
+    const [thisDataMyProject, setThisDataMyProject] = useRecoilState(Global.dataMyproject)
+    const setListInform = useSetRecoilState(Global.dataListInform)
+    const setlistHistory = useSetRecoilState(Global.dataListHistory)
+
+    function goToHomecare() {
+        var inform = []
+        var history = []
+        thisDataMyProject.map((item)=>{
+            if(item.inform){
+                for(let i = 0; i < item.inform.length; i++){
+                    if(item.inform[i].status !== 5){
+                        inform.push(item.inform[i])
+                    } else {
+                        history.push(item.inform[i])
+                    }
+                }
+            }
+        })
+        setListInform(inform)
+        setlistHistory(history)
+        navigate.navigate('Homecare')
+    }
+    
     return (
         <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
             <View
@@ -24,27 +52,27 @@ export default function MyHome() {
                 <Header />
                 <View style={[Styles.w100, Styles.p15, Styles.al_center]}>
                     <View style={[Styles.boxWithShadow, Styles.w100, { height: 250 }]}>
-                        <Image source={require('../../assets/image/myhome.jpeg')} style={[Styles.h100, Styles.w100, Styles.br_5]} />
+                        <Image source={{uri: thisDataMyHome.image}} style={[Styles.h100, Styles.w100, Styles.br_5]} />
                     </View>
-                    <Text style={[Styles.f_18, Styles.mainColor_text, Styles.mainFont, Styles.mt20, Styles.text_center]}>
-                        BELGRAVIA Exclusive Pool Villa {'\n'} Bangna - Rama9
+                    <Text style={[Styles.f_18, Styles.mainColor_text, Styles.mainFont, Styles.mt20, Styles.text_center, Styles.gray_text]}>
+                        {thisDataMyHome.name}
                     </Text>
                     <Text style={[Styles.f_16, Styles.mainFont_thin, Styles.mt10, Styles.text_center]}>
-                        CHAPEL - 5 ห้องนอน 6 ห้องน้ำ
+                        {thisDataMyHome.detail}
                     </Text>
                     <View style={[Styles.w100, Styles.row]}>
                         <View style={[Styles.w50]}>
                             <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
-                                ที่ดินขนาด 90 ตร.วา
+                                ที่ดินขนาด {thisDataMyHome.land}
                             </Text>
                         </View>
                         <View style={[Styles.w50]}>
                             <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
-                                พื้นที่ใช้สอย 500 ตร.ม.
+                                พื้นที่ใช้สอย {thisDataMyHome.usablearea}
                             </Text>
                         </View>
                     </View>
-                    <TouchableOpacity onPress={()=>{navigate.navigate('Homecare')}} style={[Styles.boxWithShadow, Styles.w100, Styles.p10, Styles.FFF, Styles.br_5, Styles.mt20, Styles.row]}>
+                    <TouchableOpacity onPress={()=>{goToHomecare()}} style={[Styles.boxWithShadow, Styles.w100, Styles.p10, Styles.FFF, Styles.br_5, Styles.mt20, Styles.row]}>
                         <View style={[Styles.w20, Styles.p10]}>
                             <Image source={require('../../assets/image/tool_icon.png')} style={[Styles.w100, { height: 45 }]} />
                         </View>
@@ -62,3 +90,4 @@ export default function MyHome() {
         </View>
     );
 }
+export default MyHome

@@ -7,31 +7,53 @@ import {
     TouchableOpacity,
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
+import { useSetRecoilState, useRecoilState } from "recoil";
+
+import * as Global from "../globalState"
 
 import { Styles } from "../styles";
+import Script from "../script";
 
 import MainHeader from "../component/mainHeader";
 
-const thisMyproject = [
-    {
-        name: 'Belgravia Bangna - Rama9',
-        homeNo: '162/23'
-    },
-    {
-        name: 'Britania Bangna Km 12',
-        homeNo: '485/34 (345)'
-    },
-    {
-        name: 'Britania Bangna Km 12',
-        homeNo: '23/564 (343)'
-    },
-    {
-        name: 'Britania Bangna Km 12',
-        homeNo: '165/43 (405)'
-    }
-]
 
-export default function MyProject() {
+const MyProject = () => {
+    const [thisDataMyHProject, setThisDataMyHProject] = useRecoilState(Global.dataMyproject)
+    const setListInform = useSetRecoilState(Global.dataListInform)
+    const setlistHistory = useSetRecoilState(Global.dataListHistory)
+    const gobalData = useSetRecoilState(Global.dataMyHome)
+
+    function setDataSelect(obj) {
+        gobalData(obj)
+        mapDataMycare(obj, (res) => {
+            console.log('data:::::', res)
+            navigate.navigate('Homecare')
+        })
+        //navigate.navigate('Homecare')
+    }
+
+    function mapDataMycare(param, cb) {
+        console.log('start', param)
+        var inform = []
+        var history = []
+        if (param.inform) {
+            param.inform.map((item) => {
+                if (item.status !== 5) {
+                    inform.push(item)
+                } else {
+                    history.push(item)
+                }
+            })
+        }
+        setListInform(inform)
+        setlistHistory(history)
+        var res = {
+            inform: inform,
+            history: history
+        }
+        cb(res)
+    }
+
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View
@@ -42,8 +64,10 @@ export default function MyProject() {
                     Styles.FFF,
                 ]}>
                 <MainHeader name={'โครงการของฉัน'} backto={'Homecare'} />
-                {thisMyproject.map((items) => (
-                    <TouchableOpacity style={[Styles.w100, Styles.p15, Styles.FFF, {borderBottomWidth: 0.5, borderColor: "#DDD"}]}>
+                {thisDataMyHProject.map((items) => (
+                    <TouchableOpacity
+                        onPress={() => setDataSelect(items)}
+                        style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
                         <View style={[Styles.w80]}>
                             <Text style={[Styles.f_18, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
                                 {items.name}
@@ -58,3 +82,5 @@ export default function MyProject() {
         </View>
     );
 }
+
+export default MyProject

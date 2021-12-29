@@ -15,6 +15,8 @@ import MainHeader from "../component/mainHeader";
 import MenuBtn from "../component/Homecare_component/menu_btn";
 import InformList from "../component/Homecare_component/informList";
 import HistoryList from "../component/Homecare_component/historyList";
+import InformTopic from "../component/InformOrder_component/InformTopic";
+import OrderList from "../component/InformOrder_component/orderList";
 
 //transparent f1645e
 export default function InformOrder() {
@@ -28,7 +30,10 @@ export default function InformOrder() {
                     Styles.h100
                 ]}>
                 <MainHeader name={'รายการแจ้งซ่อม'} backto={'Homecare'} />
-                
+                <ScrollView style={[Styles.w100]}>
+                    <InformTopic />
+                    <OrderList />
+                </ScrollView>
             </View>
         </View>
     );
