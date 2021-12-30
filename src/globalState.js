@@ -16,7 +16,7 @@ export const dataMyHome = atom({
         image: "https://www.origin.co.th/wp-content/uploads/2021/01/BGV-scaled.jpg",
         inform: [
             {
-                id: 1100886,
+                id: 1100887,
                 status: 4, //อยู่ระหว่างดำเนินการ
                 informtime: 1623198894,
                 order: [
@@ -27,6 +27,14 @@ export const dataMyHome = atom({
                         image: [
                             'https://zmyhome.com/public/uploads/files/AluminiumSlidingDoor.jpg',
                             'https://www.img.in.th/images/8a4c3c0ef923f5986bd541141fb66461.png'
+                        ],
+                        mechanic: [
+                            {
+                                name: 'บิลลี่ อินทร',
+                                mobileno: '0957845160',
+                                lineID: '-',
+                                image: 'https://www.img.in.th/images/40ca8df31acdd26a6df38da6771a6864.png'
+                            },
                         ]
                     },
                     {
@@ -36,9 +44,23 @@ export const dataMyHome = atom({
                         image: [
                             'https://www.scgbuildingmaterials.com/media/default/2020/get-ideas/home-story/scg%20roof%20renovation/qa-%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%9A%E0%B8%9A%E0%B9%88%E0%B8%AD%E0%B8%A2/pic6.jpg',
                             'https://f.ptcdn.info/157/064/000/ps1ozd8dtny0QQEoPJIy-o.jpg'
+                        ],
+                        mechanic: [
+                            {
+                                name: 'ดา อินทร',
+                                mobileno: '0641034511',
+                                lineID: '-',
+                                image: 'https://www.img.in.th/images/c6afb04b5467cdef511f304e22c528ab.jpg'
+                            },
+                            {
+                                name: 'รูแปง อินทร',
+                                mobileno: '0812375837',
+                                lineID: '-',
+                                image: 'https://www.img.in.th/images/1bce9e1b933b7c9a8b17204405e3c806.png'
+                            }
                         ]
                     }
-                ]
+                ],
             },
             {
                 id: 1100885,
@@ -51,6 +73,14 @@ export const dataMyHome = atom({
                         rate: 'รอประเมิน',
                         image: [
                             'https://www.wazzadu.com/thumbs/article/resize/760/article_365d6210-e371-11e9-a43b-eb5cbfc4d797.jpg',
+                        ],
+                        mechanic: [
+                            {
+                                name: 'มด ประชาชล',
+                                mobileno: '0913199012',
+                                lineID: '-',
+                                image: 'https://www.img.in.th/images/85135b6bf2296360551d730804928652.png'
+                            }
                         ]
                     }
                 ]
@@ -83,6 +113,14 @@ export const dataMyproject = atom({
                             image: [
                                 'https://zmyhome.com/public/uploads/files/AluminiumSlidingDoor.jpg',
                                 'https://www.img.in.th/images/8a4c3c0ef923f5986bd541141fb66461.png'
+                            ],
+                            mechanic: [
+                                {
+                                    name: 'บิลลี่ อินทร',
+                                    mobileno: '0957845160',
+                                    lineID: '-',
+                                    image: 'https://www.img.in.th/images/40ca8df31acdd26a6df38da6771a6864.png'
+                                }
                             ]
                         },
                         {
@@ -92,9 +130,23 @@ export const dataMyproject = atom({
                             image: [
                                 'https://www.scgbuildingmaterials.com/media/default/2020/get-ideas/home-story/scg%20roof%20renovation/qa-%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%9A%E0%B8%9A%E0%B9%88%E0%B8%AD%E0%B8%A2/pic6.jpg',
                                 'https://f.ptcdn.info/157/064/000/ps1ozd8dtny0QQEoPJIy-o.jpg'
+                            ],
+                            mechanic: [
+                                {
+                                    name: 'ดา อินทร',
+                                    mobileno: '0641034511',
+                                    lineID: '-',
+                                    image: 'https://www.img.in.th/images/c6afb04b5467cdef511f304e22c528ab.jpg'
+                                },
+                                {
+                                    name: 'รูแปง อินทร',
+                                    mobileno: '0812375837',
+                                    lineID: '-',
+                                    image: 'https://www.img.in.th/images/1bce9e1b933b7c9a8b17204405e3c806.png'
+                                }
                             ]
                         }
-                    ]
+                    ],
                 },
                 {
                     id: 1100886,
@@ -108,14 +160,29 @@ export const dataMyproject = atom({
                             rate: 'รอประเมิน',
                             image: [
                                 'https://www.wazzadu.com/thumbs/article/resize/760/article_365d6210-e371-11e9-a43b-eb5cbfc4d797.jpg',
+                            ],
+                            mechanic: [
+                                {
+                                    name: 'ดา อินทร',
+                                    mobileno: '0641034511',
+                                    lineID: '-',
+                                    image: 'https://www.img.in.th/images/c6afb04b5467cdef511f304e22c528ab.jpg'
+                                },
+                                {
+                                    name: 'รูแปง อินทร',
+                                    mobileno: '0812375837',
+                                    lineID: '-',
+                                    image: 'https://www.img.in.th/images/1bce9e1b933b7c9a8b17204405e3c806.png'
+                                }
                             ]
                         }
-                    ]
+                    ],
                 },
                 {
                     id: 1100885,
                     status: 5, //สำเร็จ
-                    informtime: 1623198894,
+                    informtime: 1622534688,
+                    servicetime: '2/06/62 10.00-11.00 น.',
                     order: [
                         {
                             type: 'เฟอร์นิเจอร์',
@@ -123,9 +190,17 @@ export const dataMyproject = atom({
                             rate: 'รอประเมิน',
                             image: [
                                 'https://www.wazzadu.com/thumbs/article/resize/760/article_365d6210-e371-11e9-a43b-eb5cbfc4d797.jpg',
+                            ],
+                            mechanic: [
+                                {
+                                    name: 'มด ประชาชล',
+                                    mobileno: '0913199012',
+                                    lineID: '-',
+                                    image: 'https://www.img.in.th/images/85135b6bf2296360551d730804928652.png'
+                                }
                             ]
                         }
-                    ]
+                    ],
                 }
             ]
         },
@@ -164,4 +239,9 @@ export const dataListInform = atom({
 export const dataListHistory = atom({
     key: 'dataListHistory',
     default: []
+})
+
+export const dataInformDetail = atom({
+    key: 'dataInformDetail',
+    default: {}
 })

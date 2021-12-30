@@ -21,10 +21,8 @@ import * as Global from "../globalState"
 
 //transparent f1645e
 function Homecare() {
+    
     const [thisDataMyHome, setThisDataMyHome] = useRecoilState(Global.dataMyHome)
-    const [thisDataMyProject, setThisDataMyProject] = useRecoilState(Global.dataMyproject)
-    const gobalData = useSetRecoilState(Global.dataMyHome)
-
     const [listInform, setListInform] = useRecoilState(Global.dataListInform)
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
     const [selected, setSelected] = React.useState('INFORM')

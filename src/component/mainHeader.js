@@ -23,10 +23,11 @@ export default class mainHeader extends React.Component {
     }
 
     setData(){
-        if(this.props.call){
-            callfunction()
+        var paramNav = ''
+        if(this.props.param){
+            paramNav = this.props.param
         }
-        navigate.navigate(this.state.back_btn)
+        navigate.navigate(this.state.back_btn, {paramNav})
     }
 
     render() {
