@@ -25,8 +25,7 @@ export default function Account() {
     const [profile, setProfile] = React.useState([
         {
             image: require('../../assets/image/profpic/SampleProf.jpg'),
-            first_name: "ณัฏฐณิชชา",
-            last_name: "กฤษศิริสวัสดิ์"
+            name: "ณัฏฐณิชชา กฤษศิริสวัสดิ์",
         }
     ])
 

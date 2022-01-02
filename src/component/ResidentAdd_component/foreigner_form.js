@@ -29,7 +29,7 @@ export default class thai_form extends React.Component {
                     Styles.row,
                     Styles.mt20,
                     Styles.confirm_btn
-                ]}>
+                ]} onPress={() => navigate.navigate('ResidentAddOTP')}>
                     <Text style={[Styles.white_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                         บันทึก
                     </Text>
@@ -44,7 +44,7 @@ export default class thai_form extends React.Component {
                     Styles.border_btn,
                     Styles.p15,
                     Styles.jc_center
-                ]}>
+                ]} onPress={() => navigate.navigate('MemberManageIndivi')}>
                     <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                         ยกเลิก
                     </Text>

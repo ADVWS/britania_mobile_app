@@ -73,7 +73,7 @@ export default class thai_form extends React.Component {
                     Styles.mt20,
                     Styles.confirm_btn
                 ]}
-                onPress={() => navigate.navigate('ResidentAddOTP')}>
+                onPress={() => navigate.navigate('OccupantAddOTP')}>
                     <Text style={[Styles.white_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                         บันทึก
                     </Text>
