@@ -15,13 +15,13 @@ import { AntDesign } from '@expo/vector-icons';
 import * as Global from "../../globalState"
 
 // const ResidentBtn = ({data})
-const ResidentBtn = () => {
+const OccupantBtn = () => {
 
-    const [dataListResident, setDataListResident] = useRecoilState(Global.dataListResident)
+    const [dataListOccupant, setDataListOccupant] = useRecoilState(Global.dataListOccupant)
 
     return (
         <View>
-            {dataListResident.map((item) => (
+            {dataListOccupant.map((item) => (
                 <View style={[Styles.w100,
                     Styles.p15,
                     Styles.br_5,
@@ -29,18 +29,24 @@ const ResidentBtn = () => {
                     <View
                         style={[Styles.row]}>
                         <View style={[Styles.w40]}>
-                        {/* ด้วยเหตุผลบางประการ ยังใส่รูปไม่ได้ 
+                            {/* ด้วยเหตุผลบางประการ ยังใส่รูปไม่ได้ 
                         <Image source={item.image} style={[{width:70,height:70,resizeMode:'cover'},Styles.circle]}></Image> */}
-                        <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image>
+                        <Image source={require('../../../assets/image/profpic/SampleProf3.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image>
                             <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
                                 เบอร์โทรศัพท์
                             </Text>
                             <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 15 }]}>
                                 {item.tel}
                             </Text>
+                            <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+                                สิทธิ์หมดอายุ
+                            </Text>
+                            <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 15 }]}>
+                                {moment.unix(item.expire).format('DD/MM/YYYY')}
+                            </Text>
                         </View>
                         <View>
-                            <View style={Styles.row}>
+                        <View style={Styles.row}>
                                 {item.status === 'VERIFY' ? 
                                 <View style={[Styles.w65]}>
                                     <View style={[Styles.circle, { backgroundColor: "#fcf4d4" },Styles.al_center]}>
@@ -74,7 +80,6 @@ const ResidentBtn = () => {
                                     </View>
                                 </View>
                             </View>
-                           
                         <View style={[Styles.w100]}>
                             <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
                                 ชื่อ-นามสกุล
@@ -111,7 +116,7 @@ const ResidentBtn = () => {
                     }
                     {
                         item.status === 'ACTIVE' ?
-                        <View style={Styles.row}>
+                        <View style={[Styles.row, Styles.al_center]}>
                         <TouchableOpacity style={[
                             Styles.w45,
                             Styles.row,
@@ -121,7 +126,7 @@ const ResidentBtn = () => {
                             Styles.br_5,
                             Styles.border_btn,
                             Styles.p15,
-                            Styles.jc_center,
+                            Styles.jc_center
                         ]}>
                             <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                                 ลบ
@@ -151,4 +156,4 @@ const ResidentBtn = () => {
         </View>
     );
 }
-export default ResidentBtn;
+export default OccupantBtn;

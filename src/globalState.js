@@ -251,6 +251,30 @@ export const dataListResident = atom(
     }
 )
 
+export const dataListOccupant = atom(
+    {
+        key: 'dataListOccupant',
+        default: [
+            {
+                name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
+                email: 'ddkkk@gmail.com',
+                tel: '098-334-2334',
+                image : require('../assets/image/profpic/SampleProf2.jpg'),
+                expire: 1665162000,
+                status: 'VERIFY'
+            },
+            {
+                name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
+                email: 'ddkkk@gmail.com',
+                tel: '098-334-2334',
+                image : require('../assets/image/profpic/SampleProf3.jpg'),
+                expire: 1665162000,
+                status: 'ACTIVE'
+            }
+        ]
+    }
+)
+
 export const dataListInform = atom({
     key: 'dataListInform',
     default: []
