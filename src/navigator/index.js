@@ -21,7 +21,10 @@ import ResidentAdd from "../screen/ResidentAdd_screen";
 import ResidentAddOTP from "../screen/ResidentAddOTP_screen";
 import OccupantAdd from "../screen/OccupantAdd_screen";
 import Responsible from "../screen/Responsible_screen";
-
+import Onsite from "../screen/Onsite_screen";
+import RepiairList from "../screen/RepairList_screen";
+import Satisfaction from "../screen/Satisfaction_screen";
+import SelectTypeInform from "../screen/SelectTypeInform_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -40,6 +43,10 @@ function AllNavigator() {
         <Stack.Screen name="Myproject" component={MyProject} />
         <Stack.Screen name="InformOrder" component={InformOrderScreen} />
         <Stack.Screen name="Responsible" component={Responsible} />
+        <Stack.Screen name="Onsite" component={Onsite} />
+        <Stack.Screen name="RepiairList" component={RepiairList} />
+        <Stack.Screen name="Satisfaction" component={Satisfaction} />
+        <Stack.Screen name="SelectTypeInform" component={SelectTypeInform} />
         <Stack.Screen name="MemberManage" component={MemberManage} />
         <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi} />
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />

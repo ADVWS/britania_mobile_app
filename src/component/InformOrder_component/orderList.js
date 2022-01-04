@@ -13,10 +13,26 @@ import { MaterialIcons } from "@expo/vector-icons";
 const OrderList = ({ data, index, route }) => {
     console.log(data)
     var paramNav = route
+    
     function gotoResponsible(param){
         var mechanic = param
         console.log(param)
         navigate.navigate('Responsible', {paramNav, mechanic})
+    }
+
+    function gotoOnsite(param){
+        var mechanic = param
+        navigate.navigate('Onsite', {paramNav, mechanic})
+    }
+
+    function gotoRepiairList(param){
+        var mechanic = param
+        navigate.navigate('RepiairList', {paramNav, mechanic})
+    }
+
+    function gotoSatisfaction(param){
+        var mechanic = param
+        navigate.navigate('Satisfaction', {paramNav, mechanic})
     }
 
     return (
@@ -80,7 +96,7 @@ const OrderList = ({ data, index, route }) => {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigate.navigate('Myproject')}
+                    onPress={() => gotoOnsite(data.mechanic)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_16, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
@@ -92,7 +108,7 @@ const OrderList = ({ data, index, route }) => {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigate.navigate('Myproject')}
+                    onPress={() => gotoRepiairList(data.mechanic)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, Styles.mb10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_16, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
@@ -105,7 +121,7 @@ const OrderList = ({ data, index, route }) => {
                 </TouchableOpacity>
                 {route === "SUCCESS" &&
                     <TouchableOpacity
-                        onPress={() => navigate.navigate('Myproject')}
+                        onPress={() => gotoSatisfaction(data.mechanic)}
                         style={[Styles.w100, Styles.p15, Styles.mainColor, Styles.br_5, Styles.al_center, { marginBottom: 20 }]}>
                         <Text style={[Styles.f_18, Styles.white_text, Styles.mainFont, Styles.mt5]}>
                             ประเมินความพึงพอใจ

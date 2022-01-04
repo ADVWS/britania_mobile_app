@@ -40,6 +40,9 @@ export const Styles = StyleSheet.create({
   w20: {
     width: "20%",
   },
+  w12: {
+    width: "12%",
+  },
   w10: {
     width: "10%",
   },

@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as navigate from "../../navigator/RootNavigation";
 
 
 import { Styles } from "../../styles";
@@ -19,16 +20,18 @@ const InformList = ({listInform}) => {
     })
     return (
         <View style={[Styles.w100, Styles.p15]}>
-            <TouchableOpacity style={[
-                Styles.w100,
-                Styles.p15,
-                Styles.br_5,
-                Styles.al_center,
-                Styles.jc_center,
-                Styles.mainColor,
-                Styles.boxWithShadow,
-                Styles.row
-            ]}>
+            <TouchableOpacity 
+                onPress={()=>{navigate.navigate('SelectTypeInform')}}
+                style={[
+                    Styles.w100,
+                    Styles.p15,
+                    Styles.br_5,
+                    Styles.al_center,
+                    Styles.jc_center,
+                    Styles.mainColor,
+                    Styles.boxWithShadow,
+                    Styles.row
+                ]}>
                 <MaterialIcons name="add" size={25} color={"#FFF"} />
                 <Text style={[Styles.white_text, Styles.f_18, Styles.mainFont, { marginLeft: '1%' }]}>
                     เพิ่มรายการแจ้งซ่อม
