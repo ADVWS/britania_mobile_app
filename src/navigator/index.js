@@ -18,8 +18,10 @@ import InformOrderScreen from "../screen/InformOrder_screen";
 import MemberManage from "../screen/MemberManage_screen";
 import MemberManageIndivi from "../screen/MemberManageIndivi_screen";
 import ResidentAdd from "../screen/ResidentAdd_screen";
+import ResidentEdit from "../screen/ResidentEdit_screen";
 import ResidentAddOTP from "../screen/ResidentAddOTP_screen";
 import OccupantAdd from "../screen/OccupantAdd_screen";
+import OccupantEdit from "../screen/OccupantEdit_screen";
 import OccupantAddOTP from "../screen/OccupantAddOTP_screen";
 import Responsible from "../screen/Responsible_screen";
 import Onsite from "../screen/Onsite_screen";
@@ -51,8 +53,10 @@ function AllNavigator() {
         <Stack.Screen name="MemberManage" component={MemberManage} />
         <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi} />
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
+        <Stack.Screen name="ResidentEdit" component={ResidentEdit} />
         <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP} />
         <Stack.Screen name="OccupantAdd" component={OccupantAdd} />
+        <Stack.Screen name="OccupantEdit" component={OccupantEdit} />
         <Stack.Screen name="OccupantAddOTP" component={OccupantAddOTP} />
       </Stack.Navigator>
     </NavigationContainer>

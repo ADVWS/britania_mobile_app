@@ -13,6 +13,7 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import { AntDesign } from '@expo/vector-icons'; 
 
 import * as Global from "../../globalState"
+import * as navigate from "../../navigator/RootNavigation";
 
 // const ResidentBtn = ({data})
 const OccupantBtn = () => {
@@ -143,7 +144,7 @@ const OccupantBtn = () => {
                             Styles.p15,
                             Styles.jc_center,
                             Styles.ml5
-                        ]}>
+                        ]} onPress={() => navigate.navigate("OccupantEdit")}>
                             <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                                 แก้ไข
                             </Text>
