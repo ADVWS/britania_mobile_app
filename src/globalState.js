@@ -201,6 +201,26 @@ export const dataMyproject = atom({
     ]
 })
 
+export const dataListResident = atom(
+    {
+        key: 'dataListResident',
+        default: [
+            {
+                name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
+                email: 'ddkkk@gmail.com',
+                tel: '098-334-2334',
+                status: 'VERIFY'
+            },
+            {
+                name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
+                email: 'ddkkk@gmail.com',
+                tel: '098-334-2334',
+                status: 'ACTIVE'
+            }
+        ]
+    }
+)
+
 export const dataListInform = atom({
     key: 'dataListInform',
     default: []

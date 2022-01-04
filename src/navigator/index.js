@@ -20,6 +20,7 @@ import MemberManageIndivi from "../screen/MemberManageIndivi_screen";
 import ResidentAdd from "../screen/ResidentAdd_screen";
 import ResidentAddOTP from "../screen/ResidentAddOTP_screen";
 import OccupantAdd from "../screen/OccupantAdd_screen";
+import OccupantAddOTP from "../screen/OccupantAddOTP_screen";
 import Responsible from "../screen/Responsible_screen";
 import Onsite from "../screen/Onsite_screen";
 import RepiairList from "../screen/RepairList_screen";
@@ -52,6 +53,7 @@ function AllNavigator() {
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
         <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP} />
         <Stack.Screen name="OccupantAdd" component={OccupantAdd} />
+        <Stack.Screen name="OccupantAddOTP" component={OccupantAddOTP} />
       </Stack.Navigator>
     </NavigationContainer>
   );

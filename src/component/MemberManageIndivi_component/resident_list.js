@@ -11,6 +11,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as navigate from "../../navigator/RootNavigation";
 
 import { Styles } from "../../styles";
+import ResidentBtn from "./resident_btn";
 
 export default class HistoryList extends React.Component {
     render() {
@@ -31,11 +32,15 @@ export default class HistoryList extends React.Component {
                         เพิ่มผู้อาศัยร่วม
                     </Text>
                 </TouchableOpacity>
-                <View style={[Styles.al_center,Styles.p40,Styles.mt30]}>
+
+                {/* <View style={[Styles.al_center,Styles.p40,Styles.mt30]}>
                 <MaterialCommunityIcons name="account-group-outline" size={70} color="#c5c5c5" />
                 <Text style={[Styles.gray_text,Styles.mainFont]}>
                     ไม่มีผู้อาศัยร่วม
                 </Text>
+                </View> */}
+                <View style={[Styles.mt10]}>
+                    <ResidentBtn/>
                 </View>
             </View>
         );
