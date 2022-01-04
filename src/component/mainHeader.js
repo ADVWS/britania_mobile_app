@@ -38,8 +38,8 @@ export default class mainHeader extends React.Component {
                         <MaterialIcons name="arrow-back" size={32} color="#fff" />
                     </TouchableOpacity>
                 </View>
-                <View style={[Styles.w90, Styles.al_start, Styles.jc_end, { bottom: 5 }]}>
-                    <Text style={[Styles.f_20, Styles.white_text, Styles.mainFont, Styles.mt20, Styles.ml10]}>
+                <View style={[Styles.w90, Styles.al_start, Styles.jc_end, { bottom: 8 }]}>
+                    <Text style={[Styles.f_18, Styles.white_text, Styles.mainFont, Styles.mt20, Styles.ml5]}>
                         {this.state.header_name}
                     </Text>
                 </View>
