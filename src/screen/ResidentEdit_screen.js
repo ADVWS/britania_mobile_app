@@ -17,18 +17,23 @@ import Radio from "../component/ResidentEdit_component/radio_resadd";
 import ThaiForm from "../component/ResidentEdit_component/thai_form";
 import ForeignForm from "../component/ResidentEdit_component/foreigner_form";
 
-export default function ResidentEdit() {
-    const [picture, setPicture] = React.useState([{ image: require("../../assets/image/profpic/SampleProf2.jpg")}])
+export default function ResidentEdit(props) {
+    const [picture, setPicture] = React.useState([{ image: {uri : props.route.params.image}}])
 
-    const [type, setType] = React.useState("THAI");
+    const [type, setType] = React.useState(props.route.params.type);
 
     function isSelectType(TYPE) {
         setType(TYPE);
       }
 
+    //   console.log("Resident Edit")
+    //   console.log(props.route.params)
+
     return(
         <View style={[Styles.flex,Styles.w100,Styles.h100,Styles.FFF]}>
-            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManageIndivi'}/>
+            {/* ยังแก้บัคไม่รีเฟรชไม่ได้ 
+            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManageIndivi'}/> */}
+            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManage'}/>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}
@@ -38,10 +43,10 @@ export default function ResidentEdit() {
            </View>
            <View style={Styles.ml5}>
            <Text style={[Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>ผู้อาศัยร่วม</Text>
-           <Radio isSelectType={isSelectType} />
+           <Radio isSelectType={isSelectType} type={type}/>
            </View>
-           {type === "THAI" && (<ThaiForm/>)}
-           {type === "FOREIGN" && (<ForeignForm/>)}
+           {type === "THAI" && (<ThaiForm item={props.route.params}/>)}
+           {type === "FOREIGN" && (<ForeignForm item={props.route.params}/>)}
            </ScrollView>
         </View>
     )

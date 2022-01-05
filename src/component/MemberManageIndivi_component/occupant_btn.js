@@ -149,7 +149,7 @@ const OccupantBtn = (occupant) => {
                             Styles.p15,
                             Styles.jc_center,
                             Styles.ml5
-                        ]} onPress={() => navigate.navigate("OccupantEdit")}>
+                        ]} onPress={() => navigate.navigate("OccupantEdit",item)}>
                             <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                                 แก้ไข
                             </Text>

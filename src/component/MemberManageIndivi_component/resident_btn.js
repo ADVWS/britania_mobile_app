@@ -17,7 +17,7 @@ import * as Global from "../../globalState"
 // const ResidentBtn = ({data})
 const ResidentBtn = (resident) => {
 
-    console.log("INBOUND")
+    // console.log("INBOUND")
     // console.log(resident)
 
     // const [dataListResident, setDataListResident] = useRecoilState(Global.dataListResident)
@@ -142,7 +142,7 @@ const ResidentBtn = (resident) => {
                             Styles.p15,
                             Styles.jc_center,
                             Styles.ml5
-                        ]} onPress={() => navigate.navigate("ResidentEdit")}>
+                        ]} onPress={() => navigate.navigate("ResidentEdit",item)}>
                             <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                                 แก้ไข
                             </Text>

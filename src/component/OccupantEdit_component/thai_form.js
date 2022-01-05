@@ -4,41 +4,36 @@ import DatePicker from 'react-native-datepicker';
 
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
+import moment from "moment";
 
-export default class thai_form extends React.Component {
+export default function thai_form (item) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            date : ''
-        };
-    }
+    const [date,setDate] = React.useState(moment.unix(item.item.expire).format('DD-MM-YYYY'));
 
-    render() {
         return (
             <View style={{marginBottom: 30}}>
                 <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>ชื่อ-นามสกุล</Text>
                 <View style={Styles.al_center}>
-                    <TextInput style={[Styles.w90,Styles.mt10,Styles.textfieldbox]}></TextInput>
+                    <TextInput style={[Styles.w90,Styles.mt10,Styles.textfieldbox]} value={item.item.name}></TextInput>
                 </View>
                 <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>เลขประจำตัวประชาชน</Text>
                 <View style={Styles.al_center}>
-                    <TextInput style={[Styles.w90,Styles.mt10,Styles.textfieldbox]}></TextInput>
+                    <TextInput style={[Styles.w90,Styles.mt10,Styles.textfieldbox]} value={item.item.identity}></TextInput>
                 </View>
                 <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>เบอร์โทรศัพท์</Text>
                 <View style={Styles.al_center}>
-                    <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput>
+                    <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]} value={item.item.tel}></TextInput>
                 </View>
                 <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>อีเมล์</Text>
                 <View style={Styles.al_center}>
-                    <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput>
+                    <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]} value={item.item.email}></TextInput>
                 </View>
                 <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>วันที่สิทธิ์หมดอายุ</Text>
                 <View style={Styles.al_center}>
                     {/* <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput> */}
                 <DatePicker
                     style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}
-                    date={this.state.date} // Initial date from state
+                    date={date} // Initial date from state
                     mode="date" // The enum of date, datetime and time
                     placeholder="เลือกวันที่"
                     format="DD-MM-YYYY"
@@ -60,8 +55,8 @@ export default class thai_form extends React.Component {
                         marginLeft: 0,
                         },
                     }}
-                    onDateChange={(date) => {
-                        this.setState({ date : date})
+                    onDateChange={(datein) => {
+                        setDate(datein)
                     }}
                     />
                 </View>
@@ -98,4 +93,3 @@ export default class thai_form extends React.Component {
             </View>
         )
     }
-}

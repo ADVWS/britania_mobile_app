@@ -17,8 +17,10 @@ import MenuBtn from "../component/MemberManageIndivi_component/menu_manage_btn";
 
 export default function MemberManageIndivi_screen( {route} ) {
 
-    console.log("ROUTE");
-    console.log(route)
+    // console.log("ROUTE");
+    // console.log(route)
+
+    console.log("Visit")
 
     let item = route.params;
 

@@ -6,16 +6,32 @@ import { Styles } from "../../styles";
 export default class radio_resadd extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      thai: true,
-      foreign: false,
-      thai_color: "#f1645e",
-      foreign_color: "#9c9c9b",
-    };
+
+    if (props.type === 'THAI')
+    {
+      this.state = {
+        thai: true,
+        foreign: false,
+        thai_color: "#f1645e",
+        foreign_color: "#9c9c9b",
+      };
+    }
+    else if (props.type === 'FOREIGN')
+    {
+      this.state = {
+        thai: false,
+        foreign: true,
+        thai_color: "#9c9c9b",
+        foreign_color: "#f1645e",
+      };
+    }
+    
   }
 
   selectType = (type) => {
-    if (type == "THAI") {
+    // console.log("INSIDE TYPE")
+    // console.log(type)
+    if (type === "THAI") {
       this.setState({
         thai: true,
         foreign: false,
@@ -37,6 +53,8 @@ export default class radio_resadd extends React.Component {
   };
 
   render() {
+
+    console.log(this.props)
     return (
       <View style={[Styles.al_start, Styles.w100, Styles.row, Styles.mt20]}>
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>

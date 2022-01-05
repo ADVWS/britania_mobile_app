@@ -186,6 +186,8 @@ export const dataMyproject = atom({
                     name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                     email: 'ddkkk@gmail.com',
                     tel: '098-334-2334',
+                    type : 'THAI',
+                    identity : '12345679',
                     image: 'https://scontent.fbkk2-7.fna.fbcdn.net/v/t39.30808-6/213713549_208962517899651_1213391919512128248_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeHCnyb1k4SMQfoIAfNCj9_102eozQ_PblvTZ6jND89uW3Oex1qUjW_mrtciiaxf3-nN7dJZxHxERu0dD_zyOoka&_nc_ohc=MwjVuE4RqUQAX-CWeG1&tn=rTpMqQ4q7xNK1u7q&_nc_zt=23&_nc_ht=scontent.fbkk2-7.fna&oh=00_AT-geBIOKhkP_3zeWP0R8Nt_x_fzE468SMcc1XI31anUAQ&oe=61DB0F84',
                     status: 'VERIFY'
                 },
@@ -193,6 +195,8 @@ export const dataMyproject = atom({
                     name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                     email: 'ddkkk@gmail.com',
                     tel: '098-334-2334',
+                    type: 'FOREIGN',
+                    identity : '12345679',
                     image: 'https://scontent.fbkk2-4.fna.fbcdn.net/v/t1.6435-9/94400039_113277753696176_8027304235685117952_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=174925&_nc_eui2=AeHeUx38YqjjuH80BFqNYzVW4Exs_3kN9RzgTGz_eQ31HI7QXNzAeNGjBVlFiR-1fwknAf5BiO0BHBxKN2CTf2D3&_nc_ohc=bNjGyFOuUKEAX94b7NQ&tn=rTpMqQ4q7xNK1u7q&_nc_ht=scontent.fbkk2-4.fna&oh=00_AT8iktc_gLMlnGNqYl8_S9SfAO9hKGSoq-nItbGBiRmhlg&oe=61FBC8DF',
                     status: 'ACTIVE'
                 }
@@ -202,6 +206,8 @@ export const dataMyproject = atom({
                     name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                     email: 'ddkkk@gmail.com',
                     tel: '098-334-2334',
+                    type : 'THAI',
+                    identity : '12345679',
                     image : 'https://scontent.fbkk2-5.fna.fbcdn.net/v/t39.30808-6/214851602_339920594367892_353886184762612393_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE0hqZqSxmOnule10jyO-82vjQWPQWI_cK-NBY9BYj9wjeCYd8tjEg7x9ISuZuGhVrhE2XrUTvCv2K5xQ8SNoQx&_nc_ohc=iCzt75sYDCYAX8xFR5w&_nc_zt=23&_nc_ht=scontent.fbkk2-5.fna&oh=00_AT9Kzk7s02kiFcbcvkcYunfHknwlKp07o6qkPin2U7hVAA&oe=61DAC59E',
                     expire: 1665162000,
                     status: 'VERIFY'
@@ -210,6 +216,8 @@ export const dataMyproject = atom({
                     name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                     email: 'ddkkk@gmail.com',
                     tel: '098-334-2334',
+                    type : 'FOREIGN',
+                    identity : '12345679',
                     image : 'https://scontent.fbkk2-7.fna.fbcdn.net/v/t1.6435-9/94504794_111236907236263_7652594624308969472_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_eui2=AeFEWg3DrhRRfWdkHIYuCVcVJ8sAVY-w9_YnywBVj7D39mqPU7f5E_RiXQouDTfUenp_ik65rtALKnCLJ2Do1Amv&_nc_ohc=E_b_37gbeBIAX_nRqYp&_nc_ht=scontent.fbkk2-7.fna&oh=00_AT8RU3viGg9H-O1AEH6SnVpL9yVuf6-FJPHWiQql4cUVuw&oe=61FA5C09',
                     expire: 1665162000,
                     status: 'ACTIVE'
