@@ -16,9 +16,14 @@ import * as Global from "../../globalState"
 import * as navigate from "../../navigator/RootNavigation";
 
 // const ResidentBtn = ({data})
-const OccupantBtn = () => {
+const OccupantBtn = (occupant) => {
 
-    const [dataListOccupant, setDataListOccupant] = useRecoilState(Global.dataListOccupant)
+    // console.log("OCCUPANT Selected")
+    // console.log(occupant.occupant)
+
+    // const [dataListOccupant, setDataListOccupant] = useRecoilState(Global.dataListOccupant)
+
+    const [dataListOccupant, setDataListOccupant] = React.useState(occupant.occupant);
 
     return (
         <View>
@@ -32,7 +37,7 @@ const OccupantBtn = () => {
                         <View style={[Styles.w40]}>
                             {/* ด้วยเหตุผลบางประการ ยังใส่รูปไม่ได้ 
                         <Image source={item.image} style={[{width:70,height:70,resizeMode:'cover'},Styles.circle]}></Image> */}
-                        <Image source={require('../../../assets/image/profpic/SampleProf3.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image>
+                        <Image source={{uri : item.image}} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image>
                             <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
                                 เบอร์โทรศัพท์
                             </Text>

@@ -17,13 +17,13 @@ export default class HomeList extends React.Component {
         return (
             <View>
                 {this.props.homeList.map((item) => (
-                <TouchableOpacity onPress={() => navigate.navigate('MemberManageIndivi')} style={[Styles.boxWithShadow, Styles.w100, Styles.p15, Styles.FFF, Styles.br_5, Styles.mt5, Styles.row]}>
+                <TouchableOpacity onPress={() => navigate.navigate('MemberManageIndivi',item)} style={[Styles.boxWithShadow, Styles.w100, Styles.p15, Styles.FFF, Styles.br_5, Styles.mt5, Styles.row]}>
                     <View style={[Styles.w90]}>
                         <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, {bottom: 3}]}>
                             {item.name}
                         </Text>
                         <Text style={[Styles.f_14, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.gray_text, {bottom: 3}]}>
-                            บ้านเลขที่ {item.address}
+                            บ้านเลขที่ {item.homeNo}
                         </Text>
                     </View>
                     <View style={[Styles.jc_center, Styles.al_end]}>

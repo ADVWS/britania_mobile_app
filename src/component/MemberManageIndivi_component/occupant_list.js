@@ -13,9 +13,9 @@ import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 import OccupantBtn from "./occupant_btn";
 
-export default class HistoryList extends React.Component {
-    render() {
-        return (
+export default function OccupantList (occupant) {
+    
+    return (
             <View style={[Styles.w100, Styles.p15]}>
                 <TouchableOpacity style={[
                     Styles.w100,
@@ -32,16 +32,20 @@ export default class HistoryList extends React.Component {
                         เพิ่มผู้เช่า
                     </Text>
                 </TouchableOpacity>
-                {/* <View style={[Styles.al_center,Styles.p40,Styles.mt30]}>
-                <MaterialCommunityIcons name="account-group-outline" size={70} color="#c5c5c5" />
-                <Text style={[Styles.gray_text,Styles.mainFont]}>
-                    ไม่มีผู้อาศัยร่วม
-                </Text>
-                </View>  */}
+                {occupant.occupant != undefined ? 
                 <View style={[Styles.mt10]}>
-                    <OccupantBtn/>
+                    <OccupantBtn occupant={occupant.occupant}/>
                 </View>
+                 :
+                 <View style={[Styles.al_center,Styles.p40,Styles.mt30]}>
+                 <MaterialCommunityIcons name="account-group-outline" size={70} color="#c5c5c5" />
+                 <Text style={[Styles.gray_text,Styles.mainFont]}>
+                     ไม่มีผู้อาศัยร่วม
+                 </Text>
+                 </View>
+                }
+                {/*   */}
+                
             </View>
         );
     }
-}

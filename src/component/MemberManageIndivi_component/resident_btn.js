@@ -15,9 +15,14 @@ import * as navigate from "../../navigator/RootNavigation";
 import * as Global from "../../globalState"
 
 // const ResidentBtn = ({data})
-const ResidentBtn = () => {
+const ResidentBtn = (resident) => {
 
-    const [dataListResident, setDataListResident] = useRecoilState(Global.dataListResident)
+    console.log("INBOUND")
+    // console.log(resident)
+
+    // const [dataListResident, setDataListResident] = useRecoilState(Global.dataListResident)
+    const [dataListResident, setDataListResident] = React.useState(resident.resident)
+    console.log(dataListResident)
 
     return (
         <View>
@@ -29,9 +34,8 @@ const ResidentBtn = () => {
                     <View
                         style={[Styles.row]}>
                         <View style={[Styles.w40]}>
-                        {/* ด้วยเหตุผลบางประการ ยังใส่รูปไม่ได้ 
-                        <Image source={item.image} style={[{width:70,height:70,resizeMode:'cover'},Styles.circle]}></Image> */}
-                        <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image>
+                        <Image source={{uri : item.image}} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image>
+                        {/* <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image> */}
                             <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
                                 เบอร์โทรศัพท์
                             </Text>

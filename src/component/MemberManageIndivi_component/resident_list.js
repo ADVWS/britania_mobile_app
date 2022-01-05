@@ -13,8 +13,7 @@ import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 import ResidentBtn from "./resident_btn";
 
-export default class HistoryList extends React.Component {
-    render() {
+export default function ResidentList (resident) {
         return (
             <View style={[Styles.w100, Styles.p15,{backgroundColor : "#EEEEEE"}]}>
                 <TouchableOpacity style={[
@@ -32,17 +31,17 @@ export default class HistoryList extends React.Component {
                         เพิ่มผู้อาศัยร่วม
                     </Text>
                 </TouchableOpacity>
-
-                {/* <View style={[Styles.al_center,Styles.p40,Styles.mt30]}>
+                { resident.resident != undefined ? 
+                <View style={[Styles.mt10]}>
+                    <ResidentBtn resident={resident.resident}/>
+                </View> :
+                <View style={[Styles.al_center,Styles.p40,Styles.mt30]}>
                 <MaterialCommunityIcons name="account-group-outline" size={70} color="#c5c5c5" />
                 <Text style={[Styles.gray_text,Styles.mainFont]}>
                     ไม่มีผู้อาศัยร่วม
                 </Text>
-                </View> */}
-                <View style={[Styles.mt10]}>
-                    <ResidentBtn/>
-                </View>
+                </View>}
+                {/*  */}
             </View>
         );
     }
-}
