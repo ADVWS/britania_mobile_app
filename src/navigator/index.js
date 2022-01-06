@@ -19,7 +19,7 @@ import MemberManage from "../screen/MemberManage_screen";
 import MemberManageIndivi from "../screen/MemberManageIndivi_screen";
 import ResidentAdd from "../screen/ResidentAdd_screen";
 import ResidentEdit from "../screen/ResidentEdit_screen";
-//import ResidentAddOTP from "../screen/ResidentAddOTP_screen";
+import ResidentAddOTP from "../screen/ResidentAddOTP_screen";
 import OccupantAdd from "../screen/OccupantAdd_screen";
 import OccupantEdit from "../screen/OccupantEdit_screen";
 import OccupantAddOTP from "../screen/OccupantAddOTP_screen";
@@ -28,7 +28,6 @@ import Onsite from "../screen/Onsite_screen";
 import RepiairList from "../screen/RepairList_screen";
 import Satisfaction from "../screen/Satisfaction_screen";
 import SelectTypeInform from "../screen/SelectTypeInform_screen";
-import ResidentAddOTP_2 from "../screen/ResidentAddOTP_2_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -55,7 +54,7 @@ function AllNavigator() {
         <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi} />
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
         <Stack.Screen name="ResidentEdit" component={ResidentEdit} />
-        {/* <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP} /> */}
+        <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP} />
         <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP_2} />
         <Stack.Screen name="OccupantAdd" component={OccupantAdd} />
         <Stack.Screen name="OccupantEdit" component={OccupantEdit} />
