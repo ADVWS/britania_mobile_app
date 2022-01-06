@@ -13,7 +13,6 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader"
-import { ImageBackground } from "react-native-web";
 
 export default function OccupantAddOTP() {
 
