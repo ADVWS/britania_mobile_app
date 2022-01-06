@@ -16,6 +16,9 @@ import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import Radio from "../component/ResidentAdd_component/radio_resadd";
 import ThaiForm from "../component/ResidentAdd_component/thai_form";
 import ForeignForm from "../component/ResidentAdd_component/foreigner_form";
+import * as Global from "../globalState"
+
+import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function ResidentAdd() {
     const [picture, setPicture] = React.useState([{ image: require("../../assets/image/profpic/blank.png")}])
@@ -24,11 +27,7 @@ export default function ResidentAdd() {
 
     function isSelectType(TYPE) {
         setType(TYPE);
-
-
       }
-
-    
 
     return(
         <View style={[Styles.flex,Styles.w100,Styles.h100,Styles.FFF]}>

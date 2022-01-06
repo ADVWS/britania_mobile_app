@@ -9,11 +9,13 @@ import {
 } from "react-native";
 import MainHeader from "../component/mainHeader";
 import {MaterialIcons} from "@expo/vector-icons";
+import { useSetRecoilState, useRecoilState } from "recoil";
 
 import { Styles } from "../styles";
 import ResidentList from "../component/MemberManageIndivi_component/resident_list"
 import OccupantList from "../component/MemberManageIndivi_component/occupant_list"
 import MenuBtn from "../component/MemberManageIndivi_component/menu_manage_btn";
+import * as Global from "../globalState"
 
 export default function MemberManageIndivi_screen( {route} ) {
 
@@ -22,23 +24,31 @@ export default function MemberManageIndivi_screen( {route} ) {
 
     console.log("Visit")
 
-    let item = route.params;
+    var resident = useRecoilState(Global.dataListResident)[0];
+    var occupant = useRecoilState(Global.dataListOccupant)[0];
+
+    console.log("RESIDENT")
+    console.log(resident);
+    console.log("OCCUPANT")
+    console.log(occupant);
+
+    var item = route.params;
 
     const scrollref = React.createRef();
 
-    const [selected, setSelected] = React.useState(<ResidentList resident={item.resident}/>)
+    const [selected, setSelected] = React.useState(<ResidentList resident={resident}/>)
 
     const selectMenu = (SELECT) => {
         console.log(SELECT)
         switch (SELECT) {
             case 'RESIDENT':
-                setSelected(<ResidentList resident={item.resident}/>)
+                setSelected(<ResidentList resident={resident}/>)
                 break
             case 'OCCUPANT':
-                setSelected(<OccupantList occupant={item.occupant}/>)
+                setSelected(<OccupantList occupant={occupant}/>)
                 break
             default:
-                setSelected(<ResidentList resident={item.resident}/>)
+                setSelected(<ResidentList resident={resident}/>)
                 break
         }
     }
