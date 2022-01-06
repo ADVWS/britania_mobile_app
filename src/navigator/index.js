@@ -55,7 +55,7 @@ function AllNavigator() {
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
         <Stack.Screen name="ResidentEdit" component={ResidentEdit} />
         <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP} />
-        <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP_2} />
+        {/* <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP_2} /> */}
         <Stack.Screen name="OccupantAdd" component={OccupantAdd} />
         <Stack.Screen name="OccupantEdit" component={OccupantEdit} />
         <Stack.Screen name="OccupantAddOTP" component={OccupantAddOTP} />
