@@ -19,6 +19,11 @@ import MainHeader from "../component/mainHeader";
 const SelectTypeInform = () => {
     const [typeInform, setTypeInform] = useRecoilState(Global.informType)
 
+    function gotoInformAdd(param) {
+        var informType = param
+        navigate.navigate('InformAdd', {informType})
+    }
+
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View
@@ -35,7 +40,8 @@ const SelectTypeInform = () => {
                         </Text>
                     </View>
                     {typeInform.map((item) => (
-                        <TouchableOpacity style={[Styles.w100, Styles.p10, Styles.row, { borderColor: '#DDD', borderBottomWidth: 0.5 }]}>
+                        <TouchableOpacity onPress={()=>{gotoInformAdd(item.value)}}
+                            style={[Styles.w100, Styles.p10, Styles.row, { borderColor: '#DDD', borderBottomWidth: 0.5 }]}>
                             <View style={[Styles.w10, Styles.al_center]}>
                                 <Image source={item.iamge} style={{ height: 30, width: 30 }} />
                             </View>

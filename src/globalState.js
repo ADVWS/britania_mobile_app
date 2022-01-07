@@ -356,3 +356,24 @@ export const informType = atom({
         {name: 'เบ็ดเตล็ด', value: 'เบ็ดเตล็ด',iamge: images.other},
     ]
 })
+
+export const informTime = atom({
+    key: 'informTime',
+    default: [
+       {time: "9.00 น."},
+       {time: "10.00 น."},
+       {time: "11.00 น."},
+       {time: "12.00 น."},
+       {time: "13.00 น."},
+       {time: "14.00 น."},
+       {time: "15.00 น."},
+       {time: "16.00 น."},
+       {time: "17.00 น."},
+       {time: "18.00 น."},
+    ]
+})
+
+export const informSet = atom({
+    key: 'informSet',
+    default: [],
+})

@@ -28,6 +28,10 @@ import Onsite from "../screen/Onsite_screen";
 import RepiairList from "../screen/RepairList_screen";
 import Satisfaction from "../screen/Satisfaction_screen";
 import SelectTypeInform from "../screen/SelectTypeInform_screen";
+import InformAdd from "../screen/InformAdd_screen";
+import InformContact from "../screen/InformContact_screen";
+import InformCalendar from "../screen/InformCalendar_screen";
+import InformTime from "../screen/InformTime_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -50,6 +54,10 @@ function AllNavigator() {
         <Stack.Screen name="RepiairList" component={RepiairList} />
         <Stack.Screen name="Satisfaction" component={Satisfaction} />
         <Stack.Screen name="SelectTypeInform" component={SelectTypeInform} />
+        <Stack.Screen name="InformAdd" component={InformAdd} />
+        <Stack.Screen name="InformContact" component={InformContact} />
+        <Stack.Screen name="InformCalendar" component={InformCalendar} />
+        <Stack.Screen name="InformTime" component={InformTime} />
         <Stack.Screen name="MemberManage" component={MemberManage} />
         <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi} />
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />

@@ -130,6 +130,12 @@ export const Styles = StyleSheet.create({
   mt80: {
     marginTop: 80,
   },
+  mt90: {
+    marginTop: 90,
+  },
+  mt100: {
+    marginTop: 100,
+  },
   mt35per: {
     marginTop: "35%",
   },

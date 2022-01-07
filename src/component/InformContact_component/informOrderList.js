@@ -1,0 +1,92 @@
+import * as React from "react";
+import {
+    View,
+    Text,
+    Image,
+    ScrollView,
+    TouchableOpacity,
+    TextInput,
+} from "react-native";
+import { Feather } from "@expo/vector-icons";
+
+import * as navigate from "../../navigator/RootNavigation";
+import { Styles } from "../../styles";
+
+
+const InformOrderList = ({ data }) => {
+
+    function Addmore() {
+
+    }
+
+    function gotoinformCalendar() {
+        navigate.navigate('InformCalendar')
+    }
+
+    return (
+        <>
+            <View style={[Styles.w100, Styles.p15, Styles.mt15, Styles.br_5, { backgroundColor: "#ffecec" }]}>
+                <View style={[Styles.w100, Styles.row]}>
+                    <View style={[Styles.w50]}>
+                        <Text style={[Styles.f_14, Styles.mainFont]}>
+                            ประเภท
+                        </Text>
+                        <Text style={[Styles.f_14, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
+                            {data.type}
+                        </Text>
+                    </View>
+                    <View style={[Styles.w50, Styles.al_end]}>
+                        <Feather name="trash" size={20} style={[Styles.mainColor_text]} />
+                    </View>
+                </View>
+                <Text style={[Styles.f_14, Styles.mainFont, Styles.mt10,]}>
+                    รายระเอียด
+                </Text>
+                <Text style={[Styles.f_14, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
+                    {data.detail}
+                </Text>
+                <Text style={[Styles.f_14, Styles.mainFont, Styles.mt10,]}>
+                    รูปภาพ
+                </Text>
+                <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
+                    {data.image.map((item) => (
+                        <Image
+                            source={{ uri: item }}
+                            style={[Styles.br_5, { width: 120, height: 120, marginRight: 10 }]}
+                        />
+                    ))}
+                </ScrollView>
+                <Text style={[Styles.f_14, Styles.mainFont, Styles.mt10,]}>
+                    หมายเหตุ
+                </Text>
+                <Text style={[Styles.f_14, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
+                    {data.comment}
+                </Text>
+            </View>
+            <TouchableOpacity
+                onPress={() => Addmore()}
+                style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, { borderColor: "#f1645e", borderWidth: 1.5 }]}>
+                <View style={[Styles.w40, Styles.al_end]}>
+                    <Feather name="plus" size={24} color="#f1645e" />
+                </View>
+                <Text style={[Styles.f_16, Styles.mainColor_text, Styles.mainFont]}>
+                    {' '}เพิ่มรายการ
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => gotoinformCalendar()}
+                style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, Styles.mainColor]}>
+                <View style={[Styles.w50, Styles.al_end]}>
+                    <Text style={[Styles.f_16, Styles.white_text, Styles.mainFont]}>
+                        ถัดไป
+                    </Text>
+                </View>
+                <View style={[Styles.w45, Styles.al_start]}>
+                    <Feather name="arrow-right" size={24} color="#FFF" />
+                </View>
+            </TouchableOpacity>
+        </>
+    );
+}
+
+export default InformOrderList
