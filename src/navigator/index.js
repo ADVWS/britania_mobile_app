@@ -28,6 +28,7 @@ import Onsite from "../screen/Onsite_screen";
 import RepiairList from "../screen/RepairList_screen";
 import Satisfaction from "../screen/Satisfaction_screen";
 import SelectTypeInform from "../screen/SelectTypeInform_screen";
+import Debug from "../screen/Debug_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -58,6 +59,7 @@ function AllNavigator() {
         <Stack.Screen name="OccupantAdd" component={OccupantAdd} />
         <Stack.Screen name="OccupantEdit" component={OccupantEdit} />
         <Stack.Screen name="OccupantAddOTP" component={OccupantAddOTP} />
+        <Stack.Screen name="Debug" component={Debug} />
       </Stack.Navigator>
     </NavigationContainer>
   );

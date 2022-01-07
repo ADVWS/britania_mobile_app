@@ -356,3 +356,11 @@ export const informType = atom({
         {name: 'เบ็ดเตล็ด', value: 'เบ็ดเตล็ด',iamge: images.other},
     ]
 })
+
+export const todoListState = atom({
+    key: 'todoListState',
+    default: [
+        {text : "Todo"},
+        {text : "AnotherTodo"}
+    ]
+  });
