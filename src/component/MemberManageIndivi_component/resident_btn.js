@@ -22,7 +22,7 @@ const ResidentBtn = (resident) => {
 
     // const [dataListResident, setDataListResident] = useRecoilState(Global.dataListResident)
     const [dataListResident, setDataListResident] = React.useState(resident.resident)
-    console.log(dataListResident)
+    // console.log(dataListResident)
 
     return (
         <View>

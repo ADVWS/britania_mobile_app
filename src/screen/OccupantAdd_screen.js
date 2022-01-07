@@ -16,6 +16,9 @@ import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import Radio from "../component/ResidentAdd_component/radio_resadd";
 import ThaiForm from "../component/OccupantAdd_component/thai_form";
 import ForeignForm from "../component/OccupantAdd_component/foreigner_form";
+import * as Global from "../globalState"
+
+import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function OccupantAdd() {
     const [picture, setPicture] = React.useState([{ image: require("../../assets/image/profpic/blank.png")}])
