@@ -377,3 +377,10 @@ export const informSet = atom({
     key: 'informSet',
     default: [],
 })
+export const todoListState = atom({
+    key: 'todoListState',
+    default: [
+        {text : "Todo"},
+        {text : "AnotherTodo"}
+    ]
+  });

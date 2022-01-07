@@ -54,6 +54,10 @@ export default function Account() {
             name: "ออกจากระบบ",
             nav: ""
         },
+        {
+            name: "Debug",
+            nav: "Debug"
+        },
     ])
 
 

@@ -32,6 +32,7 @@ import InformAdd from "../screen/InformAdd_screen";
 import InformContact from "../screen/InformContact_screen";
 import InformCalendar from "../screen/InformCalendar_screen";
 import InformTime from "../screen/InformTime_screen";
+import Debug from "../screen/Debug_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -66,6 +67,7 @@ function AllNavigator() {
         <Stack.Screen name="OccupantAdd" component={OccupantAdd} />
         <Stack.Screen name="OccupantEdit" component={OccupantEdit} />
         <Stack.Screen name="OccupantAddOTP" component={OccupantAddOTP} />
+        <Stack.Screen name="Debug" component={Debug} />
       </Stack.Navigator>
     </NavigationContainer>
   );
