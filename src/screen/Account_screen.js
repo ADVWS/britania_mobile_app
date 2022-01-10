@@ -37,7 +37,7 @@ export default function Account() {
     },
     {
       name: "นโยบายความเป็นส่วนตัว",
-      nav: "",
+      nav: "TermOfService",
     },
     {
       name: "Call Center",

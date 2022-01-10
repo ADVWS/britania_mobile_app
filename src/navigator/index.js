@@ -9,7 +9,7 @@ import LoginScreen from "../screen/Login_screen";
 import SigninScreen from "../screen/Signin_screen";
 import OTPScreen from "../screen/OTP_screen";
 import InputOTP from "../screen/InputOTP_screen";
-import Profile from "../screen/Profile_screen"
+import Profile from "../screen/Profile_screen";
 import AllTabBottom from "../navigator_footer";
 import HomecareScreen from "../screen/Homecare_screen";
 import MyProject from "../screen/MyProject_screen";
@@ -33,17 +33,19 @@ import InformContact from "../screen/InformContact_screen";
 import InformCalendar from "../screen/InformCalendar_screen";
 import InformTime from "../screen/InformTime_screen";
 import Debug from "../screen/Debug_screen";
+import TermOfService from "../screen/TermOfService_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signin" component={SigninScreen} />
         <Stack.Screen name="OTP" component={OTPScreen} />
         <Stack.Screen name="InputOTP" component={InputOTP} />
+        <Stack.Screen name="TermOfService" component={TermOfService} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Language" component={LanguageSetting} />
         <Stack.Screen name="TabFooter" component={AllTabBottom} />
@@ -60,7 +62,10 @@ function AllNavigator() {
         <Stack.Screen name="InformCalendar" component={InformCalendar} />
         <Stack.Screen name="InformTime" component={InformTime} />
         <Stack.Screen name="MemberManage" component={MemberManage} />
-        <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi} />
+        <Stack.Screen
+          name="MemberManageIndivi"
+          component={MemberManageIndivi}
+        />
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
         <Stack.Screen name="ResidentEdit" component={ResidentEdit} />
         <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP} />
