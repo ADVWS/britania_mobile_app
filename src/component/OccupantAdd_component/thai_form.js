@@ -30,11 +30,11 @@ const form = [
 export default function thai_form() {
   const setNewOccupant = useSetRecoilState(Global.dataListOccupant);
 
-  const [name, setName] = React.useState("");
-  const [identity, setIdentity] = React.useState("");
-  const [tel, setTel] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [date, setDate] = React.useState("");
+  // const [name, setName] = React.useState("");
+  // const [identity, setIdentity] = React.useState("");
+  // const [tel, setTel] = React.useState("");
+  // const [email, setEmail] = React.useState("");
+  // const [date, setDate] = React.useState("");
 
   const [data, setData] = React.useState({
     name: "",
@@ -46,41 +46,50 @@ export default function thai_form() {
 
   const addData = () => {
     if (
-      name == "" ||
-      identity == "" ||
-      tel == "" ||
-      email == "" ||
-      date == ""
+      data.name == "" ||
+      data.identity == "" ||
+      data.tel == "" ||
+      data.email == "" ||
+      data.date == ""
     ) {
-      console.log("data in" + name + identity + tel + email);
+      console.log(
+        "data in" + data.name + data.identity + data.tel + data.email
+      );
       alert("Please fill all the form");
     } else {
-      console.log("Name: " + name);
-      console.log("Identity: " + identity);
-      console.log("Tel: " + tel);
-      console.log("Email: " + email);
-      console.log("Date: " + date);
-      setNewResident((oldResident) => [
-        ...oldResident,
+      let outDate = data.date.split("-");
+
+      console.log("Name: " + data.name);
+      console.log("Identity: " + data.identity);
+      console.log("Tel: " + data.tel);
+      console.log("Email: " + data.email);
+      console.log(
+        "Date: " +
+          Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000
+      );
+
+      setNewOccupant((oldOccupant) => [
+        ...oldOccupant,
         {
-          name: name,
-          identity: identity,
-          tel: tel,
-          email: email,
+          name: data.name,
+          identity: data.identity,
+          tel: data.tel,
+          email: data.email,
           type: "THAI",
           status: "VERIFY",
-          expire: date,
+          expire:
+            Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000,
           image:
             "https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.6435-9/119062205_124961352661129_4552694077607062116_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeHL6WzClQIeSwjYXwbCCdUtf9e2NS2gwlJ_17Y1LaDCUgyQcqOns6cJ_XBu9M9ncGCgPhX2XlInc73XrGfAewfs&_nc_ohc=gqzud7Ke3gkAX9JPSpm&_nc_ht=scontent.fbkk22-1.fna&oh=00_AT-Pf9OV_FLq_XKzykPYbGP6a-z66lvGjmiW_8fwTDABWQ&oe=61FEF325",
         },
       ]);
 
       alert("Saved");
-      setName("");
-      setIdentity("");
-      setTel("");
-      setEmail("");
-      setDate("");
+      // setName("");
+      // setIdentity("");
+      // setTel("");
+      // setEmail("");
+      // setDate("");
 
       navigate.navigate("MemberManage");
     }
@@ -113,80 +122,7 @@ export default function thai_form() {
           </View>
         </React.Fragment>
       ))}
-      {/* <Text
-        style={[
-          Styles.ml5,
-          Styles.mt10,
-          Styles.mainFont,
-          Styles.f_16,
-          Styles.black_gray_text,
-        ]}
-      >
-        ชื่อ-นามสกุล
-      </Text>
-      <View style={Styles.al_center}>
-        <TextInput
-          style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
-          value={data.name}
-          onChangeText={(input) =>
-            setData((curr) => ({ ...curr, name: input }))
-          }
-        ></TextInput>
-      </View>
-      <Text
-        style={[
-          Styles.ml5,
-          Styles.mt10,
-          Styles.mainFont,
-          Styles.f_16,
-          Styles.black_gray_text,
-        ]}
-      >
-        เลขประจำตัวประชาชน
-      </Text>
-      <View style={Styles.al_center}>
-        <TextInput
-          style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
-          value={identity}
-          onChangeText={setIdentity}
-        ></TextInput>
-      </View>
-      <Text
-        style={[
-          Styles.ml5,
-          Styles.mt10,
-          Styles.mainFont,
-          Styles.f_16,
-          Styles.black_gray_text,
-        ]}
-      >
-        เบอร์โทรศัพท์
-      </Text>
-      <View style={Styles.al_center}>
-        <TextInput
-          style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
-          value={tel}
-          onChangeText={setTel}
-        ></TextInput>
-      </View>
-      <Text
-        style={[
-          Styles.ml5,
-          Styles.mt10,
-          Styles.mainFont,
-          Styles.f_16,
-          Styles.black_gray_text,
-        ]}
-      >
-        อีเมล์
-      </Text>
-      <View style={Styles.al_center}>
-        <TextInput
-          style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
-          value={email}
-          onChangeText={setEmail}
-        ></TextInput>
-      </View> */}
+
       <Text
         style={[
           Styles.ml5,
@@ -202,7 +138,7 @@ export default function thai_form() {
         {/* <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput> */}
         <DatePicker
           style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
-          date={date} // Initial date from state
+          date={data.date} // Initial date from state
           mode="date" // The enum of date, datetime and time
           placeholder="เลือกวันที่"
           format="DD-MM-YYYY"
@@ -224,16 +160,17 @@ export default function thai_form() {
               marginLeft: 0,
             },
           }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
+          onDateChange={(input) =>
+            setData((curr) => ({ ...curr, date: input }))
+          }
         />
       </View>
 
       <View style={Styles.al_center}>
         <TouchableOpacity
           style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-          onPress={() => navigate.navigate("OccupantAddOTP")}
+          // onPress={() => navigate.navigate("OccupantAddOTP")}
+          onPress={addData}
         >
           <Text
             style={[
