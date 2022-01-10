@@ -12,10 +12,10 @@ import {
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
-import MainHeader from "../component/mainHeader"
+import MainHeader from "../component/mainHeader";
+import * as navigate from "../navigator/RootNavigation";
 
 export default function ResidentAddOTP() {
-
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -31,18 +31,21 @@ export default function ResidentAddOTP() {
 
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={'เพิ่มผู้อาศัยร่วม'} backto={'ResidentAdd'} />
+      <MainHeader name={"เพิ่มผู้อาศัยร่วม"} backto={"ResidentAdd"} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View
-          style={[
-            Styles.al_center,
-            Styles.w100,
-            Styles.h90,
-            Styles.p30,
-          ]}
-        >
-          <View style={[{ height: 100, width: 100, backgroundColor: '#ffcfcf' }, Styles.circle]}>
-            <Ionicons name="ios-chatbubble-ellipses-outline" size={75} color="#f1645e" style={[{ marginTop: 10, marginLeft: 13 }]} />
+        <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p30]}>
+          <View
+            style={[
+              { height: 100, width: 100, backgroundColor: "#ffcfcf" },
+              Styles.circle,
+            ]}
+          >
+            <Ionicons
+              name="ios-chatbubble-ellipses-outline"
+              size={75}
+              color="#f1645e"
+              style={[{ marginTop: 10, marginLeft: 13 }]}
+            />
           </View>
           <Text
             style={[
@@ -55,11 +58,10 @@ export default function ResidentAddOTP() {
             กรุณากรอกรหัส OTP ที่ส่งไปยังคุณดวงกมล เมธากุล
           </Text>
           <Text
-            style={[
-              Styles.f_14,
-              Styles.mainFont_thin,
-              Styles.black_gray_text,
-            ]}>หมายเลข 098-334-2334 เพื่อเปิดสิทธิ์การใช้งาน</Text>
+            style={[Styles.f_14, Styles.mainFont_thin, Styles.black_gray_text]}
+          >
+            หมายเลข 098-334-2334 เพื่อเปิดสิทธิ์การใช้งาน
+          </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
               style={[
@@ -222,6 +224,7 @@ export default function ResidentAddOTP() {
               Styles.br_5,
               Styles.boxWithShadow,
             ]}
+            onPress={() => navigate.navigate("MemberManage")}
           >
             <Text
               style={[
@@ -244,6 +247,7 @@ export default function ResidentAddOTP() {
               Styles.border_btn,
               Styles.p15,
             ]}
+            onPress={() => navigate.navigate("MemberManage")}
           >
             <Text
               style={[
@@ -251,7 +255,7 @@ export default function ResidentAddOTP() {
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.text_center,
-                Styles.al_center
+                Styles.al_center,
               ]}
             >
               ข้าม
@@ -260,5 +264,5 @@ export default function ResidentAddOTP() {
         </View>
       </TouchableWithoutFeedback>
     </View>
-  )
+  );
 }

@@ -77,7 +77,7 @@ export default function thai_form() {
       // setTel("");
       // setEmail("");
 
-      navigate.navigate("MemberManage");
+      navigate.navigate("ResidentAddOTP");
     }
   };
 
