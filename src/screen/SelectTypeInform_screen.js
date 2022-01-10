@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import * as Global from "../globalState"
@@ -18,9 +18,13 @@ import MainHeader from "../component/mainHeader";
 
 const SelectTypeInform = () => {
     const [typeInform, setTypeInform] = useRecoilState(Global.informType)
+    const gobalData = useSetRecoilState(Global.informSelectType)
 
     function gotoInformAdd(param) {
-        var informType = param
+        var informType = {
+            type: param
+        }
+        gobalData(informType)
         navigate.navigate('InformAdd', {informType})
     }
 

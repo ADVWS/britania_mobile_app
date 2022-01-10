@@ -8,20 +8,32 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as navigate from "../../navigator/RootNavigation";
-
+import * as Global from "../../globalState"
+import { useSetRecoilState, useRecoilState } from "recoil";
 
 import { Styles } from "../../styles";
 import InformBox from "./informbox";
 
 const InformList = ({listInform}) => {
     const [dataIform, setDataInform] = React.useState([])
+    const newContactInform = useSetRecoilState(Global.newContactInform)
+    const newInform = useSetRecoilState(Global.newInform)
     React.useEffect(()=>{
         setDataInform(listInform)
     })
+    const gotoSelectTypeInform = () => {
+        newContactInform({
+            address: "",
+            fullname: "",
+            mobileno: ""
+        })
+        newInform([])
+        navigate.navigate('SelectTypeInform')
+    }
     return (
         <View style={[Styles.w100, Styles.p15]}>
             <TouchableOpacity 
-                onPress={()=>{navigate.navigate('SelectTypeInform')}}
+                onPress={()=>{gotoSelectTypeInform()}}
                 style={[
                     Styles.w100,
                     Styles.p15,

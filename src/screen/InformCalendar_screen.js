@@ -8,7 +8,7 @@ import {
     TextInput,
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { MaterialIcons } from "@expo/vector-icons";
 import CalendarPicker from 'react-native-calendar-picker';
 
@@ -24,6 +24,18 @@ const InformCalendar = ({ route }) => {
     const [minDate, setMindate] = React.useState(moment().startOf('day'))
     const [defaultTime, setDefaultTime] = React.useState("9.00 น.")
 
+    const [selectDate, setSelectDate] = React.useState("")
+    const [dataSet, setDataset] = React.useState({})
+
+    const [contactInform, setContactInform] = useRecoilState(Global.newContactInform)
+    const [newInform, setNewInform] = useRecoilState(Global.newInform)
+    const [dataMyHome, setDataMyHome] = useRecoilState(Global.dataMyHome)
+
+    const addMyHome = useSetRecoilState(Global.dataMyHome)
+
+
+    console.log('date===>', newInform)
+
     React.useEffect(() => {
         console.log('TIME', route)
         if(route.params){
@@ -32,7 +44,24 @@ const InformCalendar = ({ route }) => {
       }, []);
 
     function onDateChange(date) {
-        console.log(date)
+        var dateInform = moment(date).unix()
+        setSelectDate(dateInform)
+    }
+
+    function confirmData() {
+        var myHome = JSON.stringify(dataMyHome)
+        myHome = JSON.parse(myHome)
+        var informset = newInform
+        var objData = {
+            id: 1100889,
+            informtime: selectDate,
+            status: 3,
+            order: informset
+        }
+        myHome.inform.push(objData)
+        addMyHome(myHome)
+        navigate.navigate("Homecare")
+        console.log(myHome)
     }
 
     return (
@@ -60,7 +89,7 @@ const InformCalendar = ({ route }) => {
                             todayTextStyle={{ color: "#000" }}
                             selectedDayStyle={{ backgroundColor: "#f1645e" }}
                             selectedDayTextColor="#FFF"
-                            onDateChange={onDateChange()}
+                            onDateChange={(val)=>onDateChange(val)}
                         />
                     </View>
                     <View style={[Styles.w100, Styles.p15]}>
@@ -78,7 +107,7 @@ const InformCalendar = ({ route }) => {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => Addmore()}
+                            onPress={() => confirmData()}
                             style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mt100, Styles.mainColor]}>
                             <Text style={[Styles.f_16, Styles.white_text, Styles.mainFont, Styles.text_center]}>
                                 ยืนยัน

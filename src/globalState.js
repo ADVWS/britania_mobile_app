@@ -141,7 +141,7 @@ export const dataMyproject = atom({
                             image: [
                                 'https://www.wazzadu.com/thumbs/article/resize/760/article_365d6210-e371-11e9-a43b-eb5cbfc4d797.jpg',
                             ],
-                            mechanic:  {
+                            mechanic: {
                                 name: 'รูแปง อินทร',
                                 mobileno: '0812375837',
                                 lineID: '-',
@@ -206,9 +206,9 @@ export const dataMyproject = atom({
                     name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                     email: 'ddkkk@gmail.com',
                     tel: '098-334-2334',
-                    type : 'THAI',
-                    identity : '12345679',
-                    image : 'https://scontent.fbkk2-5.fna.fbcdn.net/v/t39.30808-6/214851602_339920594367892_353886184762612393_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE0hqZqSxmOnule10jyO-82vjQWPQWI_cK-NBY9BYj9wjeCYd8tjEg7x9ISuZuGhVrhE2XrUTvCv2K5xQ8SNoQx&_nc_ohc=iCzt75sYDCYAX8xFR5w&_nc_zt=23&_nc_ht=scontent.fbkk2-5.fna&oh=00_AT9Kzk7s02kiFcbcvkcYunfHknwlKp07o6qkPin2U7hVAA&oe=61DAC59E',
+                    type: 'THAI',
+                    identity: '12345679',
+                    image: 'https://scontent.fbkk2-5.fna.fbcdn.net/v/t39.30808-6/214851602_339920594367892_353886184762612393_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE0hqZqSxmOnule10jyO-82vjQWPQWI_cK-NBY9BYj9wjeCYd8tjEg7x9ISuZuGhVrhE2XrUTvCv2K5xQ8SNoQx&_nc_ohc=iCzt75sYDCYAX8xFR5w&_nc_zt=23&_nc_ht=scontent.fbkk2-5.fna&oh=00_AT9Kzk7s02kiFcbcvkcYunfHknwlKp07o6qkPin2U7hVAA&oe=61DAC59E',
                     expire: 1665162000,
                     status: 'VERIFY'
                 },
@@ -216,9 +216,9 @@ export const dataMyproject = atom({
                     name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                     email: 'ddkkk@gmail.com',
                     tel: '098-334-2334',
-                    type : 'FOREIGN',
-                    identity : '12345679',
-                    image : 'https://scontent.fbkk2-7.fna.fbcdn.net/v/t1.6435-9/94504794_111236907236263_7652594624308969472_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_eui2=AeFEWg3DrhRRfWdkHIYuCVcVJ8sAVY-w9_YnywBVj7D39mqPU7f5E_RiXQouDTfUenp_ik65rtALKnCLJ2Do1Amv&_nc_ohc=E_b_37gbeBIAX_nRqYp&_nc_ht=scontent.fbkk2-7.fna&oh=00_AT8RU3viGg9H-O1AEH6SnVpL9yVuf6-FJPHWiQql4cUVuw&oe=61FA5C09',
+                    type: 'FOREIGN',
+                    identity: '12345679',
+                    image: 'https://scontent.fbkk2-7.fna.fbcdn.net/v/t1.6435-9/94504794_111236907236263_7652594624308969472_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_eui2=AeFEWg3DrhRRfWdkHIYuCVcVJ8sAVY-w9_YnywBVj7D39mqPU7f5E_RiXQouDTfUenp_ik65rtALKnCLJ2Do1Amv&_nc_ohc=E_b_37gbeBIAX_nRqYp&_nc_ht=scontent.fbkk2-7.fna&oh=00_AT8RU3viGg9H-O1AEH6SnVpL9yVuf6-FJPHWiQql4cUVuw&oe=61FA5C09',
                     expire: 1665162000,
                     status: 'ACTIVE'
                 }
@@ -251,8 +251,8 @@ export const dataListResident = atom(
                 name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                 email: 'ddkkk@gmail.com',
                 tel: '098-334-2334',
-                type : 'THAI',
-                identity : '12345679',
+                type: 'THAI',
+                identity: '12345679',
                 image: 'https://scontent.fbkk2-7.fna.fbcdn.net/v/t39.30808-6/213713549_208962517899651_1213391919512128248_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeHCnyb1k4SMQfoIAfNCj9_102eozQ_PblvTZ6jND89uW3Oex1qUjW_mrtciiaxf3-nN7dJZxHxERu0dD_zyOoka&_nc_ohc=MwjVuE4RqUQAX-CWeG1&tn=rTpMqQ4q7xNK1u7q&_nc_zt=23&_nc_ht=scontent.fbkk2-7.fna&oh=00_AT-geBIOKhkP_3zeWP0R8Nt_x_fzE468SMcc1XI31anUAQ&oe=61DB0F84',
                 status: 'VERIFY'
             },
@@ -261,7 +261,7 @@ export const dataListResident = atom(
                 email: 'ddkkk@gmail.com',
                 tel: '098-334-2334',
                 type: 'FOREIGN',
-                identity : '12345679',
+                identity: '12345679',
                 image: 'https://scontent.fbkk2-4.fna.fbcdn.net/v/t1.6435-9/94400039_113277753696176_8027304235685117952_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=174925&_nc_eui2=AeHeUx38YqjjuH80BFqNYzVW4Exs_3kN9RzgTGz_eQ31HI7QXNzAeNGjBVlFiR-1fwknAf5BiO0BHBxKN2CTf2D3&_nc_ohc=bNjGyFOuUKEAX94b7NQ&tn=rTpMqQ4q7xNK1u7q&_nc_ht=scontent.fbkk2-4.fna&oh=00_AT8iktc_gLMlnGNqYl8_S9SfAO9hKGSoq-nItbGBiRmhlg&oe=61FBC8DF',
                 status: 'ACTIVE'
             },
@@ -303,9 +303,9 @@ export const dataListOccupant = atom(
                 name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                 email: 'ddkkk@gmail.com',
                 tel: '098-334-2334',
-                type : 'THAI',
-                identity : '12345679',
-                image : 'https://scontent.fbkk2-5.fna.fbcdn.net/v/t39.30808-6/214851602_339920594367892_353886184762612393_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE0hqZqSxmOnule10jyO-82vjQWPQWI_cK-NBY9BYj9wjeCYd8tjEg7x9ISuZuGhVrhE2XrUTvCv2K5xQ8SNoQx&_nc_ohc=iCzt75sYDCYAX8xFR5w&_nc_zt=23&_nc_ht=scontent.fbkk2-5.fna&oh=00_AT9Kzk7s02kiFcbcvkcYunfHknwlKp07o6qkPin2U7hVAA&oe=61DAC59E',
+                type: 'THAI',
+                identity: '12345679',
+                image: 'https://scontent.fbkk2-5.fna.fbcdn.net/v/t39.30808-6/214851602_339920594367892_353886184762612393_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE0hqZqSxmOnule10jyO-82vjQWPQWI_cK-NBY9BYj9wjeCYd8tjEg7x9ISuZuGhVrhE2XrUTvCv2K5xQ8SNoQx&_nc_ohc=iCzt75sYDCYAX8xFR5w&_nc_zt=23&_nc_ht=scontent.fbkk2-5.fna&oh=00_AT9Kzk7s02kiFcbcvkcYunfHknwlKp07o6qkPin2U7hVAA&oe=61DAC59E',
                 expire: 1665162000,
                 status: 'VERIFY'
             },
@@ -313,9 +313,9 @@ export const dataListOccupant = atom(
                 name: 'ดวงกมล ชูศักดิ์สกุลวิบูล',
                 email: 'ddkkk@gmail.com',
                 tel: '098-334-2334',
-                type : 'FOREIGN',
-                identity : '12345679',
-                image : 'https://scontent.fbkk2-7.fna.fbcdn.net/v/t1.6435-9/94504794_111236907236263_7652594624308969472_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_eui2=AeFEWg3DrhRRfWdkHIYuCVcVJ8sAVY-w9_YnywBVj7D39mqPU7f5E_RiXQouDTfUenp_ik65rtALKnCLJ2Do1Amv&_nc_ohc=E_b_37gbeBIAX_nRqYp&_nc_ht=scontent.fbkk2-7.fna&oh=00_AT8RU3viGg9H-O1AEH6SnVpL9yVuf6-FJPHWiQql4cUVuw&oe=61FA5C09',
+                type: 'FOREIGN',
+                identity: '12345679',
+                image: 'https://scontent.fbkk2-7.fna.fbcdn.net/v/t1.6435-9/94504794_111236907236263_7652594624308969472_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_eui2=AeFEWg3DrhRRfWdkHIYuCVcVJ8sAVY-w9_YnywBVj7D39mqPU7f5E_RiXQouDTfUenp_ik65rtALKnCLJ2Do1Amv&_nc_ohc=E_b_37gbeBIAX_nRqYp&_nc_ht=scontent.fbkk2-7.fna&oh=00_AT8RU3viGg9H-O1AEH6SnVpL9yVuf6-FJPHWiQql4cUVuw&oe=61FA5C09',
                 expire: 1665162000,
                 status: 'ACTIVE'
             }
@@ -341,35 +341,35 @@ export const dataInformDetail = atom({
 export const informType = atom({
     key: 'informType',
     default: [
-        {name: 'ไฟฟ้า', value: 'ไฟฟ้า',iamge: images.electricity},
-        {name: 'ท่อน้ำ/อากาศ ดี/เสีย', value: 'ท่อน้ำ/อากาศ ดี/เสีย',iamge: images.pipe},
-        {name: 'ประตู', value: 'ประตู',iamge: images.door},
-        {name: 'พื้น', value: 'พื้น',iamge: images.floor},
-        {name: 'ฝ้าเพดาน', value: 'ฝ้าเพดาน',iamge: images.ceiling},
-        {name: 'สุขภัณฑ์ / อุปกรณ์', value: 'สุขภัณฑ์ / อุปกรณ์',iamge: images.wc},
-        {name: 'โครงสร้าง', value: 'โครงสร้าง',iamge: images.layout},
-        {name: 'ผนัง', value: 'ผนัง',iamge: images.wall},
-        {name: 'สี', value: 'สี',iamge: images.color},
-        {name: 'เฟอร์นิเจอร์', value: 'เฟอร์นิเจอร์',iamge: images.furniture},
-        {name: 'หลังคา', value: 'หลังคา',iamge: images.roof},
-        {name: 'ซ่อมพื้นที่ส่วนกลาง', value: 'ซ่อมพื้นที่ส่วนกลาง',iamge: images.public},
-        {name: 'เบ็ดเตล็ด', value: 'เบ็ดเตล็ด',iamge: images.other},
+        { name: 'ไฟฟ้า', value: 'ไฟฟ้า', iamge: images.electricity },
+        { name: 'ท่อน้ำ/อากาศ ดี/เสีย', value: 'ท่อน้ำ/อากาศ ดี/เสีย', iamge: images.pipe },
+        { name: 'ประตู', value: 'ประตู', iamge: images.door },
+        { name: 'พื้น', value: 'พื้น', iamge: images.floor },
+        { name: 'ฝ้าเพดาน', value: 'ฝ้าเพดาน', iamge: images.ceiling },
+        { name: 'สุขภัณฑ์ / อุปกรณ์', value: 'สุขภัณฑ์ / อุปกรณ์', iamge: images.wc },
+        { name: 'โครงสร้าง', value: 'โครงสร้าง', iamge: images.layout },
+        { name: 'ผนัง', value: 'ผนัง', iamge: images.wall },
+        { name: 'สี', value: 'สี', iamge: images.color },
+        { name: 'เฟอร์นิเจอร์', value: 'เฟอร์นิเจอร์', iamge: images.furniture },
+        { name: 'หลังคา', value: 'หลังคา', iamge: images.roof },
+        { name: 'ซ่อมพื้นที่ส่วนกลาง', value: 'ซ่อมพื้นที่ส่วนกลาง', iamge: images.public },
+        { name: 'เบ็ดเตล็ด', value: 'เบ็ดเตล็ด', iamge: images.other },
     ]
 })
 
 export const informTime = atom({
     key: 'informTime',
     default: [
-       {time: "9.00 น."},
-       {time: "10.00 น."},
-       {time: "11.00 น."},
-       {time: "12.00 น."},
-       {time: "13.00 น."},
-       {time: "14.00 น."},
-       {time: "15.00 น."},
-       {time: "16.00 น."},
-       {time: "17.00 น."},
-       {time: "18.00 น."},
+        { time: "9.00 น." },
+        { time: "10.00 น." },
+        { time: "11.00 น." },
+        { time: "12.00 น." },
+        { time: "13.00 น." },
+        { time: "14.00 น." },
+        { time: "15.00 น." },
+        { time: "16.00 น." },
+        { time: "17.00 น." },
+        { time: "18.00 น." },
     ]
 })
 
@@ -380,7 +380,26 @@ export const informSet = atom({
 export const todoListState = atom({
     key: 'todoListState',
     default: [
-        {text : "Todo"},
-        {text : "AnotherTodo"}
+        { text: "Todo" },
+        { text: "AnotherTodo" }
     ]
-  });
+});
+
+export const informSelectType = atom({
+    key: 'informSelectType',
+    default: ''
+})
+
+export const newInform = atom({
+    key: 'newInform',
+    default: []
+})
+
+export const newContactInform = atom({
+    key: 'newContactInform',
+    default: {
+        address: "",
+        fullname: "",
+        mobileno: ""
+    }
+})
