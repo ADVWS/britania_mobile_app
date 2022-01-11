@@ -30,14 +30,18 @@ const InformCalendar = ({ route }) => {
     const [contactInform, setContactInform] = useRecoilState(Global.newContactInform)
     const [newInform, setNewInform] = useRecoilState(Global.newInform)
     const [dataMyHome, setDataMyHome] = useRecoilState(Global.dataMyHome)
+    const [thisDataMyProject, setThisDataMyProject] = useRecoilState(Global.dataMyproject)
+    const [listInform, setDataListInform] = useRecoilState(Global.dataListInform)
+
+    const setListInform = useSetRecoilState(Global.dataListInform)
+    const setlistHistory = useSetRecoilState(Global.dataListHistory)
 
     const addMyHome = useSetRecoilState(Global.dataMyHome)
+    const addMyProject = useSetRecoilState(Global.dataMyproject)
 
-
-    console.log('date===>', newInform)
+    const informSet = newInform
 
     React.useEffect(() => {
-        console.log('TIME', route)
         if(route.params){
             setDefaultTime(route.params.InformTime)
         }
@@ -52,16 +56,41 @@ const InformCalendar = ({ route }) => {
         var myHome = JSON.stringify(dataMyHome)
         myHome = JSON.parse(myHome)
         var informset = newInform
+        var setid = Number(myHome.inform[myHome.inform.length - 1].id) + 1
         var objData = {
-            id: 1100889,
+            id: setid,
             informtime: selectDate,
             status: 3,
             order: informset
         }
         myHome.inform.push(objData)
+        updateMyproject(myHome, objData)
+        // console.log(myHome)
+    }
+
+    function updateMyproject(myHome, objData) {
+        var myProject = JSON.stringify(thisDataMyProject)
+        myProject = JSON.parse(myProject)
+        myProject.map((item)=>{
+            if(item.homeNo === dataMyHome.homeNo){
+                item.inform.push(objData)
+            }
+        })
+        addMyProject(myProject)
         addMyHome(myHome)
+        var inform = []
+        var history = []
+        myHome.inform.map((item)=>{
+            console.log(item.id)
+            if(item.status !== 5){        
+                inform.push(item)
+            } else {
+                history.push(item)
+            }
+        })
+        setListInform(inform)
+        setlistHistory(history)
         navigate.navigate("Homecare")
-        console.log(myHome)
     }
 
     return (
@@ -72,7 +101,7 @@ const InformCalendar = ({ route }) => {
                     Styles.w100,
                     Styles.h100
                 ]}>
-                <MainHeader name={'เลือกวันที่และเวลา'} backto={'InformContact'} />
+                <MainHeader name={'เลือกวันที่และเวลา'} backto={'InformContact'} informSet={informSet}/>
                 <ScrollView style={[Styles.w100, Styles.flex, Styles.FFF]}>
                     <View style={[Styles.w100, Styles.p15]}>
                         <Text style={[Styles.f_16, Styles.mainFont, Styles.mt5]}>

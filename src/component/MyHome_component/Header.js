@@ -1,10 +1,12 @@
 import * as React from "react";
-import { Image, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
 
+import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 
+var screen = "HomeDetail"
 export default class Header extends React.Component {
     render() {
         return (
@@ -17,7 +19,9 @@ export default class Header extends React.Component {
                     />
                 </View>
                 <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
-                    <MaterialIcons name="notifications-none" size={26} color={'#FFF'}/>
+                    <TouchableOpacity onPress={()=> navigate.navigate("Notify", {screen})}>
+                        <MaterialIcons name="notifications-none" size={26} color={'#FFF'}/>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

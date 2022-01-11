@@ -31,7 +31,7 @@ const InformList = ({listInform}) => {
         navigate.navigate('SelectTypeInform')
     }
     return (
-        <View style={[Styles.w100, Styles.p15]}>
+        <View style={[Styles.w100, Styles.p15, Styles.h65]}>
             <TouchableOpacity 
                 onPress={()=>{gotoSelectTypeInform()}}
                 style={[

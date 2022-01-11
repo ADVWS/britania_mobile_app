@@ -24,10 +24,14 @@ export default class mainHeader extends React.Component {
 
     setData(){
         var paramNav = ''
+        var informSet;
         if(this.props.param){
             paramNav = this.props.param
         }
-        navigate.navigate(this.state.back_btn, {paramNav})
+        if(this.props.informSet){
+            informSet = this.props.informSet
+        }
+        navigate.navigate(this.state.back_btn, {paramNav, informSet})
     }
 
     render() {

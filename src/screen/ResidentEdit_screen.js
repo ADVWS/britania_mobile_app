@@ -31,9 +31,9 @@ export default function ResidentEdit(props) {
 
     return(
         <View style={[Styles.flex,Styles.w100,Styles.h100,Styles.FFF]}>
-            {/* ยังแก้บัคไม่รีเฟรชไม่ได้ 
-            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManageIndivi'}/> */}
-            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManage'}/>
+            {/* ยังแก้บัคไม่รีเฟรชไม่ได้ */}
+            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManageIndivi'}/>
+            {/* <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManage'}/> */}
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}

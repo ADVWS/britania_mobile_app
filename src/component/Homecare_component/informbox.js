@@ -36,7 +36,8 @@ const InformBox = ({data}) => {
                 Styles.FFF,
                 Styles.boxWithShadow,
                 Styles.row,
-                Styles.mt20
+                Styles.mt10,
+                Styles.mb10
             ]}>
             <View style={[Styles.w50]}>
                 <Text style={[Styles.mainColor_text, Styles.f_16, Styles.mainFont]}>

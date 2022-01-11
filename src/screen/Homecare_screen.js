@@ -27,7 +27,7 @@ function Homecare() {
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
     const [selected, setSelected] = React.useState('INFORM')
 
-    console.log(thisDataMyHome)
+    console.log(listInform)
     function selectMenu(SELECT) {
         console.log(SELECT)
         switch (SELECT) {

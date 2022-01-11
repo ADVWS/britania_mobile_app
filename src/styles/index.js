@@ -67,6 +67,9 @@ export const Styles = StyleSheet.create({
   h70: {
     height: "70%",
   },
+  h65: {
+    height: "65%",
+  },
   h60: {
     height: "60%",
   },

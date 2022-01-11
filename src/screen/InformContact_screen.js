@@ -21,11 +21,9 @@ import InformOrderList from "../component/InformContact_component/informOrderLis
 
 
 const InformContact = ({ route }) => {
-    console.log('ROUTE', route)
     const newContactInform = useSetRecoilState(Global.newContactInform)
     const newInform = useSetRecoilState(Global.newInform)
     const [contactInform, setContactInform] = useRecoilState(Global.newContactInform)
-    console.log(contactInform)
     const [address, setAddress] = React.useState('')
     const [alAddress, setAladdress] = React.useState(false)
     const [alAddressColor, setAladdressColor] = React.useState("#DDD")

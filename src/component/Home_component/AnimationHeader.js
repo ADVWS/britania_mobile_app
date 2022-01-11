@@ -1,10 +1,13 @@
 import React from 'react';
-import { Animated, View, Image, Text } from 'react-native';
+import { Animated, View, TouchableOpacity, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from "@expo/vector-icons";
 import { Styles } from '../../styles';
+import * as navigate from "../../navigator/RootNavigation";
+
 
 const HEADER_HEIGHT = 50;
+const screen = "Home"
 const AnimatedHeader = ({ animatedValue }) => {
     const insets = useSafeAreaInsets();
     const headerHeight = animatedValue.interpolate({
@@ -22,16 +25,20 @@ const AnimatedHeader = ({ animatedValue }) => {
     });
     //console.log(imageSet)
     return (
-        <Animated.View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, { backgroundColor: colorSet}]}>
+        <Animated.View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, { backgroundColor: colorSet }]}>
             <View style={[Styles.w20]} />
-            <View style={[Styles.w60, Styles.al_center, Styles.jc_end, {bottom: 5}]}>
+            <View style={[Styles.w60, Styles.al_center, Styles.jc_end, { bottom: 5 }]}>
                 <Animated.Image
                     source={require("../../../assets/image/logo-header.png")}
-                    style={[Styles.w70, {tintColor: imageSet, height: '32%'}]}
+                    style={[Styles.w70, { tintColor: imageSet, height: '32%' }]}
                 />
             </View>
             <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
-                <Animated.Text style={{color: imageSet}}><MaterialIcons name="notifications-none" size={26}/></Animated.Text>
+                <TouchableOpacity onPress={()=> navigate.navigate("Notify", {screen})}>
+                    <Animated.Text style={{ color: imageSet }}>
+                        <MaterialIcons name="notifications-none" size={26} />
+                    </Animated.Text>
+                </TouchableOpacity>
             </View>
         </Animated.View>
     );

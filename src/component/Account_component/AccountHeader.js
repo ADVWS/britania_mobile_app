@@ -8,8 +8,11 @@ import {
 } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
+import * as navigate from "../../navigator/RootNavigation";
+
 
 import { Styles } from "../../styles";
+var screen = "Account"
 
 export default class AccountHeader extends React.Component {
     render() {
@@ -25,7 +28,9 @@ export default class AccountHeader extends React.Component {
                         ]}> บัญชี</Text>
                 </View>
                 <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
-                    <MaterialIcons name="notifications-none" size={26} color={'#f1645e'}/>
+                    <TouchableOpacity onPress={()=> navigate.navigate("Notify", {screen})}>
+                        <MaterialIcons name="notifications-none" size={26} color={'#f1645e'}/>  
+                    </TouchableOpacity>
                 </View>
             </View>
         );
