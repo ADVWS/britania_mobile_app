@@ -36,6 +36,7 @@ import Debug from "../screen/Debug_screen";
 import TermOfService from "../screen/TermOfService_screen";
 import Notify from "../screen/Notify_screen";
 import ResidentDetail from "../screen/ResidentDetail_screen";
+import OccupantDetail from "../screen/OccupantDetail_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -73,6 +74,7 @@ function AllNavigator() {
         <Stack.Screen name="ResidentEdit" component={ResidentEdit} />
         <Stack.Screen name="ResidentAddOTP" component={ResidentAddOTP} />
         <Stack.Screen name="OccupantAdd" component={OccupantAdd} />
+        <Stack.Screen name="OccupantDetail" component={OccupantDetail} />
         <Stack.Screen name="OccupantEdit" component={OccupantEdit} />
         <Stack.Screen name="OccupantAddOTP" component={OccupantAddOTP} />
         <Stack.Screen name="Notify" component={Notify} />

@@ -10,20 +10,50 @@ import * as Global from "../../globalState";
 import * as navigate from "../../navigator/RootNavigation";
 
 // const ResidentBtn = ({data})
-const OccupantBtn = (occupant) => {
+const OccupantBtn = (occupant, item) => {
   // console.log("OCCUPANT Selected")
   // console.log(occupant.occupant)
 
   // const [dataListOccupant, setDataListOccupant] = useRecoilState(Global.dataListOccupant)
 
+  // console.log("Item Here:");
+  // console.log(item);
+
   const [dataListOccupant, setDataListOccupant] = React.useState(
     occupant.occupant
   );
 
+  const params = item;
+  const Addcallback = useSetRecoilState(Global.callbackEdit);
+  const _callback = useRecoilState(Global.callbackEdit);
+
+  function gotoOccupantDetail(usertype, identity) {
+    console.log("USER TYPE::", usertype);
+    var listdetail = [];
+    if (usertype === "Host-occupant") {
+      dataListOccupant.map((item) => {
+        listdetail.push(item);
+      });
+    } else {
+      dataListOccupant.map((item) => {
+        if (item.identity === identity) {
+          listdetail.push(item);
+        }
+      });
+    }
+    console.log(listdetail);
+    Addcallback(listdetail);
+    console.log("=====", _callback);
+    navigate.navigate("OccupantDetail", listdetail);
+  }
+
   return (
     <View>
       {dataListOccupant.map((item) => (
-        <View
+        <TouchableOpacity
+          onPress={() => {
+            gotoOccupantDetail(item.usertype, item.identity);
+          }}
           style={[
             Styles.w100,
             Styles.p15,
@@ -76,7 +106,11 @@ const OccupantBtn = (occupant) => {
                         style={[
                           Styles.f_16,
                           Styles.mainFont,
-                          { color: "#f4910d", marginLeft: 10, marginRight: 10 },
+                          {
+                            color: "#f4910d",
+                            marginLeft: 10,
+                            marginRight: 10,
+                          },
                         ]}
                       >
                         ยังไม่เปิดการใช้งาน
@@ -157,6 +191,7 @@ const OccupantBtn = (occupant) => {
           </View>
           {item.status === "VERIFY" ? (
             <TouchableOpacity
+              onPress={() => navigate.navigate("OccupantAddOTP", { params })}
               style={[
                 Styles.w100,
                 Styles.row,
@@ -182,7 +217,8 @@ const OccupantBtn = (occupant) => {
               </Text>
             </TouchableOpacity>
           ) : null}
-          {item.status === "ACTIVE" ? (
+
+          {/*item.status === "ACTIVE" ? (
             <View style={[Styles.row, Styles.al_center]}>
               <TouchableOpacity
                 style={[
@@ -237,8 +273,8 @@ const OccupantBtn = (occupant) => {
                 </Text>
               </TouchableOpacity>
             </View>
-          ) : null}
-        </View>
+                ) : null */}
+        </TouchableOpacity>
       ))}
     </View>
   );

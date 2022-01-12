@@ -11,6 +11,7 @@ import {
 import * as navigate from "../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { AntDesign } from "@expo/vector-icons";
+import moment from "moment";
 
 import * as Global from "../globalState";
 
@@ -18,13 +19,13 @@ import { Styles } from "../styles";
 
 import MainHeader from "../component/mainHeader";
 
-const ResidentDetail = ({ route }) => {
+const OccupantDetail = ({ route }) => {
   const callback = useRecoilState(Global.callbackAccount);
   console.log("TEST::::", callback[0]);
   return (
     <View style={[Styles.flex, Styles.al_center]}>
       <View style={[Styles.al_center, Styles.w100, Styles.h100]}>
-        <MainHeader name={"ผู้อยู่อาศัยร่วม"} backto={"MemberManageIndivi"} />
+        <MainHeader name={"ผู้เช่า"} backto={"MemberManageIndivi"} />
         <ScrollView style={[Styles.w100, Styles.p15, Styles.FFF]}>
           <View>
             {route.params.map((item) => (
@@ -61,6 +62,19 @@ const ResidentDetail = ({ route }) => {
                       ]}
                     >
                       {item.tel}
+                    </Text>
+                    <Text
+                      style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                    >
+                      สิทธิ์หมดอายุ
+                    </Text>
+                    <Text
+                      style={[
+                        Styles.mainFont,
+                        { color: "#8f8f8f", fontSize: 15 },
+                      ]}
+                    >
+                      {moment.unix(item.expire).format("DD/MM/YYYY")}
                     </Text>
                   </View>
                   <View>
@@ -222,7 +236,7 @@ const ResidentDetail = ({ route }) => {
                         Styles.jc_center,
                         Styles.ml5,
                       ]}
-                      onPress={() => navigate.navigate("ResidentEdit", item)}
+                      onPress={() => navigate.navigate("OccupantEdit", item)}
                     >
                       <Text
                         style={[
@@ -247,4 +261,4 @@ const ResidentDetail = ({ route }) => {
   );
 };
 
-export default ResidentDetail;
+export default OccupantDetail;

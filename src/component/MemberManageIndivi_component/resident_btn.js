@@ -18,35 +18,37 @@ const ResidentBtn = (resident, item) => {
     resident.resident
   );
   // console.log(dataListResident)
-  const params = item
-  const Addcallback = useSetRecoilState(Global.callbackEdit)
-  const _callback = useRecoilState(Global.callbackEdit)
+  const params = item;
+  const Addcallback = useSetRecoilState(Global.callbackEdit);
+  const _callback = useRecoilState(Global.callbackEdit);
 
   function gotoResidentDetail(usertype, identity) {
-    console.log('USER TYPE::', usertype)
-    var listdetail = []
-    if(usertype === "Host-resident"){
-      dataListResident.map((item)=>{
-        listdetail.push(item)
-      })
+    console.log("USER TYPE::", usertype);
+    var listdetail = [];
+    if (usertype === "Host-resident") {
+      dataListResident.map((item) => {
+        listdetail.push(item);
+      });
     } else {
-      dataListResident.map((item)=>{
-        if(item.identity === identity){
-          listdetail.push(item)
+      dataListResident.map((item) => {
+        if (item.identity === identity) {
+          listdetail.push(item);
         }
-      })
+      });
     }
-    console.log(listdetail)
-    Addcallback(listdetail)
-    console.log('=====',_callback)
-    navigate.navigate("ResidentDetail", listdetail)
+    console.log(listdetail);
+    Addcallback(listdetail);
+    console.log("=====", _callback);
+    navigate.navigate("ResidentDetail", listdetail);
   }
 
   return (
     <View>
       {dataListResident.map((item) => (
         <TouchableOpacity
-          onPress={()=>{gotoResidentDetail(item.usertype, item.identity)}}
+          onPress={() => {
+            gotoResidentDetail(item.usertype, item.identity);
+          }}
           style={[
             Styles.w100,
             Styles.p15,
@@ -172,7 +174,7 @@ const ResidentBtn = (resident, item) => {
           </View>
           {item.status === "VERIFY" ? (
             <TouchableOpacity
-              onPress={()=>navigate.navigate("ResidentAddOTP", {params})}
+              onPress={() => navigate.navigate("ResidentAddOTP", { params })}
               style={[
                 Styles.w100,
                 Styles.row,
