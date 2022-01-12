@@ -23,6 +23,11 @@ export default class mainHeader extends React.Component {
     }
 
     setData(){
+        if(this.props.callbackEdit){
+            var callbackEdit = this.props.callbackEdit
+            navigate.navigate(this.state.back_btn, callbackEdit)
+            return
+        }
         var paramNav = ''
         var informSet;
         if(this.props.param){

@@ -28,7 +28,6 @@ const form = [
 
 export default function thai_form() {
   const setNewResident = useSetRecoilState(Global.dataListResident);
-
   const [name, setName] = React.useState("");
   const [identity, setIdentity] = React.useState("");
   const [tel, setTel] = React.useState("");
@@ -41,6 +40,8 @@ export default function thai_form() {
     email: "",
     date: "",
   });
+
+  const callback = useRecoilState(Global.callbackAccount);
 
   const addData = () => {
     if (
@@ -211,7 +212,7 @@ export default function thai_form() {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("MemberManageIndivi")}
+          onPress={() => navigate.navigate("MemberManageIndivi", {callback})}
         >
           <Text
             style={[

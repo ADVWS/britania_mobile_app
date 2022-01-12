@@ -14,8 +14,11 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
 import * as navigate from "../navigator/RootNavigation";
+import * as Global from "../globalState"
 
-export default function ResidentAddOTP() {
+import { useSetRecoilState, useRecoilState } from "recoil";
+
+export default function ResidentAddOTP({route}) {
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -29,9 +32,11 @@ export default function ResidentAddOTP() {
   const unit5ref = React.createRef();
   const unit6ref = React.createRef();
 
+  const callback = useRecoilState(Global.callbackAccount);
+
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={"เพิ่มผู้อาศัยร่วม"} backto={"ResidentAdd"} />
+      <MainHeader name={"เพิ่มผู้อาศัยร่วม"} backto={"MemberManageIndivi"} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p30]}>
           <View
@@ -224,7 +229,7 @@ export default function ResidentAddOTP() {
               Styles.br_5,
               Styles.boxWithShadow,
             ]}
-            onPress={() => navigate.navigate("MemberManage")}
+            onPress={() => navigate.navigate("MemberManageIndivi", {callback})}
           >
             <Text
               style={[
@@ -247,7 +252,7 @@ export default function ResidentAddOTP() {
               Styles.border_btn,
               Styles.p15,
             ]}
-            onPress={() => navigate.navigate("MemberManage")}
+            onPress={() => navigate.navigate("MemberManageIndivi", {callback})}
           >
             <Text
               style={[

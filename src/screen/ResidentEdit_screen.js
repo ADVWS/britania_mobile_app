@@ -17,22 +17,28 @@ import Radio from "../component/ResidentEdit_component/radio_resadd";
 import ThaiForm from "../component/ResidentEdit_component/thai_form";
 import ForeignForm from "../component/ResidentEdit_component/foreigner_form";
 
+import { useRecoilState, useSetRecoilState } from "recoil";
+import * as Global from "../globalState"
+
+
 export default function ResidentEdit(props) {
     const [picture, setPicture] = React.useState([{ image: {uri : props.route.params.image}}])
 
     const [type, setType] = React.useState(props.route.params.type);
 
+    const callback = useRecoilState(Global.callbackEdit)
+
     function isSelectType(TYPE) {
         setType(TYPE);
-      }
+    }
 
-    //   console.log("Resident Edit")
+    console.log("Resident Edit", callback[0])
     //   console.log(props.route.params)
 
     return(
         <View style={[Styles.flex,Styles.w100,Styles.h100,Styles.FFF]}>
             {/* ยังแก้บัคไม่รีเฟรชไม่ได้ */}
-            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManageIndivi'}/>
+            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'ResidentDetail'}  callbackEdit={callback[0]}/>
             {/* <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManage'}/> */}
             <ScrollView
                 showsVerticalScrollIndicator={false}

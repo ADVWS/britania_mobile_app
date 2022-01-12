@@ -4,10 +4,16 @@ import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 
+import { useRecoilState, useSetRecoilState } from "recoil";
+import * as Global from "../../globalState"
+
+
 export default function thai_form (item) {
 
-    console.log("ITEM:")
-    console.log(item.item)
+    const callback = useRecoilState(Global.callbackEdit)
+
+
+    console.log("ITEM:", callbackAccount)
 
         return (
             <View style={{marginBottom: 30}}>
@@ -50,7 +56,7 @@ export default function thai_form (item) {
                     Styles.p15,
                     Styles.jc_center
                 ]}
-                onPress={() => navigate.navigate('MemberManageIndivi')}>
+                onPress={() => navigate.navigate('ResidentDetail', callback)}>
                     <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
                         ยกเลิก
                     </Text>

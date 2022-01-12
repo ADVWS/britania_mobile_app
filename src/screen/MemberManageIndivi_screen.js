@@ -19,7 +19,7 @@ import * as Global from "../globalState"
 
 export default function MemberManageIndivi_screen({ route }) {
 
-    // console.log("ROUTE");
+    console.log("ROUTE", route);
     // console.log(route)
 
     console.log("Visit")
@@ -27,13 +27,15 @@ export default function MemberManageIndivi_screen({ route }) {
     var resident = useRecoilState(Global.dataListResident)[0];
     var occupant = useRecoilState(Global.dataListOccupant)[0];
 
+    const gobalData = useSetRecoilState(Global.callbackAccount)
+
     console.log("RESIDENT")
     console.log(resident);
     console.log("OCCUPANT")
     console.log(occupant);
 
     var item = route.params;
-
+    gobalData(item)
     const scrollref = React.createRef();
 
     const [selected, setSelected] = React.useState(<ResidentList resident={resident} />)
@@ -42,7 +44,7 @@ export default function MemberManageIndivi_screen({ route }) {
         console.log(SELECT)
         switch (SELECT) {
             case 'RESIDENT':
-                setSelected(<ResidentList resident={resident} />)
+                setSelected(<ResidentList resident={resident} item={item}/>)
                 break
             case 'OCCUPANT':
                 setSelected(<OccupantList occupant={occupant} />)

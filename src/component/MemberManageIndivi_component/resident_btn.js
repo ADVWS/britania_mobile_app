@@ -9,7 +9,7 @@ import * as navigate from "../../navigator/RootNavigation";
 import * as Global from "../../globalState";
 
 // const ResidentBtn = ({data})
-const ResidentBtn = (resident) => {
+const ResidentBtn = (resident, item) => {
   // console.log("INBOUND")
   // console.log(resident)
 
@@ -18,11 +18,35 @@ const ResidentBtn = (resident) => {
     resident.resident
   );
   // console.log(dataListResident)
+  const params = item
+  const Addcallback = useSetRecoilState(Global.callbackEdit)
+  const _callback = useRecoilState(Global.callbackEdit)
+
+  function gotoResidentDetail(usertype, identity) {
+    console.log('USER TYPE::', usertype)
+    var listdetail = []
+    if(usertype === "Host-resident"){
+      dataListResident.map((item)=>{
+        listdetail.push(item)
+      })
+    } else {
+      dataListResident.map((item)=>{
+        if(item.identity === identity){
+          listdetail.push(item)
+        }
+      })
+    }
+    console.log(listdetail)
+    Addcallback(listdetail)
+    console.log('=====',_callback)
+    navigate.navigate("ResidentDetail", listdetail)
+  }
 
   return (
     <View>
       {dataListResident.map((item) => (
-        <View
+        <TouchableOpacity
+          onPress={()=>{gotoResidentDetail(item.usertype, item.identity)}}
           style={[
             Styles.w100,
             Styles.p15,
@@ -148,6 +172,7 @@ const ResidentBtn = (resident) => {
           </View>
           {item.status === "VERIFY" ? (
             <TouchableOpacity
+              onPress={()=>navigate.navigate("ResidentAddOTP", {params})}
               style={[
                 Styles.w100,
                 Styles.row,
@@ -173,63 +198,7 @@ const ResidentBtn = (resident) => {
               </Text>
             </TouchableOpacity>
           ) : null}
-          {item.status === "ACTIVE" ? (
-            <View style={Styles.row}>
-              <TouchableOpacity
-                style={[
-                  Styles.w45,
-                  Styles.row,
-                  Styles.mt10,
-                  Styles.transparent,
-                  Styles.al_center,
-                  Styles.br_5,
-                  Styles.border_btn,
-                  Styles.p15,
-                  Styles.jc_center,
-                ]}
-              >
-                <Text
-                  style={[
-                    Styles.text_center,
-                    Styles.mainColor_text,
-                    Styles.f_18,
-                    Styles.mainFont,
-                    { marginLeft: "1%" },
-                  ]}
-                >
-                  ลบ
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  Styles.w45,
-                  Styles.row,
-                  Styles.mt10,
-                  Styles.transparent,
-                  Styles.al_center,
-                  Styles.br_5,
-                  Styles.border_btn,
-                  Styles.p15,
-                  Styles.jc_center,
-                  Styles.ml5,
-                ]}
-                onPress={() => navigate.navigate("ResidentEdit", item)}
-              >
-                <Text
-                  style={[
-                    Styles.text_center,
-                    Styles.mainColor_text,
-                    Styles.f_18,
-                    Styles.mainFont,
-                    { marginLeft: "1%" },
-                  ]}
-                >
-                  แก้ไข
-                </Text>
-              </TouchableOpacity>
-            </View>
-          ) : null}
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

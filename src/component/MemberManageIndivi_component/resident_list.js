@@ -13,7 +13,7 @@ import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 import ResidentBtn from "./resident_btn";
 
-export default function ResidentList (resident) {
+export default function ResidentList (resident, item) {
         return (
             <View style={[Styles.w100, Styles.p15,{backgroundColor : "#EEEEEE"}]}>
                 <TouchableOpacity style={[
@@ -33,7 +33,7 @@ export default function ResidentList (resident) {
                 </TouchableOpacity>
                 { resident.resident != undefined ? 
                 <View style={[Styles.mt10]}>
-                    <ResidentBtn resident={resident.resident}/>
+                    <ResidentBtn resident={resident.resident} item={item}/>
                 </View> :
                 <View style={[Styles.al_center,Styles.p40,Styles.mt30]}>
                 <MaterialCommunityIcons name="account-group-outline" size={70} color="#c5c5c5" />

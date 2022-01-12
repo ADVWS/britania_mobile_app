@@ -3,10 +3,14 @@ import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import * as Global from "../../globalState"
 
 export default function foreigner_form(item) {
+    const callback = useRecoilState(Global.callbackEdit)
 
-    // console.log("ITEM:")
+
+    console.log("ITEM:", callback)
     // console.log(item.item)
 
     return (
@@ -33,7 +37,7 @@ export default function foreigner_form(item) {
                     Styles.row,
                     Styles.mt20,
                     Styles.confirm_btn
-                ]} onPress={() => navigate.navigate('MemberManage')}>
+                ]} onPress={() => navigate.navigate('ResidentAddOTP')}>
                     <Text style={[Styles.white_text, Styles.f_18, Styles.mainFont, { marginLeft: '1%' }]}>
                         บันทึก
                     </Text>
@@ -48,7 +52,7 @@ export default function foreigner_form(item) {
                     Styles.border_btn,
                     Styles.p15,
                     Styles.jc_center
-                ]} onPress={() => navigate.navigate('MemberManage')}>
+                ]} onPress={() => navigate.navigate('ResidentDetail', callback[0])}>
                     <Text style={[Styles.text_center, Styles.mainColor_text, Styles.f_18, Styles.mainFont, { marginLeft: '1%' }]}>
                         ยกเลิก
                     </Text>
