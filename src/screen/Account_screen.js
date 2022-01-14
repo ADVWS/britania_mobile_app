@@ -17,7 +17,9 @@ export default function Account() {
   //Profile Data
   const [profile, setProfile] = React.useState([
     {
-      image: require("../../assets/image/profpic/SampleProf.jpg"),
+      image: {
+        uri: "https://s.wsj.net/public/resources/images/WW-AA663A_SANDB_M_20150928140602.jpg",
+      },
       name: "ณัฏฐณิชชา กฤษศิริสวัสดิ์",
     },
   ]);

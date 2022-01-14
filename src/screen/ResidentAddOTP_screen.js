@@ -14,11 +14,11 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
 import * as navigate from "../navigator/RootNavigation";
-import * as Global from "../globalState"
+import * as Global from "../globalState";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-export default function ResidentAddOTP({route}) {
+export default function ResidentAddOTP({ route }) {
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -45,11 +45,9 @@ export default function ResidentAddOTP({route}) {
               Styles.circle,
             ]}
           >
-            <Ionicons
-              name="ios-chatbubble-ellipses-outline"
-              size={75}
-              color="#f1645e"
-              style={[{ marginTop: 10, marginLeft: 13 }]}
+            <Image
+              source={require("../../assets/Britania-connect-assets/otp.png")}
+              style={{ width: 100, height: 100, resizeMode: "cover" }}
             />
           </View>
           <Text
@@ -229,7 +227,9 @@ export default function ResidentAddOTP({route}) {
               Styles.br_5,
               Styles.boxWithShadow,
             ]}
-            onPress={() => navigate.navigate("MemberManageIndivi", {callback})}
+            onPress={() =>
+              navigate.navigate("MemberManageIndivi", { callback })
+            }
           >
             <Text
               style={[
@@ -252,7 +252,9 @@ export default function ResidentAddOTP({route}) {
               Styles.border_btn,
               Styles.p15,
             ]}
-            onPress={() => navigate.navigate("MemberManageIndivi", {callback})}
+            onPress={() =>
+              navigate.navigate("MemberManageIndivi", { callback })
+            }
           >
             <Text
               style={[
