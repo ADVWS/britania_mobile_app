@@ -9,14 +9,20 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import Modal from "react-native-modal";
 import * as navigate from "../navigator/RootNavigation";
 
 import { Styles } from "../styles";
 
 import FooterSignin from "../component/footer_signin";
+import Modal_alert from "../component/modal_alert";
+import Modal_loading from "../component/modal_loading";
 import TabBottom from "../navigator_footer";
+import Script from "../script/lnputOTP_script";
+import Store from "../store";
 
-export default function InputOTP() {
+export default function InputOTP({ route }) {
+  console.log('ROUTE:::', route)
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -29,6 +35,54 @@ export default function InputOTP() {
   const unit4ref = React.createRef();
   const unit5ref = React.createRef();
   const unit6ref = React.createRef();
+  const [alert, setAlert] = React.useState(false);
+  const [textAlert, setTextAlert] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const SRKEY = '@Profile:key'
+  const USERKEY = '@User:key'
+
+  function _login() {
+    var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
+    setLoading(true)
+    Script.login(route.params, otp, (res) => {
+      console.log(res)
+      setLoading(false)
+      if (typeof res === 'object') {
+        var data = route.params
+        data['login'] = res.login
+        data = JSON.stringify(data)
+        Store.setLocalStorege(SRKEY, data,(_res)=>{
+          console.log(_res)
+          //navigate.navigate("TabFooter")
+          setProfile(res.login.token)
+        })
+      } else {
+        setTimeout(() => {
+          setTextAlert(res)
+          setAlert(true)
+        }, 500);
+      }
+    })
+  }
+
+  function setProfile(token) {
+    Script.setProfile(token, (res)=>{
+      if (typeof res === 'object') {
+        var data = JSON.stringify(res)
+        Store.setLocalStorege(USERKEY, data,(_res)=>{
+          console.log('Script.setProfile====>', _res)
+          navigate.navigate("TabFooter")
+        })
+      } else {
+        setTimeout(() => {
+          setTextAlert(res)
+          setAlert(true)
+        }, 500);
+      }
+    })
+  }
+
+  const closeModalAlert = () => setAlert(false)
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -58,12 +112,12 @@ export default function InputOTP() {
               Styles.mt60,
             ]}
           >
-            OTP ส่งไปยังเบอร์ 088 888 xxxx
+            OTP ส่งไปยังเบอร์ {route.params.OTP.sendTo}
           </Text>
           <Text
             style={[Styles.f_16, Styles.mainFont_thin, Styles.black_gray_text]}
           >
-            รหัสอ้างอิง : psdxf
+            รหัสอ้างอิง : {route.params.OTP.refNo}
           </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
@@ -218,8 +272,8 @@ export default function InputOTP() {
             </View>
           </View>
           <TouchableOpacity
-            onPress={() => { 
-              navigate.navigate("TabFooter")
+            onPress={() => {
+              _login()
             }}
             style={[
               Styles.mt40,
@@ -244,6 +298,12 @@ export default function InputOTP() {
           </TouchableOpacity>
         </View>
         <FooterSignin />
+        <Modal isVisible={loading} style={Styles.al_center} backdropOpacity={0.25}>
+          <Modal_loading />
+        </Modal>
+        <Modal isVisible={alert} style={Styles.al_center}>
+          <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
+        </Modal>
       </LinearGradient>
     </TouchableWithoutFeedback>
   );

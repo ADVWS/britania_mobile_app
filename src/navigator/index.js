@@ -65,10 +65,7 @@ function AllNavigator() {
         <Stack.Screen name="InformCalendar" component={InformCalendar} />
         <Stack.Screen name="InformTime" component={InformTime} />
         <Stack.Screen name="MemberManage" component={MemberManage} />
-        <Stack.Screen
-          name="MemberManageIndivi"
-          component={MemberManageIndivi}
-        />
+        <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi}/>
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
         <Stack.Screen name="ResidentDetail" component={ResidentDetail} />
         <Stack.Screen name="ResidentEdit" component={ResidentEdit} />

@@ -11,38 +11,100 @@ import { LinearGradient } from "expo-linear-gradient";
 import DropDownPicker from "react-native-dropdown-picker";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as navigate from "../navigator/RootNavigation";
+import Modal from "react-native-modal";
 
 import { Styles } from "../styles";
+import Script from "../script";
 
 import Radio from "../component/OTP_component/radio_button";
 import FooterSignin from "../component/footer_signin";
+import Modal_alert from "../component/modal_alert";
+import Modal_loading from "../component/modal_loading";
+import { sendOTP } from "../script/OTP_script";
 
-export default function OTP() {
+export default function OTP({ route }) {
   const [type, setType] = React.useState("MOBILE");
-  const [open, setOpen] = React.useState(false);
-  const [items, setItems] = React.useState([
+
+  //MOBILE
+  const [openMobile, setOpenMobile] = React.useState(false);
+  const [itemsMobile, setItemsMobile] = React.useState([
     { label: "ไม่พบหมายเลขโทรศัพท์", value: "" },
   ]);
-  const [dropdown, setDropdown] = React.useState(40);
-  const [value, setValue] = React.useState(items[0].value);
-  const [disabled, setDisabled] = React.useState(false);
+  const [valueMobile, setValueMobile] = React.useState(itemsMobile[0].value);
+  const [dropdownMobile, setDropdownMobile] = React.useState(40);
+  const [disabledMobile, setDisabledMobile] = React.useState(false);
+
+  //EMAIL
+  const [openEmail, setOpenEmail] = React.useState(false);
+  const [itemsEmail, setItemsEmail] = React.useState([
+    { label: "ไม่พบอีเมล", value: "" },
+  ]);
+  const [valueEmail, setValueEmail] = React.useState(itemsEmail[0].value);
+  const [dropdownEmail, setDropdownEmail] = React.useState(40);
+  const [disabledEmail, setDisabledEmail] = React.useState(false);
+
+  const [alert, setAlert] = React.useState(false);
+  const [textAlert, setTextAlert] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+
 
   React.useEffect(() => {
-    var dataItems = [{ label: "XXX-XXX-8888", value: "0888888888" }];
-    if (dataItems.length > 0) {
-      var sizeItem = 40 * dataItems.length;
-      setDropdown(sizeItem);
-      setItems(dataItems);
-      setValue(dataItems[0].value);
-      setDisabled(false);
+    var dataItemsMobile = [];
+    var dataItemsEmail = [];
+    route.params.getProfileOtp.mobileNo.map((item) => {
+      var labal = Script.formatPhoneNumber(item)
+      dataItemsMobile.push({ label: labal, value: item })
+    })
+    route.params.getProfileOtp.email.map((item) => {
+      dataItemsEmail.push({ label: item, value: item })
+    })
+    if (dataItemsMobile.length > 0) {
+      var sizeItemMobile = 40 * dataItemsMobile.length;
+      setDropdownMobile(sizeItemMobile);
+      setItemsMobile(dataItemsMobile);
+      setValueMobile(dataItemsMobile[0].value);
+      setDisabledMobile(false);
     } else {
-      setDisabled(true);
+      setDisabledMobile(true);
+    }
+    if (dataItemsEmail.length > 0) {
+      var sizeItemEmail = 40 * dataItemsEmail.length;
+      setDropdownEmail(sizeItemEmail);
+      setItemsEmail(dataItemsEmail);
+      setValueEmail(dataItemsEmail[0].value);
+      setDisabledEmail(false)
+    } else {
+      setDisabledEmail(true)
     }
   }, []);
 
   function isSelectType(TYPE) {
     setType(TYPE);
   }
+
+  async function _sendOtp() {
+    setLoading(true)
+    sendOTP(valueMobile, valueEmail, type, (res) => {
+      setLoading(false)
+      if (typeof res === 'object') {
+        var data = route.params
+        if(type === 'MOBILE'){
+          data["OTP"] = res.sendMobileOtp
+        } else if(type === 'EMAIL'){
+          data["OTP"] = res.sendEmailOtp
+        }
+        navigate.navigate("InputOTP", data)
+      } else {
+        setTimeout(() => {
+          setTextAlert(res)
+          setAlert(true)
+        }, 500);
+      }
+    })
+    //navigate.navigate("InputOTP")
+  }
+
+  const closeModalAlert = () => setAlert(false)
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -87,18 +149,18 @@ export default function OTP() {
                   หมายเลขโทรศัพท์ที่ต้องการรับ OTP
                 </Text>
                 <DropDownPicker
-                  disabled={disabled}
-                  open={open}
-                  value={value}
-                  items={items}
-                  setOpen={setOpen}
-                  setValue={setValue}
-                  setItems={setItems}
+                  disabled={disabledMobile}
+                  open={openMobile}
+                  value={valueMobile}
+                  items={itemsMobile}
+                  setOpen={setOpenMobile}
+                  setValue={setValueMobile}
+                  setItems={setItemsMobile}
                   dropDownDirection=""
                   style={[
                     Styles.pink_light,
                     Styles.mt10,
-                    { borderWidth: 0, marginBottom: open ? dropdown : 15 },
+                    { borderWidth: 0, marginBottom: openMobile ? dropdownMobile : 15 },
                   ]}
                   labelStyle={[Styles.mainFont, Styles.black_gray_text]}
                   dropDownContainerStyle={[{ borderWidth: 0 }]}
@@ -135,23 +197,46 @@ export default function OTP() {
                 >
                   อีเมลที่ต้องการรับ OTP
                 </Text>
-                <TextInput
-                  placeholder="ระบุ Email"
+                <DropDownPicker
+                  disabled={disabledEmail}
+                  open={openEmail}
+                  value={valueEmail}
+                  items={itemsEmail}
+                  setOpen={setOpenEmail}
+                  setValue={setValueEmail}
+                  setItems={setItemsEmail}
+                  dropDownDirection=""
                   style={[
                     Styles.pink_light,
                     Styles.mt10,
-                    Styles.w100,
-                    Styles.br_5,
-                    Styles.mainFont,
-                    Styles.black_gray_text,
-                    { borderWidth: 0, marginBottom: 15, padding: 14.5 },
+                    { borderWidth: 0, marginBottom: openEmail ? dropdownEmail : 15 },
                   ]}
+                  labelStyle={[Styles.mainFont, Styles.black_gray_text]}
+                  dropDownContainerStyle={[{ borderWidth: 0 }]}
+                  listItemLabelStyle={[Styles.mainFont, Styles.black_gray_text]}
+                  ArrowDownIconComponent={({ style }) => (
+                    <MaterialIcons
+                      name="keyboard-arrow-down"
+                      size={30}
+                      color="#f1645e"
+                    />
+                  )}
+                  ArrowUpIconComponent={({ style }) => (
+                    <MaterialIcons
+                      name="keyboard-arrow-up"
+                      size={30}
+                      color="#f1645e"
+                    />
+                  )}
+                  TickIconComponent={({ style }) => (
+                    <MaterialIcons name="check" size={25} color="#f1645e" />
+                  )}
                 />
               </>
             )}
           </View>
           <TouchableOpacity
-            onPress={() => navigate.navigate("InputOTP")}
+            onPress={() => _sendOtp()}
             style={[
               Styles.w100,
               Styles.p12,
@@ -173,7 +258,7 @@ export default function OTP() {
             </Text>
           </TouchableOpacity>
         </View>
-        <FooterSignin/>
+        <FooterSignin />
         <Text
           style={[
             Styles.f_14,
@@ -186,6 +271,12 @@ export default function OTP() {
           หากหมายเลขโทรศัพท์ หรืออีเมลของท่านไม่ถูกต้อง{"\n"}กรุณาติดต่อ Call
           Center โทร 021 613 000{"\n"}ในวันเวลาทำการ 9:00-18:00 น.
         </Text>
+        <Modal isVisible={loading} style={Styles.al_center} backdropOpacity={0.25}>
+          <Modal_loading />
+        </Modal>
+        <Modal isVisible={alert} style={Styles.al_center}>
+          <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
+        </Modal>
       </LinearGradient>
     </TouchableWithoutFeedback>
   );

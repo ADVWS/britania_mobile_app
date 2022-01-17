@@ -11,6 +11,7 @@ import AllNavigator from "./src/navigator";
 import * as Font from "expo-font";
 
 export default function App() {
+  console.disableYellowBox = true;
   const [loaded, setLoaded] = useState(false);
   _loadFontsAsync = async () => {
     let isLoaded = await Font.loadAsync({
