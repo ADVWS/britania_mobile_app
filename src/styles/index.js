@@ -394,7 +394,7 @@ export const Styles = StyleSheet.create({
   textfieldbox: {
     borderRadius: 5,
     padding: 10,
-    borderWidth: 1, 
+    borderWidth: 1,
     borderColor: "#DDD",
   },
   spacing5: {
@@ -406,7 +406,7 @@ export const Styles = StyleSheet.create({
     marginBottom: 10,
   },
   confirm_btn: {
-    padding:15,
+    padding: 15,
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",

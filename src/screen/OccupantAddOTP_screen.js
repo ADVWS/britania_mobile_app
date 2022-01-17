@@ -1,49 +1,49 @@
 import * as React from "react";
 import {
-    View,
-    Text,
-    Image,
-    TouchableOpacity,
-    TextInput,
-    Keyboard,
-    TouchableWithoutFeedback,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
-import MainHeader from "../component/mainHeader"
+import MainHeader from "../component/mainHeader";
 
 export default function OccupantAddOTP() {
+  const [unit1, setUnit1] = React.useState("");
+  const [unit2, setUnit2] = React.useState("");
+  const [unit3, setUnit3] = React.useState("");
+  const [unit4, setUnit4] = React.useState("");
+  const [unit5, setUnit5] = React.useState("");
+  const [unit6, setUnit6] = React.useState("");
+  const unit1ref = React.createRef();
+  const unit2ref = React.createRef();
+  const unit3ref = React.createRef();
+  const unit4ref = React.createRef();
+  const unit5ref = React.createRef();
+  const unit6ref = React.createRef();
 
-    const [unit1, setUnit1] = React.useState("");
-    const [unit2, setUnit2] = React.useState("");
-    const [unit3, setUnit3] = React.useState("");
-    const [unit4, setUnit4] = React.useState("");
-    const [unit5, setUnit5] = React.useState("");
-    const [unit6, setUnit6] = React.useState("");
-    const unit1ref = React.createRef();
-    const unit2ref = React.createRef();
-    const unit3ref = React.createRef();
-    const unit4ref = React.createRef();
-    const unit5ref = React.createRef();
-    const unit6ref = React.createRef();
-
-    return(
-        <View style={[Styles.flex,Styles.w100,Styles.h100,Styles.FFF]}>
-            <MainHeader name={'เพิ่มผู้เช่า'} backto={'OccupantAdd'}/>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View
-          style={[
-            Styles.al_center,
-            Styles.w100,
-            Styles.h90,
-            Styles.p30,
-          ]}
-        >
-            <View style={[{height: 100, width: 100, backgroundColor:'#ffcfcf'},Styles.circle]}>
-                <Ionicons name="ios-chatbubble-ellipses-outline" size={75} color="#f1645e" style={[{marginTop: 10, marginLeft:13}]}/>
-            </View>
+  return (
+    <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
+      <MainHeader name={"เพิ่มผู้เช่า"} backto={"OccupantAdd"} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p30]}>
+          <View
+            style={[
+              { height: 100, width: 100, backgroundColor: "#ffcfcf" },
+              Styles.circle,
+            ]}
+          >
+            <Image
+              source={require("../../assets/Britania-connect-assets/otp.png")}
+              style={{ width: 100, height: 100, resizeMode: "cover" }}
+            />
+          </View>
           <Text
             style={[
               Styles.f_14,
@@ -55,11 +55,10 @@ export default function OccupantAddOTP() {
             กรุณากรอกรหัส OTP ที่ส่งไปยังคุณดวงกมล เมธากุล
           </Text>
           <Text
-          style={[
-            Styles.f_14,
-            Styles.mainFont_thin,
-            Styles.black_gray_text,
-          ]}>หมายเลข 098-334-2334 เพื่อเปิดสิทธิ์การใช้งาน</Text>
+            style={[Styles.f_14, Styles.mainFont_thin, Styles.black_gray_text]}
+          >
+            หมายเลข 098-334-2334 เพื่อเปิดสิทธิ์การใช้งาน
+          </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
               style={[
@@ -236,13 +235,13 @@ export default function OccupantAddOTP() {
           </TouchableOpacity>
           <TouchableOpacity
             style={[
-                Styles.w100,
-                Styles.mt10,
-                Styles.transparent,
-                Styles.al_center,
-                Styles.br_5,
-                Styles.border_btn,
-                Styles.p15,
+              Styles.w100,
+              Styles.mt10,
+              Styles.transparent,
+              Styles.al_center,
+              Styles.br_5,
+              Styles.border_btn,
+              Styles.p15,
             ]}
           >
             <Text
@@ -251,14 +250,14 @@ export default function OccupantAddOTP() {
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.text_center,
-                Styles.al_center
+                Styles.al_center,
               ]}
             >
               ข้าม
             </Text>
           </TouchableOpacity>
         </View>
-    </TouchableWithoutFeedback>
-        </View>
-    )
+      </TouchableWithoutFeedback>
+    </View>
+  );
 }

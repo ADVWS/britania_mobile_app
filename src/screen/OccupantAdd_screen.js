@@ -16,7 +16,9 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function OccupantAdd() {
   const [picture, setPicture] = React.useState([
-    { image: require("../../assets/image/profpic/blank.png") },
+    {
+      image: require("../../assets/Britania-connect-assets/default-img-circle.png"),
+    },
   ]);
 
   const [type, setType] = React.useState("THAI");

@@ -16,9 +16,11 @@ export default function App() {
   _loadFontsAsync = async () => {
     let isLoaded = await Font.loadAsync({
       Prompt: require("./assets/fonts/Prompt-Medium.ttf"),
-      Prompt_exl: require("./assets/fonts/Prompt-ExtraLight.ttf")
+      Prompt_exl: require("./assets/fonts/Prompt-ExtraLight.ttf"),
+      Helvethaica: require("./assets/fonts/DB-Helvethaica-X-Med.ttf"),
+      Helvethaica_exl: require("./assets/fonts/DB-Helvethaica-X-Thin.ttf"),
     });
-    setLoaded(isLoaded)
+    setLoaded(isLoaded);
   };
   _loadFontsAsync();
   return (
