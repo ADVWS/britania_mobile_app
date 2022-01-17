@@ -44,11 +44,7 @@ export default function Account() {
     {
       name: "Call Center",
       nav: "callcen",
-    },
-    {
-      name: "ออกจากระบบ",
-      nav: "",
-    },
+    }
     // {
     //   name: "Debug",
     //   nav: "Debug",

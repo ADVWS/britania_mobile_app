@@ -46,7 +46,6 @@ export default function InputOTP({ route }) {
     setLoading(true)
     Script.login(route.params, otp, (res) => {
       console.log(res)
-      setLoading(false)
       if (typeof res === 'object') {
         var data = route.params
         data['login'] = res.login
@@ -57,6 +56,7 @@ export default function InputOTP({ route }) {
           setProfile(res.login.token)
         })
       } else {
+        setLoading(false)
         setTimeout(() => {
           setTextAlert(res)
           setAlert(true)
@@ -67,11 +67,14 @@ export default function InputOTP({ route }) {
 
   function setProfile(token) {
     Script.setProfile(token, (res)=>{
+      setLoading(false)
       if (typeof res === 'object') {
         var data = JSON.stringify(res)
         Store.setLocalStorege(USERKEY, data,(_res)=>{
           console.log('Script.setProfile====>', _res)
-          navigate.navigate("TabFooter")
+          setTimeout(() => {
+            navigate.navigate("TabFooter")
+          }, 500);
         })
       } else {
         setTimeout(() => {

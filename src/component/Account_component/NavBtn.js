@@ -10,15 +10,32 @@ import {
 
 import { MaterialIcons } from "@expo/vector-icons";
 import * as navigate from "../../navigator/RootNavigation";
+import Modal from "react-native-modal";
 
 import { Styles } from "../../styles";
+import Modal_confirm from "../modal_confirm";
+import Store from "../../store"
+const SRKEY = '@Profile:key'
+const USERKEY = '@User:key'
 
-export default class NavBtn extends React.Component {
-  render() {
-    console.log(this.props.option);
+const NavBtn = ({option}) => {
+
+  const [confirm, setConfirm] = React.useState(false)
+
+  const logout = (req) => {
+    if (req === 'CANCEL') {
+      setConfirm(false)
+    } else {
+      Store.removeLocalStorege(SRKEY, (res) => {
+        Store.removeLocalStorege(USERKEY, (_res) => {
+          navigate.navigate('Login')
+        })
+      })
+    }
+  }
     return (
       <View style={[Styles.boxWithShadow2, Styles.mt20]}>
-        {this.props.option.map((item) =>
+        {option.map((item) =>
           item.nav !== "callcen" ? (
             <TouchableOpacity
               onPress={() => navigate.navigate(item.nav)}
@@ -83,7 +100,41 @@ export default class NavBtn extends React.Component {
             </TouchableOpacity>
           )
         )}
+        <TouchableOpacity
+          onPress={() => setConfirm(true)}
+          style={[
+            Styles.boxWithShadow,
+            Styles.w100,
+            Styles.p15,
+            Styles.FFF,
+            Styles.br_5,
+            Styles.mt10,
+            Styles.row,
+          ]}
+        >
+          <View style={[Styles.w90]}>
+            <Text
+              style={[
+                Styles.f_16,
+                Styles.mainFont,
+                Styles.mt10,
+                Styles.text_left,
+                Styles.black_gray_text,
+                { bottom: 3 },
+              ]}
+            >
+              ออกจากระบบ
+            </Text>
+          </View>
+          <View style={[Styles.jc_center, Styles.al_end]}>
+            <MaterialIcons name="arrow-forward-ios" size={20} />
+          </View>
+        </TouchableOpacity>
+        <Modal isVisible={confirm} style={Styles.al_center} backdropOpacity={0.25} >
+          <Modal_confirm text={'ยืนยันการออกจากระบบ'} confirmFunction={logout} />
+        </Modal>
       </View>
     );
-  }
 }
+
+export default NavBtn
