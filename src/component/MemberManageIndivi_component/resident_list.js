@@ -7,7 +7,7 @@ import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 import ResidentBtn from "./resident_btn";
 
-const image = require("../../../assets/Britania-connect-assets/member-empty.png");
+const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
 export default function ResidentList(resident, item) {
   return (

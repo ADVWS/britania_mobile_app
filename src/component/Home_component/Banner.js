@@ -12,7 +12,7 @@ export default class Banner extends React.Component {
                     Styles.transparent,
                     {
                         width: '100%',
-                        height: '80%',
+                        height: '100%',
                         borderRadius: 5,
                         padding: 5,
                     }]}>

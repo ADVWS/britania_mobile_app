@@ -1,15 +1,7 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { initialRouteName } from "../globalState"
-import { useRecoilState, atom, useRecoilValue } from "recoil";
-
 import { navigationRef } from "./RootNavigation";
-
-import Script from "../script"
-
 import HomeScreen from '../screen/Home_screen';
 import MyHomeScreen from '../screen/MyHome_screen';
 import AccountScreen from '../screen/Account_screen';
@@ -18,7 +10,6 @@ const Tab = createBottomTabNavigator();
 
 
 const AllTabBottom = () => {
-    const [page, setPage] = useRecoilState(initialRouteName)
     function getScreenList(TYPE) {
         switch (TYPE) {
             case 1:

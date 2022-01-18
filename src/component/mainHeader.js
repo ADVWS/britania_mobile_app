@@ -62,9 +62,9 @@ export default class mainHeader extends React.Component {
         >
           <Text
             style={[
-              Styles.f_18,
+              Styles.f_26,
               Styles.white_text,
-              Styles.mainFont,
+              Styles.mainFont_x,
               Styles.mt20,
               Styles.ml5,
             ]}

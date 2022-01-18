@@ -13,9 +13,13 @@ import Banner from "../component/Home_component/Banner";
 import AnimatedHeader from "../component/Home_component/AnimationHeader";
 import Feed from "../component/Home_component/Feeds";
 
+import { useRecoilState } from "recoil";
+import * as Global from "../globalState"
+
 import { Styles } from "../styles";
 //transparent f1645e
 export default function Home() {
+    const [userProfile, setUserProfile] = useRecoilState(Global.userProfile)
     const [images, setImages] = React.useState([
         require('../../assets/image/banner/banner_1.jpeg'),
         require('../../assets/image/banner/banner_2.jpeg'),
@@ -56,13 +60,21 @@ export default function Home() {
                         )}
                         style={[Styles.w100, Styles.h75]
                         }>
-                        <View style={[Styles.w100, Styles.al_center, { height: 260 }]}>
+                        <View style={[Styles.w100, Styles.p20]}>
+                            <Text style={[Styles.mainFont_x_db, Styles.f_24, Styles.black_gray_text]}>
+                                ยินดีต้อนรับ{' '}
+                                <Text style={[Styles.f_24, Styles.mainFont_x]}>
+                                    {userProfile.me.name}
+                                </Text>
+                            </Text>
+                        </View>
+                        <View style={[Styles.w100, Styles.p20, Styles.al_center, { height: 260, marginTop: '-8%' }]}>
                             <Banner images={images} />
                         </View>
-                        <View style={[Styles.w100, Styles.p20, { marginTop: '-15%' }]}>
+                        <View style={[Styles.w100, Styles.p20, { marginTop: '-7%' }]}>
                             <Text
                                 style={[
-                                    Styles.f_18,
+                                    Styles.f_26,
                                     Styles.mainFont,
                                     Styles.mainColor_text,
                                 ]}>

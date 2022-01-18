@@ -68,11 +68,11 @@ const MyProject = () => {
                     <TouchableOpacity
                         onPress={() => setDataSelect(items)}
                         style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                        <View style={[Styles.w80]}>
-                            <Text style={[Styles.f_18, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
+                        <View style={[Styles.w100]}>
+                            <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
                                 {items.name}
                             </Text>
-                            <Text style={[Styles.f_16, Styles.black_gray_text, Styles.mainFont_thin, Styles.mt5]}>
+                            <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, {color: "#8f8f8f"}]}>
                                 บ้านเลขที่ {items.homeNo}
                             </Text>
                         </View>

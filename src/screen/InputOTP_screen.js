@@ -6,6 +6,7 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
+  ImageBackground
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
@@ -13,6 +14,9 @@ import Modal from "react-native-modal";
 import * as navigate from "../navigator/RootNavigation";
 
 import { Styles } from "../styles";
+
+import { useSetRecoilState } from "recoil";
+import * as Global from "../globalState"
 
 import FooterSignin from "../component/footer_signin";
 import Modal_alert from "../component/modal_alert";
@@ -22,6 +26,7 @@ import Store from "../store";
 import Key from "../KEYS.json"
 
 export default function InputOTP({ route }) {
+  const userProfile = useSetRecoilState(Global.userProfile)
   console.log('ROUTE:::', route)
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
@@ -48,7 +53,8 @@ export default function InputOTP({ route }) {
       console.log(res)
       if (typeof res === 'object') {
         var data = JSON.stringify(res.login)
-        Store.setLocalStorege(Key.TOKEN, data,(call)=>{
+        userProfile(res.login)
+        Store.setLocalStorege(Key.TOKEN, data, (call) => {
           setProfile(res.login.token)
         })
       } else {
@@ -62,11 +68,11 @@ export default function InputOTP({ route }) {
   }
 
   function setProfile(token) {
-    Script.setProfile(token, (res)=>{
+    Script.setProfile(token, (res) => {
       setLoading(false)
       if (typeof res === 'object') {
         var data = JSON.stringify(res)
-        Store.setLocalStorege(Key.PROFILE, data,(_res)=>{
+        Store.setLocalStorege(Key.PROFILE, data, (_res) => {
           console.log('Script.setProfile====>', _res)
           setTimeout(() => {
             navigate.navigate("TabFooter")
@@ -85,8 +91,8 @@ export default function InputOTP({ route }) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <LinearGradient
-        colors={["#fbd4d4", "#fff4f3", "#fffefe"]}
+      <ImageBackground
+        source={require('../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg')}
         style={[Styles.flex, Styles.al_center, Styles.jc_center]}
       >
         <View
@@ -105,8 +111,8 @@ export default function InputOTP({ route }) {
           </View>
           <Text
             style={[
-              Styles.f_18,
-              Styles.mainFont,
+              Styles.f_26,
+              Styles.mainFont_x_db,
               Styles.black_gray_text,
               Styles.mt60,
             ]}
@@ -114,14 +120,14 @@ export default function InputOTP({ route }) {
             OTP ส่งไปยังเบอร์ {route.params.OTP.sendTo}
           </Text>
           <Text
-            style={[Styles.f_16, Styles.mainFont_thin, Styles.black_gray_text]}
+            style={[Styles.f_24, Styles.mainFont, Styles.black_gray_text]}
           >
             รหัสอ้างอิง : {route.params.OTP.refNo}
           </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
               style={[
-                Styles.f_16,
+                Styles.f_24,
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.mt30,
@@ -251,8 +257,8 @@ export default function InputOTP({ route }) {
             <View style={[Styles.al_end, Styles.w100, Styles.mt10]}>
               <Text
                 style={[
-                  Styles.f_16,
-                  Styles.mainFont_thin,
+                  Styles.f_22,
+                  Styles.mainFont,
                   Styles.black_gray_text,
                 ]}
               >
@@ -286,7 +292,7 @@ export default function InputOTP({ route }) {
           >
             <Text
               style={[
-                Styles.f_18,
+                Styles.f_24,
                 Styles.mainFont,
                 Styles.white_text,
                 Styles.text_center,
@@ -296,14 +302,13 @@ export default function InputOTP({ route }) {
             </Text>
           </TouchableOpacity>
         </View>
-        <FooterSignin />
         <Modal isVisible={loading} style={Styles.al_center} backdropOpacity={0.25}>
           <Modal_loading />
         </Modal>
         <Modal isVisible={alert} style={Styles.al_center}>
           <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
         </Modal>
-      </LinearGradient>
+      </ImageBackground>
     </TouchableWithoutFeedback>
   );
 }

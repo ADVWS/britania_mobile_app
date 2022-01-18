@@ -13,7 +13,7 @@ export function statusTranform(key) {
         case 3:
             return (
                 <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
-                    <Text style={[Styles.f_16, Styles.mainFont_thin, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
                         รอนัดหมาย
                     </Text>
                 </View>
@@ -21,7 +21,7 @@ export function statusTranform(key) {
         case 4:
             return (
                 <View style={[Styles.circle, { backgroundColor: "#dbecfc" }]}>
-                    <Text style={[Styles.f_16, Styles.mainFont_thin, { color: "#267bbf", marginLeft: 10, marginRight: 10 }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#267bbf", marginLeft: 10, marginRight: 10 }]}>
                         อยู่ระหว่างดำเนินการ
                     </Text>
                 </View>
@@ -29,7 +29,7 @@ export function statusTranform(key) {
         case 5:
             return (
                 <View style={[Styles.circle, { backgroundColor: "#dcfcf4" }]}>
-                    <Text style={[Styles.f_16, Styles.mainFont_thin, { color: "#3fc89b", marginLeft: 10, marginRight: 10 }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#3fc89b", marginLeft: 10, marginRight: 10 }]}>
                         สำเร็จ
                     </Text>
                 </View>
@@ -90,9 +90,19 @@ const formatPhoneNumber = (phoneNumberString) => {
     return null;
 }
 
+const formatPhoneNumber2 = (phoneNumberString) => {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+        return match[1] + ' ' + match[2] + ' ' + match[3];
+    }
+    return null;
+}
+
 export default {
     statusTranform,
     callfunction,
     mapDataMycare,
-    formatPhoneNumber
+    formatPhoneNumber,
+    formatPhoneNumber2
 }

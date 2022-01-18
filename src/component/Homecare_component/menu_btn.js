@@ -37,12 +37,12 @@ export default class MenuBtn extends React.Component {
         return (
             <View style={[Styles.w100, Styles.p15, Styles.row, { backgroundColor: "#ffecec" }]}>
                 <TouchableOpacity onPress={()=> this.onSelectMenu("INFORM")}
-                    style={[Styles.w40, Styles.p10, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectNotify }]}>
-                    <Text style={[Styles.mainColor_text, Styles.f_16, Styles.mainFont]}>รายการแจ้งซ่อม</Text>
+                    style={[Styles.w40, Styles.p5, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectNotify }]}>
+                    <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont]}>รายการแจ้งซ่อม</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=> this.onSelectMenu("HISTORY")}
-                    style={[Styles.w50, Styles.p10, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectHistory }]}>
-                    <Text style={[Styles.mainColor_text, Styles.f_16, Styles.mainFont, Styles.text_center]}>ประวัติแจ้งซ่อม</Text>
+                    style={[Styles.w50, Styles.p5, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectHistory }]}>
+                    <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont, Styles.text_center]}>ประวัติแจ้งซ่อม</Text>
                 </TouchableOpacity>
             </View>
         );

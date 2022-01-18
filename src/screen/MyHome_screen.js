@@ -54,20 +54,20 @@ const MyHome = () => {
                     <View style={[Styles.boxWithShadow, Styles.w100, { height: 250 }]}>
                         <Image source={{uri: thisDataMyHome.image}} style={[Styles.h100, Styles.w100, Styles.br_5]} />
                     </View>
-                    <Text style={[Styles.f_18, Styles.mainColor_text, Styles.mainFont, Styles.mt20, Styles.text_center, Styles.gray_text]}>
+                    <Text style={[{fontSize: 28}, Styles.mainColor_text, Styles.mainFont, Styles.mt20, Styles.text_center, Styles.mainColor_text]}>
                         {thisDataMyHome.name}
                     </Text>
-                    <Text style={[Styles.f_16, Styles.mainFont_thin, Styles.mt10, Styles.text_center]}>
+                    <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, Styles.text_center, Styles.black_gray_text]}>
                         {thisDataMyHome.detail}
                     </Text>
                     <View style={[Styles.w100, Styles.row]}>
                         <View style={[Styles.w50]}>
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
+                            <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
                                 ที่ดินขนาด {thisDataMyHome.land}
                             </Text>
                         </View>
                         <View style={[Styles.w50]}>
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
+                            <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
                                 พื้นที่ใช้สอย {thisDataMyHome.usablearea}
                             </Text>
                         </View>
@@ -77,7 +77,7 @@ const MyHome = () => {
                             <Image source={require('../../assets/image/tool_icon.png')} style={[Styles.w100, { height: 45 }]} />
                         </View>
                         <View style={[Styles.w60, Styles.jc_center]}>
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, Styles.ml5, {bottom: 3}]}>
+                            <Text style={[Styles.f_24, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, Styles.ml5, {bottom: 3}]}>
                                 แจ้งซ่อม
                             </Text>
                         </View>

@@ -12,7 +12,7 @@ export default class Feeds extends React.Component {
                         <View style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }]}>
                             <Text
                                 style={[
-                                    Styles.f_16,
+                                    Styles.f_24,
                                     Styles.mainFont,
                                     Styles.mainColor_text,
                                 ]}>
@@ -20,8 +20,8 @@ export default class Feeds extends React.Component {
                             </Text>
                             <Text
                                 style={[
-                                    Styles.f_14,
-                                    Styles.mainFont_thin,
+                                    Styles.f_20,
+                                    Styles.mainFont_x,
                                     Styles.mt10
                                 ]}>
                                 {item.detail}

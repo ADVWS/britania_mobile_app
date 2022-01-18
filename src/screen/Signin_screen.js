@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, TextInput, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView, ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
@@ -47,8 +47,8 @@ export default function Signin() {
 
   return (
     <>
-      <LinearGradient
-        colors={["#fbd4d4", "#fff4f3", "#fffefe"]}
+      <ImageBackground
+        source={require('../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg')}
         style={[Styles.flex, Styles.al_center, Styles.jc_center]}>
         <ScrollView
           style={[Styles.w100, Styles.h90, Styles.p30]}
@@ -59,10 +59,10 @@ export default function Signin() {
             </TouchableOpacity>
             <Text
               style={[
-                Styles.f_26,
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.mt30,
+                {fontSize: 36}
               ]}
             >
               เข้าสู่ระบบ
@@ -71,7 +71,7 @@ export default function Signin() {
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
               style={[
-                Styles.f_16,
+                Styles.f_24,
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.mt80,
@@ -136,7 +136,7 @@ export default function Signin() {
               <View style={[Styles.row]}>
                 <Text
                   style={[
-                    Styles.f_18,
+                    Styles.f_24,
                     Styles.mainFont,
                     Styles.white_text,
                     Styles.text_center,
@@ -156,8 +156,7 @@ export default function Signin() {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        <FooterSignin />
-      </LinearGradient>
+      </ImageBackground>
       <Modal isVisible={loading} style={Styles.al_center} backdropOpacity={0.25}>
         <Modal_loading />
       </Modal>

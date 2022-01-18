@@ -3,16 +3,31 @@ import * as React from "react";
 import {
   View,
   Text,
-  Image,
-  ScrollView,
   TouchableOpacity,
-  ImageBackground,
   TextInput,
 } from "react-native";
-
+import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
+import Script from "../../script";
 
 export default class ProfileForm extends React.Component {
+  state = {
+    name : this.props.userProfile.name,
+    mobileno : this.props.userProfile.mobileNo
+  }
+
+  _InputValue = (name, mobile) => {
+    if(name){
+      this.setState({name: name})
+    }
+    if(mobile){
+      this.setState({mobileno: Script.formatPhoneNumber2(mobile)})
+    }
+    const {InputValue} = this.props;
+    this.InputValue = InputValue;
+    this.InputValue(name, mobile);
+  }
+
   render() {
     return (
       <View>
@@ -30,8 +45,11 @@ export default class ProfileForm extends React.Component {
         <View style={Styles.al_center}>
           <TextInput
             style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
-            value={"Thanee Nimitwanitch"}
-          ></TextInput>
+            value={this.state.name}
+            onChangeText={(val) => {
+              this._InputValue(val, undefined)
+            }}
+          />
         </View>
         <Text
           style={[
@@ -47,8 +65,12 @@ export default class ProfileForm extends React.Component {
         <View style={Styles.al_center}>
           <TextInput
             style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
-            value={"098 765 457"}
-          ></TextInput>
+            value={Script.formatPhoneNumber2(this.state.mobileno)}
+            maxLength={10}
+            onChangeText={(val) => {
+              this._InputValue(undefined, val)
+            }}
+          />
         </View>
         <View style={Styles.al_center}>
           <TouchableOpacity
@@ -66,6 +88,7 @@ export default class ProfileForm extends React.Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={()=> navigate.navigate('Account')}
             style={[
               Styles.w90,
               Styles.row,

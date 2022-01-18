@@ -1,9 +1,5 @@
-import jwt_decode from "jwt-decode";
-import moment from "moment";
 import API from '../graphQL'
-import * as navigate from '../navigator/RootNavigation';
 import Store from "../store"
-
 export const checkToken = async (key, cb) => {
     Store.getLocalStorege(key, (res) => {
         console.log(res)
@@ -40,6 +36,7 @@ const getUser = async (project, token, cb) => {
     if(typeof result === 'object'){
         var response = {
             detail: "Verify token success .",
+            data: result,
             goto: 'TabFooter'
         }
         cb(response)

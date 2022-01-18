@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Keyboard,
   TouchableWithoutFeedback,
+  ImageBackground,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -106,8 +107,8 @@ export default function OTP({ route }) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <LinearGradient
-        colors={["#fbd4d4", "#fff4f3", "#fffefe"]}
+      <ImageBackground
+        source={require('../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg')}
         style={[Styles.flex, Styles.al_center, Styles.jc_center]}
       >
         <View
@@ -125,10 +126,10 @@ export default function OTP({ route }) {
             </TouchableOpacity>
             <Text
               style={[
-                Styles.f_18,
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.mt60,
+                Styles.f_26,
               ]}
             >
               เลือกวิธีรับ OTP
@@ -138,7 +139,7 @@ export default function OTP({ route }) {
               <>
                 <Text
                   style={[
-                    Styles.f_18,
+                    Styles.f_26,
                     Styles.mainFont,
                     Styles.mainColor_text,
                     Styles.mt30,
@@ -160,9 +161,9 @@ export default function OTP({ route }) {
                     Styles.mt10,
                     { borderWidth: 0, marginBottom: openMobile ? dropdownMobile : 15 },
                   ]}
-                  labelStyle={[Styles.mainFont, Styles.black_gray_text]}
+                  labelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
                   dropDownContainerStyle={[{ borderWidth: 0 }]}
-                  listItemLabelStyle={[Styles.mainFont, Styles.black_gray_text]}
+                  listItemLabelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
                   ArrowDownIconComponent={({ style }) => (
                     <MaterialIcons
                       name="keyboard-arrow-down"
@@ -209,9 +210,9 @@ export default function OTP({ route }) {
                     Styles.mt10,
                     { borderWidth: 0, marginBottom: openEmail ? dropdownEmail : 15 },
                   ]}
-                  labelStyle={[Styles.mainFont, Styles.black_gray_text]}
+                  labelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
                   dropDownContainerStyle={[{ borderWidth: 0 }]}
-                  listItemLabelStyle={[Styles.mainFont, Styles.black_gray_text]}
+                  listItemLabelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
                   ArrowDownIconComponent={({ style }) => (
                     <MaterialIcons
                       name="keyboard-arrow-down"
@@ -246,7 +247,7 @@ export default function OTP({ route }) {
           >
             <Text
               style={[
-                Styles.f_18,
+                Styles.f_24,
                 Styles.mainFont,
                 Styles.white_text,
                 Styles.text_center,
@@ -256,14 +257,14 @@ export default function OTP({ route }) {
             </Text>
           </TouchableOpacity>
         </View>
-        <FooterSignin />
         <Text
           style={[
-            Styles.f_14,
+            Styles.f_22,
             Styles.mainFont,
             Styles.mainColor_text,
             Styles.text_center,
             Styles.mb20,
+            {bottom: 10}
           ]}
         >
           หากหมายเลขโทรศัพท์ หรืออีเมลของท่านไม่ถูกต้อง{"\n"}กรุณาติดต่อ Call
@@ -275,7 +276,7 @@ export default function OTP({ route }) {
         <Modal isVisible={alert} style={Styles.al_center}>
           <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
         </Modal>
-      </LinearGradient>
+      </ImageBackground>
     </TouchableWithoutFeedback>
   );
 }

@@ -45,7 +45,7 @@ const InformList = ({listInform}) => {
                     Styles.row
                 ]}>
                 <MaterialIcons name="add" size={25} color={"#FFF"} />
-                <Text style={[Styles.white_text, Styles.f_18, Styles.mainFont, { marginLeft: '1%' }]}>
+                <Text style={[Styles.white_text, Styles.f_24, Styles.mainFont_x, { marginLeft: '1%' }]}>
                     เพิ่มรายการแจ้งซ่อม
                 </Text>
             </TouchableOpacity>

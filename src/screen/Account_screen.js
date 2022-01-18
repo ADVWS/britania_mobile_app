@@ -1,28 +1,20 @@
 import * as React from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-
 import NavBtn from "../component/Account_component/NavBtn";
 import AccountHeader from "../component/Account_component/AccountHeader";
-import ProfilePicName from "../component/Account_component/ProfilePicName";
-import * as navigate from "../navigator/RootNavigation";
-import { MaterialIcons } from "@expo/vector-icons";
+import { useRecoilState } from "recoil";
+import * as Global from "../globalState"
 
 import { Styles } from "../styles";
 //transparent f1645e
 
 export default function Account() {
   //Profile Data
-  const [profile, setProfile] = React.useState([
-    {
-      image: {
-        uri: "https://s.wsj.net/public/resources/images/WW-AA663A_SANDB_M_20150928140602.jpg",
-      },
-      name: "ณัฏฐณิชชา กฤษศิริสวัสดิ์",
-    },
-  ]);
+  const [userProfile, setUserProfile] = useRecoilState(Global.userProfile)
+
+  console.log(userProfile)
 
   const [option, setOptions] = React.useState([
     {
@@ -45,11 +37,17 @@ export default function Account() {
       name: "Call Center",
       nav: "callcen",
     }
-    // {
-    //   name: "Debug",
-    //   nav: "Debug",
-    // },
   ]);
+
+  const setImageProfile = () => {
+    var image = ''
+    if(userProfile.me.image){
+      image = {uri:userProfile.me.name}
+    } else {
+      image = require("../../assets/image/Britania-connect-assets/default-img-circle.png")
+    }
+    return (<Image source={image} style={[{ width: 100, height: 100, resizeMode: 'cover' }, Styles.row, Styles.circle]}></Image>)
+  }
 
   return (
     <LinearGradient
@@ -59,7 +57,10 @@ export default function Account() {
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
         <AccountHeader />
         <View style={[{ marginRight: "10%" }]}>
-          <ProfilePicName profile={profile} />
+          <View style={[Styles.row]}>
+            {setImageProfile()}
+            <Text style={[Styles.mt40, Styles.ml5, Styles.mainFont, Styles.mainColor_text, Styles.f_18]}>{userProfile.me.name}</Text>
+          </View>
         </View>
         <View style={Styles.mt20}>
           <NavBtn option={option} />

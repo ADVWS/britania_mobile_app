@@ -308,10 +308,22 @@ export const Styles = StyleSheet.create({
     backgroundColor: "#f1645e",
   },
   mainFont: {
-    fontFamily: "Prompt",
+    fontFamily: "Helvethaica",
   },
   mainFont_thin: {
-    fontFamily: "Prompt_exl",
+    fontFamily: "Helvethaica_exl",
+  },
+  mainFont_x_db: {
+    fontFamily: "Helvethaica_x_bd"
+  },
+  mainFont_x_it: {
+    fontFamily: "Helvethaica_x_It"
+  },
+  mainFont_x_li: {
+    fontFamily: "Helvethaica_x_Li"
+  },
+  mainFont_x: {
+    fontFamily: "Helvethaica_x"
   },
   f_bold: {
     fontWeight: "bold",

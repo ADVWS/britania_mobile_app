@@ -39,7 +39,7 @@ const SelectTypeInform = () => {
                 <MainHeader name={'แจ้งซ่อม'} backto={'Homecare'} />
                 <ScrollView style={[Styles.w100, Styles.FFF]}>
                     <View style={[Styles.w100, Styles.p15]}>
-                        <Text style={[Styles.f_16, Styles.mainFont, Styles.mainColor_text]}>
+                        <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
                             เลือกประเภท
                         </Text>
                     </View>
@@ -50,7 +50,7 @@ const SelectTypeInform = () => {
                                 <Image source={item.iamge} style={{ height: 30, width: 30 }} />
                             </View>
                             <View style={[Styles.w80, Styles.jc_center]}>
-                                <Text style={[Styles.f_14, Styles.mainFont, Styles.pl10]}>
+                                <Text style={[Styles.f_22, Styles.mainFont_x, Styles.pl10]}>
                                     {item.name}
                                 </Text>
                             </View>

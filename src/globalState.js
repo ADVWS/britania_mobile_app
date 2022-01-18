@@ -1,9 +1,9 @@
 import images from "../assets/image";
 const { atom } = require("recoil");
 
-export const initialRouteName = atom({
-  key: "initialRouteName",
-  default: "Home",
+export const userProfile = atom({
+  key: "userProfile",
+  default: {},
 });
 
 export const dataMyHome = atom({

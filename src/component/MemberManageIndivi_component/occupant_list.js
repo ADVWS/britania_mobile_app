@@ -7,7 +7,7 @@ import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 import OccupantBtn from "./occupant_btn";
 
-const image = require("../../../assets/Britania-connect-assets/member-empty.png");
+const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
 export default function OccupantList(occupant) {
   return (

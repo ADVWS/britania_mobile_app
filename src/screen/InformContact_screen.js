@@ -101,7 +101,7 @@ const InformContact = ({ route }) => {
                 <MainHeader name={'แจ้งซ่อม'} backto={'InformAdd'} param={route.params} />
                 <ScrollView style={[Styles.w100, Styles.flex]}>
                     <View style={[Styles.w100, Styles.p15, Styles.FFF]}>
-                        <Text style={[Styles.f_14, Styles.mainFont]}>
+                        <Text style={[Styles.f_22, Styles.mainFont]}>
                             ห้องที่ต้องการแจ้งซ่อม
                         </Text>
                         <TextInput
@@ -112,11 +112,11 @@ const InformContact = ({ route }) => {
                             }}
                         />
                         {alAddress &&
-                            <Text style={[Styles.f_12, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
+                            <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
                                 กรุณาระบุ "ห้องที่ต้องการแจ้งซ่อม"
                             </Text>
                         }
-                        <Text style={[Styles.f_14, Styles.mainFont, Styles.mt15]}>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.mt15]}>
                             ชื่อ-นามสกุล
                         </Text>
                         <TextInput
@@ -127,11 +127,11 @@ const InformContact = ({ route }) => {
                             }}
                         />
                         {alFullname &&
-                            <Text style={[Styles.f_12, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
+                            <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
                                 กรุณาระบุ "ชื่อ-นามสกุล"
                             </Text>
                         }
-                        <Text style={[Styles.f_14, Styles.mainFont, Styles.mt15]}>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.mt15]}>
                             เบอร์โทรศัพท์
                         </Text>
                         <TextInput
@@ -142,13 +142,13 @@ const InformContact = ({ route }) => {
                             }}
                         />
                         {alMobileno &&
-                            <Text style={[Styles.f_12, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
+                            <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
                                 กรุณาระบุ "เบอร์โทรศัพท์"
                             </Text>
                         }
                     </View>
                     <View style={[Styles.w100, Styles.p15, Styles.FFF, Styles.mt10]}>
-                        <Text style={[Styles.f_16, Styles.mainFont, Styles.mainColor_text]}>
+                        <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
                             รายการแจ้งซ่อม
                         </Text>
                         <InformOrderList data={route.params.informSet} Addmore={Addmore} gotoinformCalendar={gotoinformCalendar}/>

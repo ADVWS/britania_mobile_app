@@ -4,7 +4,6 @@ import { GraphQLClient } from 'graphql-request';
 
 
 const request = async (query, token, variables = {}, headers = {},) => {
-    console.log('TOKEN', token)
     headers["Authorization"] = AUTH
     if(token){
         headers["x-token"] = token

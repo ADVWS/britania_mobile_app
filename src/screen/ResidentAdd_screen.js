@@ -17,7 +17,7 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 export default function ResidentAdd() {
   const [picture, setPicture] = React.useState([
     {
-      image: require("../../assets/Britania-connect-assets/default-img-circle.png"),
+      image: require("../../assets/image/Britania-connect-assets/default-img-circle.png"),
     },
   ]);
 

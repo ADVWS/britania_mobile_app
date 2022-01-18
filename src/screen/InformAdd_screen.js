@@ -110,16 +110,16 @@ const InformAdd = ({ route }) => {
                 <KeyboardAvoidingView style={[Styles.w100, Styles.h100]} behavior="padding">
                     <ScrollView style={[Styles.w100, Styles.FFF, Styles.flex]}>
                         <View style={[Styles.w100, Styles.p15]}>
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mainColor_text]}>
+                            <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
                                 ข้อมูลเพิ่มเติม
                             </Text>
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt20]}>
+                            <Text style={[Styles.f_24, Styles.mainFont, Styles.mt20]}>
                                 รูปภาพ
                             </Text>
                             <TouchableOpacity onPress={() => { pickImage() }}
                                 style={[Styles.w100, Styles.br_5, Styles.p10, Styles.mt5, Styles.row, Styles.jc_center, { borderColor: "#f1645e", borderWidth: 1.5 }]}>
                                 <Image source={require("../../assets/image/add_image.png")} style={{ width: 30, height: 30 }} />
-                                <Text style={[Styles.f_16, Styles.mainFont, Styles.mainColor_text, Styles.text_center, Styles.p4]}>
+                                <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text, Styles.text_center, Styles.p4]}>
                                     เพิ่มรูป
                                 </Text>
                             </TouchableOpacity>
@@ -134,11 +134,11 @@ const InformAdd = ({ route }) => {
                                 </ScrollView>
                             }
                             {alImage &&
-                                <Text style={[Styles.f_12, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
+                                <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
                                     กรุณาระบุ "รูปภาพ"
                                 </Text>
                             }
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt20]}>
+                            <Text style={[Styles.f_24, Styles.mainFont, Styles.mt20]}>
                                 รายระเอียด
                             </Text>
                             <TextInput
@@ -151,11 +151,11 @@ const InformAdd = ({ route }) => {
                                 }}
                             />
                             {alDetail &&
-                                <Text style={[Styles.f_12, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
+                                <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
                                     กรุณาระบุ "รายระเอียด"
                                 </Text>
                             }
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10]}>
+                            <Text style={[Styles.f_24, Styles.mainFont, Styles.mt10]}>
                                 หมายเหตุ
                             </Text>
                             <TextInput
@@ -173,7 +173,7 @@ const InformAdd = ({ route }) => {
                 <TouchableOpacity
                     onPress={() => gotoInformContact()}
                     style={[Styles.w90, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor, Styles.absolute, { bottom: 20 }]}>
-                    <Text style={[Styles.f_16, Styles.white_text, Styles.mainFont, Styles.text_center]}>
+                    <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
                         ยืนยัน
                     </Text>
                 </TouchableOpacity>

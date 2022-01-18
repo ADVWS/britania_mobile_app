@@ -40,7 +40,7 @@ export default function OccupantAddOTP() {
             ]}
           >
             <Image
-              source={require("../../assets/Britania-connect-assets/otp.png")}
+              source={require("../../assets/image/Britania-connect-assets/otp.png")}
               style={{ width: 100, height: 100, resizeMode: "cover" }}
             />
           </View>
