@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
@@ -8,16 +8,11 @@ import * as navigate from "../navigator/RootNavigation";
 
 import { Styles } from "../styles";
 import FooterSignin from "../component/footer_signin";
-import API from "../graphQL"
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
-import store from "../store";
-import { getProfileOtp } from "../script/Signin_script";
+import Script from "../script/Signin_script";
 
 export default function Signin() {
-
-  const SRKEY = '@Profile:key'
-
   const [userid, setUserid] = React.useState("");
   const [clearbtn, setClearbtn] = React.useState(false);
   const [alert, setAlert] = React.useState(false);
@@ -34,9 +29,9 @@ export default function Signin() {
 
   function isGetProfileOtp() {
     setLoading(true)
-    getProfileOtp(userid, (res) => {
+    Script.getProfileOtp(userid, (res) => {
+      console.log('RESULT', res)
       setLoading(false)
-      console.log('getProfileOtp return', res)
       if (typeof res === 'object') {
         navigate.navigate("OTP", res)
       } else {

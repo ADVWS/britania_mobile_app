@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -101,7 +100,6 @@ export default function OTP({ route }) {
         }, 500);
       }
     })
-    //navigate.navigate("InputOTP")
   }
 
   const closeModalAlert = () => setAlert(false)

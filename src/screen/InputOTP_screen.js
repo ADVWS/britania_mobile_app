@@ -17,9 +17,9 @@ import { Styles } from "../styles";
 import FooterSignin from "../component/footer_signin";
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
-import TabBottom from "../navigator_footer";
 import Script from "../script/lnputOTP_script";
 import Store from "../store";
+import Key from "../KEYS.json"
 
 export default function InputOTP({ route }) {
   console.log('ROUTE:::', route)
@@ -47,12 +47,8 @@ export default function InputOTP({ route }) {
     Script.login(route.params, otp, (res) => {
       console.log(res)
       if (typeof res === 'object') {
-        var data = route.params
-        data['login'] = res.login
-        data = JSON.stringify(data)
-        Store.setLocalStorege(SRKEY, data,(_res)=>{
-          console.log(_res)
-          //navigate.navigate("TabFooter")
+        var data = JSON.stringify(res.login)
+        Store.setLocalStorege(Key.TOKEN, data,(call)=>{
           setProfile(res.login.token)
         })
       } else {
@@ -70,7 +66,7 @@ export default function InputOTP({ route }) {
       setLoading(false)
       if (typeof res === 'object') {
         var data = JSON.stringify(res)
-        Store.setLocalStorege(USERKEY, data,(_res)=>{
+        Store.setLocalStorege(Key.PROFILE, data,(_res)=>{
           console.log('Script.setProfile====>', _res)
           setTimeout(() => {
             navigate.navigate("TabFooter")

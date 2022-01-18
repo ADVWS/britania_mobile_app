@@ -8,7 +8,7 @@ export const checkToken = async (key, cb) => {
     Store.getLocalStorege(key, (res) => {
         console.log(res)
         if (res.result) {
-            var token = res.detail.login.token
+            var token = res.detail.token
             var project = `{
                 me {
                     id

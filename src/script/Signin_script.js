@@ -10,9 +10,8 @@ export const getProfileOtp = async (id, cb) => {
             }
         }
     `;
-    console.log('POSTDATA::', OTP)
+    console.log('OTP')
     const result = await API.request(OTP);
-    console.log('RESULT===>', result)
     cb(result)
 }
 

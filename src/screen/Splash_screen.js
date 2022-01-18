@@ -6,18 +6,13 @@ import * as navigate from '../navigator/RootNavigation';
 
 import { Styles } from "../styles";
 import Script from "../script/Splash_script"
-import Store from "../store"
+import Key from "../KEYS.json"
 
 export default function Splash() {
-  const SRKEY = '@Profile:key'
   runApp()
 
   function runApp () {
-    // Store.removeLocalStorege(SRKEY,(res)=>{
-    //   console.log(res)
-    // })
-    // return
-    Script.checkToken(SRKEY, (res)=>{
+    Script.checkToken(Key.TOKEN, (res)=>{
       console.log(res.detail)
       setTimeout(() => {
         navigate.navigate(res.goto)

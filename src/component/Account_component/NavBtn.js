@@ -15,8 +15,7 @@ import Modal from "react-native-modal";
 import { Styles } from "../../styles";
 import Modal_confirm from "../modal_confirm";
 import Store from "../../store"
-const SRKEY = '@Profile:key'
-const USERKEY = '@User:key'
+import Key from "../../KEYS.json"
 
 const NavBtn = ({option}) => {
 
@@ -26,8 +25,9 @@ const NavBtn = ({option}) => {
     if (req === 'CANCEL') {
       setConfirm(false)
     } else {
-      Store.removeLocalStorege(SRKEY, (res) => {
-        Store.removeLocalStorege(USERKEY, (_res) => {
+      Store.removeLocalStorege(Key.PROFILE, (res) => {
+        Store.removeLocalStorege(Key.TOKEN, (_res) => {
+          setConfirm(false)
           navigate.navigate('Login')
         })
       })
