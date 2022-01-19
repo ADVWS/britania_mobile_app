@@ -67,7 +67,7 @@ export default class mainHeader extends React.Component {
               Styles.mainFont_x,
               Styles.mt25,
               Styles.ml5,
-              {top: 5}
+              { top: 5 },
             ]}
           >
             {this.state.header_name}

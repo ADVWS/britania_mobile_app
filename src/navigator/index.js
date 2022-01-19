@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { navigationRef } from "./RootNavigation";
 
+// import Account from "../screen/Account_screen";
+
 import SplashScreen from "../screen/Splash_screen";
 import LoginScreen from "../screen/Login_screen";
 import SigninScreen from "../screen/Signin_screen";
@@ -43,6 +45,7 @@ function AllNavigator() {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* <Stack.Screen name="Account" component={Account} /> */}
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signin" component={SigninScreen} />
@@ -65,7 +68,10 @@ function AllNavigator() {
         <Stack.Screen name="InformCalendar" component={InformCalendar} />
         <Stack.Screen name="InformTime" component={InformTime} />
         <Stack.Screen name="MemberManage" component={MemberManage} />
-        <Stack.Screen name="MemberManageIndivi" component={MemberManageIndivi}/>
+        <Stack.Screen
+          name="MemberManageIndivi"
+          component={MemberManageIndivi}
+        />
         <Stack.Screen name="ResidentAdd" component={ResidentAdd} />
         <Stack.Screen name="ResidentDetail" component={ResidentDetail} />
         <Stack.Screen name="ResidentEdit" component={ResidentEdit} />

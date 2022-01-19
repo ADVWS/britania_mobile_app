@@ -1,9 +1,17 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, TextInput, ScrollView, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 
+// import * as navigate from "../navigator/RootNavigation";
 import * as navigate from "../navigator/RootNavigation";
 
 import { Styles } from "../styles";
@@ -21,40 +29,42 @@ export default function Signin() {
 
   function isClearBtn() {
     if (userid.length > 1) {
-      setClearbtn(true)
-      return
+      setClearbtn(true);
+      return;
     }
-    setClearbtn(false)
+    setClearbtn(false);
   }
 
   function isGetProfileOtp() {
-    setLoading(true)
+    setLoading(true);
     Script.getProfileOtp(userid, (res) => {
-      console.log('RESULT', res)
-      setLoading(false)
-      if (typeof res === 'object') {
-        navigate.navigate("OTP", res)
+      console.log("RESULT", res);
+      setLoading(false);
+      if (typeof res === "object") {
+        navigate.navigate("OTP", res);
       } else {
         setTimeout(() => {
-          setTextAlert(res)
-          setAlert(true)
+          setTextAlert(res);
+          setAlert(true);
         }, 500);
       }
-    })
+    });
   }
 
-  const closeModalAlert = () => setAlert(false)
+  const closeModalAlert = () => setAlert(false);
 
   return (
     <>
       <ImageBackground
-        source={require('../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg')}
-        style={[Styles.flex, Styles.al_center, Styles.jc_center]}>
+        source={require("../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg")}
+        style={[Styles.flex, Styles.al_center, Styles.jc_center]}
+      >
         <ScrollView
           style={[Styles.w100, Styles.h90, Styles.p30]}
-          behavior="padding">
+          behavior="padding"
+        >
           <View style={[Styles.w100, Styles.al_start, Styles.mt30]}>
-            <TouchableOpacity onPress={() => navigate.navigate('Login')}>
+            <TouchableOpacity onPress={() => navigate.navigate("Login")}>
               <MaterialIcons name="arrow-back" size={32} color="#f1645e" />
             </TouchableOpacity>
             <Text
@@ -62,7 +72,7 @@ export default function Signin() {
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.mt30,
-                {fontSize: 36}
+                { fontSize: 36 },
               ]}
             >
               เข้าสู่ระบบ
@@ -106,8 +116,8 @@ export default function Signin() {
                 {clearbtn && (
                   <TouchableOpacity
                     onPress={() => {
-                      setUserid('')
-                      setClearbtn(false)
+                      setUserid("");
+                      setClearbtn(false);
                     }}
                     style={[
                       Styles.FFF,
@@ -157,7 +167,11 @@ export default function Signin() {
           </View>
         </ScrollView>
       </ImageBackground>
-      <Modal isVisible={loading} style={Styles.al_center} backdropOpacity={0.25}>
+      <Modal
+        isVisible={loading}
+        style={Styles.al_center}
+        backdropOpacity={0.25}
+      >
         <Modal_loading />
       </Modal>
       <Modal isVisible={alert} style={Styles.al_center}>

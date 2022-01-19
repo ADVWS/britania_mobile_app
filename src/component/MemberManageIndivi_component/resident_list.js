@@ -30,7 +30,7 @@ export default function ResidentList(resident, item) {
           style={[
             Styles.white_text,
             Styles.f_22,
-            Styles.mainFont,
+            Styles.mainFont_x,
             { marginLeft: "1%" },
           ]}
         >

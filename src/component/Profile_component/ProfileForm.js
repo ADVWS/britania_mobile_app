@@ -1,32 +1,27 @@
 import * as React from "react";
 
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 import Script from "../../script";
 
 export default class ProfileForm extends React.Component {
   state = {
-    name : this.props.userProfile.name,
-    mobileno : this.props.userProfile.mobileNo
-  }
+    name: this.props.userProfile.name,
+    mobileno: this.props.userProfile.mobileNo,
+  };
 
   _InputValue = (name, mobile) => {
-    if(name){
-      this.setState({name: name})
+    if (name) {
+      this.setState({ name: name });
     }
-    if(mobile){
-      this.setState({mobileno: Script.formatPhoneNumber2(mobile)})
+    if (mobile) {
+      this.setState({ mobileno: Script.formatPhoneNumber2(mobile) });
     }
-    const {InputValue} = this.props;
+    const { InputValue } = this.props;
     this.InputValue = InputValue;
     this.InputValue(name, mobile);
-  }
+  };
 
   render() {
     return (
@@ -44,10 +39,16 @@ export default class ProfileForm extends React.Component {
         </Text>
         <View style={Styles.al_center}>
           <TextInput
-            style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
+            style={[
+              Styles.w90,
+              Styles.mt10,
+              Styles.textfieldbox,
+              Styles.mainFont_x,
+              Styles.f_20,
+            ]}
             value={this.state.name}
             onChangeText={(val) => {
-              this._InputValue(val, undefined)
+              this._InputValue(val, undefined);
             }}
           />
         </View>
@@ -64,11 +65,17 @@ export default class ProfileForm extends React.Component {
         </Text>
         <View style={Styles.al_center}>
           <TextInput
-            style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
+            style={[
+              Styles.w90,
+              Styles.mt5,
+              Styles.textfieldbox,
+              Styles.mainFont_x,
+              Styles.f_20,
+            ]}
             value={Script.formatPhoneNumber2(this.state.mobileno)}
             maxLength={10}
             onChangeText={(val) => {
-              this._InputValue(undefined, val)
+              this._InputValue(undefined, val);
             }}
           />
         </View>
@@ -88,7 +95,7 @@ export default class ProfileForm extends React.Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={()=> navigate.navigate('Account')}
+            onPress={() => navigate.navigate("Account")}
             style={[
               Styles.w90,
               Styles.row,

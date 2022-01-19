@@ -94,22 +94,22 @@ export default function thai_form() {
     //   navigate.navigate("MemberManage");
     // }
     let outDate = data.date.split("-");
-      setNewOccupant((oldOccupant) => [
-        ...oldOccupant,
-        {
-          name: data.name,
-          identity: data.identity,
-          tel: data.tel,
-          email: data.email,
-          type: "THAI",
-          status: "VERIFY",
-          expire:
-            Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000,
-          image:
-            "https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.6435-9/119062205_124961352661129_4552694077607062116_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeHL6WzClQIeSwjYXwbCCdUtf9e2NS2gwlJ_17Y1LaDCUgyQcqOns6cJ_XBu9M9ncGCgPhX2XlInc73XrGfAewfs&_nc_ohc=gqzud7Ke3gkAX9JPSpm&_nc_ht=scontent.fbkk22-1.fna&oh=00_AT-Pf9OV_FLq_XKzykPYbGP6a-z66lvGjmiW_8fwTDABWQ&oe=61FEF325",
-        },
-      ]);
-      navigate.navigate("OccupantAddOTP");
+    setNewOccupant((oldOccupant) => [
+      ...oldOccupant,
+      {
+        name: data.name,
+        identity: data.identity,
+        tel: data.tel,
+        email: data.email,
+        type: "THAI",
+        status: "VERIFY",
+        expire:
+          Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000,
+        image:
+          "https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.6435-9/119062205_124961352661129_4552694077607062116_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeHL6WzClQIeSwjYXwbCCdUtf9e2NS2gwlJ_17Y1LaDCUgyQcqOns6cJ_XBu9M9ncGCgPhX2XlInc73XrGfAewfs&_nc_ohc=gqzud7Ke3gkAX9JPSpm&_nc_ht=scontent.fbkk22-1.fna&oh=00_AT-Pf9OV_FLq_XKzykPYbGP6a-z66lvGjmiW_8fwTDABWQ&oe=61FEF325",
+      },
+    ]);
+    navigate.navigate("OccupantAddOTP");
   };
 
   return (
@@ -130,7 +130,13 @@ export default function thai_form() {
           <View style={Styles.al_center}>
             {/* (nameIn) => {setData( (currentState) => ({...currentState,name : nameIn}))} */}
             <TextInput
-              style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
+              style={[
+                Styles.w90,
+                Styles.mt10,
+                Styles.textfieldbox,
+                Styles.f_20,
+                Styles.mainFont_x,
+              ]}
               value={data[item.field_state]}
               onChangeText={(input) =>
                 setData((curr) => ({ ...curr, [item.field_state]: input }))

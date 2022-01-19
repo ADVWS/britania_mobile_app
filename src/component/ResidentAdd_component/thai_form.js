@@ -119,7 +119,13 @@ export default function thai_form() {
           <View style={Styles.al_center}>
             {/* (nameIn) => {setData( (currentState) => ({...currentState,name : nameIn}))} */}
             <TextInput
-              style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
+              style={[
+                Styles.w90,
+                Styles.mt10,
+                Styles.textfieldbox,
+                Styles.f_20,
+                Styles.mainFont_x,
+              ]}
               value={data[item.field_state]}
               onChangeText={(input) =>
                 setData((curr) => ({ ...curr, [item.field_state]: input }))
@@ -231,7 +237,7 @@ export default function thai_form() {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("MemberManageIndivi", {callback})}
+          onPress={() => navigate.navigate("MemberManageIndivi", { callback })}
         >
           <Text
             style={[

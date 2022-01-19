@@ -99,7 +99,13 @@ export default function foreigner_form() {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
-          style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
+          style={[
+            Styles.w90,
+            Styles.mt10,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
           value={name}
           onChangeText={setName}
         ></TextInput>
@@ -117,7 +123,13 @@ export default function foreigner_form() {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
-          style={[Styles.w90, Styles.mt10, Styles.textfieldbox]}
+          style={[
+            Styles.w90,
+            Styles.mt10,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
           value={identity}
           onChangeText={setIdentity}
         ></TextInput>
@@ -135,7 +147,13 @@ export default function foreigner_form() {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
-          style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
+          style={[
+            Styles.w90,
+            Styles.mt5,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
           value={tel}
           onChangeText={setTel}
         ></TextInput>
@@ -153,7 +171,13 @@ export default function foreigner_form() {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
-          style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
+          style={[
+            Styles.w90,
+            Styles.mt5,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
           value={email}
           onChangeText={setEmail}
         ></TextInput>

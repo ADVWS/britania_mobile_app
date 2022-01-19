@@ -68,7 +68,14 @@ const ResidentBtn = (resident, item) => {
                 ]}
               ></Image>
               {/* <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image> */}
-              <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5, Styles.mt10]}>
+              <Text
+                style={[
+                  Styles.f_22,
+                  Styles.mainFont_x,
+                  Styles.spacing5,
+                  Styles.mt10,
+                ]}
+              >
                 เบอร์โทรศัพท์
               </Text>
               <Text
