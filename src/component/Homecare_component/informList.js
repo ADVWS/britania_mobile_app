@@ -49,11 +49,11 @@ const InformList = ({listInform}) => {
                     เพิ่มรายการแจ้งซ่อม
                 </Text>
             </TouchableOpacity>
-            <ScrollView style={[Styles.w100, { padding: 3 }]}>
+            <View style={[Styles.w100, { padding: 3 }]}>
                 {dataIform.map((item, index) => (
                     <InformBox data={item} index={index}/>
                 ))}
-            </ScrollView>
+            </View>
         </View>
     );
 }

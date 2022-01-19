@@ -14,7 +14,7 @@ export default class Banner extends React.Component {
                         width: '100%',
                         height: '100%',
                         borderRadius: 5,
-                        padding: 5,
+                        padding: 20,
                     }]}>
                 <Image source={item} style={{
                     width: '100%',

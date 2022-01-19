@@ -28,7 +28,7 @@ const HistoryList = ({listHistory}) => {
     }
 
     return (
-        <ScrollView style={[Styles.w100, Styles.p15]}>
+        <View style={[Styles.w100, Styles.p15]}>
             {listHistory.map((item) => (
                 <TouchableOpacity 
                 onPress={()=>viewDetailOrder(item)}
@@ -75,7 +75,7 @@ const HistoryList = ({listHistory}) => {
                     </View>
                 </TouchableOpacity>
             ))}
-        </ScrollView>
+        </View>
     );
 }
 export default HistoryList;

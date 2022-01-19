@@ -55,13 +55,13 @@ const Notify = ({route}) => {
                 <ScrollView style={[Styles.w100, Styles.p15]}>
                     <View style={[Styles.row, Styles.w100]}>
                         <TouchableOpacity onPress={()=>changeTabs('all')} style={[{ width: '25%', alignItems: 'center', backgroundColor: all.color }, Styles.p5, Styles.circle]}>
-                            <Text style={[Styles.mainFont, Styles.f_16, { color: all.text }]}>ทั้งหมด</Text>
+                            <Text style={[Styles.mainFont, Styles.f_22, { color: all.text }]}>ทั้งหมด</Text>
                         </TouchableOpacity >
                         <TouchableOpacity onPress={()=>changeTabs('news')} style={[{ width: '25%', alignItems: 'center', backgroundColor: news.color }, Styles.p5, Styles.circle]}>
-                            <Text style={[Styles.mainFont, Styles.f_16, { color: news.text }]}>ข่าวสาร</Text>
+                            <Text style={[Styles.mainFont, Styles.f_22, { color: news.text }]}>ข่าวสาร</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={()=>changeTabs('fix')} style={[{ width: '25%', alignItems: 'center', backgroundColor: fix.color }, Styles.p5, Styles.circle]}>
-                            <Text style={[Styles.mainFont, Styles.f_16, { color: fix.text }]}>ซ่อมแซม</Text>
+                            <Text style={[Styles.mainFont, Styles.f_22, { color: fix.text }]}>ซ่อมแซม</Text>
                         </TouchableOpacity>
                     </View>
                     {all.open && 

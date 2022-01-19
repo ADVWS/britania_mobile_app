@@ -37,12 +37,12 @@ export default class MenuManageBtn extends React.Component {
         return (
             <View style={[Styles.w100, Styles.p15, Styles.row, { backgroundColor: "#ffecec" }]}>
                 <TouchableOpacity onPress={()=> this.onSelectMenu("RESIDENT")}
-                    style={[Styles.w30, Styles.p10, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectResident }]}>
-                    <Text style={[Styles.mainColor_text, Styles.f_16, Styles.mainFont]}>ผู้อาศัยร่วม</Text>
+                    style={[Styles.w35, Styles.p10, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectResident }]}>
+                    <Text style={[Styles.mainColor_text, Styles.f_24, Styles.mainFont]}>ผู้อาศัยร่วม</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=> this.onSelectMenu("OCCUPANT")}
                     style={[Styles.w30, Styles.p10, Styles.circle, Styles.al_center, { backgroundColor: this.state.selectOccupant }]}>
-                    <Text style={[Styles.mainColor_text, Styles.f_16, Styles.mainFont, Styles.text_center]}>ผู้เช่า</Text>
+                    <Text style={[Styles.mainColor_text, Styles.f_24, Styles.mainFont, Styles.text_center]}>ผู้เช่า</Text>
                 </TouchableOpacity>
             </View>
         );

@@ -45,29 +45,55 @@ export default function thai_form() {
   });
 
   const addData = () => {
-    if (
-      data.name == "" ||
-      data.identity == "" ||
-      data.tel == "" ||
-      data.email == "" ||
-      data.date == ""
-    ) {
-      console.log(
-        "data in" + data.name + data.identity + data.tel + data.email
-      );
-      alert("Please fill all the form");
-    } else {
-      let outDate = data.date.split("-");
+    // if (
+    //   data.name == "" ||
+    //   data.identity == "" ||
+    //   data.tel == "" ||
+    //   data.email == "" ||
+    //   data.date == ""
+    // ) {
+    //   console.log(
+    //     "data in" + data.name + data.identity + data.tel + data.email
+    //   );
+    //   alert("Please fill all the form");
+    // } else {
+    //   let outDate = data.date.split("-");
 
-      console.log("Name: " + data.name);
-      console.log("Identity: " + data.identity);
-      console.log("Tel: " + data.tel);
-      console.log("Email: " + data.email);
-      console.log(
-        "Date: " +
-          Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000
-      );
+    //   console.log("Name: " + data.name);
+    //   console.log("Identity: " + data.identity);
+    //   console.log("Tel: " + data.tel);
+    //   console.log("Email: " + data.email);
+    //   console.log(
+    //     "Date: " +
+    //       Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000
+    //   );
 
+    //   setNewOccupant((oldOccupant) => [
+    //     ...oldOccupant,
+    //     {
+    //       name: data.name,
+    //       identity: data.identity,
+    //       tel: data.tel,
+    //       email: data.email,
+    //       type: "THAI",
+    //       status: "VERIFY",
+    //       expire:
+    //         Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000,
+    //       image:
+    //         "https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.6435-9/119062205_124961352661129_4552694077607062116_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeHL6WzClQIeSwjYXwbCCdUtf9e2NS2gwlJ_17Y1LaDCUgyQcqOns6cJ_XBu9M9ncGCgPhX2XlInc73XrGfAewfs&_nc_ohc=gqzud7Ke3gkAX9JPSpm&_nc_ht=scontent.fbkk22-1.fna&oh=00_AT-Pf9OV_FLq_XKzykPYbGP6a-z66lvGjmiW_8fwTDABWQ&oe=61FEF325",
+    //     },
+    //   ]);
+
+    //   alert("Saved");
+    //   // setName("");
+    //   // setIdentity("");
+    //   // setTel("");
+    //   // setEmail("");
+    //   // setDate("");
+
+    //   navigate.navigate("MemberManage");
+    // }
+    let outDate = data.date.split("-");
       setNewOccupant((oldOccupant) => [
         ...oldOccupant,
         {
@@ -83,16 +109,7 @@ export default function thai_form() {
             "https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.6435-9/119062205_124961352661129_4552694077607062116_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeHL6WzClQIeSwjYXwbCCdUtf9e2NS2gwlJ_17Y1LaDCUgyQcqOns6cJ_XBu9M9ncGCgPhX2XlInc73XrGfAewfs&_nc_ohc=gqzud7Ke3gkAX9JPSpm&_nc_ht=scontent.fbkk22-1.fna&oh=00_AT-Pf9OV_FLq_XKzykPYbGP6a-z66lvGjmiW_8fwTDABWQ&oe=61FEF325",
         },
       ]);
-
-      alert("Saved");
-      // setName("");
-      // setIdentity("");
-      // setTel("");
-      // setEmail("");
-      // setDate("");
-
-      navigate.navigate("MemberManage");
-    }
+      navigate.navigate("OccupantAddOTP");
   };
 
   return (
@@ -104,7 +121,7 @@ export default function thai_form() {
               Styles.ml5,
               Styles.mt10,
               Styles.mainFont,
-              Styles.f_16,
+              Styles.f_22,
               Styles.black_gray_text,
             ]}
           >
@@ -128,7 +145,7 @@ export default function thai_form() {
           Styles.ml5,
           Styles.mt10,
           Styles.mainFont,
-          Styles.f_16,
+          Styles.f_22,
           Styles.black_gray_text,
         ]}
       >
@@ -175,7 +192,7 @@ export default function thai_form() {
           <Text
             style={[
               Styles.white_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}
@@ -201,7 +218,7 @@ export default function thai_form() {
             style={[
               Styles.text_center,
               Styles.mainColor_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}

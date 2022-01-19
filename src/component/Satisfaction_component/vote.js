@@ -70,7 +70,7 @@ export default class Vote extends React.Component {
         return (
             <>
                 <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_14, Styles.mainFont]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
                         การตรงต่อเวลาและการแต่งกาย
                     </Text>
                     <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
@@ -84,7 +84,7 @@ export default class Vote extends React.Component {
                     </View>
                 </View>
                 <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_14, Styles.mainFont]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
                         การให้ข้อมูลและความเอาใจใส่
                     </Text>
                     <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
@@ -98,7 +98,7 @@ export default class Vote extends React.Component {
                     </View>
                 </View>
                 <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_14, Styles.mainFont]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
                         คุณภาพงานซ่อม
                     </Text>
                     <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
@@ -112,7 +112,7 @@ export default class Vote extends React.Component {
                     </View>
                 </View>
                 <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_14, Styles.mainFont]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
                         คุณภาพในการให้บริการโดยรวม
                     </Text>
                     <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>

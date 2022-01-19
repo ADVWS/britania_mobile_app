@@ -21,7 +21,7 @@ import * as Global from "../globalState"
 
 //transparent f1645e
 function Homecare() {
-    
+
     const [thisDataMyHome, setThisDataMyHome] = useRecoilState(Global.dataMyHome)
     const [listInform, setListInform] = useRecoilState(Global.dataListInform)
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
@@ -44,7 +44,7 @@ function Homecare() {
     }
 
     return (
-        <View style={[Styles.flex, Styles.al_center]}>
+        <View style={[Styles.flex]}>
             <View
                 style={[
                     Styles.al_center,
@@ -52,28 +52,30 @@ function Homecare() {
                     Styles.h100
                 ]}>
                 <MainHeader name={'แจ้งซ่อม'} backto={'TabFooter'} />
-                <TouchableOpacity
-                    onPress={() => navigate.navigate('Myproject')}
-                    style={[Styles.w100, Styles.p15, Styles.FFF, Styles.row]}>
-                    <View style={[Styles.w80]}>
-                        <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
-                            {thisDataMyHome.name}
-                        </Text>
-                        <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, {color: '#8f8f8f'}]}>
-                            บ้านเลขที่ {thisDataMyHome.homeNo}
-                        </Text>
-                    </View>
-                    <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
-                        <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.black_gray_text} />
-                    </View>
-                </TouchableOpacity>
-                <MenuBtn selectMenu={selectMenu} />
-                {selected === 'INFORM' && 
-                    <InformList listInform={listInform}/>
-                }
-                {selected === 'HISTORY' && 
-                    <HistoryList listHistory={listHistory}/>
-                }
+                <ScrollView>
+                    <TouchableOpacity
+                        onPress={() => navigate.navigate('Myproject')}
+                        style={[Styles.w100, Styles.p15, Styles.FFF, Styles.row]}>
+                        <View style={[Styles.w80]}>
+                            <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
+                                {thisDataMyHome.name}
+                            </Text>
+                            <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, { color: '#8f8f8f' }]}>
+                                บ้านเลขที่ {thisDataMyHome.homeNo}
+                            </Text>
+                        </View>
+                        <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
+                            <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.black_gray_text} />
+                        </View>
+                    </TouchableOpacity>
+                    <MenuBtn selectMenu={selectMenu} />
+                    {selected === 'INFORM' &&
+                        <InformList listInform={listInform} />
+                    }
+                    {selected === 'HISTORY' &&
+                        <HistoryList listHistory={listHistory} />
+                    }
+                </ScrollView>
             </View>
         </View>
     );

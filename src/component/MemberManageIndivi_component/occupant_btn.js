@@ -74,19 +74,19 @@ const OccupantBtn = (occupant, item) => {
                   Styles.circle,
                 ]}
               ></Image>
-              <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+              <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                 เบอร์โทรศัพท์
               </Text>
               <Text
-                style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 15 }]}
+                style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
               >
                 {item.tel}
               </Text>
-              <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+              <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                 สิทธิ์หมดอายุ
               </Text>
               <Text
-                style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 15 }]}
+                style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
               >
                 {moment.unix(item.expire).format("DD/MM/YYYY")}
               </Text>
@@ -104,8 +104,8 @@ const OccupantBtn = (occupant, item) => {
                     >
                       <Text
                         style={[
-                          Styles.f_16,
-                          Styles.mainFont,
+                          Styles.f_24,
+                          Styles.mainFont_x,
                           {
                             color: "#f4910d",
                             marginLeft: 10,
@@ -130,8 +130,8 @@ const OccupantBtn = (occupant, item) => {
                       >
                         <Text
                           style={[
-                            Styles.f_16,
-                            Styles.mainFont,
+                            Styles.f_24,
+                            Styles.mainFont_x,
                             {
                               color: "#3fc89b",
                               marginLeft: 10,
@@ -169,20 +169,20 @@ const OccupantBtn = (occupant, item) => {
                   </View>
                 </View>
               </View>
-              <View style={[Styles.w100]}>
-                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+              <View style={[Styles.w100, {marginTop: 7}]}>
+                <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                   ชื่อ-นามสกุล
                 </Text>
                 <Text
-                  style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}
+                  style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
                 >
                   {item.name}
                 </Text>
-                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+                <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                   อีเมล
                 </Text>
                 <Text
-                  style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}
+                  style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
                 >
                   {item.email}
                 </Text>
@@ -208,7 +208,7 @@ const OccupantBtn = (occupant, item) => {
                 style={[
                   Styles.text_center,
                   Styles.mainColor_text,
-                  Styles.f_18,
+                  Styles.f_22,
                   Styles.mainFont,
                   { marginLeft: "1%" },
                 ]}

@@ -28,7 +28,7 @@ export default function OccupantEdit(props) {
 
     return(
         <View style={[Styles.flex,Styles.w100,Styles.h100,Styles.FFF]}>
-            <MainHeader name={'แก้ไขผู้เช่า'} backto={'MemberManage'}/>
+            <MainHeader name={'แก้ไขผู้เช่า'} backto={'MemberManageIndivi'}/>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}

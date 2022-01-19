@@ -16,36 +16,55 @@ export default function foreigner_form() {
   const [email, setEmail] = React.useState("");
 
   const addData = () => {
-    if (name == "" || identity == "" || tel == "" || email == "") {
-      console.log("data in" + name + identity + tel + email);
-      alert("Please fill all the form");
-    } else {
-      console.log("Name: " + name);
-      console.log("Identity: " + identity);
-      console.log("Tel: " + tel);
-      console.log("Email: " + email);
-      setNewResident((oldResident) => [
-        ...oldResident,
-        {
-          name: name,
-          identity: identity,
-          tel: tel,
-          email: email,
-          type: "FOREIGN",
-          status: "VERIFY",
-          image:
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
-        },
-      ]);
+    // if (name == "" || identity == "" || tel == "" || email == "") {
+    //   console.log("data in" + name + identity + tel + email);
+    //   alert("Please fill all the form");
+    // } else {
+    //   console.log("Name: " + name);
+    //   console.log("Identity: " + identity);
+    //   console.log("Tel: " + tel);
+    //   console.log("Email: " + email);
+    //   setNewResident((oldResident) => [
+    //     ...oldResident,
+    //     {
+    //       name: name,
+    //       identity: identity,
+    //       tel: tel,
+    //       email: email,
+    //       type: "FOREIGN",
+    //       status: "VERIFY",
+    //       image:
+    //         "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
+    //     },
+    //   ]);
 
-      alert("Saved");
-      setName("");
-      setIdentity("");
-      setTel("");
-      setEmail("");
+    //   alert("Saved");
+    //   setName("");
+    //   setIdentity("");
+    //   setTel("");
+    //   setEmail("");
 
-      navigate.navigate("ResidentAddOTP");
-    }
+    //   navigate.navigate("ResidentAddOTP");
+    // }
+    setNewResident((oldResident) => [
+      ...oldResident,
+      {
+        name: name,
+        identity: identity,
+        tel: tel,
+        email: email,
+        type: "FOREIGN",
+        status: "VERIFY",
+        image:
+          "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
+      },
+    ]);
+    setName("");
+    setIdentity("");
+    setTel("");
+    setEmail("");
+
+    navigate.navigate("ResidentAddOTP");
   };
 
   // const onChangeName = (previous) => {
@@ -72,7 +91,7 @@ export default function foreigner_form() {
           Styles.ml5,
           Styles.mt10,
           Styles.mainFont,
-          Styles.f_16,
+          Styles.f_22,
           Styles.black_gray_text,
         ]}
       >
@@ -90,7 +109,7 @@ export default function foreigner_form() {
           Styles.ml5,
           Styles.mt10,
           Styles.mainFont,
-          Styles.f_16,
+          Styles.f_22,
           Styles.black_gray_text,
         ]}
       >
@@ -108,7 +127,7 @@ export default function foreigner_form() {
           Styles.ml5,
           Styles.mt10,
           Styles.mainFont,
-          Styles.f_16,
+          Styles.f_22,
           Styles.black_gray_text,
         ]}
       >
@@ -126,7 +145,7 @@ export default function foreigner_form() {
           Styles.ml5,
           Styles.mt10,
           Styles.mainFont,
-          Styles.f_16,
+          Styles.f_22,
           Styles.black_gray_text,
         ]}
       >
@@ -148,7 +167,7 @@ export default function foreigner_form() {
           <Text
             style={[
               Styles.white_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}
@@ -174,7 +193,7 @@ export default function foreigner_form() {
             style={[
               Styles.text_center,
               Styles.mainColor_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}

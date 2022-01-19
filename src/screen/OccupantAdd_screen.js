@@ -29,7 +29,7 @@ export default function OccupantAdd() {
 
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManage"} />
+      <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManageIndivi"} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
@@ -39,7 +39,7 @@ export default function OccupantAdd() {
           <ProfilePicCom picture={picture} />
         </View>
         <View style={Styles.ml5}>
-          <Text style={[Styles.mainFont, Styles.f_16, Styles.black_gray_text]}>
+          <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>
             ผู้อาศัยร่วม
           </Text>
           <Radio isSelectType={isSelectType} />

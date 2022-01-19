@@ -15,7 +15,7 @@ import * as navigate from "../navigator/RootNavigation";
 
 import { Styles } from "../styles";
 
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 import * as Global from "../globalState"
 
 import FooterSignin from "../component/footer_signin";
@@ -27,7 +27,6 @@ import Key from "../KEYS.json"
 
 export default function InputOTP({ route }) {
   const userProfile = useSetRecoilState(Global.userProfile)
-  console.log('ROUTE:::', route)
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -43,8 +42,6 @@ export default function InputOTP({ route }) {
   const [alert, setAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  const SRKEY = '@Profile:key'
-  const USERKEY = '@User:key'
 
   function _login() {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
@@ -53,7 +50,6 @@ export default function InputOTP({ route }) {
       console.log(res)
       if (typeof res === 'object') {
         var data = JSON.stringify(res.login)
-        userProfile(res.login)
         Store.setLocalStorege(Key.TOKEN, data, (call) => {
           setProfile(res.login.token)
         })
@@ -71,9 +67,9 @@ export default function InputOTP({ route }) {
     Script.setProfile(token, (res) => {
       setLoading(false)
       if (typeof res === 'object') {
+        userProfile(res)
         var data = JSON.stringify(res)
         Store.setLocalStorege(Key.PROFILE, data, (_res) => {
-          console.log('Script.setProfile====>', _res)
           setTimeout(() => {
             navigate.navigate("TabFooter")
           }, 500);
@@ -120,7 +116,7 @@ export default function InputOTP({ route }) {
             OTP ส่งไปยังเบอร์ {route.params.OTP.sendTo}
           </Text>
           <Text
-            style={[Styles.f_24, Styles.mainFont, Styles.black_gray_text]}
+            style={[Styles.f_24, Styles.mainFont_x, Styles.black_gray_text]}
           >
             รหัสอ้างอิง : {route.params.OTP.refNo}
           </Text>

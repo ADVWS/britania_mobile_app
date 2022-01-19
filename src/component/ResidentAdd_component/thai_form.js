@@ -44,42 +44,61 @@ export default function thai_form() {
   const callback = useRecoilState(Global.callbackAccount);
 
   const addData = () => {
-    if (
-      data.name == "" ||
-      data.identity == "" ||
-      data.tel == "" ||
-      data.email == ""
-    ) {
-      console.log("data in" + name + identity + tel + email);
-      alert("Please fill all the form");
-    } else {
-      console.log("Name: " + data.name);
-      console.log("Identity: " + data.identity);
-      console.log("Tel: " + data.tel);
-      console.log("Email: " + data.email);
+    // if (
+    //   data.name == "" ||
+    //   data.identity == "" ||
+    //   data.tel == "" ||
+    //   data.email == ""
+    // ) {
+    //   console.log("data in" + name + identity + tel + email);
+    //   alert("Please fill all the form");
+    // } else {
+    //   console.log("Name: " + data.name);
+    //   console.log("Identity: " + data.identity);
+    //   console.log("Tel: " + data.tel);
+    //   console.log("Email: " + data.email);
 
-      setNewResident((oldResident) => [
-        ...oldResident,
-        {
-          name: data.name,
-          identity: data.identity,
-          tel: data.tel,
-          email: data.email,
-          type: "THAI",
-          status: "VERIFY",
-          image:
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
-        },
-      ]);
+    //   setNewResident((oldResident) => [
+    //     ...oldResident,
+    //     {
+    //       name: data.name,
+    //       identity: data.identity,
+    //       tel: data.tel,
+    //       email: data.email,
+    //       type: "THAI",
+    //       status: "VERIFY",
+    //       image:
+    //         "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
+    //     },
+    //   ]);
 
-      alert("Saved");
-      // setName("");
-      // setIdentity("");
-      // setTel("");
-      // setEmail("");
+    //   alert("Saved");
+    //   // setName("");
+    //   // setIdentity("");
+    //   // setTel("");
+    //   // setEmail("");
 
-      navigate.navigate("ResidentAddOTP");
-    }
+    //   navigate.navigate("ResidentAddOTP");
+    // }
+    setNewResident((oldResident) => [
+      ...oldResident,
+      {
+        name: data.name,
+        identity: data.identity,
+        tel: data.tel,
+        email: data.email,
+        type: "THAI",
+        status: "VERIFY",
+        image:
+          "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
+      },
+    ]);
+
+    // setName("");
+    // setIdentity("");
+    // setTel("");
+    // setEmail("");
+    navigate.navigate("ResidentAddOTP", "ADD");
   };
 
   return (
@@ -91,7 +110,7 @@ export default function thai_form() {
               Styles.ml5,
               Styles.mt10,
               Styles.mainFont,
-              Styles.f_16,
+              Styles.f_22,
               Styles.black_gray_text,
             ]}
           >
@@ -192,7 +211,7 @@ export default function thai_form() {
           <Text
             style={[
               Styles.white_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}
@@ -218,7 +237,7 @@ export default function thai_form() {
             style={[
               Styles.text_center,
               Styles.mainColor_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}

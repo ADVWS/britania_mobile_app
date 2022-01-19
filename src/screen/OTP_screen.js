@@ -188,7 +188,7 @@ export default function OTP({ route }) {
               <>
                 <Text
                   style={[
-                    Styles.f_18,
+                    Styles.f_26,
                     Styles.mainFont,
                     Styles.mainColor_text,
                     Styles.mt30,
@@ -260,7 +260,7 @@ export default function OTP({ route }) {
         <Text
           style={[
             Styles.f_22,
-            Styles.mainFont,
+            Styles.mainFont_x,
             Styles.mainColor_text,
             Styles.text_center,
             Styles.mb20,

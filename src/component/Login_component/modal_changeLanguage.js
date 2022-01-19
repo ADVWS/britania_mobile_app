@@ -23,7 +23,7 @@ export default class Modal_changeLang extends React.Component {
         ]}
       >
         <View style={[Styles.w100]}>
-          <Text style={[Styles.f_18, Styles.mainFont, Styles.mainColor_text]}>
+          <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
             เลือกภาษา
           </Text>
         </View>
@@ -38,7 +38,7 @@ export default class Modal_changeLang extends React.Component {
               Styles.br_5,
             ]}
           >
-            <Text style={[Styles.f_16, Styles.mainFont_thin]}>ภาษาไทย</Text>
+            <Text style={[Styles.f_22, Styles.mainFont_thin]}>ภาษาไทย</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={()=>this.isSelectLang('EN')}
@@ -51,7 +51,7 @@ export default class Modal_changeLang extends React.Component {
               Styles.mt10,
             ]}
           >
-            <Text style={[Styles.f_16, Styles.mainFont_thin]}>English</Text>
+            <Text style={[Styles.f_22, Styles.mainFont_thin]}>English</Text>
           </TouchableOpacity>
         </View>
       </View>

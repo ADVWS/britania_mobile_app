@@ -2,32 +2,37 @@ import * as React from "react";
 import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import DatePicker from 'react-native-datepicker';
 import moment from "moment";
+import * as navigate from "../../navigator/RootNavigation";
+import * as Global from "../../globalState";
+
+import { useSetRecoilState, useRecoilState } from "recoil";
 
 import { Styles } from "../../styles";
 
 export default function foreigner_form (item) {
 
         const [date,setDate] = React.useState(moment.unix(item.item.expire).format('DD-MM-YYYY'));
+        const callback = useRecoilState(Global.callbackAccount);
 
         return (
             <View style={{marginBottom: 30}}>
-                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>ชื่อ-นามสกุล</Text>
+                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_22,Styles.black_gray_text]}>ชื่อ-นามสกุล</Text>
                 <View style={Styles.al_center}>
                     <TextInput style={[Styles.w90,Styles.mt10,Styles.textfieldbox]} value={item.item.name}></TextInput>
                 </View>
-                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>หมายเลขหนังสือเดินทาง</Text>
+                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_22,Styles.black_gray_text]}>หมายเลขหนังสือเดินทาง</Text>
                 <View style={Styles.al_center}>
                     <TextInput style={[Styles.w90,Styles.mt10,Styles.textfieldbox]} value={item.item.identity}></TextInput>
                 </View>
-                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>เบอร์โทรศัพท์</Text>
+                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_22,Styles.black_gray_text]}>เบอร์โทรศัพท์</Text>
                 <View style={Styles.al_center}>
                     <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]} value={item.item.tel}></TextInput>
                 </View>
-                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>อีเมล์</Text>
+                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_22,Styles.black_gray_text]}>อีเมล์</Text>
                 <View style={Styles.al_center}>
                     <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]} value={item.item.email}></TextInput>
                 </View>
-                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>วันที่สิทธิ์หมดอายุ</Text>
+                <Text style={[Styles.ml5,Styles.mt10,Styles.mainFont,Styles.f_22,Styles.black_gray_text]}>วันที่สิทธิ์หมดอายุ</Text>
                 <View style={Styles.al_center}>
                     {/* <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput> */}
                 <DatePicker
@@ -65,8 +70,8 @@ export default function foreigner_form (item) {
                     Styles.row,
                     Styles.mt20,
                     Styles.confirm_btn
-                ]} onPress={() => navigate.navigate('OccupantAddOTP')}>
-                    <Text style={[Styles.white_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
+                ]} onPress={() => navigate.navigate('MemberManageIndivi', {callback})}>
+                    <Text style={[Styles.white_text, Styles.f_24, Styles.mainFont, {marginLeft: '1%'}]}>
                         บันทึก
                     </Text>
                 </TouchableOpacity>
@@ -80,8 +85,8 @@ export default function foreigner_form (item) {
                     Styles.border_btn,
                     Styles.p15,
                     Styles.jc_center
-                ]} onPress={() => navigate.navigate('MemberManageIndivi')}>
-                    <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_18, Styles.mainFont, {marginLeft: '1%'}]}>
+                ]} onPress={() => navigate.navigate('MemberManageIndivi', {callback})}>
+                    <Text style={[Styles.text_center,Styles.mainColor_text, Styles.f_24, Styles.mainFont, {marginLeft: '1%'}]}>
                         ยกเลิก
                     </Text>
                 </TouchableOpacity>

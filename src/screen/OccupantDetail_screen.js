@@ -51,27 +51,27 @@ const OccupantDetail = ({ route }) => {
                     ></Image>
                     {/* <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image> */}
                     <Text
-                      style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                      style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}
                     >
                       เบอร์โทรศัพท์
                     </Text>
                     <Text
                       style={[
                         Styles.mainFont,
-                        { color: "#8f8f8f", fontSize: 15 },
+                        { color: "#8f8f8f", fontSize: 22 },
                       ]}
                     >
                       {item.tel}
                     </Text>
                     <Text
-                      style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                      style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}
                     >
                       สิทธิ์หมดอายุ
                     </Text>
                     <Text
                       style={[
                         Styles.mainFont,
-                        { color: "#8f8f8f", fontSize: 15 },
+                        { color: "#8f8f8f", fontSize: 22 },
                       ]}
                     >
                       {moment.unix(item.expire).format("DD/MM/YYYY")}
@@ -90,7 +90,7 @@ const OccupantDetail = ({ route }) => {
                           >
                             <Text
                               style={[
-                                Styles.f_16,
+                                Styles.f_24,
                                 Styles.mainFont,
                                 {
                                   color: "#f4910d",
@@ -116,7 +116,7 @@ const OccupantDetail = ({ route }) => {
                             >
                               <Text
                                 style={[
-                                  Styles.f_16,
+                                  Styles.f_24,
                                   Styles.mainFont,
                                   {
                                     color: "#3fc89b",
@@ -134,15 +134,15 @@ const OccupantDetail = ({ route }) => {
                       <View style={Styles.w10}></View>
                     </View>
 
-                    <View style={[Styles.w100]}>
+                    <View style={[Styles.w100, {marginTop: 6}]}>
                       <Text
-                        style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                        style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}
                       >
                         ชื่อ-นามสกุล
                       </Text>
                       <Text
                         style={[
-                          Styles.f_16,
+                          Styles.f_22,
                           Styles.mainFont,
                           { color: "#8f8f8f" },
                         ]}
@@ -150,13 +150,13 @@ const OccupantDetail = ({ route }) => {
                         {item.name}
                       </Text>
                       <Text
-                        style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                        style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}
                       >
                         อีเมล
                       </Text>
                       <Text
                         style={[
-                          Styles.f_16,
+                          Styles.f_22,
                           Styles.mainFont,
                           { color: "#8f8f8f" },
                         ]}
@@ -169,7 +169,7 @@ const OccupantDetail = ({ route }) => {
                 {item.status === "VERIFY" ? (
                   <TouchableOpacity
                     onPress={() =>
-                      navigate.navigate("ResidentAddOTP", { params })
+                      navigate.navigate("ResidentAddOTP")
                     }
                     style={[
                       Styles.w100,
@@ -187,7 +187,7 @@ const OccupantDetail = ({ route }) => {
                       style={[
                         Styles.text_center,
                         Styles.mainColor_text,
-                        Styles.f_18,
+                        Styles.f_22,
                         Styles.mainFont,
                         { marginLeft: "1%" },
                       ]}
@@ -215,7 +215,7 @@ const OccupantDetail = ({ route }) => {
                         style={[
                           Styles.text_center,
                           Styles.mainColor_text,
-                          Styles.f_18,
+                          Styles.f_22,
                           Styles.mainFont,
                           { marginLeft: "1%" },
                         ]}
@@ -242,7 +242,7 @@ const OccupantDetail = ({ route }) => {
                         style={[
                           Styles.text_center,
                           Styles.mainColor_text,
-                          Styles.f_18,
+                          Styles.f_22,
                           Styles.mainFont,
                           { marginLeft: "1%" },
                         ]}

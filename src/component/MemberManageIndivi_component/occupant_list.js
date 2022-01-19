@@ -29,7 +29,7 @@ export default function OccupantList(occupant) {
         <Text
           style={[
             Styles.white_text,
-            Styles.f_18,
+            Styles.f_22,
             Styles.mainFont,
             { marginLeft: "1%" },
           ]}

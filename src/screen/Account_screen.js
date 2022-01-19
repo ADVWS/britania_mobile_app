@@ -59,14 +59,14 @@ export default function Account() {
         <View style={[{ marginRight: "10%" }]}>
           <View style={[Styles.row]}>
             {setImageProfile()}
-            <Text style={[Styles.mt40, Styles.ml5, Styles.mainFont, Styles.mainColor_text, Styles.f_18]}>{userProfile.me.name}</Text>
+            <Text style={[Styles.mt40, Styles.ml5, Styles.mainFont, Styles.mainColor_text, Styles.f_24]}>{userProfile.me.name}</Text>
           </View>
         </View>
         <View style={Styles.mt20}>
           <NavBtn option={option} />
         </View>
       </View>
-      <Text style={[Styles.mainFont, Styles.mb10]}>Version 1.0.0</Text>
+      <Text style={[Styles.mainFont_x, Styles.mb10, Styles.f_24]}>Version 1.0.0</Text>
     </LinearGradient>
   );
 }

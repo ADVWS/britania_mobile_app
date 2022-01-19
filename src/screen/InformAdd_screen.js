@@ -152,7 +152,7 @@ const InformAdd = ({ route }) => {
                             />
                             {alDetail &&
                                 <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
-                                    กรุณาระบุ "รายระเอียด"
+                                    กรุณาระบุ "รายละเอียด"
                                 </Text>
                             }
                             <Text style={[Styles.f_24, Styles.mainFont, Styles.mt10]}>

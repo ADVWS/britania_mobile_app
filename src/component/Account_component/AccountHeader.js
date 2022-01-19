@@ -22,9 +22,9 @@ export default class AccountHeader extends React.Component {
                 <View style={[Styles.w80, Styles.text_left, Styles.jc_end, { bottom: 5 }]}>
                     <Text 
                         style={[
-                            Styles.f_20,
                             Styles.mainFont,
                             Styles.mainColor_text,
+                            {fontSize: 28, top: 5}
                         ]}> บัญชี</Text>
                 </View>
                 <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>

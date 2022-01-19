@@ -26,10 +26,10 @@ const Allnotify = () => {
           </View>
         </View>
         <View style={[Styles.w80, Styles.p10]}>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.black_gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>
             บริทาเนีย ให้เหนือกว่าใคร กับโปรอยู่ฟรีสูงสุด 2 ปี
           </Text>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
             14 ม.ค. 2562 13:23
           </Text>
         </View>
@@ -53,10 +53,10 @@ const Allnotify = () => {
           </View>
         </View>
         <View style={[Styles.w80, Styles.p10]}>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.black_gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>
             บริทาเนีย ให้เหนือกว่าใคร กับโปรอยู่ฟรีสูงสุด 2 ปี
           </Text>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
             13 ม.ค. 2562 13:23
           </Text>
         </View>
@@ -80,10 +80,10 @@ const Allnotify = () => {
           </View>
         </View>
         <View style={[Styles.w80, Styles.p10]}>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.black_gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>
             บริทาเนีย ให้เหนือกว่าใคร กับโปรอยู่ฟรีสูงสุด 2 ปี
           </Text>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
             12 ม.ค. 2562 13:23
           </Text>
         </View>
@@ -105,11 +105,11 @@ const Allnotify = () => {
           </View>
         </View>
         <View style={[Styles.w80, Styles.p10]}>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.black_gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>
             เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบหน้างาน วันที่ 12 ม.ค. 2562
             10.00-11.00 น.
           </Text>
-          <Text style={[Styles.f_14, Styles.mainFont, Styles.gray_text]}>
+          <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
             12 ม.ค. 2562 13:23
           </Text>
         </View>

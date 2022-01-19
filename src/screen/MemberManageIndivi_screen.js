@@ -76,10 +76,10 @@ export default function MemberManageIndivi_screen({ route }) {
                 style={[Styles.h100, Styles.w100, Styles.br_5]}
               />
             </View>
-            <View style={Styles.w70}>
+            <View style={Styles.w80}>
               <Text
                 style={[
-                  Styles.f_18,
+                  {fontSize: 28},
                   Styles.mainColor_text,
                   Styles.mainFont,
                   Styles.mt20,

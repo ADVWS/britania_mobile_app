@@ -50,14 +50,14 @@ const ResidentDetail = ({ route }) => {
                     ></Image>
                     {/* <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image> */}
                     <Text
-                      style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                      style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}
                     >
                       เบอร์โทรศัพท์
                     </Text>
                     <Text
                       style={[
-                        Styles.mainFont,
-                        { color: "#8f8f8f", fontSize: 15 },
+                        Styles.mainFont_x,
+                        { color: "#8f8f8f", fontSize: 22 },
                       ]}
                     >
                       {item.tel}
@@ -76,8 +76,8 @@ const ResidentDetail = ({ route }) => {
                           >
                             <Text
                               style={[
-                                Styles.f_16,
-                                Styles.mainFont,
+                                Styles.f_24,
+                                Styles.mainFont_x,
                                 {
                                   color: "#f4910d",
                                   marginLeft: 10,
@@ -102,8 +102,8 @@ const ResidentDetail = ({ route }) => {
                             >
                               <Text
                                 style={[
-                                  Styles.f_16,
-                                  Styles.mainFont,
+                                  Styles.f_24,
+                                  Styles.mainFont_x,
                                   {
                                     color: "#3fc89b",
                                     marginLeft: 10,
@@ -120,30 +120,30 @@ const ResidentDetail = ({ route }) => {
                       <View style={Styles.w10}></View>
                     </View>
 
-                    <View style={[Styles.w100]}>
+                    <View style={[Styles.w100, {marginTop: 7}]}>
                       <Text
-                        style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                        style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}
                       >
                         ชื่อ-นามสกุล
                       </Text>
                       <Text
                         style={[
-                          Styles.f_16,
-                          Styles.mainFont,
+                          Styles.f_22,
+                          Styles.mainFont_x,
                           { color: "#8f8f8f" },
                         ]}
                       >
                         {item.name}
                       </Text>
                       <Text
-                        style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}
+                        style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}
                       >
                         อีเมล
                       </Text>
                       <Text
                         style={[
-                          Styles.f_16,
-                          Styles.mainFont,
+                          Styles.f_22,
+                          Styles.mainFont_x,
                           { color: "#8f8f8f" },
                         ]}
                       >
@@ -155,7 +155,7 @@ const ResidentDetail = ({ route }) => {
                 {item.status === "VERIFY" ? (
                   <TouchableOpacity
                     onPress={() =>
-                      navigate.navigate("ResidentAddOTP", { params })
+                      navigate.navigate("ResidentAddOTP")
                     }
                     style={[
                       Styles.w100,
@@ -173,7 +173,7 @@ const ResidentDetail = ({ route }) => {
                       style={[
                         Styles.text_center,
                         Styles.mainColor_text,
-                        Styles.f_18,
+                        Styles.f_22,
                         Styles.mainFont,
                         { marginLeft: "1%" },
                       ]}
@@ -193,7 +193,7 @@ const ResidentDetail = ({ route }) => {
                         Styles.al_center,
                         Styles.br_5,
                         Styles.border_btn,
-                        Styles.p15,
+                        Styles.p10,
                         Styles.jc_center,
                       ]}
                     >
@@ -201,7 +201,7 @@ const ResidentDetail = ({ route }) => {
                         style={[
                           Styles.text_center,
                           Styles.mainColor_text,
-                          Styles.f_18,
+                          Styles.f_24,
                           Styles.mainFont,
                           { marginLeft: "1%" },
                         ]}
@@ -218,7 +218,7 @@ const ResidentDetail = ({ route }) => {
                         Styles.al_center,
                         Styles.br_5,
                         Styles.border_btn,
-                        Styles.p15,
+                        Styles.p10,
                         Styles.jc_center,
                         Styles.ml5,
                       ]}
@@ -228,7 +228,7 @@ const ResidentDetail = ({ route }) => {
                         style={[
                           Styles.text_center,
                           Styles.mainColor_text,
-                          Styles.f_18,
+                          Styles.f_24,
                           Styles.mainFont,
                           { marginLeft: "1%" },
                         ]}

@@ -36,27 +36,27 @@ const Satisfaction = ({ route }) => {
                         {/* <Image source={{ uri: item.image }} style={[Styles.circle, { height: 110, width: 110 }]} /> */}
                         <View style={[Styles.w100, Styles.al_center]}>
                             <Image source={require('../../assets/image/staff.png')} style={[Styles.circle, { height: 100, width: 100 }]} />
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_center]}>
+                            <Text style={[Styles.f_24, Styles.mainFont, Styles.mt10, Styles.text_center]}>
                                 บิลลี่ อินทร
                             </Text>
-                            <Text style={[Styles.f_14, Styles.mainFont, { color: "#8f8f8f" }]}>
+                            <Text style={[Styles.f_24, Styles.mainFont, { color: "#8f8f8f" }]}>
                                 เจ้าหน้าที่ Homecare ที่เข้าซ่อม
                             </Text>
                         </View>
-                        <Text style={[Styles.f_14, Styles.mainFont, Styles.mt10]}>
-                            1 = พึงพอใจน้อยที่สุด   5 = พึงพอใจมากที่สุด
+                        <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt10]}>
+                            1 = พึงพอใจน้อยที่สุด     5 = พึงพอใจมากที่สุด
                         </Text>
                     </View>
                     <Vote />
                     <View style={[Styles.w100, Styles.p15]}>
-                        <Text style={[Styles.f_16, Styles.mainFont]}>
+                        <Text style={[Styles.f_22, Styles.mainFont_x]}>
                             ชมเชย/เสนอแนะ
                         </Text>
                         <TextInput style={[Styles.w100, Styles.p15, Styles.br_5, { borderWidth: 0.5, borderColor: "#DDD" }]} />
                         <TouchableOpacity
                             onPress={() => navigate.navigate('Homecare')}
                             style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor]}>
-                            <Text style={[Styles.f_16, Styles.white_text, Styles.mainFont, Styles.text_center]}>
+                            <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
                                 ยืนยัน
                             </Text>
                         </TouchableOpacity>

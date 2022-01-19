@@ -13,6 +13,10 @@ import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
+import * as navigate from "../navigator/RootNavigation";
+import * as Global from "../globalState";
+
+import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function OccupantAddOTP() {
   const [unit1, setUnit1] = React.useState("");
@@ -28,9 +32,12 @@ export default function OccupantAddOTP() {
   const unit5ref = React.createRef();
   const unit6ref = React.createRef();
 
+  const callback = useRecoilState(Global.callbackAccount);
+
+
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={"เพิ่มผู้เช่า"} backto={"OccupantAdd"} />
+      <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManageIndivi"} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p30]}>
           <View
@@ -46,8 +53,8 @@ export default function OccupantAddOTP() {
           </View>
           <Text
             style={[
-              Styles.f_14,
-              Styles.mainFont_thin,
+              Styles.f_22,
+              Styles.mainFont_x,
               Styles.black_gray_text,
               Styles.mt20,
             ]}
@@ -55,15 +62,15 @@ export default function OccupantAddOTP() {
             กรุณากรอกรหัส OTP ที่ส่งไปยังคุณดวงกมล เมธากุล
           </Text>
           <Text
-            style={[Styles.f_14, Styles.mainFont_thin, Styles.black_gray_text]}
+            style={[Styles.f_22, Styles.mainFont_x, Styles.black_gray_text]}
           >
             หมายเลข 098-334-2334 เพื่อเปิดสิทธิ์การใช้งาน
           </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
               style={[
-                Styles.f_16,
-                Styles.mainFont,
+                Styles.f_26,
+                Styles.mainFont_x_db,
                 Styles.mainColor_text,
                 Styles.mt30,
               ]}
@@ -192,8 +199,8 @@ export default function OccupantAddOTP() {
             <View style={[Styles.al_end, Styles.w100, Styles.mt10]}>
               <Text
                 style={[
-                  Styles.f_16,
-                  Styles.mainFont_thin,
+                  Styles.f_22,
+                  Styles.mainFont_x,
                   Styles.black_gray_text,
                 ]}
               >
@@ -201,7 +208,7 @@ export default function OccupantAddOTP() {
                 <Text
                   style={[
                     Styles.mainColor_text,
-                    Styles.mainFont,
+                    Styles.mainFont_x_db,
                     { textDecorationLine: "underline" },
                   ]}
                 >
@@ -221,10 +228,13 @@ export default function OccupantAddOTP() {
               Styles.br_5,
               Styles.boxWithShadow,
             ]}
+            onPress={() =>
+              navigate.navigate("MemberManageIndivi", { callback })
+            }
           >
             <Text
               style={[
-                Styles.f_18,
+                Styles.f_24,
                 Styles.mainFont,
                 Styles.white_text,
                 Styles.text_center,
@@ -243,10 +253,13 @@ export default function OccupantAddOTP() {
               Styles.border_btn,
               Styles.p15,
             ]}
+            onPress={() =>
+              navigate.navigate("MemberManageIndivi", { callback })
+            }
           >
             <Text
               style={[
-                Styles.f_18,
+                Styles.f_24,
                 Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.text_center,

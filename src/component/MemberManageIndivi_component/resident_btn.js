@@ -68,11 +68,11 @@ const ResidentBtn = (resident, item) => {
                 ]}
               ></Image>
               {/* <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image> */}
-              <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+              <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5, Styles.mt10]}>
                 เบอร์โทรศัพท์
               </Text>
               <Text
-                style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 15 }]}
+                style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
               >
                 {item.tel}
               </Text>
@@ -90,8 +90,8 @@ const ResidentBtn = (resident, item) => {
                     >
                       <Text
                         style={[
-                          Styles.f_16,
-                          Styles.mainFont,
+                          Styles.f_24,
+                          Styles.mainFont_x,
                           { color: "#f4910d", marginLeft: 10, marginRight: 10 },
                         ]}
                       >
@@ -112,8 +112,8 @@ const ResidentBtn = (resident, item) => {
                       >
                         <Text
                           style={[
-                            Styles.f_16,
-                            Styles.mainFont,
+                            Styles.f_24,
+                            Styles.mainFont_x,
                             {
                               color: "#3fc89b",
                               marginLeft: 10,
@@ -152,20 +152,20 @@ const ResidentBtn = (resident, item) => {
                 </View>
               </View>
 
-              <View style={[Styles.w100]}>
-                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+              <View style={[Styles.w100, Styles.mt10]}>
+                <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                   ชื่อ-นามสกุล
                 </Text>
                 <Text
-                  style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}
+                  style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
                 >
                   {item.name}
                 </Text>
-                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+                <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                   อีเมล
                 </Text>
                 <Text
-                  style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}
+                  style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
                 >
                   {item.email}
                 </Text>
@@ -191,7 +191,7 @@ const ResidentBtn = (resident, item) => {
                 style={[
                   Styles.text_center,
                   Styles.mainColor_text,
-                  Styles.f_18,
+                  Styles.f_22,
                   Styles.mainFont,
                   { marginLeft: "1%" },
                 ]}

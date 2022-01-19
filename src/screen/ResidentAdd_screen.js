@@ -39,7 +39,7 @@ export default function ResidentAdd() {
           <ProfilePicCom picture={picture} />
         </View>
         <View style={Styles.ml5}>
-          <Text style={[Styles.mainFont, Styles.f_16, Styles.black_gray_text]}>
+          <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>
             ผู้อาศัยร่วม
           </Text>
           <Radio isSelectType={isSelectType} />

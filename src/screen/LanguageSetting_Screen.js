@@ -43,7 +43,7 @@ export default class LanguageSetting_Screen extends React.Component {
                 <MainHeader name={'ตั้งค่าภาษา / Language'} backto={'Account'}/>
                 <TouchableOpacity style={[Styles.boxWithShadow, Styles.w90, Styles.p15, Styles.FFF, Styles.br_5, Styles.mt5, Styles.row]} onPress={() => this.selectLanguage('THAI')}>
                     <View style={[Styles.w90]}>
-                        <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, {bottom: 3}]}>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, {bottom: 3}]}>
                             ภาษาไทย
                         </Text>
                     </View>
@@ -53,7 +53,7 @@ export default class LanguageSetting_Screen extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity style={[Styles.boxWithShadow, Styles.w90, Styles.p15, Styles.FFF, Styles.br_5, Styles.mt5, Styles.row]} onPress={() => this.selectLanguage('ENGLISH')}>
                     <View style={[Styles.w90]}>
-                        <Text style={[Styles.f_16, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, {bottom: 3}]}>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, {bottom: 3}]}>
                             English
                         </Text>
                     </View>

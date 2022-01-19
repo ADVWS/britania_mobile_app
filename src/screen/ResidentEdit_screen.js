@@ -48,7 +48,7 @@ export default function ResidentEdit(props) {
             <ProfilePicCom picture={picture}/>
            </View>
            <View style={Styles.ml5}>
-           <Text style={[Styles.mainFont,Styles.f_16,Styles.black_gray_text]}>ผู้อาศัยร่วม</Text>
+           <Text style={[Styles.mainFont,Styles.f_24,Styles.black_gray_text]}>ผู้อาศัยร่วม</Text>
            <Radio isSelectType={isSelectType} type={type}/>
            </View>
            {type === "THAI" && (<ThaiForm item={props.route.params}/>)}

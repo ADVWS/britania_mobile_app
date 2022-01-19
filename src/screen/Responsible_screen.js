@@ -32,26 +32,26 @@ const Responsible = ({ route }) => {
                             <Image source={{ uri: route.params.mechanic.image }} style={[Styles.circle, { height: 100, width: 100 }]} />
                         </View>
                         <View style={[Styles.w80]}>
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt5]}>
+                            <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5]}>
                                 ชื่อ-นามสกุล
                             </Text>
-                            <Text style={[Styles.f_16, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
+                            <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                                 {route.params.mechanic.name}
                             </Text>
                             <View style={[Styles.w100, Styles.row, Styles.mt5]}>
                                 <View style={[Styles.w45]}>
-                                    <Text style={[Styles.f_16, Styles.mainFont, Styles.mt5]}>
+                                    <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5]}>
                                         เบอร์โทรศัพท์
                                     </Text>
-                                    <Text style={[Styles.f_16, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
+                                    <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                                         {route.params.mechanic.mobileno}
                                     </Text>
                                 </View>
                                 <View style={[Styles.w50]}>
-                                    <Text style={[Styles.f_16, Styles.mainFont, Styles.mt5]}>
+                                    <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5]}>
                                         LineID
                                     </Text>
-                                    <Text style={[Styles.f_16, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
+                                    <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                                         {route.params.mechanic.lineID}
                                     </Text>
                                 </View>

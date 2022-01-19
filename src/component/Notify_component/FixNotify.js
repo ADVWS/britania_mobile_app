@@ -21,8 +21,8 @@ const Fixnotify = () => {
                     </View>
                 </View>
                 <View style={[Styles.w80, Styles.p10]}>
-                    <Text style={[Styles.f_14, Styles.mainFont, Styles.black_gray_text]}>เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบหน้างาน วันที่ 12 ม.ค. 2562 10.00-11.00 น.</Text>
-                    <Text style={[Styles.f_14, Styles.mainFont, Styles.gray_text]}>12 ม.ค. 2562 13:23</Text>
+                    <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบหน้างาน วันที่ 12 ม.ค. 2562 10.00-11.00 น.</Text>
+                    <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>12 ม.ค. 2562 13:23</Text>
                 </View>
             </View>
         </View>

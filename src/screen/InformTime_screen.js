@@ -37,7 +37,7 @@ const InformTime = () => {
                     <TouchableOpacity
                         onPress={() => selectInformTime(items.time)}
                         style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                        <Text style={[Styles.f_16, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
+                        <Text style={[Styles.f_22, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
                             {items.time}
                         </Text>
                     </TouchableOpacity>

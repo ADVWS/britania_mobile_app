@@ -45,34 +45,34 @@ const OrderList = ({ data, index, route }) => {
                     Styles.FFF,
                     Styles.mt10
                 ]}>
-                <Text style={[Styles.mainColor_text, Styles.f_17, Styles.mainFont]}>
+                <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont_x_db]}>
                     รายการที่ {index}
                 </Text>
                 <View style={[Styles.w100, Styles.row, Styles.mt10]}>
                     <View style={[Styles.w50]}>
-                        <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
                             ประเภท
                         </Text>
-                        <Text style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}>
+                        <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
                             {data.type}
                         </Text>
                     </View>
                     <View style={[Styles.w50, Styles.al_start]}>
-                        <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
                             การประเมินความพึงพอใจ
                         </Text>
-                        <Text style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}>
+                        <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
                             {data.rate}
                         </Text>
                     </View>
                 </View>
-                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
-                    รายระเอียด
+                <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
+                    รายละเอียด
                 </Text>
-                <Text style={[Styles.mainFont, Styles.f_16, { color: "#8f8f8f" }]}>
+                <Text style={[Styles.mainFont, Styles.f_20, { color: "#8f8f8f" }]}>
                     {data.detail}
                 </Text>
-                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5, Styles.mt10]}>
+                <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5, Styles.mt10]}>
                     รูปภาพ
                 </Text>
                 <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
@@ -87,7 +87,7 @@ const OrderList = ({ data, index, route }) => {
                     onPress={() => gotoResponsible(data.mechanic)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt20, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
-                        <Text style={[Styles.f_16, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
+                        <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
                             เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบ
                         </Text>
                     </View>
@@ -99,7 +99,7 @@ const OrderList = ({ data, index, route }) => {
                     onPress={() => gotoOnsite(data.mechanic)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
-                        <Text style={[Styles.f_16, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
+                        <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
                             ตรวจสอบหน้างาน
                         </Text>
                     </View>
@@ -111,7 +111,7 @@ const OrderList = ({ data, index, route }) => {
                     onPress={() => gotoRepiairList(data.mechanic)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, Styles.mb10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
-                        <Text style={[Styles.f_16, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
+                        <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
                             รายการแก้ไข
                         </Text>
                     </View>
@@ -123,7 +123,7 @@ const OrderList = ({ data, index, route }) => {
                     <TouchableOpacity
                         onPress={() => gotoSatisfaction(data.mechanic)}
                         style={[Styles.w100, Styles.p15, Styles.mainColor, Styles.br_5, Styles.al_center, { marginBottom: 20 }]}>
-                        <Text style={[Styles.f_18, Styles.white_text, Styles.mainFont, Styles.mt5]}>
+                        <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.mt5]}>
                             ประเมินความพึงพอใจ
                         </Text>
                     </TouchableOpacity>

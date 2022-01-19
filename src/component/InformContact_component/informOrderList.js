@@ -33,7 +33,7 @@ const InformOrderList = ({ data, Addmore, gotoinformCalendar }) => {
                         </View>
                     </View>
                     <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10,]}>
-                        รายระเอียด
+                        รายละเอียด
                     </Text>
                     <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                         {item.detail}

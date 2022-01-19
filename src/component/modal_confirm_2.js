@@ -5,11 +5,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
 
-const Modal_confirm = ({ text, confirmFunction }) => {
+const Modal_confirm_2 = ({ text, confirmFunction }) => {
     return (
         <View
             style={[
-                Styles.w80,
+                Styles.w90,
                 Styles.al_center,
                 Styles.jc_center,
                 Styles.p15,
@@ -22,20 +22,11 @@ const Modal_confirm = ({ text, confirmFunction }) => {
                     {text}
                 </Text>
                 <View style={[Styles.row, Styles.w100]}>
-                    <View style={[Styles.w50]}/>
-                    <TouchableOpacity
-                        onPress={() => { confirmFunction('CANCEL') }}
-                        style={[
-                            Styles.w25,
-                            Styles.mt15,
-                        ]}
-                    >
-                        <Text style={[Styles.f_22, Styles.mainFont, Styles.text_right, {color: '#8f8f8f'}]}>ยกเลิก</Text>
-                    </TouchableOpacity>
+                    <View style={[Styles.w70]}/>
                     <TouchableOpacity
                         onPress={() => { confirmFunction() }}
                         style={[
-                            Styles.w25,
+                            Styles.w30,
                             Styles.mt15,
                         ]}
                     >
@@ -47,4 +38,4 @@ const Modal_confirm = ({ text, confirmFunction }) => {
     );
 }
 
-export default Modal_confirm;
+export default Modal_confirm_2;
