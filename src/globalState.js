@@ -6,6 +6,11 @@ export const userProfile = atom({
   default: {},
 });
 
+export const userType = atom({
+  key: "userType",
+  default: 2,
+});
+
 export const dataMyHome = atom({
   key: "dataMyHome",
   default: {

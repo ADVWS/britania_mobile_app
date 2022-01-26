@@ -27,6 +27,7 @@ import Key from "../KEYS.json"
 
 export default function InputOTP({ route }) {
   const userProfile = useSetRecoilState(Global.userProfile)
+  const userType = useSetRecoilState(Global.userType)
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -67,6 +68,7 @@ export default function InputOTP({ route }) {
     Script.setProfile(token, (res) => {
       setLoading(false)
       if (typeof res === 'object') {
+        userType(1)
         userProfile(res)
         var data = JSON.stringify(res)
         Store.setLocalStorege(Key.PROFILE, data, (_res) => {

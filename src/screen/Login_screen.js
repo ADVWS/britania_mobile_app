@@ -4,6 +4,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import Modal from "react-native-modal";
 
 import * as navigate from "../navigator/RootNavigation";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import * as Global from '../globalState'
 
 import { Styles } from "../styles";
 
@@ -12,9 +14,17 @@ import FooterSignin from "../component/footer_signin";
 
 export default function Login() {
   const [changeLang, setChangeLang] = React.useState(false);
+  const userType = useSetRecoilState(Global.userType)
 
   function selectLang() {
     setChangeLang(false);
+  }
+
+  function nonMember() {
+    userType(2)
+    setTimeout(() => {
+      navigate.navigate('TabFooter')
+    }, 500);
   }
 
   return (
@@ -70,6 +80,7 @@ export default function Login() {
             สำหรับสมาชิกทั่วไป
           </Text>
           <TouchableOpacity
+            onPress={()=> nonMember()}
             style={[
               Styles.w100,
               Styles.p15,

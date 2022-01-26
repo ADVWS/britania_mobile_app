@@ -4,11 +4,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from "@expo/vector-icons";
 import { Styles } from '../../styles';
 import * as navigate from "../../navigator/RootNavigation";
+import { useRecoilState } from "recoil";
+import * as Global from "../../globalState";
 
 
 const HEADER_HEIGHT = 50;
 const screen = "Home"
 const AnimatedHeader = ({ animatedValue }) => {
+    const userType = useRecoilState(Global.userType)
     const insets = useSafeAreaInsets();
     const headerHeight = animatedValue.interpolate({
         inputRange: [0, HEADER_HEIGHT + insets.top],
@@ -24,6 +27,24 @@ const AnimatedHeader = ({ animatedValue }) => {
         outputRange: ['rgba(241, 100, 94, 1)', 'rgba(255,255,255,1)']
     });
     //console.log(imageSet)
+    function setNotify() {
+        console.log(userType)
+        if (userType !== 1) {
+            return (
+                <TouchableOpacity disabled={true} onPress={() => navigate.navigate("Notify", { screen })}>
+                    <Animated.Text style={{ color: "#000" }}>
+                        <MaterialIcons name="notifications-none" size={26} />
+                    </Animated.Text>
+                </TouchableOpacity>)
+        } else {
+            return (
+                <TouchableOpacity onPress={() => navigate.navigate("Notify", { screen })}>
+                    <Animated.Text style={{ color: imageSet }}>
+                        <MaterialIcons name="notifications-none" size={26} />
+                    </Animated.Text>
+                </TouchableOpacity>)
+        }
+    }
     return (
         <Animated.View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, { backgroundColor: colorSet }]}>
             <View style={[Styles.w20]} />
@@ -34,11 +55,7 @@ const AnimatedHeader = ({ animatedValue }) => {
                 />
             </View>
             <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
-                <TouchableOpacity onPress={()=> navigate.navigate("Notify", {screen})}>
-                    <Animated.Text style={{ color: imageSet }}>
-                        <MaterialIcons name="notifications-none" size={26} />
-                    </Animated.Text>
-                </TouchableOpacity>
+                {setNotify()}
             </View>
         </Animated.View>
     );

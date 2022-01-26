@@ -41,7 +41,7 @@ const NavBtn = ({ option }) => {
             style={[
               Styles.boxWithShadow,
               Styles.w100,
-              Styles.p15,
+              Styles.p12,
               Styles.FFF,
               Styles.br_5,
               Styles.mt10,
@@ -51,7 +51,7 @@ const NavBtn = ({ option }) => {
             <View style={[Styles.w90]}>
               <Text
                 style={[
-                  Styles.f_24,
+                  Styles.f_18,
                   Styles.mainFont,
                   Styles.mt10,
                   Styles.text_left,
@@ -63,7 +63,7 @@ const NavBtn = ({ option }) => {
               </Text>
             </View>
             <View style={[Styles.jc_center, Styles.al_end]}>
-              <MaterialIcons name="arrow-forward-ios" size={20} />
+              <MaterialIcons name="arrow-forward-ios" size={15} />
             </View>
           </TouchableOpacity>
         ) : (
@@ -72,7 +72,7 @@ const NavBtn = ({ option }) => {
             style={[
               Styles.boxWithShadow,
               Styles.w100,
-              Styles.p15,
+              Styles.p12,
               Styles.FFF,
               Styles.br_5,
               Styles.mt10,
@@ -82,7 +82,7 @@ const NavBtn = ({ option }) => {
             <View style={[Styles.w90]}>
               <Text
                 style={[
-                  Styles.f_22,
+                  Styles.f_18,
                   Styles.mainFont,
                   Styles.mt10,
                   Styles.text_left,
@@ -94,7 +94,7 @@ const NavBtn = ({ option }) => {
               </Text>
             </View>
             <View style={[Styles.jc_center, Styles.al_end]}>
-              <MaterialIcons name="arrow-forward-ios" size={20} />
+              <MaterialIcons name="arrow-forward-ios" size={15} />
             </View>
           </TouchableOpacity>
         )
@@ -104,7 +104,7 @@ const NavBtn = ({ option }) => {
         style={[
           Styles.boxWithShadow,
           Styles.w100,
-          Styles.p15,
+          Styles.p12,
           Styles.FFF,
           Styles.br_5,
           Styles.mt10,
@@ -114,7 +114,7 @@ const NavBtn = ({ option }) => {
         <View style={[Styles.w90]}>
           <Text
             style={[
-              Styles.f_22,
+              Styles.f_18,
               Styles.mainFont,
               Styles.mt10,
               Styles.text_left,
@@ -126,7 +126,7 @@ const NavBtn = ({ option }) => {
           </Text>
         </View>
         <View style={[Styles.jc_center, Styles.al_end]}>
-          <MaterialIcons name="arrow-forward-ios" size={20} />
+          <MaterialIcons name="arrow-forward-ios" size={15} />
         </View>
       </TouchableOpacity>
       <Modal

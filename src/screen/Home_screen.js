@@ -61,12 +61,14 @@ export default function Home() {
                         style={[Styles.w100, Styles.h75]
                         }>
                         <View style={[Styles.w100, Styles.p20]}>
-                            <Text style={[Styles.mainFont_x_db, Styles.f_24, Styles.black_gray_text]}>
-                                ยินดีต้อนรับ{' '}
-                                <Text style={[Styles.f_24, Styles.mainFont_x]}>
-                                    {userProfile.me.name}
+                            {userProfile.me &&
+                                <Text style={[Styles.mainFont_x_db, Styles.f_24, Styles.black_gray_text]}>
+                                    ยินดีต้อนรับ{' '}
+                                    <Text style={[Styles.f_24, Styles.mainFont_x]}>
+                                        {userProfile.me.name}
+                                    </Text>
                                 </Text>
-                            </Text>
+                            }
                         </View>
                         <View style={[Styles.w100, Styles.p20, Styles.al_center, { height: 260, marginTop: '-13%' }]}>
                             <Banner images={images} />
@@ -80,7 +82,7 @@ export default function Home() {
                                 ]}>
                                 ข่าวสาร & กิจกรรม
                             </Text>
-                            <Feed feeds={feeds}/>
+                            <Feed feeds={feeds} />
                         </View>
                     </ScrollView>
                 </View>

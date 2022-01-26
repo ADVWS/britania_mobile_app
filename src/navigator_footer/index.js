@@ -5,12 +5,16 @@ import { navigationRef } from "./RootNavigation";
 import HomeScreen from '../screen/Home_screen';
 import MyHomeScreen from '../screen/MyHome_screen';
 import AccountScreen from '../screen/Account_screen';
+import { useSetRecoilState, useRecoilState } from "recoil";
+import * as Global from '../globalState'
+
 
 const Tab = createBottomTabNavigator();
 
-
 const AllTabBottom = () => {
+    const [userType, setUserType] = useRecoilState(Global.userType)
     function getScreenList(TYPE) {
+        console.log(TYPE)
         switch (TYPE) {
             case 1:
                 return (
@@ -71,16 +75,6 @@ const AllTabBottom = () => {
                                 ),
                             }} />
                         <Tab.Screen
-                            name="HomeDetail"
-                            component={MyHome}
-                            options={{
-                                tabBarLabel: 'ข้อมูลบ้าน',
-                                tabBarLabelStyle: { fontSize: 13 },
-                                tabBarIcon: ({ color, size }) => (
-                                    <MaterialCommunityIcons name="home-city" color={color} size={25} style={{ marginTop: 10 }} />
-                                ),
-                            }} />
-                        <Tab.Screen
                             name="Account"
                             component={AccountScreen}
                             options={{
@@ -134,7 +128,7 @@ const AllTabBottom = () => {
                 );
         }
     }
-    return getScreenList(1)
+    return getScreenList(userType)
 }
 
 

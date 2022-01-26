@@ -13,31 +13,52 @@ import { Styles } from "../styles";
 export default function Account() {
   //Profile Data
   const [userProfile, setUserProfile] = useRecoilState(Global.userProfile);
-
+  const [userType, setUserType] = useRecoilState(Global.userType);
   console.log(userProfile);
 
-  const [option, setOptions] = React.useState([
-    {
-      name: "ข้อมูลส่วนตัว",
-      nav: "Profile",
-    },
-    {
-      name: "จัดการข้อมูลผู้อยู่อาศัย/ผู้เช่า",
-      nav: "MemberManage",
-    },
-    {
-      name: "ตั้งค่าภาษา / Language",
-      nav: "Language",
-    },
-    {
-      name: "นโยบายความเป็นส่วนตัว",
-      nav: "TermOfService",
-    },
-    {
-      name: "Call Center",
-      nav: "callcen",
-    },
-  ]);
+  const [option, setOptions] = React.useState([]);
+  React.useEffect(() => {
+    console.log('mode', userType)
+    if (userType === 1) {
+      setOptions([
+        {
+          name: "ข้อมูลส่วนตัว",
+          nav: "Profile",
+        },
+        {
+          name: "จัดการข้อมูลผู้อยู่อาศัย/ผู้เช่า",
+          nav: "MemberManage",
+        },
+        {
+          name: "ตั้งค่าภาษา / Language",
+          nav: "Language",
+        },
+        {
+          name: "นโยบายความเป็นส่วนตัว",
+          nav: "TermOfService",
+        },
+        {
+          name: "Call Center",
+          nav: "callcen",
+        },
+      ])
+    } else {
+      setOptions([
+        {
+          name: "ตั้งค่าภาษา / Language",
+          nav: "Language",
+        },
+        {
+          name: "นโยบายความเป็นส่วนตัว",
+          nav: "TermOfService",
+        },
+        {
+          name: "Call Center",
+          nav: "callcen",
+        },
+      ])
+    }
+  }, []);
 
   const setImageProfile = () => {
     var image = "";
@@ -67,18 +88,22 @@ export default function Account() {
         <AccountHeader />
         <View style={[{ marginRight: "10%" }]}>
           <View style={[Styles.row]}>
-            {setImageProfile()}
-            <Text
-              style={[
-                Styles.mt40,
-                Styles.ml5,
-                Styles.mainFont,
-                Styles.mainColor_text,
-                Styles.f_24,
-              ]}
-            >
-              {userProfile.me.name}
-            </Text>
+            {userProfile.me &&
+              <>
+                {setImageProfile()}
+                <Text
+                  style={[
+                    Styles.mt40,
+                    Styles.ml5,
+                    Styles.mainFont,
+                    Styles.mainColor_text,
+                    Styles.f_24,
+                  ]}
+                >
+                  {userProfile.me.name}
+                </Text>
+              </>
+            }
           </View>
         </View>
         <View style={Styles.mt20}>

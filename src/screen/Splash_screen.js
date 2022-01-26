@@ -11,14 +11,20 @@ import { useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
 export default function Splash() {
   const userProfile = useSetRecoilState(Global.userProfile)
-
+  const userType = useSetRecoilState(Global.userType)
   runApp()
 
   function runApp() {
     Script.checkToken(Key.TOKEN, (res) => {
-      console.log(res.detail)
+      console.log('checkToken', res.data)
       if (res.data) {
-        userProfile(res.data)
+        if(res.data.me){
+          userProfile(res.data)
+          userType(1)
+        } else {
+          userProfile(res.data)
+          userType(2)
+        }
       }
       setTimeout(() => {
         navigate.navigate(res.goto)

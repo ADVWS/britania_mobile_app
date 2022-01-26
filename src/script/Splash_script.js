@@ -1,25 +1,36 @@
+import jwtDecode from 'jwt-decode'
+import moment from 'moment'
 import API from '../graphQL'
 import Store from "../store"
 export const checkToken = async (key, cb) => {
     Store.getLocalStorege(key, (res) => {
-        console.log(res)
+        console.log('TOKEN:::', res.detail.token)
         if (res.result) {
-            var token = res.detail.token
-            var project = `{
-                me {
-                    id
-                    name
-                    email
-                    mobileNo
-                    units {
+            var decode = jwtDecode(res.detail.token)
+            if(moment().unix() < decode.exp){
+                var token = res.detail.token
+                var project = `{
+                    me {
                         id
-                        projectName
-                        unitNumber
-                        houseNumber
+                        name
+                        email
+                        mobileNo
+                        units {
+                            id
+                            projectName
+                            unitNumber
+                            houseNumber
+                        }
                     }
+                }`;
+                getUser(project, token, cb)
+            } else {
+                var response = {
+                    detail: 'token is expire .',
+                    goto: 'Login'
                 }
-            }`;
-            getUser(project, token, cb)
+                cb(response)
+            }
         } else {
             var response = {
                 detail: 'token is null .',
