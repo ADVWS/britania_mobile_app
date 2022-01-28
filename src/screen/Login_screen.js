@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Image, View, Text, TouchableOpacity, ImageBackground } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import Modal from "react-native-modal";
 
 import * as navigate from "../navigator/RootNavigation";
@@ -10,7 +9,8 @@ import * as Global from '../globalState'
 import { Styles } from "../styles";
 
 import Modal_changeLang from "../component/Login_component/modal_changeLanguage";
-import FooterSignin from "../component/footer_signin";
+import Store from "../store";
+import Key from "../KEYS.json"
 
 export default function Login() {
   const [changeLang, setChangeLang] = React.useState(false);
@@ -21,10 +21,16 @@ export default function Login() {
   }
 
   function nonMember() {
-    userType(2)
-    setTimeout(() => {
-      navigate.navigate('TabFooter')
-    }, 500);
+    var nonMember = {type: 'non Member'}
+    var data = JSON.stringify(nonMember)
+    console.log(data)
+    Store.setLocalStorege(Key.TOKEN, data, (call) => {
+      console.log(call)
+      userType(2)
+      setTimeout(() => {
+        navigate.navigate('TabFooter')
+      }, 200);
+    })
   }
 
   return (

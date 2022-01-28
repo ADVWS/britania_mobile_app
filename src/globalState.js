@@ -358,7 +358,7 @@ export const dataListOccupant = atom({
       tel: "098-334-2334",
       type: "FOREIGN",
       usertype: "co-occupant",
-      identity: "12345679",
+      identity: "987654321",
       image:
         "https://www.pennmedicine.org/-/media/images/miscellaneous/random%20generic%20photos/young_adult_man_blue_shirt_smiling.ashx",
       expire: 1665162000,

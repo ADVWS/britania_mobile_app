@@ -28,7 +28,7 @@ const OccupantBtn = (occupant, item) => {
   const _callback = useRecoilState(Global.callbackEdit);
 
   function gotoOccupantDetail(usertype, identity) {
-    console.log("USER TYPE::", usertype);
+    console.log("USER TYPE::", usertype, identity);
     var listdetail = [];
     if (usertype === "Host-occupant") {
       dataListOccupant.map((item) => {

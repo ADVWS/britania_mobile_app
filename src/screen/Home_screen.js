@@ -70,10 +70,10 @@ export default function Home() {
                                 </Text>
                             }
                         </View>
-                        <View style={[Styles.w100, Styles.p20, Styles.al_center, { height: 260, marginTop: '-13%' }]}>
+                        <View style={[Styles.w100, Styles.p20, Styles.al_center, { height: 260, marginTop: '-9%' }]}>
                             <Banner images={images} />
                         </View>
-                        <View style={[Styles.w100, Styles.p20, { marginTop: '-10%' }]}>
+                        <View style={[Styles.w100, Styles.p20, { marginTop: '-7%' }]}>
                             <Text
                                 style={[
                                     Styles.f_26,

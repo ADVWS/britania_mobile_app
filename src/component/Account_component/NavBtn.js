@@ -11,7 +11,6 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import * as navigate from "../../navigator/RootNavigation";
 import Modal from "react-native-modal";
-import { Restart } from "fiction-expo-restart";
 import { Styles } from "../../styles";
 import Modal_confirm from "../modal_confirm";
 import Store from "../../store";
@@ -27,7 +26,7 @@ const NavBtn = ({ option }) => {
       Store.removeLocalStorege(Key.PROFILE, (res) => {
         Store.removeLocalStorege(Key.TOKEN, (_res) => {
           setConfirm(false);
-          Restart();
+          navigate.navigate('Login')
         });
       });
     }
@@ -51,7 +50,7 @@ const NavBtn = ({ option }) => {
             <View style={[Styles.w90]}>
               <Text
                 style={[
-                  Styles.f_18,
+                  Styles.f_20,
                   Styles.mainFont,
                   Styles.mt10,
                   Styles.text_left,
@@ -82,7 +81,7 @@ const NavBtn = ({ option }) => {
             <View style={[Styles.w90]}>
               <Text
                 style={[
-                  Styles.f_18,
+                  Styles.f_20,
                   Styles.mainFont,
                   Styles.mt10,
                   Styles.text_left,
@@ -114,7 +113,7 @@ const NavBtn = ({ option }) => {
         <View style={[Styles.w90]}>
           <Text
             style={[
-              Styles.f_18,
+              Styles.f_20,
               Styles.mainFont,
               Styles.mt10,
               Styles.text_left,

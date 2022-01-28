@@ -16,7 +16,7 @@ export default function Splash() {
 
   function runApp() {
     Script.checkToken(Key.TOKEN, (res) => {
-      console.log('checkToken', res.data)
+      console.log('checkToken', res)
       if (res.data) {
         if(res.data.me){
           userProfile(res.data)

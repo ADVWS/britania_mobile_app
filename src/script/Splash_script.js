@@ -4,8 +4,17 @@ import API from '../graphQL'
 import Store from "../store"
 export const checkToken = async (key, cb) => {
     Store.getLocalStorege(key, (res) => {
-        console.log('TOKEN:::', res.detail.token)
+        console.log('TOKEN:::', res)
         if (res.result) {
+            if(res.detail.type){
+                console.log('Non Member')
+                var response = {
+                    detail: 'Non Member',
+                    goto: 'TabFooter'
+                }
+                cb(response)
+                return
+            }
             var decode = jwtDecode(res.detail.token)
             if(moment().unix() < decode.exp){
                 var token = res.detail.token
@@ -32,11 +41,20 @@ export const checkToken = async (key, cb) => {
                 cb(response)
             }
         } else {
-            var response = {
-                detail: 'token is null .',
-                goto: 'Login'
+            if(res.detail.type){
+                console.log('Non Member')
+                var response = {
+                    detail: 'Non Member',
+                    goto: 'TabFooter'
+                }
+                cb(response)
+            } else {
+                var response = {
+                    detail: 'token is null .',
+                    goto: 'Login'
+                }
+                cb(response)
             }
-            cb(response)
         }
     })
 }

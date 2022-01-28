@@ -93,7 +93,7 @@ export default function foreigner_form() {
               Styles.ml5,
               Styles.mt10,
               Styles.mainFont,
-              Styles.f_16,
+              Styles.f_22,
               Styles.black_gray_text,
             ]}
           >
@@ -123,7 +123,7 @@ export default function foreigner_form() {
           Styles.ml5,
           Styles.mt10,
           Styles.mainFont,
-          Styles.f_16,
+          Styles.f_22,
           Styles.black_gray_text,
         ]}
       >
@@ -170,7 +170,7 @@ export default function foreigner_form() {
           <Text
             style={[
               Styles.white_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}
@@ -196,7 +196,7 @@ export default function foreigner_form() {
             style={[
               Styles.text_center,
               Styles.mainColor_text,
-              Styles.f_18,
+              Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },
             ]}

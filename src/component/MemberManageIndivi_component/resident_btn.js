@@ -23,7 +23,6 @@ const ResidentBtn = (resident, item) => {
   const _callback = useRecoilState(Global.callbackEdit);
 
   function gotoResidentDetail(usertype, identity) {
-    console.log("USER TYPE::", usertype);
     var listdetail = [];
     if (usertype === "Host-resident") {
       dataListResident.map((item) => {

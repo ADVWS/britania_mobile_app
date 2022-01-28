@@ -11,7 +11,7 @@ import * as Global from "../../globalState";
 const HEADER_HEIGHT = 50;
 const screen = "Home"
 const AnimatedHeader = ({ animatedValue }) => {
-    const userType = useRecoilState(Global.userType)
+    const [userType, setUserType] = useRecoilState(Global.userType)
     const insets = useSafeAreaInsets();
     const headerHeight = animatedValue.interpolate({
         inputRange: [0, HEADER_HEIGHT + insets.top],
@@ -28,7 +28,6 @@ const AnimatedHeader = ({ animatedValue }) => {
     });
     //console.log(imageSet)
     function setNotify() {
-        console.log(userType)
         if (userType !== 1) {
             return (
                 <TouchableOpacity disabled={true} onPress={() => navigate.navigate("Notify", { screen })}>

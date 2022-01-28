@@ -40,7 +40,7 @@ export default function OccupantAdd() {
         </View>
         <View style={Styles.ml5}>
           <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>
-            ผู้อาศัยร่วม
+            ผู้เช่า
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
