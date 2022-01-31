@@ -13,6 +13,8 @@ import Modal from "react-native-modal";
 
 // import * as navigate from "../navigator/RootNavigation";
 import * as navigate from "../navigator/RootNavigation";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import * as Global from '../globalState'
 
 import { Styles } from "../styles";
 import FooterSignin from "../component/footer_signin";
@@ -26,6 +28,7 @@ export default function Signin() {
   const [alert, setAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
 
   function isClearBtn() {
     if (userid.length > 1) {
@@ -75,7 +78,7 @@ export default function Signin() {
                 { fontSize: 36 },
               ]}
             >
-              เข้าสู่ระบบ
+              {LANG.signin_text_01}
             </Text>
           </View>
           <View style={[Styles.w100, Styles.al_start]}>
@@ -87,7 +90,7 @@ export default function Signin() {
                 Styles.mt80,
               ]}
             >
-              เลขประจำตัวประชาชน / หมายเลขหนังสือเดินทาง
+              {LANG.signin_text_02}
             </Text>
             <View style={[Styles.row, Styles.mt15]}>
               <TextInput
@@ -152,7 +155,7 @@ export default function Signin() {
                     Styles.text_center,
                   ]}
                 >
-                  ถัดไป
+                  {LANG.signin_text_03}
                 </Text>
                 <View style={{ bottom: 2 }}>
                   <Ionicons

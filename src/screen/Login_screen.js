@@ -9,14 +9,20 @@ import * as Global from '../globalState'
 import { Styles } from "../styles";
 
 import Modal_changeLang from "../component/Login_component/modal_changeLanguage";
+import isLANG from "../LANG";
 import Store from "../store";
 import Key from "../KEYS.json"
 
 export default function Login() {
   const [changeLang, setChangeLang] = React.useState(false);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const userType = useSetRecoilState(Global.userType)
+  const settingLANG = useSetRecoilState(Global.Language)
 
-  function selectLang() {
+  function selectLang(_selectLang) {
+    console.log(_selectLang)
+    var myLANG = isLANG.settingLanguage(_selectLang)
+    settingLANG(myLANG)
     setChangeLang(false);
   }
 
@@ -25,7 +31,6 @@ export default function Login() {
     var data = JSON.stringify(nonMember)
     console.log(data)
     Store.setLocalStorege(Key.TOKEN, data, (call) => {
-      console.log(call)
       userType(2)
       setTimeout(() => {
         navigate.navigate('TabFooter')
@@ -50,7 +55,7 @@ export default function Login() {
         />
         <View style={[Styles.w100, Styles.al_start, Styles.mt35per]}>
           <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text]}>
-            สำหรับลูกบ้าน
+            {LANG.login_text_01}
           </Text>
           <TouchableOpacity
             onPress={() => navigate.navigate("Signin")}
@@ -72,7 +77,7 @@ export default function Login() {
                 Styles.text_center,
               ]}
             >
-              เข้าสู่ระบบด้วยเลขประจำตัวประชาชน หรือ{"\n"}หมายเลขหนังสือเดินทาง
+              {LANG.login_text_02}
             </Text>
           </TouchableOpacity>
           <Text
@@ -83,7 +88,7 @@ export default function Login() {
               Styles.mt20,
             ]}
           >
-            สำหรับสมาชิกทั่วไป
+            {LANG.login_text_03}
           </Text>
           <TouchableOpacity
             onPress={()=> nonMember()}
@@ -105,15 +110,15 @@ export default function Login() {
                 Styles.text_center,
               ]}
             >
-              เข้าใช้งานแบบสมาชิกทั่วไป
+              {LANG.login_text_04}
             </Text>
           </TouchableOpacity>
         </View>
       </View>
       <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mainColor_text]}>
-        ติดต่อเจ้าหน้าที่ <Text style={[Styles.mainFont]}>021 613 000</Text>
+        {LANG.login_text_05} <Text style={[Styles.mainFont]}>{LANG.login_text_06}</Text>
       </Text>
-      <Text style={[Styles.f_24, Styles.mt10, Styles.mainFont_x]}>Version 1.0.0</Text>
+      <Text style={[Styles.f_24, Styles.mt10, Styles.mainFont_x]}>{LANG.login_text_07} 1.0.0</Text>
       <Modal isVisible={changeLang} style={Styles.al_center}>
         <Modal_changeLang selectLang={selectLang} />
       </Modal>

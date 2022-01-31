@@ -1,4 +1,5 @@
 {
     "PROFILE" : "@Profile:key",
-    "TOKEN" : "@Token:key"
+    "TOKEN" : "@Token:key",
+    "LANG" : "@Token:lang"
 }

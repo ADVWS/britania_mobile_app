@@ -5,7 +5,12 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
 
+import { useRecoilState } from "recoil";
+import * as Global from "../globalState";
+
 const Modal_confirm = ({ text, confirmFunction }) => {
+    const [LANG, setLANG] = useRecoilState(Global.Language);
+
     return (
         <View
             style={[
@@ -30,7 +35,7 @@ const Modal_confirm = ({ text, confirmFunction }) => {
                             Styles.mt15,
                         ]}
                     >
-                        <Text style={[Styles.f_22, Styles.mainFont, Styles.text_right, {color: '#8f8f8f'}]}>ยกเลิก</Text>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.text_right, {color: '#8f8f8f'}]}>{LANG.account_text_10}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => { confirmFunction() }}
@@ -39,7 +44,7 @@ const Modal_confirm = ({ text, confirmFunction }) => {
                             Styles.mt15,
                         ]}
                     >
-                        <Text style={[Styles.f_22, Styles.mainFont, Styles.text_right, {color: 'red'}]}>ตกลง</Text>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.text_right, {color: 'red'}]}>{LANG.account_text_09}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

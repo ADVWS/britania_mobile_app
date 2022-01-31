@@ -99,10 +99,18 @@ const formatPhoneNumber2 = (phoneNumberString) => {
     return null;
 }
 
+const recoilTranform = (data) => {
+    var tranform = data
+    tranform = JSON.stringify(tranform)
+    tranform = JSON.parse(tranform)
+    return tranform
+}
+
 export default {
     statusTranform,
     callfunction,
     mapDataMycare,
     formatPhoneNumber,
-    formatPhoneNumber2
+    formatPhoneNumber2,
+    recoilTranform
 }

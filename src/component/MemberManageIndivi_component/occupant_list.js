@@ -9,7 +9,8 @@ import OccupantBtn from "./occupant_btn";
 
 const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
-export default function OccupantList(occupant) {
+export default function OccupantList({occupant}) {
+  console.log(occupant)
   return (
     <View style={[Styles.w100, Styles.p15]}>
       <TouchableOpacity
@@ -37,17 +38,17 @@ export default function OccupantList(occupant) {
           เพิ่มผู้เช่า
         </Text>
       </TouchableOpacity>
-      {occupant.occupant != undefined ? (
+      {occupant.length > 0 ? (
         <View style={[Styles.mt10]}>
-          <OccupantBtn occupant={occupant.occupant} />
+          <OccupantBtn occupant={occupant} />
         </View>
       ) : (
         <View style={[Styles.al_center, Styles.p40, Styles.mt30]}>
           <Image
             source={image}
-            style={{ width: 100, height: 100, resizeMode: "cover" }}
+            style={{ width: 80, height: 80, resizeMode: "cover" }}
           />
-          <Text style={[Styles.gray_text, Styles.mainFont]}>
+          <Text style={[Styles.gray_text, Styles.mainFont, Styles.f_24, Styles.mt10]}>
             ไม่มีผู้อาศัยร่วม
           </Text>
         </View>

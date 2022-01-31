@@ -4498,14 +4498,14 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.6.0":
-  "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
-  "resolved" "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz"
-  "version" "15.8.1"
+"prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2":
+  "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
+  "resolved" "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz"
+  "version" "15.7.2"
   dependencies:
     "loose-envify" "^1.4.0"
     "object-assign" "^4.1.1"
-    "react-is" "^16.13.1"
+    "react-is" "^16.8.1"
 
 "prop-types@^15.6.1":
   "integrity" "sha512-fDGekdaHh65eI3lMi5OnErU6a8Ighg2KjcjQxO7m8VHyWjcPyj5kiOgV1LQDOOOgVy3+5FgjXvdSSX7B8/5/4g=="
@@ -4515,15 +4515,6 @@
     "loose-envify" "^1.4.0"
     "object-assign" "^4.1.1"
     "react-is" "^16.13.1"
-
-"prop-types@^15.6.2", "prop-types@^15.7.2":
-  "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
-  "resolved" "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz"
-  "version" "15.7.2"
-  dependencies:
-    "loose-envify" "^1.4.0"
-    "object-assign" "^4.1.1"
-    "react-is" "^16.8.1"
 
 "prop-types@15.5.8":
   "integrity" "sha1-a3suFBCDvjjIWVqlH8VXdccZk5Q="
@@ -4670,6 +4661,13 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
+"react-native-snackbar-component@^1.1.12":
+  "integrity" "sha512-uF9Aw3lWVtFOxrd09YCXteTvIxBZ0IrwEluhhTsmNqWf3fYeJ7LbERVXYw/2p39H9tQUFGkrJcrkvDcQcUa3Pg=="
+  "resolved" "https://registry.npmjs.org/react-native-snackbar-component/-/react-native-snackbar-component-1.1.12.tgz"
+  "version" "1.1.12"
+  dependencies:
+    "prop-types" "^15.6.0"
+
 "react-native-snap-carousel@^3.9.1":
   "integrity" "sha512-xWEGusacIgK1YaDXLi7Gao2+ISLoGPVEBR8fcMf4tOOJQufutlNwkoLu0l6B8Qgsrre0nTxoVZikRgGRDWlLaQ=="
   "resolved" "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.9.1.tgz"
@@ -4721,7 +4719,7 @@
   "resolved" "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz"
   "version" "0.4.3"
 
-"react@*", "react@^16.8.0 || ^17.0.0", "react@^17.0.0", "react@>= 15.2.1", "react@>=15.0.0", "react@>=16.13.1", "react@17.0.1":
+"react@*", "react@^16.8.0 || ^17.0.0", "react@^17.0.0", "react@>= 15.2.1", "react@>=15.0.0", "react@>=15.3.1", "react@>=16.13.1", "react@17.0.1":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz"
   "version" "17.0.1"

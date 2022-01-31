@@ -4,15 +4,19 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { Styles } from "../styles";
+import Script from "../script";
+
 import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import ProfileForm from "../component/Profile_component/ProfileForm";
 import MainHeader from "../component/mainHeader";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
+
 //transparent f1645e
 
 export default function Profile_screen() {
   const [userProfile, setUserProfile] = useRecoilState(Global.userProfile)
+  const updateUserProfile = useSetRecoilState(Global.userProfile)
   const setImage = () => {
     var image = ''
     if (userProfile.me.image) {
@@ -20,14 +24,16 @@ export default function Profile_screen() {
     } else {
       image = require("../../assets/image/Britania-connect-assets/default-img-circle.png")
     }
-    return (<ProfilePicCom picture={image} InputValue={InputValue}/>)
+    return (<ProfilePicCom picture={image} />)
   }
 
-  const InputValue = (name, mobileno, image) => {
-    if(mobileno){
-      mobileno = mobileno.trim()
-    }
-    console.log('VALUE:::', name, mobileno, image)
+  const updateGlobal = (data) => {
+    console.log('VALUE:::', data)
+    var user = Script.recoilTranform(userProfile)
+    user.me.name = data.name,
+    user.me.mobileNo = data.mobileNo
+    user.me.email = data.email
+    updateUserProfile(user)
   }
 
   return (
@@ -40,7 +46,7 @@ export default function Profile_screen() {
         <ScrollView style={[Styles.w100, Styles.h100]}>
           {/* Single Quotes Only */}
           {setImage()}
-          <ProfileForm userProfile={userProfile.me} InputValue={InputValue}/>
+          <ProfileForm userProfile={userProfile.me} updateGlobal={updateGlobal}/>
         </ScrollView>
       </View>
     </LinearGradient>

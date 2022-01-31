@@ -14,6 +14,8 @@ export default function Account() {
   //Profile Data
   const [userProfile, setUserProfile] = useRecoilState(Global.userProfile);
   const [userType, setUserType] = useRecoilState(Global.userType);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+
   console.log(userProfile);
 
   const [option, setOptions] = React.useState([]);
@@ -22,38 +24,38 @@ export default function Account() {
     if (userType === 1) {
       setOptions([
         {
-          name: "ข้อมูลส่วนตัว",
+          name: LANG.account_text_02,
           nav: "Profile",
         },
         {
-          name: "จัดการข้อมูลผู้อยู่อาศัย/ผู้เช่า",
+          name: LANG.account_text_03,
           nav: "MemberManage",
         },
         {
-          name: "ตั้งค่าภาษา / Language",
+          name: LANG.account_text_04,
           nav: "Language",
         },
         {
-          name: "นโยบายความเป็นส่วนตัว",
+          name: LANG.account_text_05,
           nav: "TermOfService",
         },
         {
-          name: "Call Center",
+          name: LANG.account_text_06,
           nav: "callcen",
         },
       ])
     } else {
       setOptions([
         {
-          name: "ตั้งค่าภาษา / Language",
+          name: LANG.account_text_04,
           nav: "Language",
         },
         {
-          name: "นโยบายความเป็นส่วนตัว",
+          name: LANG.account_text_05,
           nav: "TermOfService",
         },
         {
-          name: "Call Center",
+          name: LANG.account_text_06,
           nav: "callcen",
         },
       ])
@@ -111,7 +113,7 @@ export default function Account() {
         </View>
       </View>
       <Text style={[Styles.mainFont_x, Styles.mb10, Styles.f_24]}>
-        Version 1.0.0
+        {LANG.account_text_08} 1.0.0
       </Text>
     </LinearGradient>
   );

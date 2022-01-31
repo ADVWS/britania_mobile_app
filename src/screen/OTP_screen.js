@@ -17,13 +17,15 @@ import { Styles } from "../styles";
 import Script from "../script";
 
 import Radio from "../component/OTP_component/radio_button";
-import FooterSignin from "../component/footer_signin";
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
 import { sendOTP } from "../script/OTP_script";
+import { useRecoilState } from "recoil";
+import * as Global from "../globalState"
 
 export default function OTP({ route }) {
   const [type, setType] = React.useState("MOBILE");
+  const [LANG, setLANG] = useRecoilState(Global.Language);
 
   //MOBILE
   const [openMobile, setOpenMobile] = React.useState(false);
@@ -132,9 +134,9 @@ export default function OTP({ route }) {
                 Styles.f_26,
               ]}
             >
-              เลือกวิธีรับ OTP
+              {LANG.otp_text_01}
             </Text>
-            <Radio isSelectType={isSelectType} />
+            <Radio isSelectType={isSelectType} mobile={LANG.otp_text_02} email={LANG.otp_text_03}/>
             {type === "MOBILE" && (
               <>
                 <Text
@@ -145,7 +147,7 @@ export default function OTP({ route }) {
                     Styles.mt30,
                   ]}
                 >
-                  หมายเลขโทรศัพท์ที่ต้องการรับ OTP
+                  {LANG.otp_text_04}
                 </Text>
                 <DropDownPicker
                   disabled={disabledMobile}
@@ -194,7 +196,7 @@ export default function OTP({ route }) {
                     Styles.mt30,
                   ]}
                 >
-                  อีเมลที่ต้องการรับ OTP
+                  {LANG.otp_text_05}
                 </Text>
                 <DropDownPicker
                   disabled={disabledEmail}
@@ -253,7 +255,7 @@ export default function OTP({ route }) {
                 Styles.text_center,
               ]}
             >
-              ส่ง OTP
+              {LANG.otp_text_06}
             </Text>
           </TouchableOpacity>
         </View>
@@ -267,8 +269,7 @@ export default function OTP({ route }) {
             {bottom: 10}
           ]}
         >
-          หากหมายเลขโทรศัพท์ หรืออีเมลของท่านไม่ถูกต้อง{"\n"}กรุณาติดต่อ Call
-          Center โทร 021 613 000{"\n"}ในวันเวลาทำการ 9:00-18:00 น.
+          {LANG.otp_text_07}
         </Text>
         <Modal isVisible={loading} style={Styles.al_center} backdropOpacity={0.25}>
           <Modal_loading />

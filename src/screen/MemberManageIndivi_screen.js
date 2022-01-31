@@ -19,21 +19,12 @@ import * as Global from "../globalState";
 
 export default function MemberManageIndivi_screen({ route }) {
   console.log("ROUTE", route);
-  // console.log(route)
-
-  console.log("Visit");
-
-  var resident = useRecoilState(Global.dataListResident)[0];
-  var occupant = useRecoilState(Global.dataListOccupant)[0];
 
   const gobalData = useSetRecoilState(Global.callbackAccount);
 
-  console.log("RESIDENT");
-  console.log(resident);
-  console.log("OCCUPANT");
-  console.log(occupant);
-
   var item = route.params;
+  var resident = item.unitMember.resident
+  var occupant = item.unitMember.tenant
   gobalData(item);
   const scrollref = React.createRef();
 
@@ -45,16 +36,31 @@ export default function MemberManageIndivi_screen({ route }) {
     console.log(SELECT);
     switch (SELECT) {
       case "RESIDENT":
-        setSelected(<ResidentList resident={resident} item={item} />);
+        setSelected(<ResidentList resident={item.unitMember.resident} item={item} />);
         break;
       case "OCCUPANT":
-        setSelected(<OccupantList occupant={occupant} item={item} />);
+        setSelected(<OccupantList occupant={item.unitMember.tenant} item={item} />);
         break;
       default:
-        setSelected(<ResidentList resident={resident} item={item} />);
+        setSelected(<ResidentList resident={item.unitMember.resident} item={item} />);
         break;
     }
   };
+
+  const setImage = (image) => {
+    if (image) {
+      return (
+        <View style={[Styles.boxWithShadow, Styles.w100, Styles.mb20, { height: 200 }]}>
+          <Image
+            source={{ uri: image }}
+            style={[Styles.h100, Styles.w100, Styles.br_5]}
+          />
+        </View>
+      )
+    } else {
+      return (<></>)
+    }
+  }
 
   //   console.log("Item Here");
   //   console.log(item);
@@ -62,7 +68,7 @@ export default function MemberManageIndivi_screen({ route }) {
   return (
     <View style={[Styles.flex, Styles.al_center]}>
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
-        <MainHeader name={item.name} backto={"MemberManage"} />
+        <MainHeader name={item.projectName} backto={"MemberManage"} />
         <ScrollView
           ref={scrollref}
           showsVerticalScrollIndicator={false}
@@ -70,23 +76,17 @@ export default function MemberManageIndivi_screen({ route }) {
           style={[Styles.w100, Styles.h75]}
         >
           <View style={[Styles.w100, Styles.p15, Styles.al_center, Styles.FFF]}>
-            <View style={[Styles.boxWithShadow, Styles.w100, { height: 200 }]}>
-              <Image
-                source={{ uri: item.image }}
-                style={[Styles.h100, Styles.w100, Styles.br_5]}
-              />
-            </View>
+            {setImage(item.image)}
             <View style={Styles.w80}>
               <Text
                 style={[
-                  {fontSize: 28},
+                  { fontSize: 28 },
                   Styles.mainColor_text,
                   Styles.mainFont,
-                  Styles.mt20,
                   Styles.text_center,
                 ]}
               >
-                {item.name}
+                {item.projectName}
               </Text>
             </View>
           </View>

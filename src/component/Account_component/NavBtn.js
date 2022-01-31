@@ -15,10 +15,12 @@ import { Styles } from "../../styles";
 import Modal_confirm from "../modal_confirm";
 import Store from "../../store";
 import Key from "../../KEYS.json";
+import { useRecoilState } from "recoil";
+import * as Global from "../../globalState";
 
 const NavBtn = ({ option }) => {
   const [confirm, setConfirm] = React.useState(false);
-
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const logout = (req) => {
     if (req === "CANCEL") {
       setConfirm(false);
@@ -121,7 +123,7 @@ const NavBtn = ({ option }) => {
               { bottom: 3 },
             ]}
           >
-            ออกจากระบบ
+            {LANG.account_text_07}
           </Text>
         </View>
         <View style={[Styles.jc_center, Styles.al_end]}>
@@ -133,7 +135,7 @@ const NavBtn = ({ option }) => {
         style={Styles.al_center}
         backdropOpacity={0.25}
       >
-        <Modal_confirm text={"ยืนยันการออกจากระบบ"} confirmFunction={logout} />
+        <Modal_confirm text={LANG.account_text_11} confirmFunction={logout} />
       </Modal>
     </View>
   );

@@ -1,12 +1,14 @@
 import * as React from "react";
-import { Image, View, Text } from "react-native";
+import { Image, Linking, TouchableOpacity } from "react-native";
 import Carousel from 'react-native-snap-carousel';
 import { Styles } from "../../styles";
 
 export default class Banner extends React.Component {
     _renderItem = ({ item, index }) => {
         return (
-            <View
+            <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={ ()=>{ Linking.openURL(item.link)}}
                 style={[
                     Styles.boxWithShadow,
                     Styles.transparent,
@@ -16,12 +18,12 @@ export default class Banner extends React.Component {
                         borderRadius: 5,
                         padding: 10,
                     }]}>
-                <Image source={item} style={{
+                <Image source={{uri: item.image}} style={{
                     width: '100%',
                     height: '100%',
                     borderRadius: 5,
                 }} />
-            </View>
+            </TouchableOpacity>
         );
     };
     render() {
@@ -31,7 +33,7 @@ export default class Banner extends React.Component {
                     ref={c => {
                         this._carousel = c;
                     }}
-                    data={this.props.images}
+                    data={this.props.banner}
                     renderItem={this._renderItem.bind(this)}
                     sliderWidth={400}
                     itemWidth={400}

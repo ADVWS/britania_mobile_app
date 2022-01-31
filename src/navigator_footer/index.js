@@ -5,7 +5,7 @@ import { navigationRef } from "./RootNavigation";
 import HomeScreen from '../screen/Home_screen';
 import MyHomeScreen from '../screen/MyHome_screen';
 import AccountScreen from '../screen/Account_screen';
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import * as Global from '../globalState'
 
 
@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 
 const AllTabBottom = () => {
     const [userType, setUserType] = useRecoilState(Global.userType)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     function getScreenList(TYPE) {
         console.log(TYPE)
         switch (TYPE) {
@@ -28,7 +29,7 @@ const AllTabBottom = () => {
                             name="Home"
                             component={HomeScreen}
                             options={{
-                                tabBarLabel: 'หน้าแรก',
+                                tabBarLabel: LANG.home_text_03,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="home" color={color} size={25} style={{ marginTop: 10 }} />
@@ -38,7 +39,7 @@ const AllTabBottom = () => {
                             name="HomeDetail"
                             component={MyHomeScreen}
                             options={{
-                                tabBarLabel: 'ข้อมูลบ้าน',
+                                tabBarLabel: LANG.home_text_04,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="home-city" color={color} size={25} style={{ marginTop: 10 }} />
@@ -48,7 +49,7 @@ const AllTabBottom = () => {
                             name="Account"
                             component={AccountScreen}
                             options={{
-                                tabBarLabel: 'บัญชี',
+                                tabBarLabel: LANG.home_text_05,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="account" color={color} size={25} style={{ marginTop: 10 }} />
@@ -68,7 +69,7 @@ const AllTabBottom = () => {
                             name="Home"
                             component={HomeScreen}
                             options={{
-                                tabBarLabel: 'หน้าแรก',
+                                tabBarLabel: LANG.home_text_03,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="home" color={color} size={25} style={{ marginTop: 10 }} />
@@ -78,7 +79,7 @@ const AllTabBottom = () => {
                             name="Account"
                             component={AccountScreen}
                             options={{
-                                tabBarLabel: 'บัญชี',
+                                tabBarLabel: LANG.home_text_04,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="account" color={color} size={25} style={{ marginTop: 10 }} />
@@ -98,7 +99,7 @@ const AllTabBottom = () => {
                             name="Home"
                             component={HomeScreen}
                             options={{
-                                tabBarLabel: 'หน้าแรก',
+                                tabBarLabel: LANG.home_text_03,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="home" color={color} size={25} style={{ marginTop: 10 }} />
@@ -108,7 +109,7 @@ const AllTabBottom = () => {
                             name="HomeDetail"
                             component={MyHomeScreen}
                             options={{
-                                tabBarLabel: 'ข้อมูลบ้าน',
+                                tabBarLabel: LANG.home_text_04,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="home-city" color={color} size={25} style={{ marginTop: 10 }} />
@@ -118,7 +119,7 @@ const AllTabBottom = () => {
                             name="Account"
                             component={AccountScreen}
                             options={{
-                                tabBarLabel: 'บัญชี',
+                                tabBarLabel: LANG.home_text_05,
                                 tabBarLabelStyle: { fontSize: 13 },
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="account" color={color} size={25} style={{ marginTop: 10 }} />

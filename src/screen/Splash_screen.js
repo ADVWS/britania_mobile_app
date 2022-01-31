@@ -9,14 +9,18 @@ import Script from "../script/Splash_script"
 import Key from "../KEYS.json"
 import { useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
+import LANG from "../LANG";
+
 export default function Splash() {
   const userProfile = useSetRecoilState(Global.userProfile)
   const userType = useSetRecoilState(Global.userType)
+  const setLANG = useSetRecoilState(Global.Language)
   runApp()
 
   function runApp() {
     Script.checkToken(Key.TOKEN, (res) => {
-      console.log('checkToken', res)
+      var myLANG = LANG.settingLanguage('TH')
+      setLANG(myLANG)
       if (res.data) {
         if(res.data.me){
           userProfile(res.data)

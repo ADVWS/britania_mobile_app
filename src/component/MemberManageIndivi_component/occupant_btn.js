@@ -10,7 +10,7 @@ import * as Global from "../../globalState";
 import * as navigate from "../../navigator/RootNavigation";
 
 // const ResidentBtn = ({data})
-const OccupantBtn = (occupant, item) => {
+const OccupantBtn = ({occupant, item}) => {
   // console.log("OCCUPANT Selected")
   // console.log(occupant.occupant)
 
@@ -20,7 +20,7 @@ const OccupantBtn = (occupant, item) => {
   // console.log(item);
 
   const [dataListOccupant, setDataListOccupant] = React.useState(
-    occupant.occupant
+    occupant
   );
 
   const params = item;
@@ -75,12 +75,12 @@ const OccupantBtn = (occupant, item) => {
                 ]}
               ></Image>
               <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                เบอร์โทรศัพท์
+                เบอร์โทรศัพท์ 
               </Text>
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
               >
-                {item.tel}
+                {item.mobileNo}
               </Text>
               <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                 สิทธิ์หมดอายุ
@@ -88,12 +88,12 @@ const OccupantBtn = (occupant, item) => {
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
               >
-                {moment.unix(item.expire).format("DD/MM/YYYY")}
+                {moment(item.expiredDate).format("DD/MM/YYYY")}
               </Text>
             </View>
             <View>
               <View style={Styles.row}>
-                {item.status === "VERIFY" ? (
+                {item.memberStatus !== "active" ? (
                   <View style={[Styles.w65]}>
                     <View
                       style={[
@@ -118,7 +118,7 @@ const OccupantBtn = (occupant, item) => {
                     </View>
                   </View>
                 ) : null}
-                {item.status === "ACTIVE" ? (
+                {item.memberStatus === "active" ? (
                   <View>
                     <View style={[Styles.w65]}>
                       <View
@@ -189,7 +189,7 @@ const OccupantBtn = (occupant, item) => {
               </View>
             </View>
           </View>
-          {item.status === "VERIFY" ? (
+          {item.memberStatus !== "active" ? (
             <TouchableOpacity
               onPress={() => navigate.navigate("OccupantAddOTP", { params })}
               style={[

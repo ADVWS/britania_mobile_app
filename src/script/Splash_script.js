@@ -24,7 +24,8 @@ export const checkToken = async (key, cb) => {
                         name
                         email
                         mobileNo
-                        units {
+                        status
+                        unitsOwner {
                             id
                             projectName
                             unitNumber

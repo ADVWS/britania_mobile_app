@@ -15,29 +15,23 @@ import Feed from "../component/Home_component/Feeds";
 
 import { useRecoilState } from "recoil";
 import * as Global from "../globalState"
+import Script from "../script/Home_script"
 
 import { Styles } from "../styles";
-//transparent f1645e
 export default function Home() {
     const [userProfile, setUserProfile] = useRecoilState(Global.userProfile)
-    const [images, setImages] = React.useState([
-        require('../../assets/image/banner/banner_1.jpeg'),
-        require('../../assets/image/banner/banner_2.jpeg'),
-    ])
-    const [feeds, setFeeds] = React.useState([
-        {
-            image: require('../../assets/image/feed/feed_1.jpeg'),
-            topic: "บริทาเนีย ให้เหนือกว่าใคร กับ โปรอยู่ฟรีสูงสุด 2 ปี",
-            detail: "8 โครงการบ้านเดี่ยว บ้านแฝด ทาวน์โฮม พร้อมเข้าอยู่สไตล์ Modern British"
-        },
-        {
-            image: require('../../assets/image/feed/feed_2.png'),
-            topic: "โปรปลดล็อก บริทาเนีย บางนา กม.42",
-            detail: "บ้านขทาวน์โฮม พร้อมด้วยคลับเฮาส์สุดหรู ว่ายน้ำ ฟิตเนสใหญ่สุด สวนมากสุด2โซน"
-        }
-    ])
+    const [LANG, setLANG] = useRecoilState(Global.Language)
+    const [banner, setBanner] = React.useState([])
+    const [feeds, setFeeds] = React.useState([])
     const scrollref = React.createRef();
     const offset = React.useRef(new Animated.Value(0)).current;
+    React.useEffect(() => {
+        Script.announcement((res) => {
+            setBanner(res.banner)
+            setFeeds(res.feeds)
+        })
+    }, [])
+
     return (
         <SafeAreaProvider>
             <LinearGradient
@@ -63,7 +57,7 @@ export default function Home() {
                         <View style={[Styles.w100, Styles.p20]}>
                             {userProfile.me &&
                                 <Text style={[Styles.mainFont_x_db, Styles.f_24, Styles.black_gray_text]}>
-                                    ยินดีต้อนรับ{' '}
+                                    {LANG.home_text_01}{' '}
                                     <Text style={[Styles.f_24, Styles.mainFont_x]}>
                                         {userProfile.me.name}
                                     </Text>
@@ -71,7 +65,7 @@ export default function Home() {
                             }
                         </View>
                         <View style={[Styles.w100, Styles.p20, Styles.al_center, { height: 260, marginTop: '-9%' }]}>
-                            <Banner images={images} />
+                            <Banner banner={banner} />
                         </View>
                         <View style={[Styles.w100, Styles.p20, { marginTop: '-7%' }]}>
                             <Text
@@ -80,7 +74,7 @@ export default function Home() {
                                     Styles.mainFont,
                                     Styles.mainColor_text,
                                 ]}>
-                                ข่าวสาร & กิจกรรม
+                                {LANG.home_text_02}
                             </Text>
                             <Feed feeds={feeds} />
                         </View>

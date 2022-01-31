@@ -18,7 +18,6 @@ import { Styles } from "../styles";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import * as Global from "../globalState"
 
-import FooterSignin from "../component/footer_signin";
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
 import Script from "../script/lnputOTP_script";
@@ -28,6 +27,7 @@ import Key from "../KEYS.json"
 export default function InputOTP({ route }) {
   const userProfile = useSetRecoilState(Global.userProfile)
   const userType = useSetRecoilState(Global.userType)
+  const [LANG, setLANG] = useRecoilState(Global.Language)
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -46,6 +46,10 @@ export default function InputOTP({ route }) {
 
   function _login() {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
+    setLoading(false)
+    userType(1)
+    //navigate.navigate("TabFooter")
+    //return
     setLoading(true)
     Script.login(route.params, otp, (res) => {
       console.log(res)
@@ -115,12 +119,12 @@ export default function InputOTP({ route }) {
               Styles.mt60,
             ]}
           >
-            OTP ส่งไปยังเบอร์ {route.params.OTP.sendTo}
+            {LANG.inputotp_text_01} {route.params.OTP.sendTo}
           </Text>
           <Text
             style={[Styles.f_24, Styles.mainFont_x, Styles.black_gray_text]}
           >
-            รหัสอ้างอิง : {route.params.OTP.refNo}
+            {LANG.inputotp_text_03} : {route.params.OTP.refNo}
           </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
@@ -131,7 +135,7 @@ export default function InputOTP({ route }) {
                 Styles.mt30,
               ]}
             >
-              รหัส OTP 6 หลัก
+              {LANG.inputotp_text_04}
             </Text>
             <View style={[Styles.row, Styles.w100, Styles.mt10]}>
               <TextInput
@@ -260,7 +264,7 @@ export default function InputOTP({ route }) {
                   Styles.black_gray_text,
                 ]}
               >
-                ยังไม่ได้รับรหัส OTP{" "}
+                {LANG.inputotp_text_05}{" "}
                 <Text
                   style={[
                     Styles.mainColor_text,
@@ -269,7 +273,7 @@ export default function InputOTP({ route }) {
                   ]}
                 >
                   <Ionicons name="md-refresh-sharp" size={20} color="#f1645e" />
-                  ส่งอีกครั้ง
+                  {LANG.inputotp_text_06}
                 </Text>
               </Text>
             </View>
@@ -296,7 +300,7 @@ export default function InputOTP({ route }) {
                 Styles.text_center,
               ]}
             >
-              เข้าสู่ระบบ
+              {LANG.inputotp_text_07}
             </Text>
           </TouchableOpacity>
         </View>

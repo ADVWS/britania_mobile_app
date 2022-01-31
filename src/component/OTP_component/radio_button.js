@@ -67,7 +67,7 @@ export default class radio extends React.Component {
             )}
           </TouchableOpacity>
           <Text style={[Styles.ml5, Styles.f_22, Styles.black_gray_text, Styles.mainFont]}>
-            หมายเลขโทรศัพท์
+            {this.props.mobile}
           </Text>
         </View>
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>
@@ -98,7 +98,7 @@ export default class radio extends React.Component {
             )}
           </TouchableOpacity>
           <Text style={[Styles.ml5, Styles.black_gray_text, Styles.mainFont, Styles.f_22]}>
-            อีเมล
+            {this.props.email}
           </Text>
         </View>
       </View>

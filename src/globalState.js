@@ -3,12 +3,27 @@ const { atom } = require("recoil");
 
 export const userProfile = atom({
   key: "userProfile",
-  default: {},
+  default: {
+    me:{
+      name: 'นภพล ขวัญทอง',
+      mobileNo: '0968803071'
+    }
+  },
 });
 
 export const userType = atom({
   key: "userType",
   default: 2,
+});
+
+export const Language = atom({
+  key: "Language",
+  default: {},
+});
+
+export const unitMember = atom({
+  key: "unitMember",
+  default: {},
 });
 
 export const dataMyHome = atom({

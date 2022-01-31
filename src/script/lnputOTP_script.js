@@ -19,7 +19,7 @@ export const login = async (profile, otp, cb) => {
         }
     `;
     const result = await API.request(LOGIN);
-    console.log('RESULT===>', result)
+    console.log('RESULT OTP===>', result)
     cb(result)
 }
 
@@ -30,7 +30,8 @@ const setProfile = async (token, cb) => {
             name
             email
             mobileNo
-            units {
+            status
+            unitsOwner {
                 id
                 projectName
                 unitNumber
