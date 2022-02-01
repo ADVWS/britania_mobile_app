@@ -6,14 +6,45 @@ import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 import moment from "moment";
 import * as Global from "../../globalState";
+import mainScript from "../../script"
+import Script from "../../script/OccupantEdit_script"
+import KEYS from "../../KEYS.json"
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-export default function thai_form(item) {
+export default function thai_form({item}) {
   const [date, setDate] = React.useState(
-    moment.unix(item.item.expire).format("DD-MM-YYYY")
+    moment(item.expiredDate).format("DD-MM-YYYY")
   );
-  const callback = useRecoilState(Global.callbackAccount);
+  const [rawDate, setRawDate] = React.useState(item.expiredDate);
+  const [member, setMember] = React.useState(item)
+  const [name, setName] = React.useState(member.name)
+  const [idcard, setIdcard] = React.useState(member.idcard)
+  const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
+  const [email, setEmail] = React.useState(member.email)
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
+  console.log('unitMember:::', unitMember)
+  const saveEdit = () => {
+    var edit = {
+      name: name,
+      idcard: idcard,
+      mobileNo: mobileNo,
+      email: email,
+      nationType: "thai",
+      unitMemberId: member.unitMemberId,
+      expiredDate: rawDate
+    }
+    Script.memberUpdateProfile_thai(edit, KEYS.TOKEN, member.unitid,(res)=>{
+      if(typeof res === 'object'){
+        var data = mainScript.recoilTranform(unitMember)
+        data.unitMember = res
+        console.log('memberUpdateProfile_thai', data)
+        setUnitMember(data)
+        navigate.navigate("MemberManageIndivi")
+      }
+    })
+  }
 
   return (
     <View style={{ marginBottom: 30 }}>
@@ -37,8 +68,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.name}
-        ></TextInput>
+          value={name}
+          onChangeText={(val)=>{
+            setName(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -60,8 +94,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.identity}
-        ></TextInput>
+          value={idcard}
+          onChangeText={(val)=>{
+            setIdcard(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -83,8 +120,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.tel}
-        ></TextInput>
+          value={mobileNo}
+          onChangeText={(val)=>{
+            setMobileNo(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -93,9 +133,8 @@ export default function thai_form(item) {
           Styles.mainFont,
           Styles.f_22,
           Styles.black_gray_text,
-        ]}
-      >
-        อีเมล์
+        ]}>
+        อีเมล
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -106,8 +145,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.email}
-        ></TextInput>
+          value={email}
+          onChangeText={(val)=>{
+            setEmail(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -147,7 +189,10 @@ export default function thai_form(item) {
             },
           }}
           onDateChange={(datein) => {
+            var newDate = datein.split("-");
+            newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`
             setDate(datein);
+            setRawDate(newDate);
           }}
         />
       </View>
@@ -155,7 +200,7 @@ export default function thai_form(item) {
       <View style={Styles.al_center}>
         <TouchableOpacity
           style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-          onPress={() => navigate.navigate("MemberManageIndivi", { callback })}
+          onPress={() => saveEdit()}
         >
           <Text
             style={[

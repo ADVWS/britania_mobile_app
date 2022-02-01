@@ -7,6 +7,7 @@ export const unitMemberAll = async (unit, key, cb) => {
         const UNIT = `query {
         unitMemberAll(unitId: "${unit.id}") {
                 id,
+                unitMemberId,
                 name,
                 mobileNo,
                 email,
@@ -25,7 +26,6 @@ export const unitMemberAll = async (unit, key, cb) => {
 
 export const setData = async (UNIT, token, unit, cb) => {
     const result = await API.request(UNIT, token);
-    console.log(result)
     const unitMember = result
     unitMember.unitMemberAll = result.unitMemberAll
     unitMember.tenant = []
@@ -33,6 +33,7 @@ export const setData = async (UNIT, token, unit, cb) => {
     console.log('this unitMember', unitMember)
     for (let i = 0; i < unitMember.unitMemberAll.length; i++) {
         if (unitMember.unitMemberAll[i].ownerType === 'tenant') {
+            unitMember.unitMemberAll[i].unitid = unit.id
             unitMember.tenant.push(unitMember.unitMemberAll[i])
         } else {
             unitMember.resident.push(unitMember.unitMemberAll[i])

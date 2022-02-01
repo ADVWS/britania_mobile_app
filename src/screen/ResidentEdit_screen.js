@@ -21,39 +21,46 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
 
 
-export default function ResidentEdit(props) {
-    const [picture, setPicture] = React.useState([{ image: {uri : props.route.params.image}}])
+const ResidentEdit = ({route}) => {
+    const [member, setMember] = React.useState(route.params);
 
-    const [type, setType] = React.useState(props.route.params.type);
+    // const [picture, setPicture] = React.useState([{ image: {uri : props.route.params.image}}])
 
-    const callback = useRecoilState(Global.callbackEdit)
+    const [type, setType] = React.useState(member.nationType);
+
+    // const callback = useRecoilState(Global.callbackEdit)
 
     function isSelectType(TYPE) {
         setType(TYPE);
     }
-
-    console.log("Resident Edit", callback)
     //   console.log(props.route.params)
+    const setImage = (img) => {
+        if (img) {
+            return (<ProfilePicCom picture={{uri: img}} />)
+        } else {
+            return (<ProfilePicCom />)
+        }
+    }
 
     return(
         <View style={[Styles.flex,Styles.w100,Styles.h100,Styles.FFF]}>
-            {/* ยังแก้บัคไม่รีเฟรชไม่ได้ */}
-            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'ResidentDetail'}  callbackEdit={callback[0]}/>
-            {/* <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'MemberManage'}/> */}
+            <MainHeader name={'แก้ไขผู้อาศัยร่วม'} backto={'ResidentDetail'}/>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}
                 style={[Styles.w100, Styles.h75]}>
            <View style={Styles.al_center}>
-            <ProfilePicCom picture={picture}/>
+            {setImage(member.image)}
            </View>
            <View style={Styles.ml5}>
            <Text style={[Styles.mainFont,Styles.f_22,Styles.black_gray_text]}>ผู้อาศัยร่วม</Text>
-           <Radio isSelectType={isSelectType} type={type}/>
+           <Radio isSelectType={isSelectType} type={member.nationType}/>
            </View>
-           {type === "THAI" && (<ThaiForm item={props.route.params}/>)}
-           {type === "FOREIGN" && (<ForeignForm item={props.route.params}/>)}
+           {type === "thai" && (<ThaiForm item={member}/>)}
+           {type === "foreign" && (<ForeignForm item={member}/>)}
            </ScrollView>
         </View>
     )
 }
+
+export default ResidentEdit

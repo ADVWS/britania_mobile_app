@@ -42,7 +42,7 @@ export default class radio_resadd extends React.Component {
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>
           <TouchableOpacity
             onPress={() => {
-              this.selectType("THAI");
+              this.selectType("thai");
             }}
             style={[
               {
@@ -73,7 +73,7 @@ export default class radio_resadd extends React.Component {
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>
           <TouchableOpacity
             onPress={() => {
-              this.selectType("FOREIGN");
+              this.selectType("foreign");
             }}
             style={[
               {

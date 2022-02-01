@@ -18,7 +18,9 @@ export default function MemberManage() {
             style={[Styles.flex, Styles.al_center, Styles.FFF]}>
             <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100,]}>
                 <MainHeader name={'จัดการข้อมูลผู้อยู่อาศัย/ผู้เช่า'} backto={'Account'} />
-                <HomeList homeList={home.me.unitsOwner} userProfile={home.me}/>
+                {home.me.unitsOwner &&
+                    <HomeList homeList={home.me.unitsOwner} userProfile={home.me}/>
+                }
             </View>
         </View>
     );

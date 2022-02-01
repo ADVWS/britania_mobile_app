@@ -8,37 +8,22 @@ import * as navigate from "../../navigator/RootNavigation";
 
 import * as Global from "../../globalState";
 
-// const ResidentBtn = ({data})
-const ResidentBtn = (resident, item) => {
-  // console.log("INBOUND")
-  // console.log(resident)
-
-  // const [dataListResident, setDataListResident] = useRecoilState(Global.dataListResident)
-  const [dataListResident, setDataListResident] = React.useState(
-    resident.resident
-  );
-  // console.log(dataListResident)
+const ResidentBtn = ({item}) => {
+  console.log("INBOUND", item)
+  const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
+  const [dataListResident, setDataListResident] = React.useState(unitMember.unitMember.resident);
   const params = item;
-  const Addcallback = useSetRecoilState(Global.callbackEdit);
-  const _callback = useRecoilState(Global.callbackEdit);
 
-  function gotoResidentDetail(usertype, identity) {
-    var listdetail = [];
-    if (usertype === "Host-resident") {
-      dataListResident.map((item) => {
-        listdetail.push(item);
-      });
+  function gotoResidentDetail(member) {
+    navigate.navigate("ResidentDetail", member);
+  }
+  const setImage = (img) => {
+    if(img){
+      return (<Image source={{ uri: img }} style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]} />)
     } else {
-      dataListResident.map((item) => {
-        if (item.identity === identity) {
-          listdetail.push(item);
-        }
-      });
+      return (<Image source={require('../../../assets/image/Britania-connect-assets/default-img-circle.png')} 
+                  style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]}/>)
     }
-    console.log(listdetail);
-    Addcallback(listdetail);
-    console.log("=====", _callback);
-    navigate.navigate("ResidentDetail", listdetail);
   }
 
   return (
@@ -46,7 +31,7 @@ const ResidentBtn = (resident, item) => {
       {dataListResident.map((item) => (
         <TouchableOpacity
           onPress={() => {
-            gotoResidentDetail(item.usertype, item.identity);
+            gotoResidentDetail(item);
           }}
           style={[
             Styles.w100,
@@ -59,33 +44,25 @@ const ResidentBtn = (resident, item) => {
         >
           <View style={[Styles.row]}>
             <View style={[Styles.w40]}>
-              <Image
-                source={{ uri: item.image }}
-                style={[
-                  { width: 100, height: 100, resizeMode: "cover" },
-                  Styles.circle,
-                ]}
-              ></Image>
-              {/* <Image source={require('../../../assets/image/profpic/SampleProf2.jpg')} style={[{width:100,height:100,resizeMode:'cover'},Styles.circle]}></Image> */}
+              {setImage(item.Image)}
               <Text
                 style={[
                   Styles.f_22,
                   Styles.mainFont_x,
                   Styles.spacing5,
                   Styles.mt10,
-                ]}
-              >
+                ]}>
                 เบอร์โทรศัพท์
               </Text>
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
               >
-                {item.tel}
+                {item.mobileNo}
               </Text>
             </View>
             <View>
               <View style={Styles.row}>
-                {item.status === "VERIFY" ? (
+                {item.memberStatus === "pending" ? (
                   <View style={[Styles.w65]}>
                     <View
                       style={[
@@ -106,7 +83,7 @@ const ResidentBtn = (resident, item) => {
                     </View>
                   </View>
                 ) : null}
-                {item.status === "ACTIVE" ? (
+                {item.memberStatus === "active" ? (
                   <View>
                     <View style={[Styles.w65]}>
                       <View
@@ -133,13 +110,6 @@ const ResidentBtn = (resident, item) => {
                     </View>
                   </View>
                 ) : null}
-                {/* {this.statusTranform(data.status)}
-                                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
-                                    {' '}
-                                </Text>
-                                <Text style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}>
-                                    {' '}
-                                </Text> */}
                 <View style={Styles.w10}></View>
                 <View
                   style={[

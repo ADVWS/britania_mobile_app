@@ -9,7 +9,7 @@ import ResidentBtn from "./resident_btn";
 
 const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
-export default function ResidentList({resident, item}) {
+export default function ResidentList({resident}) {
   console.log('===>', resident)
   return (
     <View style={[Styles.w100, Styles.p15]}>
@@ -38,9 +38,9 @@ export default function ResidentList({resident, item}) {
           เพิ่มผู้อาศัยร่วม
         </Text>
       </TouchableOpacity>
-      {resident.resident > 0 ? (
+      {resident.length > 0 ? (
         <View style={[Styles.mt10]}>
-          <ResidentBtn resident={resident} item={item} />
+          <ResidentBtn resident={resident} />
         </View>
       ) : (
         <View style={[Styles.al_center, Styles.p40, Styles.mt30]}>

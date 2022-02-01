@@ -7,10 +7,14 @@ import * as navigate from "../../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
 
-export default function thai_form(item) {
+export default function thai_form({item}) {
   const callback = useRecoilState(Global.callbackEdit);
-
-  console.log("ITEM:", callbackAccount);
+  console.log('====>>>>',item)
+  const [member, setMember] = React.useState(item)
+  const [name, setName] = React.useState(member.name)
+  const [idcard, setIdcard] = React.useState(member.idcard)
+  const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
+  const [email, setEmail] = React.useState(member.email)
 
   return (
     <View style={{ marginBottom: 30 }}>
@@ -34,8 +38,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.name}
-        ></TextInput>
+          value={name}
+          onChangeText={(val)=>{
+            setName(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -57,8 +64,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.identity}
-        ></TextInput>
+          value={idcard}
+          onChangeText={(val)=>{
+            setIdcard(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -80,8 +90,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.tel}
-        ></TextInput>
+          value={mobileNo}
+          onChangeText={(val)=>{
+            setMobileNo(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -103,8 +116,11 @@ export default function thai_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.email}
-        ></TextInput>
+          value={email}
+          onChangeText={(val)=>{
+            setEmail(val)
+          }}
+        />
       </View>
       <View style={Styles.al_center}>
         <TouchableOpacity

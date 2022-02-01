@@ -21,7 +21,7 @@ export default function ResidentAdd() {
     },
   ]);
 
-  const [type, setType] = React.useState("THAI");
+  const [type, setType] = React.useState("thai");
 
   function isSelectType(TYPE) {
     setType(TYPE);
@@ -44,8 +44,8 @@ export default function ResidentAdd() {
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
-        {type === "THAI" && <ThaiForm />}
-        {type === "FOREIGN" && <ForeignForm />}
+        {type === "thai" && <ThaiForm />}
+        {type === "foreign" && <ForeignForm />}
       </ScrollView>
     </View>
   );

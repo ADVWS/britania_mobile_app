@@ -15,7 +15,15 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default class ProfilePicCom extends React.Component {
 
     state = {
-        image: this.props.picture
+        image: ''
+    }
+
+    componentDidMount() {
+        if(this.props.picture){
+            this.setState({image: this.props.picture})
+        } else {
+            this.setState({image: require('../../../assets/image/Britania-connect-assets/default-img-circle.png')})
+        }
     }
 
     _InputImage = async () => {
@@ -40,7 +48,7 @@ export default class ProfilePicCom extends React.Component {
         return (
             <View style={[Styles.al_center]}>
                 <View style={[Styles.mt10]}>
-                    <ImageBackground source={require('../../../assets/image/Britania-connect-assets/default-img-circle.png')} imageStyle={Styles.circle} style={[{ width: 150, height: 150, resizeMode: 'cover' }]}>
+                    <ImageBackground source={this.state.image} imageStyle={Styles.circle} style={[{ width: 150, height: 150, resizeMode: 'cover' }]}>
                         <View>
                             <Image style={[{ width: 35, height: 35, resizeMode: 'cover', backgroundColor: "#ffdfdf", position: "absolute", top: 106, left: 106 }, Styles.circle, { borderWidth: 1, borderColor: "#f1645e" }]} />
                             <TouchableOpacity onPress={() => this._InputImage()}>

@@ -17,32 +17,31 @@ import OccupantList from "../component/MemberManageIndivi_component/occupant_lis
 import MenuBtn from "../component/MemberManageIndivi_component/menu_manage_btn";
 import * as Global from "../globalState";
 
-export default function MemberManageIndivi_screen({ route }) {
-  console.log("ROUTE", route);
+export default function MemberManageIndivi_screen() {
 
   const gobalData = useSetRecoilState(Global.callbackAccount);
-
-  var item = route.params;
-  var resident = item.unitMember.resident
-  var occupant = item.unitMember.tenant
-  gobalData(item);
+  const [unitMember, setUnitMember] = useRecoilState(Global.unitMember)
+  const resident = unitMember.unitMember.resident
+  const occupant = unitMember.unitMember.tenant
+  console.log('unitMember==>', resident)
+  //gobalData(item);
   const scrollref = React.createRef();
 
   const [selected, setSelected] = React.useState(
-    <ResidentList resident={resident} item={item} />
+    <ResidentList resident={resident} item={unitMember} />
   );
 
   const selectMenu = (SELECT) => {
     console.log(SELECT);
     switch (SELECT) {
       case "RESIDENT":
-        setSelected(<ResidentList resident={item.unitMember.resident} item={item} />);
+        setSelected(<ResidentList resident={resident} item={unitMember} />);
         break;
       case "OCCUPANT":
-        setSelected(<OccupantList occupant={item.unitMember.tenant} item={item} />);
+        setSelected(<OccupantList occupant={occupant} item={unitMember} />);
         break;
       default:
-        setSelected(<ResidentList resident={item.unitMember.resident} item={item} />);
+        setSelected(<ResidentList resident={resident} item={unitMember} />);
         break;
     }
   };
@@ -62,13 +61,10 @@ export default function MemberManageIndivi_screen({ route }) {
     }
   }
 
-  //   console.log("Item Here");
-  //   console.log(item);
-
   return (
     <View style={[Styles.flex, Styles.al_center]}>
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
-        <MainHeader name={item.projectName} backto={"MemberManage"} />
+        <MainHeader name={unitMember.projectName} backto={"MemberManage"} />
         <ScrollView
           ref={scrollref}
           showsVerticalScrollIndicator={false}
@@ -76,7 +72,7 @@ export default function MemberManageIndivi_screen({ route }) {
           style={[Styles.w100, Styles.h75]}
         >
           <View style={[Styles.w100, Styles.p15, Styles.al_center, Styles.FFF]}>
-            {setImage(item.image)}
+            {setImage(unitMember.image)}
             <View style={Styles.w80}>
               <Text
                 style={[
@@ -86,7 +82,7 @@ export default function MemberManageIndivi_screen({ route }) {
                   Styles.text_center,
                 ]}
               >
-                {item.projectName}
+                {unitMember.projectName}
               </Text>
             </View>
           </View>

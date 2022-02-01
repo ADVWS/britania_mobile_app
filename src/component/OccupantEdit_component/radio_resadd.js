@@ -7,7 +7,7 @@ export default class radio_resadd extends React.Component {
   constructor(props) {
     super(props);
     
-    if (props.type === 'THAI')
+    if (props.type === 'thai')
     {
       this.state = {
         thai: true,
@@ -16,7 +16,7 @@ export default class radio_resadd extends React.Component {
         foreign_color: "#9c9c9b",
       };
     }
-    else if (props.type === 'FOREIGN')
+    else if (props.type === 'foreign')
     {
       this.state = {
         thai: false,
@@ -28,7 +28,7 @@ export default class radio_resadd extends React.Component {
   }
 
   selectType = (type) => {
-    if (type == "THAI") {
+    if (type == "thai") {
       this.setState({
         thai: true,
         foreign: false,
@@ -36,7 +36,7 @@ export default class radio_resadd extends React.Component {
         foreign_color: "#9c9c9b",
       });
     }
-    if (type === "FOREIGN") {
+    if (type === "foreign") {
       this.setState({
         thai: false,
         foreign: true,
@@ -55,7 +55,7 @@ export default class radio_resadd extends React.Component {
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>
           <TouchableOpacity
             onPress={() => {
-              this.selectType("THAI");
+              this.selectType("thai");
             }}
             style={[
               {
@@ -86,7 +86,7 @@ export default class radio_resadd extends React.Component {
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>
           <TouchableOpacity
             onPress={() => {
-              this.selectType("FOREIGN");
+              this.selectType("foreign");
             }}
             style={[
               {

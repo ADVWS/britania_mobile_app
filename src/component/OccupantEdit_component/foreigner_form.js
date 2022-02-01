@@ -9,12 +9,17 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 
 import { Styles } from "../../styles";
 
-export default function foreigner_form(item) {
+export default function foreigner_form({item}) {
+  const [member, setMember] = React.useState(item)
   const [date, setDate] = React.useState(
-    moment.unix(item.item.expire).format("DD-MM-YYYY")
+    moment(member.expiredDate).format("DD-MM-YYYY")
   );
+  const [name, setName] = React.useState(member.name)
+  const [passport, setPassport] = React.useState(member.passport)
+  const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
+  const [email, setEmail] = React.useState(member.email)
   const callback = useRecoilState(Global.callbackAccount);
-
+    console.log(member)
   return (
     <View style={{ marginBottom: 30 }}>
       <Text
@@ -37,8 +42,11 @@ export default function foreigner_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.name}
-        ></TextInput>
+          value={name}
+          onChangeText={(val) => {
+            setName(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -60,8 +68,11 @@ export default function foreigner_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.identity}
-        ></TextInput>
+          value={passport}
+          onChangeText={(val)=>{
+            setPassport(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -83,8 +94,11 @@ export default function foreigner_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.tel}
-        ></TextInput>
+          value={mobileNo}
+          onChangeText={(val)=>{
+            setMobileNo(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -106,8 +120,11 @@ export default function foreigner_form(item) {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={item.item.email}
-        ></TextInput>
+          value={email}
+          onChangeText={(val)=>{
+            setEmail(val)
+          }}
+        />
       </View>
       <Text
         style={[

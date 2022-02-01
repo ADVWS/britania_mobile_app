@@ -9,42 +9,21 @@ import { AntDesign } from "@expo/vector-icons";
 import * as Global from "../../globalState";
 import * as navigate from "../../navigator/RootNavigation";
 
-// const ResidentBtn = ({data})
-const OccupantBtn = ({occupant, item}) => {
-  // console.log("OCCUPANT Selected")
-  // console.log(occupant.occupant)
-
-  // const [dataListOccupant, setDataListOccupant] = useRecoilState(Global.dataListOccupant)
-
-  // console.log("Item Here:");
-  // console.log(item);
-
-  const [dataListOccupant, setDataListOccupant] = React.useState(
-    occupant
-  );
-
+const OccupantBtn = ({item}) => {
+  const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
+  const [dataListOccupant, setDataListOccupant] = React.useState(unitMember.unitMember.tenant);
   const params = item;
-  const Addcallback = useSetRecoilState(Global.callbackEdit);
-  const _callback = useRecoilState(Global.callbackEdit);
+  function gotoOccupantDetail(member) {
+    navigate.navigate("OccupantDetail", member);
+  }
 
-  function gotoOccupantDetail(usertype, identity) {
-    console.log("USER TYPE::", usertype, identity);
-    var listdetail = [];
-    if (usertype === "Host-occupant") {
-      dataListOccupant.map((item) => {
-        listdetail.push(item);
-      });
+  const setImage = (img) => {
+    if(img){
+      return (<Image source={{ uri: img }} style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]} />)
     } else {
-      dataListOccupant.map((item) => {
-        if (item.identity === identity) {
-          listdetail.push(item);
-        }
-      });
+      return (<Image source={require('../../../assets/image/Britania-connect-assets/default-img-circle.png')} 
+                  style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]}/>)
     }
-    console.log(listdetail);
-    Addcallback(listdetail);
-    console.log("=====", _callback);
-    navigate.navigate("OccupantDetail", listdetail);
   }
 
   return (
@@ -52,7 +31,7 @@ const OccupantBtn = ({occupant, item}) => {
       {dataListOccupant.map((item) => (
         <TouchableOpacity
           onPress={() => {
-            gotoOccupantDetail(item.usertype, item.identity);
+            gotoOccupantDetail(item);
           }}
           style={[
             Styles.w100,
@@ -65,17 +44,9 @@ const OccupantBtn = ({occupant, item}) => {
         >
           <View style={[Styles.row]}>
             <View style={[Styles.w40]}>
-              {/* ด้วยเหตุผลบางประการ ยังใส่รูปไม่ได้ 
-                        <Image source={item.image} style={[{width:70,height:70,resizeMode:'cover'},Styles.circle]}></Image> */}
-              <Image
-                source={{ uri: item.image }}
-                style={[
-                  { width: 100, height: 100, resizeMode: "cover" },
-                  Styles.circle,
-                ]}
-              ></Image>
-              <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                เบอร์โทรศัพท์ 
+              {setImage(item.image)}
+              <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5, Styles.mt10]}>
+                เบอร์โทรศัพท์
               </Text>
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
@@ -91,9 +62,9 @@ const OccupantBtn = ({occupant, item}) => {
                 {moment(item.expiredDate).format("DD/MM/YYYY")}
               </Text>
             </View>
-            <View>
+            <View style={[Styles.mt5]}>
               <View style={Styles.row}>
-                {item.memberStatus !== "active" ? (
+                {item.memberStatus === "pending" ? (
                   <View style={[Styles.w65]}>
                     <View
                       style={[
