@@ -14,14 +14,16 @@ import * as Global from "../globalState";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-export default function OccupantAdd() {
+export default function OccupantAdd({route}) {
+  console.log('item', route.params)
+  const [unit, setUnit] = React.useState(route.params)
   const [picture, setPicture] = React.useState([
     {
       image: require("../../assets/image/Britania-connect-assets/default-img-circle.png"),
     },
   ]);
 
-  const [type, setType] = React.useState("THAI");
+  const [type, setType] = React.useState("thai");
 
   function isSelectType(TYPE) {
     setType(TYPE);
@@ -44,8 +46,8 @@ export default function OccupantAdd() {
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
-        {type === "THAI" && <ThaiForm />}
-        {type === "FOREIGN" && <ForeignForm />}
+        {type === "thai" && <ThaiForm unit={unit}/>}
+        {type === "foreign" && <ForeignForm unit={unit}/>}
       </ScrollView>
     </View>
   );

@@ -4,120 +4,150 @@ import DatePicker from "react-native-datepicker";
 
 import { Styles } from "../../styles";
 import * as Global from "../../globalState";
-
+import moment from "moment";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
+import mainScript from "../../script";
+import Script from "../../script/OccupantAdd_script";
+import KEYS from "../../KEYS.json"
 
-const form = [
-  {
-    field_name: "ชื่อ-นามสกุล",
-    field_state: "name",
-  },
-  {
-    field_name: "หมายเลขหนังสือเดินทาง",
-    field_state: "identity",
-  },
-  {
-    field_name: "เบอร์โทรศัพท์",
-    field_state: "tel",
-  },
-  {
-    field_name: "อีเมล",
-    field_state: "email",
-  },
-];
 
-export default function foreigner_form() {
-  const setNewOccupant = useSetRecoilState(Global.dataListOccupant);
-
-  const [data, setData] = React.useState({
-    name: "",
-    identity: "",
-    tel: "",
-    email: "",
-    date: "",
-  });
-
+export default function foreigner_form({unit}) {
+  console.log('user', unit)
+  const [rawDate, setRawDate] = React.useState('');
+  const [name, setName] = React.useState('')
+  const [passport, setPassport] = React.useState('')
+  const [mobileNo, setMobileNo] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
   const addData = () => {
-    if (
-      data.name == "" ||
-      data.identity == "" ||
-      data.tel == "" ||
-      data.email == "" ||
-      data.date == ""
-    ) {
-      console.log(
-        "data in" + data.name + data.identity + data.tel + data.email
-      );
-      alert("Please fill all the form");
-    } else {
-      let outDate = data.date.split("-");
-
-      console.log("Name: " + data.name);
-      console.log("Identity: " + data.identity);
-      console.log("Tel: " + data.tel);
-      console.log("Email: " + data.email);
-      console.log(
-        "Date: " +
-          Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000
-      );
-
-      setNewOccupant((oldOccupant) => [
-        ...oldOccupant,
-        {
-          name: data.name,
-          identity: data.identity,
-          tel: data.tel,
-          email: data.email,
-          type: "FOREIGN",
-          status: "VERIFY",
-          expire:
-            Date.parse(new Date(outDate[2], outDate[1] - 1, outDate[0])) / 1000,
-          image:
-            "https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.6435-9/119062205_124961352661129_4552694077607062116_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_eui2=AeHL6WzClQIeSwjYXwbCCdUtf9e2NS2gwlJ_17Y1LaDCUgyQcqOns6cJ_XBu9M9ncGCgPhX2XlInc73XrGfAewfs&_nc_ohc=gqzud7Ke3gkAX9JPSpm&_nc_ht=scontent.fbkk22-1.fna&oh=00_AT-Pf9OV_FLq_XKzykPYbGP6a-z66lvGjmiW_8fwTDABWQ&oe=61FEF325",
-        },
-      ]);
-
-      alert("Saved");
-
-      navigate.navigate("MemberManage");
+    var add = {
+      unitId: unit.unitId,
+      ownerType: "tenant",
+      nationType: "foreign",
+      passport: passport,
+      name: name,
+      idcard: null,
+      mobileNo: mobileNo,
+      email: email,
+      expiredDate: rawDate
     }
+    Script.memberAddProflie_foreign(add, KEYS.TOKEN, unit.id, (res) => {
+      console.log('memberAddProflie_foreign==>', res)
+      if (typeof res === 'object') {
+        var data = mainScript.recoilTranform(unitMember)
+        data.unitMember = res.unitUpdate
+        var otp = res.otp
+        otp.mobileNo = mobileNo
+        otp.name = name
+        otp.unitId = unit.unit.id
+        setUnitMember(data)
+        navigate.navigate("OccupantAddOTP", otp)
+      }
+    })
   };
-
   return (
     <View style={{ marginBottom: 30 }}>
-      {form.map((item) => (
-        <React.Fragment key={item.field_state}>
-          <Text
-            style={[
-              Styles.ml5,
-              Styles.mt10,
-              Styles.mainFont,
-              Styles.f_22,
-              Styles.black_gray_text,
-            ]}
-          >
-            {item.field_name}
-          </Text>
-          <View style={Styles.al_center}>
-            {/* (nameIn) => {setData( (currentState) => ({...currentState,name : nameIn}))} */}
-            <TextInput
-              style={[
-                Styles.w90,
-                Styles.mt10,
-                Styles.textfieldbox,
-                Styles.f_20,
-                Styles.mainFont_x,
-              ]}
-              value={data[item.field_state]}
-              onChangeText={(input) =>
-                setData((curr) => ({ ...curr, [item.field_state]: input }))
-              }
-            ></TextInput>
-          </View>
-        </React.Fragment>
-      ))}
-
+      <Text
+        style={[
+          Styles.ml5,
+          Styles.mt10,
+          Styles.mainFont,
+          Styles.f_22,
+          Styles.black_gray_text,
+        ]}
+      >
+        ชื่อ-นามสกุล
+      </Text>
+      <View style={Styles.al_center}>
+        <TextInput
+          style={[
+            Styles.w90,
+            Styles.mt10,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
+          onChangeText={(val) => {
+            setName(val)
+          }}
+        />
+      </View>
+      <Text
+        style={[
+          Styles.ml5,
+          Styles.mt10,
+          Styles.mainFont,
+          Styles.f_22,
+          Styles.black_gray_text,
+        ]}
+      >
+        หมายเลขหนังสือเดินทาง
+      </Text>
+      <View style={Styles.al_center}>
+        <TextInput
+          style={[
+            Styles.w90,
+            Styles.mt10,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
+          onChangeText={(val) => {
+            setPassport(val)
+          }}
+        />
+      </View>
+      <Text
+        style={[
+          Styles.ml5,
+          Styles.mt10,
+          Styles.mainFont,
+          Styles.f_22,
+          Styles.black_gray_text,
+        ]}
+      >
+        เบอร์โทรศัพท์
+      </Text>
+      <View style={Styles.al_center}>
+        <TextInput
+          style={[
+            Styles.w90,
+            Styles.mt5,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
+          onChangeText={(val) => {
+            setMobileNo(val)
+          }}
+        />
+      </View>
+      <Text
+        style={[
+          Styles.ml5,
+          Styles.mt10,
+          Styles.mainFont,
+          Styles.f_22,
+          Styles.black_gray_text,
+        ]}>
+        อีเมล
+      </Text>
+      <View style={Styles.al_center}>
+        <TextInput
+          style={[
+            Styles.w90,
+            Styles.mt5,
+            Styles.textfieldbox,
+            Styles.f_20,
+            Styles.mainFont_x,
+          ]}
+          onChangeText={(val) => {
+            setEmail(val)
+          }}
+        />
+      </View>
       <Text
         style={[
           Styles.ml5,
@@ -133,7 +163,7 @@ export default function foreigner_form() {
         {/* <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput> */}
         <DatePicker
           style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
-          date={data.date} // Initial date from state
+          //date={date} // Initial date from state
           mode="date" // The enum of date, datetime and time
           placeholder="เลือกวันที่"
           format="DD-MM-YYYY"
@@ -143,7 +173,7 @@ export default function foreigner_form() {
           cancelBtnText="Cancel"
           customStyles={{
             dateIcon: {
-              display: "none",
+              //display: "none",
               position: "absolute",
               left: 0,
               top: 4,
@@ -155,17 +185,18 @@ export default function foreigner_form() {
               marginLeft: 0,
             },
           }}
-          onDateChange={(input) =>
-            setData((curr) => ({ ...curr, date: input }))
-          }
+          onDateChange={(datein) => {
+            var newDate = datein.split("-");
+            newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`
+            setRawDate(newDate);
+          }}
         />
       </View>
 
       <View style={Styles.al_center}>
         <TouchableOpacity
           style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-          // onPress={() => navigate.navigate("OccupantAddOTP")}
-          onPress={addData}
+          onPress={() => addData()}
         >
           <Text
             style={[
@@ -190,7 +221,7 @@ export default function foreigner_form() {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("MemberManageIndivi")}
+          onPress={() => navigate.navigate("OccupantDetail", member)}
         >
           <Text
             style={[

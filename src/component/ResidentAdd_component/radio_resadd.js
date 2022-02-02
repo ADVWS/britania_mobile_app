@@ -15,7 +15,7 @@ export default class radio_resadd extends React.Component {
   }
 
   selectType = (type) => {
-    if (type == "THAI") {
+    if (type == "thai") {
       this.setState({
         thai: true,
         foreign: false,
@@ -23,7 +23,7 @@ export default class radio_resadd extends React.Component {
         foreign_color: "#9c9c9b",
       });
     }
-    if (type === "FOREIGN") {
+    if (type === "foreign") {
       this.setState({
         thai: false,
         foreign: true,

@@ -7,10 +7,11 @@ import {
 import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 
-const edit_btn = ({member}) => {
+const edit_btn = ({member, openConfirm}) => {
     return (
         <View style={Styles.row}>
             <TouchableOpacity
+                onPress={()=>openConfirm()}
                 style={[
                     Styles.w45,
                     Styles.row,

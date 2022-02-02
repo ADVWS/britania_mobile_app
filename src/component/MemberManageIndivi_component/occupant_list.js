@@ -9,8 +9,8 @@ import OccupantBtn from "./occupant_btn";
 
 const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
-export default function OccupantList({occupant}) {
-  console.log(occupant)
+export default function OccupantList({occupant, item}) {
+  console.log('occupant list===>', item)
   return (
     <View style={[Styles.w100, Styles.p15]}>
       <TouchableOpacity
@@ -24,7 +24,7 @@ export default function OccupantList({occupant}) {
           Styles.boxWithShadow,
           Styles.row,
         ]}
-        onPress={() => navigate.navigate("OccupantAdd")}
+        onPress={() => navigate.navigate("OccupantAdd", item)}
       >
         <MaterialIcons name="add" size={25} color={"#FFF"} />
         <Text

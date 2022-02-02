@@ -1,0 +1,80 @@
+import API from '../graphQL'
+import Store from '../store';
+
+export const memberConfirmOtp = async (otp, data, key, cb) => {
+    Store.getLocalStorege(key, (res) => {
+        const token = res.detail.token
+        const OTP = `
+            mutation {
+                memberConfirmOtp(
+                    unitId: "BTN02208",
+                    otp: "${otp}",
+                    refNo: "${data.refNo}",
+                    sendTo: "${data.sendTo}"
+                ){
+                id
+                unitMemberId
+                memberId
+                name
+                email
+                nationType
+                idcard
+                passport
+                memberStatus
+                ownerType
+                expiredDate
+                allowHomecare
+                }
+            }
+        `;
+        sendOTP(OTP, token, data, cb)
+    })
+}
+
+export const sendOTP = async (OTP, token, data, cb) => {
+    console.log(OTP)
+    const result = await API.request(OTP, token);
+    console.log('RESULT OTP===>', result)
+    if(typeof result === "object"){
+        updateUnit(token, data, cb)
+    }
+    //cb(result)
+}
+
+export const updateUnit = async (token, data, cb) => {
+    const UNIT = `query {
+    unitMemberAll(unitId: "${data.unitId}") {
+            id,
+            unitMemberId,
+            name,
+            mobileNo,
+            email,
+            ownerType,
+            nationType,
+            memberStatus,
+            idcard,
+            passport,
+            expiredDate,
+            allowHomecare
+        }
+    }`
+    const result = await API.request(UNIT, token);
+    const unitMember = result
+    unitMember.unitMemberAll = result.unitMemberAll
+    unitMember.tenant = []
+    unitMember.resident = []
+    for (let i = 0; i < unitMember.unitMemberAll.length; i++) {
+        if (unitMember.unitMemberAll[i].ownerType === 'tenant') {
+            unitMember.unitMemberAll[i].unitid = data.unitId
+            unitMember.tenant.push(unitMember.unitMemberAll[i])
+        } else {
+            unitMember.unitMemberAll[i].unitid = data.unitId
+            unitMember.resident.push(unitMember.unitMemberAll[i])
+        }
+    }
+    cb(result)
+}
+
+export default {
+    memberConfirmOtp
+}

@@ -9,7 +9,7 @@ import { AntDesign } from "@expo/vector-icons";
 import * as Global from "../../globalState";
 import * as navigate from "../../navigator/RootNavigation";
 
-const OccupantBtn = ({item}) => {
+export default function OccupantBtn({item}) {
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
   const [dataListOccupant, setDataListOccupant] = React.useState(unitMember.unitMember.tenant);
   const params = item;
@@ -26,9 +26,11 @@ const OccupantBtn = ({item}) => {
     }
   }
 
+  console.log('DEV', unitMember.unitMember.tenant)
+
   return (
     <View>
-      {dataListOccupant.map((item) => (
+      {unitMember.unitMember.tenant.map((item) => (
         <TouchableOpacity
           onPress={() => {
             gotoOccupantDetail(item);
@@ -116,13 +118,6 @@ const OccupantBtn = ({item}) => {
                     </View>
                   </View>
                 ) : null}
-                {/* {this.statusTranform(data.status)}
-                                <Text style={[Styles.f_16, Styles.mainFont, Styles.spacing5]}>
-                                    {' '}
-                                </Text>
-                                <Text style={[Styles.f_16, Styles.mainFont, { color: "#8f8f8f" }]}>
-                                    {' '}
-                                </Text> */}
                 <View style={Styles.w10}></View>
                 <View
                   style={[
@@ -188,66 +183,8 @@ const OccupantBtn = ({item}) => {
               </Text>
             </TouchableOpacity>
           ) : null}
-
-          {/*item.status === "ACTIVE" ? (
-            <View style={[Styles.row, Styles.al_center]}>
-              <TouchableOpacity
-                style={[
-                  Styles.w45,
-                  Styles.row,
-                  Styles.mt10,
-                  Styles.transparent,
-                  Styles.al_center,
-                  Styles.br_5,
-                  Styles.border_btn,
-                  Styles.p15,
-                  Styles.jc_center,
-                ]}
-              >
-                <Text
-                  style={[
-                    Styles.text_center,
-                    Styles.mainColor_text,
-                    Styles.f_18,
-                    Styles.mainFont,
-                    { marginLeft: "1%" },
-                  ]}
-                >
-                  ลบ
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  Styles.w45,
-                  Styles.row,
-                  Styles.mt10,
-                  Styles.transparent,
-                  Styles.al_center,
-                  Styles.br_5,
-                  Styles.border_btn,
-                  Styles.p15,
-                  Styles.jc_center,
-                  Styles.ml5,
-                ]}
-                onPress={() => navigate.navigate("OccupantEdit", item)}
-              >
-                <Text
-                  style={[
-                    Styles.text_center,
-                    Styles.mainColor_text,
-                    Styles.f_18,
-                    Styles.mainFont,
-                    { marginLeft: "1%" },
-                  ]}
-                >
-                  แก้ไข
-                </Text>
-              </TouchableOpacity>
-            </View>
-                ) : null */}
         </TouchableOpacity>
       ))}
     </View>
   );
 };
-export default OccupantBtn;

@@ -20,6 +20,7 @@ export default function Splash() {
   function runApp() {
     Script.checkToken(Key.TOKEN, (res) => {
       var myLANG = LANG.settingLanguage('TH')
+      console.log('checkToken', res)
       setLANG(myLANG)
       if (res.data) {
         if(res.data.me){

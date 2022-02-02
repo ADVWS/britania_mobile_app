@@ -4,6 +4,9 @@ import DatePicker from "react-native-datepicker";
 import moment from "moment";
 import * as navigate from "../../navigator/RootNavigation";
 import * as Global from "../../globalState";
+import mainScript from "../../script"
+import Script from "../../script/OccupantEdit_script"
+import KEYS from "../../KEYS.json"
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
@@ -14,12 +17,34 @@ export default function foreigner_form({item}) {
   const [date, setDate] = React.useState(
     moment(member.expiredDate).format("DD-MM-YYYY")
   );
+  const [rawDate, setRawDate] = React.useState(item.expiredDate);
   const [name, setName] = React.useState(member.name)
   const [passport, setPassport] = React.useState(member.passport)
   const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
   const [email, setEmail] = React.useState(member.email)
-  const callback = useRecoilState(Global.callbackAccount);
-    console.log(member)
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
+
+  const saveEdit = () => {
+    var edit = {
+      name: name,
+      passport: passport,
+      idcard: member.idcard,
+      mobileNo: mobileNo,
+      email: email,
+      nationType: "foreign",
+      unitMemberId: member.unitMemberId,
+      expiredDate: rawDate
+    }
+    Script.memberUpdateProfile_foreign(edit, KEYS.TOKEN, member.unitid,(res)=>{
+      if(typeof res === 'object'){
+        var data = mainScript.recoilTranform(unitMember)
+        data.unitMember = res
+        setUnitMember(data)
+        navigate.navigate("MemberManageIndivi")
+      }
+    })
+  }
   return (
     <View style={{ marginBottom: 30 }}>
       <Text
@@ -164,14 +189,17 @@ export default function foreigner_form({item}) {
             },
           }}
           onDateChange={(datein) => {
+            var newDate = datein.split("-");
+            newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`
             setDate(datein);
+            setRawDate(newDate);
           }}
         />
       </View>
       <View style={Styles.al_center}>
         <TouchableOpacity
           style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-          onPress={() => navigate.navigate("MemberManageIndivi", { callback })}
+          onPress={() => saveEdit()}
         >
           <Text
             style={[
@@ -196,7 +224,7 @@ export default function foreigner_form({item}) {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("MemberManageIndivi", { callback })}
+          onPress={() => navigate.navigate("OccupantDetail", member)}
         >
           <Text
             style={[

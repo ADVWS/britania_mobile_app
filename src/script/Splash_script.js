@@ -6,7 +6,7 @@ export const checkToken = async (key, cb) => {
     Store.getLocalStorege(key, (res) => {
         console.log('TOKEN:::', res)
         if (res.result) {
-            if(res.detail.type){
+            if (res.detail.type) {
                 console.log('Non Member')
                 var response = {
                     detail: 'Non Member',
@@ -16,21 +16,27 @@ export const checkToken = async (key, cb) => {
                 return
             }
             var decode = jwtDecode(res.detail.token)
-            if(moment().unix() < decode.exp){
+            if (moment().unix() < decode.exp) {
                 var token = res.detail.token
                 var project = `{
-                    me {
+                me {
+                    id
+                    name
+                    email
+                    mobileNo
+                    status
+                    unitsOwner {
                         id
-                        name
-                        email
-                        mobileNo
-                        status
-                        unitsOwner {
-                            id
-                            projectName
-                            unitNumber
-                            houseNumber
-                        }
+                        projectName
+                        projectId
+                        unitNumber
+                        houseNumber
+                        unitId
+                        userId
+                        allowHomecare
+                        memberStatus
+                        ownerType
+                    }
                     }
                 }`;
                 getUser(project, token, cb)
@@ -42,7 +48,7 @@ export const checkToken = async (key, cb) => {
                 cb(response)
             }
         } else {
-            if(res.detail.type){
+            if (res.detail.type) {
                 console.log('Non Member')
                 var response = {
                     detail: 'Non Member',
@@ -63,7 +69,7 @@ export const checkToken = async (key, cb) => {
 const getUser = async (project, token, cb) => {
     const result = await API.request(project, token);
     console.log('RESULT===>', result)
-    if(typeof result === 'object'){
+    if (typeof result === 'object') {
         var response = {
             detail: "Verify token success .",
             data: result,
@@ -76,7 +82,7 @@ const getUser = async (project, token, cb) => {
             goto: 'Login'
         }
         cb(response)
-    }   
+    }
 }
 
 export default {

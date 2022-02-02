@@ -20,13 +20,8 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
 
 const OccupantEdit = ({ route }) => {
-    console.log('OccupantEdit', route.params)
     const [member, setMember] = React.useState(route.params);
-    // const [picture, setPicture] = React.useState([{ image: {uri : props.route.params.image}}])
-
     const [type, setType] = React.useState(member.nationType);
-
-    // const callback = useRecoilState(Global.callbackEdit)
 
     function isSelectType(TYPE) {
         setType(TYPE);
@@ -54,8 +49,8 @@ const OccupantEdit = ({ route }) => {
                     <Text style={[Styles.mainFont, Styles.f_22, Styles.black_gray_text]}>ผู้เช่า</Text>
                     <Radio isSelectType={isSelectType} type={member.nationType} />
                 </View>
-                {type === "thai" && (<ThaiForm item={member}/>)}
-                {type === "foreign" && (<ForeignForm item={member}/>)}
+                {type === "thai" && (<ThaiForm item={member} />)}
+                {type === "foreign" && (<ForeignForm item={member} />)}
             </ScrollView>
         </View>
     )

@@ -23,17 +23,12 @@ import * as Global from "../globalState"
 
 const ResidentEdit = ({route}) => {
     const [member, setMember] = React.useState(route.params);
-
-    // const [picture, setPicture] = React.useState([{ image: {uri : props.route.params.image}}])
-
     const [type, setType] = React.useState(member.nationType);
-
-    // const callback = useRecoilState(Global.callbackEdit)
 
     function isSelectType(TYPE) {
         setType(TYPE);
     }
-    //   console.log(props.route.params)
+    
     const setImage = (img) => {
         if (img) {
             return (<ProfilePicCom picture={{uri: img}} />)

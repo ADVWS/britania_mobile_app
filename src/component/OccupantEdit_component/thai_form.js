@@ -12,7 +12,7 @@ import KEYS from "../../KEYS.json"
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-export default function thai_form({item}) {
+const thai_form = ({item}) => {
   const [date, setDate] = React.useState(
     moment(item.expiredDate).format("DD-MM-YYYY")
   );
@@ -24,7 +24,6 @@ export default function thai_form({item}) {
   const [email, setEmail] = React.useState(member.email)
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-  console.log('unitMember:::', unitMember)
   const saveEdit = () => {
     var edit = {
       name: name,
@@ -39,7 +38,6 @@ export default function thai_form({item}) {
       if(typeof res === 'object'){
         var data = mainScript.recoilTranform(unitMember)
         data.unitMember = res
-        console.log('memberUpdateProfile_thai', data)
         setUnitMember(data)
         navigate.navigate("MemberManageIndivi")
       }
@@ -225,7 +223,7 @@ export default function thai_form({item}) {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("MemberManageIndivi", { callback })}
+          onPress={() => navigate.navigate("OccupantDetail", member)}
         >
           <Text
             style={[
@@ -243,3 +241,5 @@ export default function thai_form({item}) {
     </View>
   );
 }
+
+export default thai_form

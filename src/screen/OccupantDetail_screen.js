@@ -7,26 +7,48 @@ import {
   Switch,
 } from "react-native";
 import moment from "moment";
-import { Styles } from "../styles";
-
+import { Styles } from "../styles"; 
+import Modal from "react-native-modal";
 import MainHeader from "../component/mainHeader";
 import Edit_btn from "../component/OccupantDetail_component/edit_btn";
 import OTP_btn from "../component/OccupantDetail_component/OTP_btn";
 import Status from "../component/OccupantDetail_component/status";
+import * as navigate from "../navigator/RootNavigation";
+import Script from "../script/OccupantDetail_script";
+import mainScript from "../script";
+import KEYS from "../KEYS.json"
+import { useRecoilState, useSetRecoilState } from "recoil";
+import * as Global from "../globalState"
+import Modal_confirm from "../component/modal_confirm"
 
 const OccupantDetail = ({ route }) => {
 
-  // const callback = useRecoilState(Global.callbackAccount);
+  // const callback = useRecoilState(Global.callbackAccount);alert
   const [switchInform, setSwitchInform] = React.useState(route.params.allowHomecare)
+  const [alert, setAlert] = React.useState(false)
   const [member, setMember] = React.useState(route.params)
-  console.log("TEST::::", route.params.allowHomecare);
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
+  console.log(member)
   const informSwitch = (val) => {
-    setSwitchInform(val)
+    console.log(val)
+    var edit = {
+      unitMemberId: member.unitMemberId,
+      allowHomecare: val
+    }
+    Script.memberUpdateAllowHomecare(edit, KEYS.TOKEN, member.unitid, (res)=>{
+      console.log('RESPONE==>', res)
+      var newMember = mainScript.recoilTranform(member)
+      newMember.allowHomecare = val
+      setMember(newMember)
+      setSwitchInform(val)
+    })
   }
-
+  const openConfirm = () => setAlert(true)
   const setBtnMember = (status) => {
     if (status === 'active') {
-      return (<Edit_btn member={member} />)
+      return (<Edit_btn member={member} openConfirm={openConfirm}/>)
     } else {
       return (<OTP_btn member={member} />)
     }
@@ -47,6 +69,20 @@ const OccupantDetail = ({ route }) => {
           { width: 100, height: 100, resizeMode: "cover" },
           Styles.circle,
         ]} />)
+    }
+  }
+
+  const confirm = (req) => {
+    if (req === "CANCEL") {
+      setAlert(false);
+    } else {
+      Script.memberDeleteProfile(member.unitMemberId, KEYS.TOKEN, member.unitid,(res)=>{
+        var data = mainScript.recoilTranform(unitMember)
+        data.unitMember = res
+        setUnitMember(data)
+        setAlert(false);
+        navigate.navigate("MemberManageIndivi")
+      })
     }
   }
 
@@ -147,6 +183,9 @@ const OccupantDetail = ({ route }) => {
           </View>
         </ScrollView>
       </View>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_confirm text={`ยืนยันการลบผู้เช่า ${member.name}`} confirmFunction={confirm}/>
+      </Modal>
     </View>
   );
 };

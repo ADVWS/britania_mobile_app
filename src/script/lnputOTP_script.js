@@ -34,8 +34,14 @@ const setProfile = async (token, cb) => {
             unitsOwner {
                 id
                 projectName
+                projectId
                 unitNumber
                 houseNumber
+                unitId
+                userId
+                allowHomecare
+                memberStatus
+                ownerType
             }
         }
     }`;

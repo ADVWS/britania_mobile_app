@@ -15,15 +15,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default class ProfilePicCom extends React.Component {
 
     state = {
-        image: ''
-    }
-
-    componentDidMount() {
-        if(this.props.picture){
-            this.setState({image: this.props.picture})
-        } else {
-            this.setState({image: require('../../../assets/image/Britania-connect-assets/default-img-circle.png')})
-        }
+        image: require('../../../assets/image/Britania-connect-assets/default-img-circle.png')
     }
 
     _InputImage = async () => {

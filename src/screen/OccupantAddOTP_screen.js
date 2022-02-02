@@ -15,10 +15,14 @@ import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
 import * as navigate from "../navigator/RootNavigation";
 import * as Global from "../globalState";
-
+import mainScript from "../script";
+import Script from "../script/OccupantAddOTP_script";
+import KEYS from "../KEYS.json"
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-export default function OccupantAddOTP() {
+export default function OccupantAddOTP({route}) {
+  console.log(route.params)
+  const [OTPdata, setOTPdata] = React.useState(route.params);
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -31,10 +35,21 @@ export default function OccupantAddOTP() {
   const unit4ref = React.createRef();
   const unit5ref = React.createRef();
   const unit6ref = React.createRef();
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
 
-  const callback = useRecoilState(Global.callbackAccount);
-
-
+  const sendOTP = () => {
+    var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
+    Script.memberConfirmOtp(otp, OTPdata, KEYS.TOKEN, (res) => {
+      console.log(res)
+      if(typeof res === 'object'){
+        var data = mainScript.recoilTranform(unitMember)
+        data.unitMember = res
+        setUnitMember(data)
+        navigate.navigate("MemberManageIndivi")
+      }
+    })
+  }
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
       <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManageIndivi"} />
@@ -59,18 +74,18 @@ export default function OccupantAddOTP() {
               Styles.mt20,
             ]}
           >
-            กรุณากรอกรหัส OTP ที่ส่งไปยังคุณดวงกมล เมธากุล
+            กรุณากรอกรหัส OTP ที่ส่งไปยังคุณ {OTPdata.name}
           </Text>
           <Text
             style={[Styles.f_22, Styles.mainFont_x, Styles.black_gray_text]}
           >
-            หมายเลข 098-334-2334 เพื่อเปิดสิทธิ์การใช้งาน
+            หมายเลข {mainScript.formatPhoneNumber(OTPdata.mobileNo)} เพื่อเปิดสิทธิ์การใช้งาน
           </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
               style={[
                 Styles.f_26,
-                Styles.mainFont_x_db,
+                Styles.mainFont,
                 Styles.mainColor_text,
                 Styles.mt30,
               ]}
@@ -229,7 +244,7 @@ export default function OccupantAddOTP() {
               Styles.boxWithShadow,
             ]}
             onPress={() =>
-              navigate.navigate("MemberManageIndivi", { callback })
+              sendOTP()
             }
           >
             <Text
@@ -254,7 +269,7 @@ export default function OccupantAddOTP() {
               Styles.p15,
             ]}
             onPress={() =>
-              navigate.navigate("MemberManageIndivi", { callback })
+              navigate.navigate("MemberManageIndivi")
             }
           >
             <Text
