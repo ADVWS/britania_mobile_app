@@ -18,18 +18,17 @@ import HistoryList from "../component/Homecare_component/historyList";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 import * as Global from "../globalState"
+import moment from "moment";
 
 //transparent f1645e
 function Homecare() {
 
-    const [thisDataMyHome, setThisDataMyHome] = useRecoilState(Global.dataMyHome)
+    const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
     const [listInform, setListInform] = useRecoilState(Global.dataListInform)
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
     const [selected, setSelected] = React.useState('INFORM')
-
-    console.log(listInform)
+    console.log('==>',moment())
     function selectMenu(SELECT) {
-        console.log(SELECT)
         switch (SELECT) {
             case 'INFORM':
                 setSelected('INFORM')
@@ -58,10 +57,10 @@ function Homecare() {
                         style={[Styles.w100, Styles.p15, Styles.FFF, Styles.row]}>
                         <View style={[Styles.w80]}>
                             <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
-                                {thisDataMyHome.name}
+                                {unitOwner.projectName}
                             </Text>
                             <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, { color: '#8f8f8f' }]}>
-                                บ้านเลขที่ {thisDataMyHome.homeNo}
+                                บ้านเลขที่ {unitOwner.houseNumber}
                             </Text>
                         </View>
                         <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>

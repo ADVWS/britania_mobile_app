@@ -23,7 +23,7 @@ export default function MemberManageIndivi_screen() {
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember)
   const resident = unitMember.unitMember.resident
   const occupant = unitMember.unitMember.tenant
-  console.log('unitMember==>', resident)
+  console.log('unitMember==xx>', unitMember)
   //gobalData(item);
   const scrollref = React.createRef();
 
@@ -57,7 +57,14 @@ export default function MemberManageIndivi_screen() {
         </View>
       )
     } else {
-      return (<></>)
+      return (
+        <View style={[Styles.boxWithShadow, Styles.w100, Styles.mb20, { height: 200 }]}>
+          <Image
+            source={require("../../assets/image/image_not_found.png")}
+            style={[Styles.h100, Styles.w100, Styles.br_5, {opacity: 0.3}]}
+          />
+        </View>
+      )
     }
   }
 

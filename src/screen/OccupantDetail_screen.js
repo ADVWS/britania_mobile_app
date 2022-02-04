@@ -30,7 +30,7 @@ const OccupantDetail = ({ route }) => {
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-  console.log(member)
+
   const informSwitch = (val) => {
     console.log(val)
     var edit = {

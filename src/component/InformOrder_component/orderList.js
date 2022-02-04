@@ -13,26 +13,23 @@ import { MaterialIcons } from "@expo/vector-icons";
 const OrderList = ({ data, index, route }) => {
     console.log(data)
     var paramNav = route
-    
-    function gotoResponsible(param){
-        var mechanic = param
-        console.log(param)
-        navigate.navigate('Responsible', {paramNav, mechanic})
+
+    function gotoResponsible(param) {
+        navigate.navigate('Responsible', param )
     }
 
-    function gotoOnsite(param){
-        var mechanic = param
-        navigate.navigate('Onsite', {paramNav, mechanic})
+    function gotoOnsite(param) {
+        navigate.navigate('Onsite', param)
     }
 
-    function gotoRepiairList(param){
+    function gotoRepiairList(param) {
         var mechanic = param
-        navigate.navigate('RepiairList', {paramNav, mechanic})
+        navigate.navigate('RepiairList', { paramNav, mechanic })
     }
 
-    function gotoSatisfaction(param){
+    function gotoSatisfaction(param) {
         var mechanic = param
-        navigate.navigate('Satisfaction', {paramNav, mechanic})
+        navigate.navigate('Satisfaction', { paramNav, mechanic })
     }
 
     return (
@@ -54,7 +51,7 @@ const OrderList = ({ data, index, route }) => {
                             ประเภท
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
-                            {data.type}
+                            {data.subcategory !== null ? data.subcategory.subCategory : '-'}
                         </Text>
                     </View>
                     <View style={[Styles.w50, Styles.al_start]}>
@@ -62,7 +59,7 @@ const OrderList = ({ data, index, route }) => {
                             การประเมินความพึงพอใจ
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
-                            {data.rate}
+                            {data.isRate ? 'ประเมินแล้ว' : 'ยังไม่ประเมิน'}
                         </Text>
                     </View>
                 </View>
@@ -70,21 +67,31 @@ const OrderList = ({ data, index, route }) => {
                     รายละเอียด
                 </Text>
                 <Text style={[Styles.mainFont, Styles.f_20, { color: "#8f8f8f" }]}>
-                    {data.detail}
+                    {data.description}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5, Styles.mt10]}>
                     รูปภาพ
                 </Text>
                 <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
-                    {data.image.map((item) => (
-                        <Image
-                            source={{ uri: item }}
-                            style={[Styles.br_5, { width: 120, height: 120, marginRight: 10 }]}
-                        />
-                    ))}
+                    {data.image ? (
+                            <>
+                                {data.image.map((item) => (
+                                    <Image
+                                        source={{ uri: item }}
+                                        style={[Styles.br_5, { width: 120, height: 120, marginRight: 10 }]}
+                                    />
+                                ))}
+                            </>
+                        ) : (
+                            <Image
+                                source={require("../../../assets/image/image_not_found.png")}
+                                style={[Styles.br_5, { width: 120, height: 120, marginRight: 10, opacity: 0.3}]}
+                            />
+                        )
+                    }
                 </ScrollView>
                 <TouchableOpacity
-                    onPress={() => gotoResponsible(data.mechanic)}
+                    onPress={() => gotoResponsible(data.homecareName)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt20, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>

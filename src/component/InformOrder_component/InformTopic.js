@@ -22,19 +22,19 @@ const InformTopic = ({data}) => {
             ]}>
             <View style={[Styles.w50]}>
                 <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont_x_db]}>
-                    เลขที่ซ่อม {data.id}
+                    เลขที่ซ่อม {data.caseNumber}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
                     จำนวน
                 </Text>
                 <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
-                    {data.order.length}
+                    {data.details.length}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
                     วันที่และเวลาแจ้งซ่อม
                 </Text>
                 <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 20 }]}>
-                    {moment.unix(data.informtime).format("DD/MM/YYYY HH:mm")}
+                    {moment(data.createdAt).format("DD/MM/YY HH:mm")}
                 </Text>
             </View>
             <View style={[Styles.w50, Styles.al_end]}>
@@ -49,7 +49,7 @@ const InformTopic = ({data}) => {
                     วันที่และเวลาที่เข้ารับบริการ
                 </Text>
                 <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 20 }]}>
-                    {data.servicetime}
+                    {moment(data.checkInDate).format("DD/MM/YY")} {data.checkInRangeTime !== null ? data.checkInRangeTime.label : "-"}
                 </Text>
             </View>
         </View>

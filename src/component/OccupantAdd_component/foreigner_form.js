@@ -34,14 +34,13 @@ export default function foreigner_form({unit}) {
       expiredDate: rawDate
     }
     Script.memberAddProflie_foreign(add, KEYS.TOKEN, unit.id, (res) => {
-      console.log('memberAddProflie_foreign==>', res)
       if (typeof res === 'object') {
         var data = mainScript.recoilTranform(unitMember)
         data.unitMember = res.unitUpdate
         var otp = res.otp
         otp.mobileNo = mobileNo
         otp.name = name
-        otp.unitId = unit.unit.id
+        otp.unitId = unit.unit.unitId
         setUnitMember(data)
         navigate.navigate("OccupantAddOTP", otp)
       }

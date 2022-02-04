@@ -1,22 +1,42 @@
 import * as React from "react";
 import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
-
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
+import mainScript from "../../script"
+import Script from "../../script/OccupantEdit_script"
+import KEYS from "../../KEYS.json"
 
 export default function foreigner_form({ item }) {
-  const callback = useRecoilState(Global.callbackEdit);
 
   const [member, setMember] = React.useState(item)
   const [name, setName] = React.useState(member.name)
   const [passport, setPassport] = React.useState(member.passport)
   const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
   const [email, setEmail] = React.useState(member.email)
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
 
-  console.log("ITEM:", callback);
-  // console.log(item.item)
+  const saveEdit = () => {
+    var edit = {
+      name: name,
+      passport: passport,
+      idcard: member.idcard,
+      mobileNo: mobileNo,
+      email: email,
+      nationType: "foreign",
+      unitMemberId: member.unitMemberId,
+    }
+    Script.memberUpdateProfile_foreign(edit, KEYS.TOKEN, member.unitid,(res)=>{
+      if(typeof res === 'object'){
+        var data = mainScript.recoilTranform(unitMember)
+        data.unitMember = res
+        setUnitMember(data)
+        navigate.navigate("MemberManageIndivi")
+      }
+    })
+  }
 
   return (
     <View style={{ marginBottom: 30 }}>
@@ -127,7 +147,7 @@ export default function foreigner_form({ item }) {
       <View style={Styles.al_center}>
         <TouchableOpacity
           style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-          onPress={() => navigate.navigate("ResidentAddOTP")}
+          onPress={() => saveEdit()}
         >
           <Text
             style={[
@@ -152,7 +172,7 @@ export default function foreigner_form({ item }) {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("ResidentDetail", callback[0])}
+          onPress={() => navigate.navigate("ResidentDetail", member)}
         >
           <Text
             style={[

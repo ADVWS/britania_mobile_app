@@ -22,6 +22,7 @@ const Onsite = ({ route }) => {
         heightLayoutTop: 200,
         width: (width > height) ? height : width
     };
+    const [homecareName, setHomecareName] = React.useState(route.params)
     console.log(actualDimensions)
     return (
         <View style={[Styles.flex, Styles.al_center]}>
@@ -31,7 +32,7 @@ const Onsite = ({ route }) => {
                     Styles.w100,
                     Styles.h100,
                 ]}>
-                <MainHeader name={'ตรวจสอบหน้างาน'} backto={'InformOrder'} param={route.params.paramNav} />
+                <MainHeader name={'ตรวจสอบหน้างาน'} backto={'InformOrder'} />
                 <ScrollView style={[Styles.w100]}>
                     <View style={[Styles.w100, Styles.p15, Styles.FFF]}>
                         <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text, Styles.mb10]}>

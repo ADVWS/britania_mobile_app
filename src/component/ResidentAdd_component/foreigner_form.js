@@ -3,86 +3,44 @@ import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 
 import { Styles } from "../../styles";
 import * as Global from "../../globalState";
-
+import moment from "moment";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
+import mainScript from "../../script";
+import Script from "../../script/ResidentAdd_script";
+import KEYS from "../../KEYS.json"
 
-export default function foreigner_form() {
-  const setNewResident = useSetRecoilState(Global.dataListResident);
-
-  const [name, setName] = React.useState("");
-  const [identity, setIdentity] = React.useState("");
-  const [tel, setTel] = React.useState("");
-  const [email, setEmail] = React.useState("");
-
+export default function foreigner_form({unit}) {
+  const [name, setName] = React.useState('')
+  const [passport, setPassport] = React.useState('')
+  const [mobileNo, setMobileNo] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
   const addData = () => {
-    // if (name == "" || identity == "" || tel == "" || email == "") {
-    //   console.log("data in" + name + identity + tel + email);
-    //   alert("Please fill all the form");
-    // } else {
-    //   console.log("Name: " + name);
-    //   console.log("Identity: " + identity);
-    //   console.log("Tel: " + tel);
-    //   console.log("Email: " + email);
-    //   setNewResident((oldResident) => [
-    //     ...oldResident,
-    //     {
-    //       name: name,
-    //       identity: identity,
-    //       tel: tel,
-    //       email: email,
-    //       type: "FOREIGN",
-    //       status: "VERIFY",
-    //       image:
-    //         "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
-    //     },
-    //   ]);
-
-    //   alert("Saved");
-    //   setName("");
-    //   setIdentity("");
-    //   setTel("");
-    //   setEmail("");
-
-    //   navigate.navigate("ResidentAddOTP");
-    // }
-    setNewResident((oldResident) => [
-      ...oldResident,
-      {
-        name: name,
-        identity: identity,
-        tel: tel,
-        email: email,
-        type: "FOREIGN",
-        status: "VERIFY",
-        image:
-          "https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.6435-9/100099641_112862920442600_8204332883431653376_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE3Hhl3oQ_dq3xdTCpsOOzkQ9RGaXRkkCVD1EZpdGSQJe-S1oyZwZg-cIRyc6Xff-oKrY3ucdCEvgad47HOo4B_&_nc_ohc=LC8JEsc2IecAX_npsU7&_nc_ht=scontent.fbkk22-3.fna&oh=00_AT-GLYszm2_g1Zfz8aQVlvGZ9xtVTkjwmDVqYemIiZ1TlQ&oe=61FD2C63",
-      },
-    ]);
-    setName("");
-    setIdentity("");
-    setTel("");
-    setEmail("");
-
-    navigate.navigate("ResidentAddOTP");
+    var add = {
+      unitId: unit.unitId,
+      ownerType: "coowner",
+      nationType: "foreign",
+      passport: passport,
+      name: name,
+      idcard: null,
+      mobileNo: mobileNo,
+      email: email,
+    }
+    Script.memberAddProflie_foreign(add, KEYS.TOKEN, unit.id, (res) => {
+      if (typeof res === 'object') {
+        var data = mainScript.recoilTranform(unitMember)
+        data.unitMember = res.unitUpdate
+        var otp = res.otp
+        otp.mobileNo = mobileNo
+        otp.name = name
+        otp.unitId = unit.unitId
+        setUnitMember(data)
+        navigate.navigate("ResidentAddOTP", otp)
+      }
+    })
   };
-
-  // const onChangeName = (previous) => {
-  //   console.log("Value: ")
-  //   setName(value);
-  // };
-
-  // const onChangeIdentity = ({target: {value}}) => {
-  //   setIdentity(value);
-  // };
-
-  // const onChangeTel = ({target: {value}}) => {
-  //   setTel(value);
-  // };
-
-  // const onChangeEmail = ({target: {value}}) => {
-  //   setEmail(value);
-  // };
 
   return (
     <View style={{ marginBottom: 30 }}>
@@ -106,9 +64,10 @@ export default function foreigner_form() {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={name}
-          onChangeText={setName}
-        ></TextInput>
+          onChangeText={(val) => {
+            setName(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -130,9 +89,10 @@ export default function foreigner_form() {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={identity}
-          onChangeText={setIdentity}
-        ></TextInput>
+          onChangeText={(val) => {
+            setPassport(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -154,9 +114,10 @@ export default function foreigner_form() {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={tel}
-          onChangeText={setTel}
-        ></TextInput>
+          onChangeText={(val) => {
+            setMobileNo(val)
+          }}
+        />
       </View>
       <Text
         style={[
@@ -165,9 +126,8 @@ export default function foreigner_form() {
           Styles.mainFont,
           Styles.f_22,
           Styles.black_gray_text,
-        ]}
-      >
-        อีเมล์
+        ]}>
+        อีเมล
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -178,14 +138,14 @@ export default function foreigner_form() {
             Styles.f_20,
             Styles.mainFont_x,
           ]}
-          value={email}
-          onChangeText={setEmail}
-        ></TextInput>
+          onChangeText={(val) => {
+            setEmail(val)
+          }}
+        />
       </View>
       <View style={Styles.al_center}>
         <TouchableOpacity
           style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-          // onPress={() => navigate.navigate('ResidentAddOTP')}>
           onPress={() => addData()}
         >
           <Text
@@ -211,7 +171,7 @@ export default function foreigner_form() {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("MemberManageIndivi")}
+          onPress={() => navigate.navigate("ResidentDetail", member)}
         >
           <Text
             style={[

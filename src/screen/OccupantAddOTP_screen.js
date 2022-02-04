@@ -21,7 +21,6 @@ import KEYS from "../KEYS.json"
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function OccupantAddOTP({route}) {
-  console.log(route.params)
   const [OTPdata, setOTPdata] = React.useState(route.params);
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");

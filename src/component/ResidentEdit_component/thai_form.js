@@ -3,12 +3,13 @@ import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
+import moment from "moment";
 import mainScript from "../../script"
-import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
 import KEYS from "../../KEYS.json"
 import Script from "../../script/ResidentEdit_script"
 
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 export default function thai_form({item}) {
   const callback = useRecoilState(Global.callbackEdit);
@@ -171,7 +172,7 @@ export default function thai_form({item}) {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("ResidentDetail", callback)}
+          onPress={() => navigate.navigate("ResidentDetail", member)}
         >
           <Text
             style={[

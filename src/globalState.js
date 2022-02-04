@@ -26,6 +26,11 @@ export const unitMember = atom({
   default: {},
 });
 
+export const unitOwner = atom({
+  key: "unitOwner",
+  default: {},
+});
+
 export const dataMyHome = atom({
   key: "dataMyHome",
   default: {

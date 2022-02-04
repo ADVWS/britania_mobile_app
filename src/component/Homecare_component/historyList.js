@@ -16,7 +16,8 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 
 import * as Global from "../../globalState"
 
-const HistoryList = ({listHistory}) => {
+const HistoryList = () => {
+    const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
     const [historyDetail, setHistoryDetail] = useRecoilState(Global.dataInformDetail)
     const gobalData = useSetRecoilState(Global.dataInformDetail)
     function viewDetailOrder(data) {
@@ -43,19 +44,19 @@ const HistoryList = ({listHistory}) => {
                 ]}>
                     <View style={[Styles.w50]}>
                         <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont_x_db]}>
-                            เลขที่ซ่อม {item.id}
+                            เลขที่ซ่อม {item.caseNumber}
                         </Text>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
                             จำนวน
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
-                            {item.order.length}
+                            {item.details.length}
                         </Text>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
                             วันที่และเวลาแจ้งซ่อม
                         </Text>
                         <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 20 }]}>
-                            {moment.unix(item.informtime).format('DD/MM/YYYY HH:mm น.')}
+                            {moment(item.createdAt).format('DD/MM/YY HH:mm น.')}
                         </Text>
                     </View>
                     <View style={[Styles.w50, Styles.al_end]}>
@@ -70,7 +71,7 @@ const HistoryList = ({listHistory}) => {
                             วันที่และเวลาที่เข้ารับบริการ
                         </Text>
                         <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 20 }]}>
-                            {item.servicetime}
+                            {moment(item.createdAt).format('DD/MM/YY')} {item.checkInRangeTime.label}
                         </Text>
                     </View>
                 </TouchableOpacity>

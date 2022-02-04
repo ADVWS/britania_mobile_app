@@ -11,7 +11,6 @@ import * as Global from "../../globalState";
 const ResidentBtn = ({item}) => {
   console.log("INBOUND", item)
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
-  const [dataListResident, setDataListResident] = React.useState(unitMember.unitMember.resident);
   const params = item;
 
   function gotoResidentDetail(member) {
@@ -28,7 +27,7 @@ const ResidentBtn = ({item}) => {
 
   return (
     <View>
-      {dataListResident.map((item) => (
+      {unitMember.unitMember.resident.map((item) => (
         <TouchableOpacity
           onPress={() => {
             gotoResidentDetail(item);

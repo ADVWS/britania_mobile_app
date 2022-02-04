@@ -35,7 +35,7 @@ export const setData = async (UNIT, token, unit, cb) => {
             unitMember.unitMemberAll[i].unitid = unit.id
             unitMember.tenant.push(unitMember.unitMemberAll[i])
         } else {
-            unitMember.unitMemberAll[i].unitid = unitid
+            unitMember.unitMemberAll[i].unitid = unit.id
             unitMember.resident.push(unitMember.unitMemberAll[i])
         }
     }

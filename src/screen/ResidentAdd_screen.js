@@ -14,7 +14,8 @@ import * as Global from "../globalState";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-export default function ResidentAdd() {
+export default function ResidentAdd({route}) {
+  const [unit, setUnit] = React.useState(route.params)
   const [picture, setPicture] = React.useState([
     {
       image: require("../../assets/image/Britania-connect-assets/default-img-circle.png"),
@@ -44,8 +45,8 @@ export default function ResidentAdd() {
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
-        {type === "thai" && <ThaiForm />}
-        {type === "foreign" && <ForeignForm />}
+        {type === "thai" && <ThaiForm unit={unit}/>}
+        {type === "foreign" && <ForeignForm unit={unit}/>}
       </ScrollView>
     </View>
   );

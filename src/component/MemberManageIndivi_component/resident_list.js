@@ -9,7 +9,7 @@ import ResidentBtn from "./resident_btn";
 
 const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
-export default function ResidentList({resident}) {
+export default function ResidentList({resident, item}) {
   console.log('===>', resident)
   return (
     <View style={[Styles.w100, Styles.p15]}>
@@ -24,7 +24,7 @@ export default function ResidentList({resident}) {
           Styles.boxWithShadow,
           Styles.row,
         ]}
-        onPress={() => navigate.navigate("ResidentAdd")}
+        onPress={() => navigate.navigate("ResidentAdd", item)}
       >
         <MaterialIcons name="add" size={25} color={"#FFF"} />
         <Text

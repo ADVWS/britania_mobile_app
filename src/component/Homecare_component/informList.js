@@ -14,7 +14,8 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import { Styles } from "../../styles";
 import InformBox from "./informbox";
 
-const InformList = ({listInform}) => {
+const InformList = () => {
+    const [listInform, setListInform] = useRecoilState(Global.dataListInform)
     const [dataIform, setDataInform] = React.useState([])
     const newContactInform = useSetRecoilState(Global.newContactInform)
     const newInform = useSetRecoilState(Global.newInform)
@@ -50,9 +51,19 @@ const InformList = ({listInform}) => {
                 </Text>
             </TouchableOpacity>
             <View style={[Styles.w100, { padding: 3 }]}>
-                {dataIform.map((item, index) => (
-                    <InformBox data={item} index={index}/>
-                ))}
+                {listInform.length > 0 ? (
+                    <>
+                        {listInform.map((item) => (
+                            <InformBox data={item} />
+                        ))}
+                    </>
+                    ) : (
+                        <View style={[Styles.w100, Styles.al_center, Styles.jc_center, {height: 400}]}>
+                            <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{height: 75, width: 75}}/>
+                            <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10,{color: "#9f9f9f"}]}>ไม่มีรายการแจ้งซ่อม</Text>
+                        </View>
+                    ) 
+                }
             </View>
         </View>
     );

@@ -7,7 +7,7 @@ export const memberConfirmOtp = async (otp, data, key, cb) => {
         const OTP = `
             mutation {
                 memberConfirmOtp(
-                    unitId: "${data.unitId}",
+                    unitId: "BTN02208",
                     otp: "${otp}",
                     refNo: "${data.refNo}",
                     sendTo: "${data.sendTo}"

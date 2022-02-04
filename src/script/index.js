@@ -10,27 +10,83 @@ import * as Global from "../globalState"
 
 export function statusTranform(key) {
     switch (key) {
-        case 3:
+        case 'Pending':
             return (
                 <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
                     <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
-                        รอนัดหมาย
+                        รับเรื่องแจ้งซ่อม
                     </Text>
                 </View>
             )
-        case 4:
+        case 'Checking':
+            return (
+                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
+                        เข้าตรวจสอบหน้างาน
+                    </Text>
+                </View>
+            )
+        case 'Assign':
+            return (
+                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
+                        รอเข้าซ่อม
+                    </Text>
+                </View>
+            )
+        case 'Reject':
+            return (
+                <View style={[Styles.circle, { backgroundColor: "#f4c7cc" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#782d36", marginLeft: 5, marginRight: 5 }]}>
+                        ไม่อยู่ในเงื่อนไขการรับประกัน
+                    </Text>
+                </View>
+            )
+        case 'Inprocess':
+            return (
+                <View style={[Styles.circle, { backgroundColor: "#c4e4f9" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#267bbf", marginLeft: 10, marginRight: 10 }]}>
+                        อยู่ในระหว่างการซ่อม
+                    </Text>
+                </View>
+            )
+        case 'ReInprocess':
             return (
                 <View style={[Styles.circle, { backgroundColor: "#dbecfc" }]}>
                     <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#267bbf", marginLeft: 10, marginRight: 10 }]}>
-                        อยู่ระหว่างดำเนินการ
+                        ซ่อมซ้ำ
                     </Text>
                 </View>
             )
-        case 5:
+        case 'Hold-Customer':
+            return (
+                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
+                        ลูกบ้านยังไม่สะดวก
+                    </Text>
+                </View>
+            )
+        case 'Unapproved':
+            return (
+                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
+                        รายการแจ้งซ่อมรออนุมัติ
+                    </Text>
+                </View>
+            )
+        case 'Finish':
             return (
                 <View style={[Styles.circle, { backgroundColor: "#dcfcf4" }]}>
                     <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#3fc89b", marginLeft: 10, marginRight: 10 }]}>
-                        สำเร็จ
+                        เสร็จสิ้น
+                    </Text>
+                </View>
+            )
+        case 'Close':
+            return (
+                <View style={[Styles.circle, { backgroundColor: "#DDD" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#FFF", marginLeft: 10, marginRight: 10 }]}>
+                        ปิดงาน
                     </Text>
                 </View>
             )
@@ -106,11 +162,20 @@ const recoilTranform = (data) => {
     return tranform
 }
 
+const isEmptyObject = (obj) => {
+    if (JSON.stringify(obj) === '{}') {
+        return null
+    } else {
+        return obj
+    }
+}
+
 export default {
     statusTranform,
     callfunction,
     mapDataMycare,
     formatPhoneNumber,
     formatPhoneNumber2,
-    recoilTranform
+    recoilTranform,
+    isEmptyObject
 }

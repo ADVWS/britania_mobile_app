@@ -39,7 +39,7 @@ export default function thai_form(unit) {
         var otp = res.otp
         otp.mobileNo = mobileNo
         otp.name = name
-        otp.unitId = unit.unit.id
+        otp.unitId = unit.unit.unitId
         setUnitMember(data)
         navigate.navigate("OccupantAddOTP", otp)
       }

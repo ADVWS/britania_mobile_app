@@ -19,6 +19,7 @@ import OrderList from "../component/InformOrder_component/orderList";
 
 export default function InformOrder({ route }) {
     const [informDetail, setInformDetail] = useRecoilState(Global.dataInformDetail)
+    console.log('DETAIL:::', informDetail)
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View
@@ -30,7 +31,7 @@ export default function InformOrder({ route }) {
                 <MainHeader name={'รายการแจ้งซ่อม'} backto={'Homecare'} />
                 <ScrollView style={[Styles.w100]}>            
                      <InformTopic data={informDetail}/>
-                    {informDetail.order.map((item, index)=>(
+                    {informDetail.details.map((item, index)=>(
                         <OrderList data={item} index={index + 1} route={route.params.paramNav}/>
                     ))}
                 </ScrollView>
