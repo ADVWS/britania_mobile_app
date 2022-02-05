@@ -4,7 +4,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Styles } from "../../styles";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-const Newsnotify = () => {
+const Newsnotify = (notify) => {
   return (
     <View style={[Styles.mt20, Styles.w100]}>
       <View
