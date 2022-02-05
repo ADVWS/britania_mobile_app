@@ -34,9 +34,9 @@ const Notify = ({ route }) => {
   React.useEffect(() => {
     console.log("useEffect Activated");
     Script.notification((res) => {
-      console.log("Response: ==> ");
-      console.log(res);
-      setNotify(res.notificationAll);
+      // console.log("Response: ==> ");
+      // console.log(res.notification);
+      setNotify(res.notification);
     });
   });
 

@@ -3,21 +3,21 @@ import API from "../graphQL";
 export const notification = async (cb) => {
   const LOGIN = `
     query {
-        announcementAll {
+        notificationAll {
             id,
             title,
             description,
-            type
+            type,
         }
     }`;
   const result = await API.request(LOGIN);
-  var respone;
+  var response;
   if (typeof result === "object") {
-    respone = {
+    response = {
       notification: result.announcementAll,
     };
   } else {
-    respone = {
+    response = {
       notification: [],
     };
   }
