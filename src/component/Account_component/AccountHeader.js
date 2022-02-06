@@ -8,31 +8,30 @@ import * as Global from "../../globalState";
 
 import { Styles } from "../../styles";
 
-const AccountHeader = ({ }) => {
+const AccountHeader = ({}) => {
   var screen = "Account";
-  const userType = useRecoilState(Global.userType)
+  const userType = useRecoilState(Global.userType);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
 
   function setNotify() {
-    console.log(userType)
-    var action = false
-    var color = "#f1645e"
-    if(userType === 1){
-       color = "#f1645e"
-       action = false
+    console.log(userType);
+    var action = false;
+    var color = "#f1645e";
+    if (userType === 1) {
+      color = "#f1645e";
+      action = false;
     } else {
-       color = "#000"
-       action = true
+      color = "#000";
+      action = true;
     }
     return (
-    <TouchableOpacity 
-      disabled={action}
-      onPress={() => navigate.navigate("Notify", { screen })}>
-      <MaterialIcons
-        name="notifications-none"
-        size={26}
-        color={color}
-      />
-    </TouchableOpacity>)
+      <TouchableOpacity
+        disabled={action}
+        onPress={() => navigate.navigate("Notify", { screen })}
+      >
+        <MaterialIcons name="notifications-none" size={26} color={color} />
+      </TouchableOpacity>
+    );
   }
 
   return (
@@ -49,7 +48,7 @@ const AccountHeader = ({ }) => {
           ]}
         >
           {" "}
-          บัญชี
+          {LANG.account_text_01}
         </Text>
       </View>
       <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
@@ -57,6 +56,6 @@ const AccountHeader = ({ }) => {
       </View>
     </View>
   );
-}
+};
 
-export default AccountHeader
+export default AccountHeader;
