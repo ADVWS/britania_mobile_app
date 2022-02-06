@@ -11,7 +11,6 @@ import Radio from "../component/ResidentAdd_component/radio_resadd";
 import ThaiForm from "../component/ResidentAdd_component/thai_form";
 import ForeignForm from "../component/ResidentAdd_component/foreigner_form";
 import * as Global from "../globalState";
-
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function ResidentAdd({route}) {

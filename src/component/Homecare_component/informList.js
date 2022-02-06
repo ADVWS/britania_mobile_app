@@ -13,28 +13,39 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 
 import { Styles } from "../../styles";
 import InformBox from "./informbox";
+import Script from "../../script/Homecare_script";
+import Key from "../../KEYS.json"
 
 const InformList = () => {
     const [listInform, setListInform] = useRecoilState(Global.dataListInform)
+    const [typeInform, setTypeInform] = useRecoilState(Global.informType)
     const [dataIform, setDataInform] = React.useState([])
     const newContactInform = useSetRecoilState(Global.newContactInform)
     const newInform = useSetRecoilState(Global.newInform)
-    React.useEffect(()=>{
+    const caseType = useSetRecoilState(Global.caseType)
+    const caseList = useSetRecoilState(Global.caseList)
+    React.useEffect(() => {
         setDataInform(listInform)
     })
     const gotoSelectTypeInform = () => {
-        newContactInform({
-            address: "",
-            fullname: "",
-            mobileno: ""
+        Script.homecareGetCategory(Key.TOKEN, typeInform, (res) => {
+            console.log(res)
+            caseType(res)
+            newInform({
+                unitOwnerId: "",
+                owner: "",
+                phoneOwner: "",
+                checkInDate: "",
+                checkInRangeTime: "",
+            })
+            caseList([])
+            navigate.navigate('SelectTypeInform')
         })
-        newInform([])
-        navigate.navigate('SelectTypeInform')
     }
     return (
         <View style={[Styles.w100, Styles.p15, Styles.h65]}>
-            <TouchableOpacity 
-                onPress={()=>{gotoSelectTypeInform()}}
+            <TouchableOpacity
+                onPress={() => { gotoSelectTypeInform() }}
                 style={[
                     Styles.w100,
                     Styles.p15,
@@ -57,12 +68,12 @@ const InformList = () => {
                             <InformBox data={item} />
                         ))}
                     </>
-                    ) : (
-                        <View style={[Styles.w100, Styles.al_center, Styles.jc_center, {height: 400}]}>
-                            <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{height: 75, width: 75}}/>
-                            <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10,{color: "#9f9f9f"}]}>ไม่มีรายการแจ้งซ่อม</Text>
-                        </View>
-                    ) 
+                ) : (
+                    <View style={[Styles.w100, Styles.al_center, Styles.jc_center, { height: 400 }]}>
+                        <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{ height: 75, width: 75 }} />
+                        <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10, { color: "#9f9f9f" }]}>ไม่มีรายการแจ้งซ่อม</Text>
+                    </View>
+                )
                 }
             </View>
         </View>

@@ -1,7 +1,7 @@
 import API from '../graphQL'
 import Store from "../store"
 
-export const homecareAllCase = async (unitOwnerId, key, cb) => {
+export const homecareAllCase = async (unitOwnerId, key, typeInform, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
         const ALLCASE = `
@@ -37,12 +37,9 @@ export const homecareAllCase = async (unitOwnerId, key, cb) => {
                         detailNumber
                         category{
                         id
-                        category
                         }
                         subcategory {
                         id
-                        category
-                        subCategory
                         }
                         description
                         status
@@ -64,13 +61,42 @@ export const homecareAllCase = async (unitOwnerId, key, cb) => {
                 }
             }
         `;
-        getHomecareAllCase(ALLCASE, token, cb)
+        getHomecareAllCase(ALLCASE, token, typeInform, cb)
     })
 }
 
-export const getHomecareAllCase = async (ALLCASE, token, cb) => {
+export const getHomecareAllCase = async (ALLCASE, token, typeInform, cb) => {
     const result = await API.request(ALLCASE, token);
-    cb(result)
+    homecareGetCategory(token, result, typeInform, cb)
+    //cb(result)
+}
+
+export const homecareGetCategory = async (token, allcase, typeInform, cb) => {
+    const Category = `
+        query {
+            homecareGetCategory {
+                id
+                seq
+                nameThai
+            }
+        }`;
+    const result = await API.request(Category, token);
+    var typeset = []
+    if(result.homecareGetCategory){
+        result.homecareGetCategory.map((item)=>{
+            typeInform.map((map)=>{
+                if(item.seq === map.seq){
+                    item.image = map.image
+                    typeset.push(item)
+                }
+            })
+        })
+    }
+    var response = {
+        case: allcase,
+        caseType: result
+    }
+    cb(response)
 }
 
 export default {

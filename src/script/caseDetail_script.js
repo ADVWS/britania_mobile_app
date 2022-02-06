@@ -37,12 +37,9 @@ export const homecareGetCaseById = async (caseid, key, cb) => {
                         detailNumber
                         category{
                         id
-                        category
                         }
                         subcategory {
                         id
-                        category
-                        subCategory
                         }
                         description
                         status

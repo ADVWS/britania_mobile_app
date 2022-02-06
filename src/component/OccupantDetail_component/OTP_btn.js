@@ -6,12 +6,33 @@ import {
 } from "react-native";
 import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
+import KEYS from "../../KEYS.json"
+import Script from "../../script/OccupantDetail_script";
+import mainScript from "../../script";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import * as Global from "../../globalState"
+import Store from "../../store";
 
 const OTP_btn = ({member}) => {
+    const [unitMember, setUnitMember] = useRecoilState(Global.unitMember)
+    console.log('OTP===>', member)
+    const vertfyOTP = (mem) => {
+        Store.getLocalStorege(KEYS.TOKEN, (res) => {
+            const token = res.detail.token
+            Script.memberResendOtp(token, member.mobileNo, unitMember.unitId, (res)=>{
+                console.log('callback', res)
+                var otp = res
+                otp.mobileNo = mem.mobileNo
+                otp.name = mem.name
+                otp.unitId = mainScript.recoilTranform(unitMember.unitId)
+                navigate.navigate("OccupantAddOTP", otp)
+            })
+        })
+    }
     return (
         <TouchableOpacity
             onPress={() =>
-                navigate.navigate("ResidentAddOTP", member)
+                vertfyOTP(member)
             }
             style={[
                 Styles.w100,

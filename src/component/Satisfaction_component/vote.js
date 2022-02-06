@@ -25,14 +25,7 @@ export default class Vote extends React.Component {
             vote4: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' }, 
         }
     }
-
-    // const[vote1, setVote1] = React.useState({ star1: 0, star2: 0, star3: 0, star4: 0, star5: 0, sum: 0})
-    // const[star1, setStar1] = React.useState({ color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD'})
-    // const[vote2, setVote2] = React.useState({ star1: 0, star2: 0, star3: 0, star4: 0, star5: 0, sum: 0})
-    // const[vote3, setVote3] = React.useState({ star1: 0, star2: 0, star3: 0, star4: 0, star5: 0, sum: 0})
-    // const[vote4, setVote4] = React.useState({ star1: 0, star2: 0, star3: 0, star4: 0, star5: 0, sum: 0})
-    // const[vote5, setVote5] = React.useState({ star1: 0, star2: 0, star3: 0, star4: 0, star5: 0, sum: 0})
-
+    
     isVote(topic, unit) {
         var votecolor;
         var count = 0
@@ -48,6 +41,9 @@ export default class Vote extends React.Component {
             changeColor[topic] = votecolor
             sumunit[topic] = count
             this.setState({ star: changeColor, vote: sumunit })
+            const {sendRate} = this.props;
+            this.sendRate = sendRate;
+            this.sendRate(this.state.vote);
         } else {
             for (let i = 0; i < this.state.vote[topic]; i++) {
                 if ((i + 1) < unit) {
@@ -62,69 +58,31 @@ export default class Vote extends React.Component {
             changeColor[topic] = votecolor
             sumunit[topic] = count
             this.setState({ star: changeColor, vote: sumunit })
-
+            const {sendRate} = this.props;
+            this.sendRate = sendRate;
+            this.sendRate(this.state.vote);
         }
     }
 
     render() {
         return (
             <>
-                <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
-                        การตรงต่อเวลาและการแต่งกาย
-                    </Text>
-                    <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
-                        <View style={[Styles.w20]} />
-                        <TouchableOpacity onPress={() => this.isVote('vote1', 1)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote1.color1} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote1', 2)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote1.color2} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote1', 3)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote1.color3} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote1', 4)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote1.color4} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote1', 5)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote1.color5} style={[Styles.text_center]} /></TouchableOpacity>
-                        <View style={[Styles.w20]} />
+                {this.props.question.map((item)=>(
+                    <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
+                        <Text style={[Styles.f_22, Styles.mainFont_x]}>
+                            {item.wordThai}
+                        </Text>
+                        <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
+                            <View style={[Styles.w20]} />
+                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 1)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color1} style={[Styles.text_center]} /></TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 2)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color2} style={[Styles.text_center]} /></TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 3)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color3} style={[Styles.text_center]} /></TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 4)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color4} style={[Styles.text_center]} /></TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 5)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color5} style={[Styles.text_center]} /></TouchableOpacity>
+                            <View style={[Styles.w20]} />
+                        </View>
                     </View>
-                </View>
-                <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
-                        การให้ข้อมูลและความเอาใจใส่
-                    </Text>
-                    <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
-                        <View style={[Styles.w20]} />
-                        <TouchableOpacity onPress={() => this.isVote('vote2', 1)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote2.color1}style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote2', 2)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote2.color2} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote2', 3)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote2.color3} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote2', 4)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote2.color4} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote2', 5)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote2.color5} style={[Styles.text_center]} /></TouchableOpacity>
-                        <View style={[Styles.w20]} />
-                    </View>
-                </View>
-                <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
-                        คุณภาพงานซ่อม
-                    </Text>
-                    <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
-                        <View style={[Styles.w20]} />
-                        <TouchableOpacity onPress={() => this.isVote('vote3', 1)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote3.color1}style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote3', 2)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote3.color2} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote3', 3)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote3.color3} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote3', 4)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote3.color4} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote3', 5)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote3.color5} style={[Styles.text_center]} /></TouchableOpacity>
-                        <View style={[Styles.w20]} />
-                    </View>
-                </View>
-                <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x]}>
-                        คุณภาพในการให้บริการโดยรวม
-                    </Text>
-                    <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
-                        <View style={[Styles.w20]} />
-                        <TouchableOpacity onPress={() => this.isVote('vote4', 1)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote4.color1}style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote4', 2)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote4.color2} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote4', 3)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote4.color3} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote4', 4)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote4.color4} style={[Styles.text_center]} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.isVote('vote4', 5)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star.vote4.color5} style={[Styles.text_center]} /></TouchableOpacity>
-                        <View style={[Styles.w20]} />
-                    </View>
-                </View>
+                ))}
             </>
         );
     }

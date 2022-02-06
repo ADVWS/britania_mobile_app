@@ -9,21 +9,22 @@ import {
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { Feather } from "@expo/vector-icons";
-import * as ImagePicker from 'expo-image-picker';
 
 import * as Global from "../globalState"
-
+import { Feather } from "@expo/vector-icons";
 import { Styles } from "../styles";
-
+import Key from "../KEYS.json"
 import MainHeader from "../component/mainHeader";
 import InformOrderList from "../component/InformContact_component/informOrderList";
-
+import mainScript from "../script";
+import getTime from "../script/getTimeCheckin_script";
 
 const InformContact = ({ route }) => {
     const newContactInform = useSetRecoilState(Global.newContactInform)
-    const newInform = useSetRecoilState(Global.newInform)
-    const [contactInform, setContactInform] = useRecoilState(Global.newContactInform)
+    const _setNewInform = useSetRecoilState(Global.newInform)
+    const timecheck = useSetRecoilState(Global.checkInTime)
+    const [newInform, setListNewInform] = useRecoilState(Global.newInform)
+    const [caseList, setCaseList] = useRecoilState(Global.caseList)
     const [address, setAddress] = React.useState('')
     const [alAddress, setAladdress] = React.useState(false)
     const [alAddressColor, setAladdressColor] = React.useState("#DDD")
@@ -37,24 +38,21 @@ const InformContact = ({ route }) => {
         navigate.navigate('InformContact')
     }
 
-    React.useEffect(()=>{
-        setAddress(contactInform.address)
-        setFullname(contactInform.fullname)
-        setMobileno(contactInform.mobileno)
+    console.log(newInform)
+
+    React.useEffect(() => {
+        //setAddress(newInform.address)
+        setFullname(newInform.owner)
+        setMobileno(newInform.phoneOwner)
     }, [])
 
     function Addmore(req) {
-        var contact = {
-            address: address,
-            fullname: fullname,
-            mobileno: mobileno,
-        }
-        newContactInform(contact)
-        newInform(route.params.informSet)
+        console.log(caseList)
         navigate.navigate('SelectTypeInform')
     }
 
-    function gotoinformCalendar(){
+    function gotoinformCalendar() {
+        console.log('hi')
         setAladdress(false)
         setAladdressColor('#DDD')
         setAlfullname(false)
@@ -72,22 +70,24 @@ const InformContact = ({ route }) => {
             setAlfullname(true)
             setAlfullnameColor('red')
         }
-        if(mobileno === ""){
+        if (mobileno === "") {
             checker.push(false)
             setAlmobileno(true)
             setAlmobilenoColor('red')
         }
-        if(checker.indexOf(false) !== -1){
+        if (checker.indexOf(false) !== -1) {
             return
         }
-        var contact = {
-            address: address,
-            fullname: fullname,
-            mobileno: mobileno,
-        }
-        newContactInform(contact)
-        newInform(route.params.informSet)
-        navigate.navigate('InformCalendar')
+        var _newInform = mainScript.recoilTranform(newInform)
+        _newInform.owner = fullname
+        _newInform.phoneOwner = mobileno
+        _newInform.details = caseList
+        getTime.homecareGetCheckInRangeTimeOptions(Key.TOKEN, (res) => {
+            console.log('time', res)
+            _setNewInform(_newInform)
+            timecheck(res)
+            navigate.navigate('InformCalendar')
+        })
     }
 
     return (
@@ -151,7 +151,31 @@ const InformContact = ({ route }) => {
                         <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
                             รายการแจ้งซ่อม
                         </Text>
-                        <InformOrderList data={route.params.informSet} Addmore={Addmore} gotoinformCalendar={gotoinformCalendar}/>
+                        {caseList.map((item)=>
+                            <InformOrderList item={item} />
+                        )}
+                        <TouchableOpacity
+                            onPress={() => Addmore()}
+                            style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, { borderColor: "#f1645e", borderWidth: 1.5 }]}>
+                            <View style={[Styles.w40, Styles.al_end]}>
+                                <Feather name="plus" size={24} color="#f1645e" />
+                            </View>
+                            <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont]}>
+                                {' '}เพิ่มรายการ
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => gotoinformCalendar()}
+                            style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, Styles.mainColor]}>
+                            <View style={[Styles.w50, Styles.al_end]}>
+                                <Text style={[Styles.f_22, Styles.white_text, Styles.mainFont]}>
+                                    ถัดไป
+                                </Text>
+                            </View>
+                            <View style={[Styles.w45, Styles.al_start]}>
+                                <Feather name="arrow-right" size={24} color="#FFF" />
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </View>

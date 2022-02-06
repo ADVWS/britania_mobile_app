@@ -22,6 +22,8 @@ import key from '../KEYS.json'
 const MyHome = () => {
     const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile)
     const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
+    const [typeInform, setTypeInform] = useRecoilState(Global.informType)
+    const setCaseType = useSetRecoilState(Global.caseType)
     const setUnitOwner = useSetRecoilState(Global.unitOwner)
 
     const setListInform = useSetRecoilState(Global.dataListInform)
@@ -39,10 +41,10 @@ const MyHome = () => {
     function goToHomecare() {
         var inform = []
         var history = []
-        Script.homecareAllCase(unitOwner.id, key.TOKEN,(res)=>{
+        Script.homecareAllCase(unitOwner.id, key.TOKEN, typeInform, (res)=>{
             console.log(res)
-            if(res.homecareAllCase && res.homecareAllCase !== null){
-                res.homecareAllCase.map((item)=>{
+            if(res.case.homecareAllCase && res.case.homecareAllCase !== null){
+                res.case.homecareAllCase.map((item)=>{
                     if(informStatus.indexOf(item.status) !== -1){
                         if(item.details.length > 0){
                             inform.push(item)
@@ -53,6 +55,7 @@ const MyHome = () => {
                         }
                     }
                 })
+                setCaseType(res.caseType.homecareGetCategory)
                 setListInform(inform)
                 setlistHistory(history)
                 navigate.navigate('Homecare')

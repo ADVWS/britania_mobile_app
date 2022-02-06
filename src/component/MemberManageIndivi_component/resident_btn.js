@@ -5,7 +5,7 @@ import Script from "../../script";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { AntDesign } from "@expo/vector-icons";
 import * as navigate from "../../navigator/RootNavigation";
-
+import OTP_btn from "../../component/ResidentDetail_component/OTP_btn";
 import * as Global from "../../globalState";
 
 const ResidentBtn = ({item}) => {
@@ -147,33 +147,8 @@ const ResidentBtn = ({item}) => {
               </View>
             </View>
           </View>
-          {item.status === "VERIFY" ? (
-            <TouchableOpacity
-              onPress={() => navigate.navigate("ResidentAddOTP", { params })}
-              style={[
-                Styles.w100,
-                Styles.row,
-                Styles.mt10,
-                Styles.transparent,
-                Styles.al_center,
-                Styles.br_5,
-                Styles.border_btn,
-                Styles.p15,
-                Styles.jc_center,
-              ]}
-            >
-              <Text
-                style={[
-                  Styles.text_center,
-                  Styles.mainColor_text,
-                  Styles.f_22,
-                  Styles.mainFont,
-                  { marginLeft: "1%" },
-                ]}
-              >
-                กรอก OTP เพื่อเปิดใช้งาน
-              </Text>
-            </TouchableOpacity>
+          {item.memberStatus !== "active" ? (
+            <OTP_btn member={item}/>
           ) : null}
         </TouchableOpacity>
       ))}

@@ -25,7 +25,7 @@ export const updateMember = async (EDIT, token, unitid, cb) => {
     //cb(result)
 }
 
-export const updateUnit = async (token, unitid, cb) => {
+export const updateUnit = async (token, unitid, resend, cb) => {
     const UNIT = `query {
     unitMemberAll(unitId: "${unitid}") {
             id,
@@ -71,8 +71,24 @@ export const memberDeleteProfile = async (unitMemberId, key, unitid, cb) => {
     })
 }
 
+export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
+    const OTP = `
+        mutation {
+            memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}"){
+                id
+                type
+                sendTo
+                refNo
+            }
+        }
+    `;
+    const result = await API.request(OTP, token);
+    cb(result.memberResendOtp)
+}
+
 
 export default {
     memberUpdateAllowHomecare,
-    memberDeleteProfile
+    memberDeleteProfile,
+    memberResendOtp
 }

@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
     View,
     Text,
@@ -170,6 +171,13 @@ const isEmptyObject = (obj) => {
     }
 }
 
+const setTypeInform = (obj) => {
+    const [caseType, setCaseType] = useRecoilState(Global.caseType)
+    console.log('setType===>', caseType)
+    var index = caseType.map(function(e) { return e.id; }).indexOf(obj);
+    return caseType[index].nameThai
+}
+
 export default {
     statusTranform,
     callfunction,
@@ -177,5 +185,6 @@ export default {
     formatPhoneNumber,
     formatPhoneNumber2,
     recoilTranform,
-    isEmptyObject
+    isEmptyObject,
+    setTypeInform
 }

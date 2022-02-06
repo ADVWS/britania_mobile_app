@@ -103,8 +103,32 @@ export const updateUnit = async (token, unitid, otp, cb) => {
     cb(respone)
 }
 
+export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
+        const OTP = `
+            mutation {
+                memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}"){
+                    id
+                    type
+                    sendTo
+                    refNo
+                }
+            }
+        `;
+        //updateMemberResendOTP(OTP, token, unitid, cb)
+        const result = await API.request(OTP, token);
+        console.log('OTP', result)
+        cb(result.memberResendOtp)
+}
+
+export const updateMemberResendOTP = async (OTP, token, cb) => {
+    const result = await API.request(OTP, token);
+    console.log('OTP', result)
+    cb(result.memberResendOtp)
+}
+
 
 export default {
     memberAddProflie_thai,
-    memberAddProflie_foreign
+    memberAddProflie_foreign,
+    memberResendOtp
 }

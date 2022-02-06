@@ -17,10 +17,10 @@ import MainHeader from "../component/mainHeader";
 
 
 const InformTime = () => {
-    const [informTime, setInformTime] = useRecoilState(Global.informTime)
+    const [time, setTime] = useRecoilState(Global.checkInTime)
 
     function selectInformTime(InformTime) {
-        navigate.navigate('InformCalendar', { InformTime })
+        navigate.navigate('InformCalendar', InformTime)
     }
 
     return (
@@ -33,12 +33,12 @@ const InformTime = () => {
                     Styles.FFF,
                 ]}>
                 <MainHeader name={'เลือกเวลา'} backto={'IncomeCalendar'} />
-                {informTime.map((items) => (
+                {time.map((items) => (
                     <TouchableOpacity
-                        onPress={() => selectInformTime(items.time)}
+                        onPress={() => selectInformTime(items)}
                         style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
                         <Text style={[Styles.f_22, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
-                            {items.time}
+                            {items.name}
                         </Text>
                     </TouchableOpacity>
                 ))}

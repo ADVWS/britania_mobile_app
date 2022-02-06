@@ -9,27 +9,35 @@ import {
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
+import Key from '../../KEYS.json'
+import Script from "../../script/Satisfaction_script";
+import mainScript from "../../script";
 
 const OrderList = ({ data, index, route }) => {
-    console.log(data)
+    console.log('data', data)
     var paramNav = route
 
     function gotoResponsible(param) {
-        navigate.navigate('Responsible', param )
+        var mechanic = param
+        navigate.navigate('Responsible', {paramNav, mechanic})
     }
 
     function gotoOnsite(param) {
-        navigate.navigate('Onsite', param)
+        var mechanic = param
+        navigate.navigate('Onsite', {paramNav, mechanic})
     }
 
     function gotoRepiairList(param) {
         var mechanic = param
-        navigate.navigate('RepiairList', { paramNav, mechanic })
+        navigate.navigate('RepiairList', {paramNav, mechanic})
     }
 
     function gotoSatisfaction(param) {
-        var mechanic = param
-        navigate.navigate('Satisfaction', { paramNav, mechanic })
+        Script.homecareAllCsatQuestion(Key.TOKEN, (res)=>{
+            var mechanic = param
+            var QUES = res
+            navigate.navigate('Satisfaction', { paramNav, mechanic, QUES})
+        })
     }
 
     return (
@@ -51,7 +59,7 @@ const OrderList = ({ data, index, route }) => {
                             ประเภท
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
-                            {data.subcategory !== null ? data.subcategory.subCategory : '-'}
+                            {data.category !== null ? mainScript.setTypeInform(data.category.id) : '-'}
                         </Text>
                     </View>
                     <View style={[Styles.w50, Styles.al_start]}>
@@ -103,7 +111,7 @@ const OrderList = ({ data, index, route }) => {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => gotoOnsite(data.mechanic)}
+                    onPress={() => gotoOnsite(data.homecareName)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
@@ -115,7 +123,7 @@ const OrderList = ({ data, index, route }) => {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => gotoRepiairList(data.mechanic)}
+                    onPress={() => gotoRepiairList(data.homecareName)}
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, Styles.mb10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
@@ -128,7 +136,7 @@ const OrderList = ({ data, index, route }) => {
                 </TouchableOpacity>
                 {route === "SUCCESS" &&
                     <TouchableOpacity
-                        onPress={() => gotoSatisfaction(data.mechanic)}
+                        onPress={() => gotoSatisfaction(data.homecareName)}
                         style={[Styles.w100, Styles.p15, Styles.mainColor, Styles.br_5, Styles.al_center, { marginBottom: 20 }]}>
                         <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.mt5]}>
                             ประเมินความพึงพอใจ

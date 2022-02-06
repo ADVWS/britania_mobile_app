@@ -13,19 +13,28 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Global from "../globalState"
 
 import { Styles } from "../styles";
+import mainScript from "../script";
 
 import MainHeader from "../component/mainHeader";
 
 const SelectTypeInform = () => {
-    const [typeInform, setTypeInform] = useRecoilState(Global.informType)
-    const gobalData = useSetRecoilState(Global.informSelectType)
+    const [caseType, setCaseType] = useRecoilState(Global.caseType)
+    const [caseList, setCaseList] = useRecoilState(Global.caseType)
+    const _caseList = useSetRecoilState(Global.caseList)
 
-    function gotoInformAdd(param) {
-        var informType = {
-            type: param
+    function gotoInformAdd(param, name) {
+        var details = {
+            categoryId: param,
+            description: ""
         }
-        gobalData(informType)
-        navigate.navigate('InformAdd', {informType})
+        // if(caseList.length <= 0){
+        //     _caseList(details)
+        // } else {
+        //     details = mainScript.recoilTranform(caseList)
+        //     details.concat(details)
+        //     _caseList(details)
+        // }
+        navigate.navigate('InformAdd', details)
     }
 
     return (
@@ -43,15 +52,15 @@ const SelectTypeInform = () => {
                             เลือกประเภท
                         </Text>
                     </View>
-                    {typeInform.map((item) => (
-                        <TouchableOpacity onPress={()=>{gotoInformAdd(item.value)}}
+                    {caseType.map((item) => (
+                        <TouchableOpacity onPress={()=>{gotoInformAdd(item.id, item.nameThai)}}
                             style={[Styles.w100, Styles.p10, Styles.row, { borderColor: '#DDD', borderBottomWidth: 0.5 }]}>
                             <View style={[Styles.w10, Styles.al_center]}>
-                                <Image source={item.iamge} style={{ height: 30, width: 30 }} />
+                                <Image source={item.image} style={{ height: 30, width: 30 }} />
                             </View>
                             <View style={[Styles.w80, Styles.jc_center]}>
                                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.pl10]}>
-                                    {item.name}
+                                    {item.nameThai}
                                 </Text>
                             </View>
                             <View style={[Styles.w10, Styles.al_center, Styles.jc_center]}>

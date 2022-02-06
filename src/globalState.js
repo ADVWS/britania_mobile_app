@@ -31,6 +31,21 @@ export const unitOwner = atom({
   default: {},
 });
 
+export const caseType = atom({
+  key: "caseType",
+  default: []
+})
+
+export const caseList = atom({
+  key: "caseList",
+  default: []
+})
+
+export const checkInTime = atom({
+  key: "checkInTime",
+  default: []
+})
+
 export const dataMyHome = atom({
   key: "dataMyHome",
   default: {
@@ -405,31 +420,19 @@ export const dataInformDetail = atom({
 export const informType = atom({
   key: "informType",
   default: [
-    { name: "ไฟฟ้า", value: "ไฟฟ้า", iamge: images.electricity },
-    {
-      name: "ท่อน้ำ/อากาศ ดี/เสีย",
-      value: "ท่อน้ำ/อากาศ ดี/เสีย",
-      iamge: images.pipe,
-    },
-    { name: "ประตู", value: "ประตู", iamge: images.door },
-    { name: "พื้น", value: "พื้น", iamge: images.floor },
-    { name: "ฝ้าเพดาน", value: "ฝ้าเพดาน", iamge: images.ceiling },
-    {
-      name: "สุขภัณฑ์ / อุปกรณ์",
-      value: "สุขภัณฑ์ / อุปกรณ์",
-      iamge: images.wc,
-    },
-    { name: "โครงสร้าง", value: "โครงสร้าง", iamge: images.layout },
-    { name: "ผนัง", value: "ผนัง", iamge: images.wall },
-    { name: "สี", value: "สี", iamge: images.color },
-    { name: "เฟอร์นิเจอร์", value: "เฟอร์นิเจอร์", iamge: images.furniture },
-    { name: "หลังคา", value: "หลังคา", iamge: images.roof },
-    {
-      name: "ซ่อมพื้นที่ส่วนกลาง",
-      value: "ซ่อมพื้นที่ส่วนกลาง",
-      iamge: images.public,
-    },
-    { name: "เบ็ดเตล็ด", value: "เบ็ดเตล็ด", iamge: images.other },
+    { image: images.electricity, seq: 1},
+    { image: images.pipe, seq: 2 },
+    { image: images.door, seq: 3 },
+    { image: images.floor, seq: 4},
+    { image: images.ceiling, seq: 5 },
+    { image: images.wc, seq: 6 },
+    { image: images.layout, seq: 7 },
+    { image: images.wall, seq: 8 },
+    { image: images.color, seq: 9 },
+    { image: images.furniture, seq: 10 },
+    { image: images.roof, seq: 11},
+    { image: images.public, seq: 12 },
+    { image: images.other, seq: 13 },
   ],
 });
 

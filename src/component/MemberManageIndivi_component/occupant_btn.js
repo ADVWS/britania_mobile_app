@@ -8,6 +8,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 import * as Global from "../../globalState";
 import * as navigate from "../../navigator/RootNavigation";
+import OTP_btn from "../OccupantDetail_component/OTP_btn";
 
 export default function OccupantBtn({item}) {
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
@@ -156,32 +157,7 @@ export default function OccupantBtn({item}) {
             </View>
           </View>
           {item.memberStatus !== "active" ? (
-            <TouchableOpacity
-              onPress={() => navigate.navigate("OccupantAddOTP", { params })}
-              style={[
-                Styles.w100,
-                Styles.row,
-                Styles.mt10,
-                Styles.transparent,
-                Styles.al_center,
-                Styles.br_5,
-                Styles.border_btn,
-                Styles.p15,
-                Styles.jc_center,
-              ]}
-            >
-              <Text
-                style={[
-                  Styles.text_center,
-                  Styles.mainColor_text,
-                  Styles.f_22,
-                  Styles.mainFont,
-                  { marginLeft: "1%" },
-                ]}
-              >
-                กรอก OTP เพื่อเปิดใช้งาน
-              </Text>
-            </TouchableOpacity>
+            <OTP_btn member={item}/>
           ) : null}
         </TouchableOpacity>
       ))}

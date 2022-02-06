@@ -14,6 +14,9 @@ import CalendarPicker from 'react-native-calendar-picker';
 import * as Global from "../globalState"
 
 import { Styles } from "../styles";
+import mainScript from "../script" 
+import Script from "../script/makeCase_script" 
+import Key from "../KEYS.json"
 
 import MainHeader from "../component/mainHeader";
 import moment from "moment";
@@ -21,18 +24,25 @@ import Modal_confirm_2 from "../component/modal_confirm_2";
 
 
 const InformCalendar = ({ route }) => {
-    console.log(route)
+    const informStatus = ['Pending', 'Checking', 'Assign', 'Reject', 'ReInprocess', 'Hold-Customer', 'Unapproved']
+    const historyStatus = ['Finish', 'Close']
     const [minDate, setMindate] = React.useState(moment().startOf('day'))
-    const [defaultTime, setDefaultTime] = React.useState("9.00 น.")
 
-    const [selectDate, setSelectDate] = React.useState("")
+    const [selectDate, setSelectDate] = React.useState(moment())
     const [confirmBox, setConfirmBox] = React.useState(false)
+    const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
+    console.log('Check route', selectDate)
 
-    const [contactInform, setContactInform] = useRecoilState(Global.newContactInform)
+    const [time, setTime] = useRecoilState(Global.checkInTime)
     const [newInform, setNewInform] = useRecoilState(Global.newInform)
     const [dataMyHome, setDataMyHome] = useRecoilState(Global.dataMyHome)
     const [thisDataMyProject, setThisDataMyProject] = useRecoilState(Global.dataMyproject)
     const [listInform, setDataListInform] = useRecoilState(Global.dataListInform)
+
+    const [defaultTime, setDefaultTime] = React.useState({
+        name: time[0].name,
+        value: time[0].value
+    })
 
     const setListInform = useSetRecoilState(Global.dataListInform)
     const setlistHistory = useSetRecoilState(Global.dataListHistory)
@@ -49,61 +59,66 @@ const InformCalendar = ({ route }) => {
     }, []);
     function settimeInform() {
         if (route.params) {
-            if (route.params.InformTime) {
-                return route.params.InformTime
-            } else {
-                return defaultTime
-            }
+            return route.params.name
         } else {
-            return defaultTime
+            return defaultTime.name
         }
     }
 
     function onDateChange(date) {
-        var dateInform = moment(date).unix()
+        var dateInform = moment()
         setSelectDate(dateInform)
     }
 
     function confirmData() {
-        var myHome = JSON.stringify(dataMyHome)
-        myHome = JSON.parse(myHome)
-        var informset = newInform
-        var setid = Number(myHome.inform[myHome.inform.length - 1].id) + 1
-        var objData = {
-            id: setid,
-            informtime: selectDate,
-            status: 3,
-            order: informset
+        if(route.params){
+            var selectTime = route.params.value
+        } else {
+            var selectTime = defaultTime.value
         }
-        myHome.inform.push(objData)
-        updateMyproject(myHome, objData)
-        // console.log(myHome)
-    }
+        if(selectDate !== ''){
+            var inform = []
+            var history = []
+            var dataset = mainScript.recoilTranform(informSet)
+            dataset = mainScript.recoilTranform(newInform)
+            dataset.unitOwnerId = unitOwner.id
+            dataset.checkInRangeTime = String(selectTime)
+            dataset.checkInDate = selectDate
+            var detailTemp = ''
+            dataset.details.map((item)=>{
+                console.log(item.file)
+                detailTemp += 
+                    `{
+                        categoryId: "${item.categoryId}"
+                        description: "${item.description}"
+                        files: ${item.file.length === 0 ? '[]': item.file}
+                    }`
+            })
+            detailTemp += ''
+            dataset.details = JSON.stringify(dataset.details)
+            console.log('dataset', moment(dataset.selectDate).format('DD/MM/YYYY HH:mm:sss'))
+            console.log('dataset', dataset)
+            Script.homecareCreateCase(Key.TOKEN, detailTemp, dataset, unitOwner.id, (res)=>{
+                console.log('DATA SORT', res)
+                if(res.homecareAllCase && res.homecareAllCase !== null){
+                    res.homecareAllCase.map((item)=>{
+                        if(informStatus.indexOf(item.status) !== -1){
+                            if(item.details.length > 0){
+                                inform.push(item)
+                            }
+                        } else if(historyStatus.indexOf(item.status) !== -1) {
+                            if(item.details.length > 0){
+                                history.push(item)
+                            }
+                        }
+                    })
+                    setListInform(inform)
+                    setlistHistory(history)
+                    navigate.navigate('Homecare')
+                }
+            })
+        }
 
-    function updateMyproject(myHome, objData) {
-        var myProject = JSON.stringify(thisDataMyProject)
-        myProject = JSON.parse(myProject)
-        myProject.map((item) => {
-            if (item.homeNo === dataMyHome.homeNo) {
-                item.inform.push(objData)
-            }
-        })
-        addMyProject(myProject)
-        addMyHome(myHome)
-        var inform = []
-        var history = []
-        myHome.inform.map((item) => {
-            console.log(item.id)
-            if (item.status !== 5) {
-                inform.push(item)
-            } else {
-                history.push(item)
-            }
-        })
-        setListInform(inform)
-        setlistHistory(history)
-        setConfirmBox(true)
-        //navigate.navigate("Homecare")
     }
 
     function confirm() {
@@ -133,7 +148,7 @@ const InformCalendar = ({ route }) => {
                                     previousTitle={<MaterialIcons name="arrow-back-ios" size={18} />}
                                     nextTitle={<MaterialIcons name="arrow-forward-ios" size={18} />}
                                     weekdays={["S", "M", "T", "W", "T", "F", "S"]}
-                                    todayBackgroundColor="transparent"
+                                    todayBackgroundColor="#f1645e"
                                     todayTextStyle={{ color: "#000" }}
                                     selectedDayStyle={{ backgroundColor: "#f1645e" }}
                                     selectedDayTextColor="#FFF"

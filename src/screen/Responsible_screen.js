@@ -17,7 +17,7 @@ import MainHeader from "../component/mainHeader";
 
 const Responsible = ({ route }) => {
     console.log('data:::', route)
-    const [homecareName, setHomecareName] = React.useState(route.params)
+    const [homecareName, setHomecareName] = React.useState(route.params.mechanic)
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View
@@ -26,7 +26,7 @@ const Responsible = ({ route }) => {
                     Styles.w100,
                     Styles.h100
                 ]}>
-                <MainHeader name={'เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบ'} backto={'InformOrder'} />
+                <MainHeader name={'เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบ'} backto={'InformOrder'} param={route.params.paramNav}/>
                 <ScrollView style={[Styles.w100, Styles.FFF]}>
                     {homecareName !== null ?
                         (<View style={[Styles.w100, Styles.p15, Styles.row]}>

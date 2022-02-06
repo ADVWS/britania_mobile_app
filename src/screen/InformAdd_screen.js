@@ -10,9 +10,10 @@ import {
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
-
+import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from 'expo-image-picker';
+import mainScript from "../script";
 
 import * as Global from "../globalState"
 
@@ -22,20 +23,23 @@ import MainHeader from "../component/mainHeader";
 
 
 const InformAdd = ({ route }) => {
+    console.log(route.params)
     const [newInform, setNewInform] = useRecoilState(Global.newInform)
     const [thisinformType, setthisInformType] = useRecoilState(Global.informSelectType)
+    const [caseList, setCaseList] = useRecoilState(Global.caseList)
+    const _setCaseList = useSetRecoilState(Global.caseList)
 
     const gobalData = useSetRecoilState(Global.informSet)
+    const [isCase, setIsCase] = React.useState(route.params)
     const [imageAdd, setImageAdd] = React.useState([])
     const [display, setDisplay] = React.useState(false)
-    const [comment, setComment] = React.useState("");
     const [detail, setDetail] = React.useState("");
 
     const [alDetail, setAlDetail] = React.useState(false);
     const [alBoxDetail, setAlBoxDetail] = React.useState("#DDD")
     const [alImage, setAlImage] = React.useState(false);
     
-
+    console.log(caseList)
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -68,34 +72,30 @@ const InformAdd = ({ route }) => {
             setAlDetail(true)
             setAlBoxDetail('red')
         }
-        if (imageAdd.length === 0) {
-            checker.push(false)
-            setAlImage(true)
-        }
+        // if (imageAdd.length === 0) {
+        //     checker.push(false)
+        //     setAlImage(true)
+        // }
         if (checker.indexOf(false) !== -1) {
             return
         }
-        var informData = {}
-        informData.type = thisinformType.type
-        console.log('informData==>', informData)
-        var informSet = []
-        informData.detail = detail
-        if (comment !== "") {
-            informData.comment = comment
+        // var informData = {}
+        // informData.type = thisinformType.type
+        // var informSet = []
+        setIsCase(mainScript.recoilTranform(isCase))
+        isCase.description = detail
+        if (imageAdd.length === 0) {
+            isCase.file = []
+        }
+        var newCase = [isCase]
+        if(caseList.length > 0){
+            var setNewcase = mainScript.recoilTranform(caseList)
+            setNewcase.push(isCase)
+            _setCaseList(setNewcase)
         } else {
-            informData.comment = "-"
+            _setCaseList(newCase)
         }
-        informData.image = imageAdd
-        informSet.push(informData)
-        console.log('length', newInform.length)
-        if(newInform.length > 0){
-            console.log('INSIDE')
-            newInform.map((item)=>{
-                informSet.push(item)
-            })
-            console.log('informSet', informSet)
-        }
-        navigate.navigate('InformContact', { informSet })
+        navigate.navigate('InformContact', isCase)
     }
 
     return (
@@ -155,18 +155,6 @@ const InformAdd = ({ route }) => {
                                     กรุณาระบุ "รายละเอียด"
                                 </Text>
                             }
-                            <Text style={[Styles.f_24, Styles.mainFont, Styles.mt10]}>
-                                หมายเหตุ
-                            </Text>
-                            <TextInput
-                                value={comment}
-                                style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, { borderColor: "#DDD", borderWidth: 1.5, height: 80 }]}
-                                multiline={true}
-                                numberOfLines={6}
-                                onChangeText={(val) => {
-                                    setComment(val)
-                                }}
-                            />
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
