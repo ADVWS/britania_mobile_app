@@ -12,46 +12,54 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import * as Global from "../globalState"
 
 import { Styles } from "../styles";
-import Script from "../script";
+import mainScript from "../script";
 
 import MainHeader from "../component/mainHeader";
+import Script from "../script/MyHome_script";
+import Key from '../KEYS.json'
 
 
 const MyProject = () => {
-    const [thisDataMyHProject, setThisDataMyHProject] = useRecoilState(Global.dataMyproject)
+    const informStatus = ['Pending', 'Checking', 'Assign', 'Reject', 'ReInprocess', 'Hold-Customer', 'Unapproved']
+    const historyStatus = ['Finish', 'Close']
     const setListInform = useSetRecoilState(Global.dataListInform)
     const setlistHistory = useSetRecoilState(Global.dataListHistory)
-    const gobalData = useSetRecoilState(Global.dataMyHome)
+
+    const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile)
+    const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
+    const setUnitOwner = useSetRecoilState(Global.unitOwner)
+    const [typeInform, setTypeInform] = useRecoilState(Global.informType)
+    const setCaseType = useSetRecoilState(Global.caseType)
+
+
+
+    console.log(userProfile)
 
     function setDataSelect(obj) {
-        gobalData(obj)
-        mapDataMycare(obj, (res) => {
-            console.log('data:::::', res)
-            navigate.navigate('Homecare')
-        })
-        //navigate.navigate('Homecare')
-    }
-
-    function mapDataMycare(param, cb) {
-        console.log('start', param)
+        setUnitOwner(obj)
         var inform = []
         var history = []
-        if (param.inform) {
-            param.inform.map((item) => {
-                if (item.status !== 5) {
-                    inform.push(item)
-                } else {
-                    history.push(item)
-                }
-            })
-        }
-        setListInform(inform)
-        setlistHistory(history)
-        var res = {
-            inform: inform,
-            history: history
-        }
-        cb(res)
+        Script.homecareAllCase(unitOwner.id, Key.TOKEN, typeInform, (res)=>{
+            console.log(res)
+            if(res.case.homecareAllCase && res.case.homecareAllCase !== null){
+                res.case.homecareAllCase.map((item)=>{
+                    if(informStatus.indexOf(item.status) !== -1){
+                        if(item.details.length > 0){
+                            inform.push(item)
+                        }
+                    } else if(historyStatus.indexOf(item.status) !== -1) {
+                        if(item.details.length > 0){
+                            history.push(item)
+                        }
+                    }
+                })
+                setCaseType(res.caseType.homecareGetCategory)
+                setListInform(inform)
+                setlistHistory(history)
+                navigate.navigate('Homecare')
+            }
+        })
+        //navigate.navigate('Homecare')
     }
 
     return (
@@ -64,16 +72,16 @@ const MyProject = () => {
                     Styles.FFF,
                 ]}>
                 <MainHeader name={'โครงการของฉัน'} backto={'Homecare'} />
-                {thisDataMyHProject.map((items) => (
+                {userProfile.me.unitsOwner.map((items) => (
                     <TouchableOpacity
                         onPress={() => setDataSelect(items)}
                         style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
                         <View style={[Styles.w100]}>
                             <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
-                                {items.name}
+                                {items.projectName}
                             </Text>
                             <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, {color: "#8f8f8f"}]}>
-                                บ้านเลขที่ {items.homeNo}
+                                บ้านเลขที่ {items.houseNumber}
                             </Text>
                         </View>
                     </TouchableOpacity>

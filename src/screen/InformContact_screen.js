@@ -20,10 +20,10 @@ import mainScript from "../script";
 import getTime from "../script/getTimeCheckin_script";
 
 const InformContact = ({ route }) => {
-    const newContactInform = useSetRecoilState(Global.newContactInform)
     const _setNewInform = useSetRecoilState(Global.newInform)
     const timecheck = useSetRecoilState(Global.checkInTime)
     const [newInform, setListNewInform] = useRecoilState(Global.newInform)
+    const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
     const [caseList, setCaseList] = useRecoilState(Global.caseList)
     const [address, setAddress] = React.useState('')
     const [alAddress, setAladdress] = React.useState(false)
@@ -34,9 +34,6 @@ const InformContact = ({ route }) => {
     const [mobileno, setMobileno] = React.useState('')
     const [alMobileno, setAlmobileno] = React.useState(false)
     const [alMobilenoColor, setAlmobilenoColor] = React.useState("#DDD")
-    function gotoInformContact() {
-        navigate.navigate('InformContact')
-    }
 
     console.log(newInform)
 
@@ -53,18 +50,11 @@ const InformContact = ({ route }) => {
 
     function gotoinformCalendar() {
         console.log('hi')
-        setAladdress(false)
-        setAladdressColor('#DDD')
         setAlfullname(false)
         setAlfullnameColor('#DDD')
         setAlmobileno(false)
         setAlmobilenoColor('#DDD')
         var checker = []
-        if (address === "") {
-            checker.push(false)
-            setAladdress(true)
-            setAladdressColor('red')
-        }
         if (fullname === "") {
             checker.push(false)
             setAlfullname(true)
@@ -105,11 +95,12 @@ const InformContact = ({ route }) => {
                             ห้องที่ต้องการแจ้งซ่อม
                         </Text>
                         <TextInput
-                            value={address}
-                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, { borderColor: alAddressColor, borderWidth: 1.5 }]}
-                            onChangeText={(val) => {
-                                setAddress(val)
-                            }}
+                            value={unitOwner.houseNumber}
+                            editable={false}
+                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10,{ borderColor: alAddressColor, borderWidth: 1.5, backgroundColor: "#ebebeb" }]}
+                            // onChangeText={(val) => {
+                            //     setAddress(val)
+                            // }}
                         />
                         {alAddress &&
                             <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
