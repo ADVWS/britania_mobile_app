@@ -18,9 +18,60 @@ import Key from "../../KEYS.json";
 import { useRecoilState } from "recoil";
 import * as Global from "../../globalState";
 
-const NavBtn = ({ option }) => {
+const NavBtn = ({ optiono }) => {
   const [confirm, setConfirm] = React.useState(false);
   const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [userType, setUserType] = useRecoilState(Global.userType);
+
+  // const [option, setOptions] = React.useState([]);
+  // if (userType === 1) {
+  //   setOptions([
+  //     {
+  //       name: LANG.account_text_02,
+  //       nav: "Profile",
+  //     },
+  //     {
+  //       name: LANG.account_text_03,
+  //       nav: "MemberManage",
+  //     },
+  //     {
+  //       name: LANG.account_text_04,
+  //       nav: "Language",
+  //     },
+  //     {
+  //       name: LANG.account_text_05,
+  //       nav: "TermOfService",
+  //     },
+  //     {
+  //       name: LANG.account_text_06,
+  //       nav: "callcen",
+  //     },
+  //   ]);
+  // } else {
+  //   setOptions([
+  //     {
+  //       name: LANG.account_text_04,
+  //       nav: "Language",
+  //     },
+  //     {
+  //       name: LANG.account_text_05,
+  //       nav: "TermOfService",
+  //     },
+  //     {
+  //       name: LANG.account_text_06,
+  //       nav: "callcen",
+  //     },
+  //   ]);
+  // }
+
+  // React.useEffect(() => {
+  //   // setLANG(Global.Language);
+  //   console.log("mode", userType);
+
+  //   console.log("IN Account");
+  //   console.log(option);
+  // }, []);
+
   const logout = (req) => {
     if (req === "CANCEL") {
       setConfirm(false);
@@ -28,14 +79,14 @@ const NavBtn = ({ option }) => {
       Store.removeLocalStorege(Key.PROFILE, (res) => {
         Store.removeLocalStorege(Key.TOKEN, (_res) => {
           setConfirm(false);
-          navigate.navigate('Login')
+          navigate.navigate("Login");
         });
       });
     }
   };
   return (
     <View style={[Styles.boxWithShadow2, Styles.mt20]}>
-      {option.map((item) =>
+      {/* {option.map((item) =>
         item.nav !== "callcen" ? (
           <TouchableOpacity
             onPress={() => navigate.navigate(item.nav)}
@@ -99,37 +150,324 @@ const NavBtn = ({ option }) => {
             </View>
           </TouchableOpacity>
         )
-      )}
-      <TouchableOpacity
-        onPress={() => setConfirm(true)}
-        style={[
-          Styles.boxWithShadow,
-          Styles.w100,
-          Styles.p12,
-          Styles.FFF,
-          Styles.br_5,
-          Styles.mt10,
-          Styles.row,
-        ]}
-      >
-        <View style={[Styles.w90]}>
-          <Text
+      )} */}
+
+      {userType === 1 ? (
+        <>
+          <TouchableOpacity
+            onPress={() => navigate.navigate("Profile")}
             style={[
-              Styles.f_20,
-              Styles.mainFont,
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
               Styles.mt10,
-              Styles.text_left,
-              Styles.black_gray_text,
-              { bottom: 3 },
+              Styles.row,
             ]}
           >
-            {LANG.account_text_07}
-          </Text>
-        </View>
-        <View style={[Styles.jc_center, Styles.al_end]}>
-          <MaterialIcons name="arrow-forward-ios" size={15} />
-        </View>
-      </TouchableOpacity>
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_02}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigate.navigate("MemberManage")}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_03}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigate.navigate("Language")}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_04}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigate.navigate("TermOfService")}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_05}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => Linking.openURL(`tel:${"021613000"}`)}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_06}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => setConfirm(true)}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_07}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+        </>
+      ) : (
+        <>
+          <TouchableOpacity
+            onPress={() => navigate.navigate("Language")}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_04}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigate.navigate("TermOfService")}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_05}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => Linking.openURL(`tel:${"021613000"}`)}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_06}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => setConfirm(true)}
+            style={[
+              Styles.boxWithShadow,
+              Styles.w100,
+              Styles.p12,
+              Styles.FFF,
+              Styles.br_5,
+              Styles.mt10,
+              Styles.row,
+            ]}
+          >
+            <View style={[Styles.w90]}>
+              <Text
+                style={[
+                  Styles.f_20,
+                  Styles.mainFont,
+                  Styles.mt10,
+                  Styles.text_left,
+                  Styles.black_gray_text,
+                  { bottom: 3 },
+                ]}
+              >
+                {LANG.account_text_07}
+              </Text>
+            </View>
+            <View style={[Styles.jc_center, Styles.al_end]}>
+              <MaterialIcons name="arrow-forward-ios" size={15} />
+            </View>
+          </TouchableOpacity>
+        </>
+      )}
+
       <Modal
         isVisible={confirm}
         style={Styles.al_center}

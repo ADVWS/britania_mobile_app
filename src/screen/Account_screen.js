@@ -16,50 +16,53 @@ export default function Account() {
   const [userType, setUserType] = useRecoilState(Global.userType);
   const [LANG, setLANG] = useRecoilState(Global.Language);
 
-  console.log(userProfile);
+  // console.log(LANG);
 
-  const [option, setOptions] = React.useState([]);
+  // const [option, setOptions] = React.useState([]);
   React.useEffect(() => {
-    console.log('mode', userType)
-    if (userType === 1) {
-      setOptions([
-        {
-          name: LANG.account_text_02,
-          nav: "Profile",
-        },
-        {
-          name: LANG.account_text_03,
-          nav: "MemberManage",
-        },
-        {
-          name: LANG.account_text_04,
-          nav: "Language",
-        },
-        {
-          name: LANG.account_text_05,
-          nav: "TermOfService",
-        },
-        {
-          name: LANG.account_text_06,
-          nav: "callcen",
-        },
-      ])
-    } else {
-      setOptions([
-        {
-          name: LANG.account_text_04,
-          nav: "Language",
-        },
-        {
-          name: LANG.account_text_05,
-          nav: "TermOfService",
-        },
-        {
-          name: LANG.account_text_06,
-          nav: "callcen",
-        },
-      ])
-    }
+    // setLANG(Global.Language);
+    console.log("mode", userType);
+    // if (userType === 1) {
+    //   setOptions([
+    //     {
+    //       name: LANG.account_text_02,
+    //       nav: "Profile",
+    //     },
+    //     {
+    //       name: LANG.account_text_03,
+    //       nav: "MemberManage",
+    //     },
+    //     {
+    //       name: LANG.account_text_04,
+    //       nav: "Language",
+    //     },
+    //     {
+    //       name: LANG.account_text_05,
+    //       nav: "TermOfService",
+    //     },
+    //     {
+    //       name: LANG.account_text_06,
+    //       nav: "callcen",
+    //     },
+    //   ]);
+    // } else {
+    //   setOptions([
+    //     {
+    //       name: LANG.account_text_04,
+    //       nav: "Language",
+    //     },
+    //     {
+    //       name: LANG.account_text_05,
+    //       nav: "TermOfService",
+    //     },
+    //     {
+    //       name: LANG.account_text_06,
+    //       nav: "callcen",
+    //     },
+    //   ]);
+    // }
+    // console.log("IN Account");
+    // console.log(option);
   }, []);
 
   const setImageProfile = () => {
@@ -90,7 +93,7 @@ export default function Account() {
         <AccountHeader />
         <View style={[{ marginRight: "10%" }]}>
           <View style={[Styles.row]}>
-            {userProfile.me &&
+            {userProfile.me && (
               <>
                 {setImageProfile()}
                 <Text
@@ -105,11 +108,11 @@ export default function Account() {
                   {userProfile.me.name}
                 </Text>
               </>
-            }
+            )}
           </View>
         </View>
         <View style={Styles.mt20}>
-          <NavBtn option={option} />
+          <NavBtn />
         </View>
       </View>
       <Text style={[Styles.mainFont_x, Styles.mb10, Styles.f_24]}>
