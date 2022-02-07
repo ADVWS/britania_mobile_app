@@ -7,6 +7,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 const Newsnotify = (notify) => {
   return (
     <View style={[Styles.mt20, Styles.w100]}>
+      <Text style={[Styles.mainColor_text, Styles.mainFont, Styles.f_22, Styles.text_right]}>อ่านทั้งหมด (0)</Text>
       {notify.notify != undefined
         ? notify.notify.map((item) =>
             item.type == news ? (

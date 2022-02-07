@@ -7,14 +7,27 @@ import { useRecoilState } from "recoil";
 import * as Global from "../../globalState";
 
 import { Styles } from "../../styles";
+import Store from '../../store';
+import Script from '../../script/Notification_script';
+import Key from '../../KEYS.json'
 
 const AccountHeader = ({}) => {
   var screen = "Account";
-  const userType = useRecoilState(Global.userType);
+  const [userType, setUserType] = useRecoilState(Global.userType);
   const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [counter, setCounter] = React.useState('-')
+
+  const setCountNotify = () => {
+      Store.getLocalStorege(Key.TOKEN, (tk) => {
+          const token = tk.detail.token
+          Script.notificationCountUnread(token, (res) => {
+              console.log(res)
+              setCounter(res)
+          })
+      })
+  }
 
   function setNotify() {
-    console.log(userType);
     var action = false;
     var color = "#f1645e";
     if (userType === 1) {
@@ -30,6 +43,9 @@ const AccountHeader = ({}) => {
         onPress={() => navigate.navigate("Notify", { screen })}
       >
         <MaterialIcons name="notifications-none" size={26} color={color} />
+        <View style={{ backgroundColor: "red", borderRadius: 100, height: 25, width: 25, position: 'absolute', top: -12, left: 12, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ color: '#FFF', fontSize: 12 }}>{setCountNotify()}{counter}</Text>
+        </View>
       </TouchableOpacity>
     );
   }

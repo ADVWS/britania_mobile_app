@@ -9,6 +9,7 @@ const Allnotify = (notify) => {
   console.log(notify.notify);
   return (
     <View style={[Styles.mt20, Styles.w100]}>
+      <Text style={[Styles.mainColor_text, Styles.mainFont, Styles.f_22, Styles.text_right]}>อ่านทั้งหมด (0)</Text>
       {notify.notify != undefined
         ? notify.notify.map((item) => (
             <View
@@ -40,7 +41,7 @@ const Allnotify = (notify) => {
                   {item.title}
                 </Text>
                 <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
-                  {item.notificationDate}
+                  {item.description}
                 </Text>
               </View>
             </View>

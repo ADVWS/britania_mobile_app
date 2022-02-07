@@ -26,6 +26,7 @@ function Homecare() {
     const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
     const [listInform, setListInform] = useRecoilState(Global.dataListInform)
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     const [selected, setSelected] = React.useState('INFORM')
     console.log('==>',moment())
     function selectMenu(SELECT) {
@@ -50,7 +51,7 @@ function Homecare() {
                     Styles.w100,
                     Styles.h100
                 ]}>
-                <MainHeader name={'แจ้งซ่อม'} backto={'TabFooter'} />
+                <MainHeader name={LANG.homecare_text_01} backto={'TabFooter'} />
                 <ScrollView>
                     <TouchableOpacity
                         onPress={() => navigate.navigate('Myproject')}
@@ -60,7 +61,7 @@ function Homecare() {
                                 {unitOwner.projectName}
                             </Text>
                             <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, { color: '#8f8f8f' }]}>
-                                บ้านเลขที่ {unitOwner.houseNumber}
+                                {LANG.homecare_text_02} {unitOwner.houseNumber}
                             </Text>
                         </View>
                         <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>

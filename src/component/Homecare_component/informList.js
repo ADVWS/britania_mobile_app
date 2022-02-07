@@ -24,6 +24,7 @@ const InformList = () => {
     const newInform = useSetRecoilState(Global.newInform)
     const caseType = useSetRecoilState(Global.caseType)
     const caseList = useSetRecoilState(Global.caseList)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     React.useEffect(() => {
         setDataInform(listInform)
     })
@@ -58,7 +59,7 @@ const InformList = () => {
                 ]}>
                 <MaterialIcons name="add" size={25} color={"#FFF"} />
                 <Text style={[Styles.white_text, Styles.f_24, Styles.mainFont_x, { marginLeft: '1%' }]}>
-                    เพิ่มรายการแจ้งซ่อม
+                    {LANG.homecare_text_06}
                 </Text>
             </TouchableOpacity>
             <View style={[Styles.w100, { padding: 3 }]}>
@@ -71,7 +72,7 @@ const InformList = () => {
                 ) : (
                     <View style={[Styles.w100, Styles.al_center, Styles.jc_center, { height: 400 }]}>
                         <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{ height: 75, width: 75 }} />
-                        <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10, { color: "#9f9f9f" }]}>ไม่มีรายการแจ้งซ่อม</Text>
+                        <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10, { color: "#9f9f9f" }]}>{LANG.homecare_text_05}</Text>
                     </View>
                 )
                 }

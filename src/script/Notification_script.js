@@ -24,6 +24,16 @@ export const notification = async (cb) => {
   cb(response);
 };
 
+export const notificationCountUnread = async (token, cb) => {
+  const COUNTER = `
+    query {
+      notificationCountUnread
+    }`;
+  const result = await API.request(COUNTER, token);
+  cb(result.notificationCountUnread)
+}
+
 export default {
   notification,
+  notificationCountUnread
 };

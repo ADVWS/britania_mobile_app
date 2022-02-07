@@ -23,6 +23,7 @@ const MyHome = () => {
     const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile)
     const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
     const [typeInform, setTypeInform] = useRecoilState(Global.informType)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     const setCaseType = useSetRecoilState(Global.caseType)
     const setUnitOwner = useSetRecoilState(Global.unitOwner)
 
@@ -88,12 +89,12 @@ const MyHome = () => {
                         <View style={[Styles.w100, Styles.row]}>
                             <View style={[Styles.w50]}>
                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
-                                    ที่ดินขนาด {unitOwner.land ? unitOwner.land : "-"}
+                                    {LANG.myhome_text_01} {unitOwner.land ? unitOwner.land : "-"} {LANG.myhome_text_02}
                                 </Text>
                             </View>
                             <View style={[Styles.w50]}>
                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
-                                    พื้นที่ใช้สอย {unitOwner.usablearea ? unitOwner.usablearea : "-"}
+                                    {LANG.myhome_text_03} {unitOwner.usablearea ? unitOwner.usablearea : "-"} {LANG.myhome_text_04}
                                 </Text>
                             </View>
                         </View>
@@ -103,7 +104,7 @@ const MyHome = () => {
                             </View>
                             <View style={[Styles.w60, Styles.jc_center]}>
                                 <Text style={[Styles.f_24, Styles.mainFont, Styles.mt10, Styles.text_left, Styles.black_gray_text, Styles.ml5, {bottom: 3}]}>
-                                    แจ้งซ่อม
+                                    {LANG.myhome_text_05}
                                 </Text>
                             </View>
                             <View style={[Styles.w20, Styles.jc_center, Styles.al_end]}>

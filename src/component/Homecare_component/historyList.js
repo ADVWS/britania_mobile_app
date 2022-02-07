@@ -20,6 +20,7 @@ const HistoryList = () => {
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
     const [historyDetail, setHistoryDetail] = useRecoilState(Global.dataInformDetail)
     const gobalData = useSetRecoilState(Global.dataInformDetail)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     function viewDetailOrder(data) {
         gobalData(data)
         var paramNav = 'SUCCESS'
@@ -30,7 +31,7 @@ const HistoryList = () => {
 
     return (
         <View style={[Styles.w100, Styles.p15]}>
-            {listHistory.map((item) => (
+            {listHistory.length > 0 ? listHistory.map((item) => (
                 <TouchableOpacity 
                 onPress={()=>viewDetailOrder(item)}
                 style={[
@@ -44,16 +45,16 @@ const HistoryList = () => {
                 ]}>
                     <View style={[Styles.w50]}>
                         <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont_x_db]}>
-                            เลขที่ซ่อม {item.caseNumber}
+                            {LANG.homecare_text_07} {item.caseNumber}
                         </Text>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
-                            จำนวน
+                            {LANG.homecare_text_08}
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
                             {item.details.length}
                         </Text>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
-                            วันที่และเวลาแจ้งซ่อม
+                            {LANG.homecare_text_09}
                         </Text>
                         <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 20 }]}>
                             {moment(item.createdAt).format('DD/MM/YY HH:mm น.')}
@@ -68,14 +69,19 @@ const HistoryList = () => {
                             {' '}
                         </Text>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
-                            วันที่และเวลาที่เข้ารับบริการ
+                            {LANG.homecare_text_10}
                         </Text>
                         <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 20 }]}>
                             {moment(item.createdAt).format('DD/MM/YY')} {item.checkInRangeTime.label}
                         </Text>
                     </View>
                 </TouchableOpacity>
-            ))}
+            )) : (
+                <View style={[Styles.w100, Styles.al_center, Styles.jc_center, { height: 400 }]}>
+                    <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{ height: 75, width: 75 }} />
+                    <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10, { color: "#9f9f9f" }]}>{LANG.homecare_text_05}</Text>
+                </View>
+            )}
         </View>
     );
 }
