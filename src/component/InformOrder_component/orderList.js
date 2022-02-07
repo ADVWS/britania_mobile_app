@@ -12,8 +12,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Key from '../../KEYS.json'
 import Script from "../../script/Satisfaction_script";
 import mainScript from "../../script";
+import { useRecoilState } from "recoil";
+import * as Global from "../../globalState"
 
 const OrderList = ({ data, index, route }) => {
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     console.log('data', data)
     var paramNav = route
 
@@ -51,12 +54,12 @@ const OrderList = ({ data, index, route }) => {
                     Styles.mt10
                 ]}>
                 <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont_x_db]}>
-                    รายการที่ {index}
+                    {LANG.homecare_text_11} {index}
                 </Text>
                 <View style={[Styles.w100, Styles.row, Styles.mt10]}>
                     <View style={[Styles.w50]}>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
-                            ประเภท
+                            {LANG.homecare_text_12}
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
                             {data.category !== null ? mainScript.setTypeInform(data.category.id) : '-'}
@@ -64,21 +67,21 @@ const OrderList = ({ data, index, route }) => {
                     </View>
                     <View style={[Styles.w50, Styles.al_start]}>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
-                            การประเมินความพึงพอใจ
+                            {LANG.homecare_text_13}
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
-                            {data.isRate ? 'ประเมินแล้ว' : 'ยังไม่ประเมิน'}
+                            {data.isRate ?  LANG.homecare_text_20 : LANG.homecare_text_14}
                         </Text>
                     </View>
                 </View>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
-                    รายละเอียด
+                    {LANG.homecare_text_15}
                 </Text>
                 <Text style={[Styles.mainFont, Styles.f_20, { color: "#8f8f8f" }]}>
                     {data.description}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5, Styles.mt10]}>
-                    รูปภาพ
+                    {LANG.homecare_text_16}
                 </Text>
                 <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
                     {data.image ? (
@@ -103,7 +106,7 @@ const OrderList = ({ data, index, route }) => {
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt20, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
-                            เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบ
+                            {LANG.homecare_text_17}
                         </Text>
                     </View>
                     <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
@@ -115,7 +118,7 @@ const OrderList = ({ data, index, route }) => {
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
-                            ตรวจสอบหน้างาน
+                            {LANG.homecare_text_18}
                         </Text>
                     </View>
                     <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
@@ -127,7 +130,7 @@ const OrderList = ({ data, index, route }) => {
                     style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, Styles.mb10, { backgroundColor: '#ffecec' }]}>
                     <View style={[Styles.w80]}>
                         <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
-                            รายการแก้ไข
+                            {LANG.homecare_text_19}
                         </Text>
                     </View>
                     <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
@@ -139,7 +142,7 @@ const OrderList = ({ data, index, route }) => {
                         onPress={() => gotoSatisfaction(data.homecareName)}
                         style={[Styles.w100, Styles.p15, Styles.mainColor, Styles.br_5, Styles.al_center, { marginBottom: 20 }]}>
                         <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.mt5]}>
-                            ประเมินความพึงพอใจ
+                            {LANG.homecare_text_21}
                         </Text>
                     </TouchableOpacity>
                 }

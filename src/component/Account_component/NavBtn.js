@@ -23,55 +23,6 @@ const NavBtn = ({ optiono }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [userType, setUserType] = useRecoilState(Global.userType);
 
-  // const [option, setOptions] = React.useState([]);
-  // if (userType === 1) {
-  //   setOptions([
-  //     {
-  //       name: LANG.account_text_02,
-  //       nav: "Profile",
-  //     },
-  //     {
-  //       name: LANG.account_text_03,
-  //       nav: "MemberManage",
-  //     },
-  //     {
-  //       name: LANG.account_text_04,
-  //       nav: "Language",
-  //     },
-  //     {
-  //       name: LANG.account_text_05,
-  //       nav: "TermOfService",
-  //     },
-  //     {
-  //       name: LANG.account_text_06,
-  //       nav: "callcen",
-  //     },
-  //   ]);
-  // } else {
-  //   setOptions([
-  //     {
-  //       name: LANG.account_text_04,
-  //       nav: "Language",
-  //     },
-  //     {
-  //       name: LANG.account_text_05,
-  //       nav: "TermOfService",
-  //     },
-  //     {
-  //       name: LANG.account_text_06,
-  //       nav: "callcen",
-  //     },
-  //   ]);
-  // }
-
-  // React.useEffect(() => {
-  //   // setLANG(Global.Language);
-  //   console.log("mode", userType);
-
-  //   console.log("IN Account");
-  //   console.log(option);
-  // }, []);
-
   const logout = (req) => {
     if (req === "CANCEL") {
       setConfirm(false);
