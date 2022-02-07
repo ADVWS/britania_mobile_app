@@ -10,24 +10,42 @@ import * as Global from "../../globalState";
 import * as navigate from "../../navigator/RootNavigation";
 import OTP_btn from "../OccupantDetail_component/OTP_btn";
 
-export default function OccupantBtn({item}) {
+export default function OccupantBtn({ item }) {
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
-  const [dataListOccupant, setDataListOccupant] = React.useState(unitMember.unitMember.tenant);
+  const [dataListOccupant, setDataListOccupant] = React.useState(
+    unitMember.unitMember.tenant
+  );
   const params = item;
   function gotoOccupantDetail(member) {
     navigate.navigate("OccupantDetail", member);
   }
 
   const setImage = (img) => {
-    if(img){
-      return (<Image source={{ uri: img }} style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]} />)
+    if (img) {
+      return (
+        <Image
+          source={{ uri: img }}
+          style={[
+            { width: 100, height: 100, resizeMode: "cover" },
+            Styles.circle,
+          ]}
+        />
+      );
     } else {
-      return (<Image source={require('../../../assets/image/Britania-connect-assets/default-img-circle.png')} 
-                  style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]}/>)
+      return (
+        <Image
+          source={require("../../../assets/image/Britania-connect-assets/default-img-circle.png")}
+          style={[
+            { width: 100, height: 100, resizeMode: "cover" },
+            Styles.circle,
+          ]}
+        />
+      );
     }
-  }
+  };
 
-  console.log('DEV', unitMember.unitMember.tenant)
+  console.log("DEV", unitMember.unitMember.tenant);
 
   return (
     <View>
@@ -48,8 +66,15 @@ export default function OccupantBtn({item}) {
           <View style={[Styles.row]}>
             <View style={[Styles.w40]}>
               {setImage(item.image)}
-              <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5, Styles.mt10]}>
-                เบอร์โทรศัพท์
+              <Text
+                style={[
+                  Styles.f_22,
+                  Styles.mainFont_x,
+                  Styles.spacing5,
+                  Styles.mt10,
+                ]}
+              >
+                {LANG.membermanageindivi_text_07}
               </Text>
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
@@ -57,7 +82,7 @@ export default function OccupantBtn({item}) {
                 {item.mobileNo}
               </Text>
               <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                สิทธิ์หมดอายุ
+                {LANG.membermanageindivi_text_10}
               </Text>
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
@@ -87,7 +112,7 @@ export default function OccupantBtn({item}) {
                           },
                         ]}
                       >
-                        ยังไม่เปิดการใช้งาน
+                        {LANG.membermanageindivi_text_05}
                       </Text>
                     </View>
                   </View>
@@ -113,7 +138,7 @@ export default function OccupantBtn({item}) {
                             },
                           ]}
                         >
-                          เปิดการใช้งานแล้ว
+                          {LANG.membermanageindivi_text_11}
                         </Text>
                       </View>
                     </View>
@@ -136,9 +161,9 @@ export default function OccupantBtn({item}) {
                   </View>
                 </View>
               </View>
-              <View style={[Styles.w100, {marginTop: 7}]}>
+              <View style={[Styles.w100, { marginTop: 7 }]}>
                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                  ชื่อ-นามสกุล
+                  {LANG.membermanageindivi_text_06}
                 </Text>
                 <Text
                   style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
@@ -146,7 +171,7 @@ export default function OccupantBtn({item}) {
                   {item.name}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                  อีเมล
+                  {LANG.membermanageindivi_text_08}
                 </Text>
                 <Text
                   style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
@@ -156,11 +181,9 @@ export default function OccupantBtn({item}) {
               </View>
             </View>
           </View>
-          {item.memberStatus !== "active" ? (
-            <OTP_btn member={item}/>
-          ) : null}
+          {item.memberStatus !== "active" ? <OTP_btn member={item} /> : null}
         </TouchableOpacity>
       ))}
     </View>
   );
-};
+}

@@ -3,14 +3,17 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as navigate from "../../navigator/RootNavigation";
+import { useRecoilState } from "recoil";
+import * as Global from "../../globalState";
 
 import { Styles } from "../../styles";
 import OccupantBtn from "./occupant_btn";
 
 const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
-export default function OccupantList({occupant, item}) {
-  console.log('occupant list===>', item)
+export default function OccupantList({ occupant, item }) {
+  console.log("occupant list===>", item);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   return (
     <View style={[Styles.w100, Styles.p15]}>
       <TouchableOpacity
@@ -35,7 +38,7 @@ export default function OccupantList({occupant, item}) {
             { marginLeft: "1%" },
           ]}
         >
-          เพิ่มผู้เช่า
+          {LANG.membermanageindivi_text_12}
         </Text>
       </TouchableOpacity>
       {occupant.length > 0 ? (
@@ -48,8 +51,15 @@ export default function OccupantList({occupant, item}) {
             source={image}
             style={{ width: 80, height: 80, resizeMode: "cover" }}
           />
-          <Text style={[Styles.gray_text, Styles.mainFont, Styles.f_24, Styles.mt10]}>
-            ไม่มีผู้อาศัยร่วม
+          <Text
+            style={[
+              Styles.gray_text,
+              Styles.mainFont,
+              Styles.f_24,
+              Styles.mt10,
+            ]}
+          >
+            {LANG.membermanageindivi_text_04}
           </Text>
         </View>
       )}

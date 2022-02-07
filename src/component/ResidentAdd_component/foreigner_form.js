@@ -8,13 +8,14 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
 import mainScript from "../../script";
 import Script from "../../script/ResidentAdd_script";
-import KEYS from "../../KEYS.json"
+import KEYS from "../../KEYS.json";
 
-export default function foreigner_form({unit}) {
-  const [name, setName] = React.useState('')
-  const [passport, setPassport] = React.useState('')
-  const [mobileNo, setMobileNo] = React.useState('')
-  const [email, setEmail] = React.useState('')
+export default function foreigner_form({ unit }) {
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [name, setName] = React.useState("");
+  const [passport, setPassport] = React.useState("");
+  const [mobileNo, setMobileNo] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
   const addData = () => {
@@ -27,19 +28,19 @@ export default function foreigner_form({unit}) {
       idcard: null,
       mobileNo: mobileNo,
       email: email,
-    }
+    };
     Script.memberAddProflie_foreign(add, KEYS.TOKEN, unit.id, (res) => {
-      if (typeof res === 'object') {
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res.unitUpdate
-        var otp = res.otp
-        otp.mobileNo = mobileNo
-        otp.name = name
-        otp.unitId = unit.unitId
-        setUnitMember(data)
-        navigate.navigate("ResidentAddOTP", otp)
+      if (typeof res === "object") {
+        var data = mainScript.recoilTranform(unitMember);
+        data.unitMember = res.unitUpdate;
+        var otp = res.otp;
+        otp.mobileNo = mobileNo;
+        otp.name = name;
+        otp.unitId = unit.unitId;
+        setUnitMember(data);
+        navigate.navigate("ResidentAddOTP", otp);
       }
-    })
+    });
   };
 
   return (
@@ -53,7 +54,7 @@ export default function foreigner_form({unit}) {
           Styles.black_gray_text,
         ]}
       >
-        ชื่อ-นามสกุล
+        {LANG.residentadd_text_05}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -65,7 +66,7 @@ export default function foreigner_form({unit}) {
             Styles.mainFont_x,
           ]}
           onChangeText={(val) => {
-            setName(val)
+            setName(val);
           }}
         />
       </View>
@@ -78,7 +79,7 @@ export default function foreigner_form({unit}) {
           Styles.black_gray_text,
         ]}
       >
-        หมายเลขหนังสือเดินทาง
+        {LANG.residentadd_text_11}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -90,7 +91,7 @@ export default function foreigner_form({unit}) {
             Styles.mainFont_x,
           ]}
           onChangeText={(val) => {
-            setPassport(val)
+            setPassport(val);
           }}
         />
       </View>
@@ -103,7 +104,7 @@ export default function foreigner_form({unit}) {
           Styles.black_gray_text,
         ]}
       >
-        เบอร์โทรศัพท์
+        {LANG.residentadd_text_07}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -115,7 +116,7 @@ export default function foreigner_form({unit}) {
             Styles.mainFont_x,
           ]}
           onChangeText={(val) => {
-            setMobileNo(val)
+            setMobileNo(val);
           }}
         />
       </View>
@@ -126,8 +127,9 @@ export default function foreigner_form({unit}) {
           Styles.mainFont,
           Styles.f_22,
           Styles.black_gray_text,
-        ]}>
-        อีเมล
+        ]}
+      >
+        {LANG.residentadd_text_08}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -139,7 +141,7 @@ export default function foreigner_form({unit}) {
             Styles.mainFont_x,
           ]}
           onChangeText={(val) => {
-            setEmail(val)
+            setEmail(val);
           }}
         />
       </View>
@@ -156,7 +158,7 @@ export default function foreigner_form({unit}) {
               { marginLeft: "1%" },
             ]}
           >
-            บันทึก
+            {LANG.residentadd_text_09}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -182,7 +184,7 @@ export default function foreigner_form({unit}) {
               { marginLeft: "1%" },
             ]}
           >
-            ยกเลิก
+            {LANG.residentadd_text_10}
           </Text>
         </TouchableOpacity>
       </View>

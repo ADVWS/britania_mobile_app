@@ -4,13 +4,16 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as navigate from "../../navigator/RootNavigation";
 
+import { useRecoilState } from "recoil";
+import * as Global from "../../globalState";
 import { Styles } from "../../styles";
 import ResidentBtn from "./resident_btn";
 
 const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
-export default function ResidentList({resident, item}) {
-  console.log('===>', resident)
+export default function ResidentList({ resident, item }) {
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+  console.log("===>", resident);
   return (
     <View style={[Styles.w100, Styles.p15]}>
       <TouchableOpacity
@@ -35,7 +38,7 @@ export default function ResidentList({resident, item}) {
             { marginLeft: "1%" },
           ]}
         >
-          เพิ่มผู้อาศัยร่วม
+          {LANG.membermanageindivi_text_03}
         </Text>
       </TouchableOpacity>
       {resident.length > 0 ? (
@@ -48,8 +51,15 @@ export default function ResidentList({resident, item}) {
             source={image}
             style={{ width: 80, height: 80, resizeMode: "cover" }}
           />
-          <Text style={[Styles.gray_text, Styles.mainFont, Styles.f_24, Styles.mt10]}>
-            ไม่มีผู้อาศัยร่วม
+          <Text
+            style={[
+              Styles.gray_text,
+              Styles.mainFont,
+              Styles.f_24,
+              Styles.mt10,
+            ]}
+          >
+            {LANG.membermanageindivi_text_04}
           </Text>
         </View>
       )}

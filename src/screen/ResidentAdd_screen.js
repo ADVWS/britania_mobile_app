@@ -13,8 +13,9 @@ import ForeignForm from "../component/ResidentAdd_component/foreigner_form";
 import * as Global from "../globalState";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-export default function ResidentAdd({route}) {
-  const [unit, setUnit] = React.useState(route.params)
+export default function ResidentAdd({ route }) {
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [unit, setUnit] = React.useState(route.params);
   const [picture, setPicture] = React.useState([
     {
       image: require("../../assets/image/Britania-connect-assets/default-img-circle.png"),
@@ -29,7 +30,10 @@ export default function ResidentAdd({route}) {
 
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={"เพิ่มผู้อาศัยร่วม"} backto={"MemberManageIndivi"} />
+      <MainHeader
+        name={LANG.residentadd_text_01}
+        backto={"MemberManageIndivi"}
+      />
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
@@ -40,12 +44,12 @@ export default function ResidentAdd({route}) {
         </View>
         <View style={Styles.ml5}>
           <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>
-            ผู้อาศัยร่วม
+            {LANG.residentadd_text_02}
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
-        {type === "thai" && <ThaiForm unit={unit}/>}
-        {type === "foreign" && <ForeignForm unit={unit}/>}
+        {type === "thai" && <ThaiForm unit={unit} />}
+        {type === "foreign" && <ForeignForm unit={unit} />}
       </ScrollView>
     </View>
   );

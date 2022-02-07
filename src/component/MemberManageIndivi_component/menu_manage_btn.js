@@ -1,78 +1,73 @@
 import * as React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 
+import { useRecoilState } from "recoil";
+import * as Global from "../../globalState";
 import { Styles } from "../../styles";
 
 //transparent f1645e
-export default class MenuManageBtn extends React.Component {
-  state = {
-    selectResident: "#ffcfcf",
-    selectOccupant: "transparent",
-  };
+export default function MenuManageBtn(props) {
+  const [LANG, setLANG] = useRecoilState(Global.Language);
 
-  onSelectMenu = (SELECT) => {
+  const [selectResident, setSelectResident] = React.useState("#ffcfcf");
+  const [selectOccupant, setSelectOccupant] = React.useState("transparent");
+
+  const onSelectMenu = (SELECT) => {
     if (SELECT === "RESIDENT") {
-      this.setState({
-        selectResident: "#ffcfcf",
-        selectOccupant: "transparent",
-      });
+      setSelectResident("#ffcfcf");
+      setSelectOccupant("transparent");
     } else if (SELECT === "OCCUPANT") {
-      this.setState({
-        selectResident: "transparent",
-        selectOccupant: "#ffcfcf",
-      });
+      setSelectResident("transparent");
+      setSelectOccupant("#ffcfcf");
     }
-    const { selectMenu } = this.props;
-    this.selectMenu = selectMenu;
-    this.selectMenu(SELECT);
+    const { selectMenu } = props;
+    selectMenu(SELECT);
   };
 
-  render() {
-    return (
-      <View
+  return (
+    <View
+      style={[
+        Styles.w100,
+        Styles.p15,
+        Styles.row,
+        { backgroundColor: "#ffecec" },
+      ]}
+    >
+      <TouchableOpacity
+        onPress={() => onSelectMenu("RESIDENT")}
         style={[
-          Styles.w100,
-          Styles.p15,
-          Styles.row,
-          { backgroundColor: "#ffecec" },
+          Styles.w35,
+          Styles.p10,
+          Styles.circle,
+          Styles.al_center,
+          { backgroundColor: selectResident },
         ]}
       >
-        <TouchableOpacity
-          onPress={() => this.onSelectMenu("RESIDENT")}
+        <Text style={[Styles.mainColor_text, Styles.f_24, Styles.mainFont_x]}>
+          {LANG.membermanageindivi_text_01}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => onSelectMenu("OCCUPANT")}
+        style={[
+          Styles.w30,
+          Styles.p10,
+          Styles.circle,
+          Styles.al_center,
+          { backgroundColor: selectOccupant },
+        ]}
+      >
+        <Text
           style={[
-            Styles.w35,
-            Styles.p10,
-            Styles.circle,
-            Styles.al_center,
-            { backgroundColor: this.state.selectResident },
+            Styles.mainColor_text,
+            Styles.f_24,
+            Styles.mainFont_x,
+            Styles.text_center,
           ]}
         >
-          <Text style={[Styles.mainColor_text, Styles.f_24, Styles.mainFont_x]}>
-            ผู้อาศัยร่วม
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => this.onSelectMenu("OCCUPANT")}
-          style={[
-            Styles.w30,
-            Styles.p10,
-            Styles.circle,
-            Styles.al_center,
-            { backgroundColor: this.state.selectOccupant },
-          ]}
-        >
-          <Text
-            style={[
-              Styles.mainColor_text,
-              Styles.f_24,
-              Styles.mainFont_x,
-              Styles.text_center,
-            ]}
-          >
-            ผู้เช่า
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+          {LANG.membermanageindivi_text_02}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
