@@ -17,6 +17,8 @@ import MainHeader from "../component/mainHeader";
 
 const RepiairList = ({ route }) => {
     const [homecareName, setHomecareName] = React.useState(route.params.mechanic)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
+
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View
@@ -25,22 +27,23 @@ const RepiairList = ({ route }) => {
                     Styles.w100,
                     Styles.h100,
                 ]}>
-                <MainHeader name={'ตรวจสอบหน้างาน'} backto={'InformOrder'} param={route.params.paramNav} />
+                <MainHeader name={LANG.homecare_text_18} backto={'InformOrder'} param={route.params.paramNav} />
                 <ScrollView style={[Styles.w100]}>
                     {homecareName !== null ? (
                         <>
                             <View style={[Styles.w100, Styles.p15, Styles.FFF]}>
                                 <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text, Styles.mb10]}>
-                                    เจ้าหน้าที่ Homecare ที่เข้าซ่อม
+                                    {LANG.homecare_text_18}
                                 </Text>
                                 <View style={[Styles.w100, Styles.row]}>
                                     <View style={[Styles.w35, Styles.jc_center]}>
                                         {/* <Image source={{ uri: item.image }} style={[Styles.circle, { height: 110, width: 110 }]} /> */}
-                                        <Image source={require('../../assets/image/staff.png')} style={[Styles.circle, { height: 100, width: 100 }]} />
+                                        {homecareName.image ? (<Image source={{ uri: homecareName.image }} style={[Styles.circle, { height: 100, width: 100 }]} />) : 
+                                        (<Image source={require('../../assets/image/Britania-connect-assets/default-img-circle.png')} style={[Styles.circle, { height: 100, width: 100 }]} />)}
                                     </View>
                                     <View style={[Styles.w80]}>
                                         <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5]}>
-                                            ชื่อ-นามสกุล
+                                            {LANG.homecare_text_26}
                                         </Text>
                                         <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                                             {homecareName.firstnameThai} {homecareName.lastnameThai}
@@ -48,7 +51,7 @@ const RepiairList = ({ route }) => {
                                         <View style={[Styles.w100, Styles.row, Styles.mt5]}>
                                             <View style={[Styles.w45]}>
                                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5]}>
-                                                    เบอร์โทรศัพท์
+                                                    {LANG.homecare_text_23}
                                                 </Text>
                                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                                                     {homecareName.workPhone}
@@ -56,7 +59,7 @@ const RepiairList = ({ route }) => {
                                             </View>
                                             <View style={[Styles.w50]}>
                                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5]}>
-                                                    LineID
+                                                    {LANG.homecare_text_24}
                                                 </Text>
                                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                                                     {homecareName.lineId}
@@ -81,16 +84,16 @@ const RepiairList = ({ route }) => {
                                         </View>
                                     </View>
                                     <Text style={[Styles.mainFont, Styles.mt15, { fontSize: 22 }]}>
-                                        วันที่และเวลาเข้าซ่อม
+                                        {LANG.homecare_text_38}
                                     </Text>
                                     <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 22 }]}>
                                         13/06/62 10.00-11.00 น.
                                     </Text>
                                     <Text style={[Styles.mainFont, Styles.mt10, { fontSize: 22 }]}>
-                                        ขั้นตอนการทำงาน
+                                        {LANG.homecare_text_34}
                                     </Text>
                                     <Text style={[Styles.mainFont, Styles.mt5, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        1. Before
+                                        {LANG.homecare_text_35}
                                     </Text>
                                     <ScrollView style={[Styles.w100, Styles.mt10]} horizontal={true}>
                                         {/* {data.image.map((item) => ( */}
@@ -101,7 +104,7 @@ const RepiairList = ({ route }) => {
                                         {/* ))} */}
                                     </ScrollView>
                                     <Text style={[Styles.mainFont, Styles.mt15, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        2. Protection
+                                        {LANG.homecare_text_36}
                                     </Text>
                                     <ScrollView style={[Styles.w100, Styles.mt10]} horizontal={true}>
                                         {/* {data.image.map((item) => ( */}
@@ -112,7 +115,7 @@ const RepiairList = ({ route }) => {
                                         {/* ))} */}
                                     </ScrollView>
                                     <Text style={[Styles.mainFont, Styles.mt15, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        3. Doing
+                                        {LANG.homecare_text_37}
                                     </Text>
                                     <ScrollView style={[Styles.w100, Styles.mt10, Styles.mb20]} horizontal={true}>
                                         {/* {data.image.map((item) => ( */}
@@ -127,7 +130,7 @@ const RepiairList = ({ route }) => {
                         </>) : (<View style={[Styles.w100, Styles.p15, Styles.al_center, Styles.jc_center, { marginTop: '30%' }]}>
                             <Image source={require('../../assets/image/Britania-connect-assets/employee.png')} style={{ height: 140, width: 140, tintColor: '#9f9f9f' }} />
                             <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: '#9f9f9f' }]}>
-                                ไม่พบรายการแก้ไข
+                                {LANG.homecare_text_39}
                             </Text>
                         </View>)
                     }
