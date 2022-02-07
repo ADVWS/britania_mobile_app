@@ -18,12 +18,12 @@ import MenuBtn from "../component/MemberManageIndivi_component/menu_manage_btn";
 import * as Global from "../globalState";
 
 export default function MemberManageIndivi_screen() {
-
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const gobalData = useSetRecoilState(Global.callbackAccount);
-  const [unitMember, setUnitMember] = useRecoilState(Global.unitMember)
-  const resident = unitMember.unitMember.resident
-  const occupant = unitMember.unitMember.tenant
-  console.log('unitMember==xx>', unitMember)
+  const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
+  const resident = unitMember.unitMember.resident;
+  const occupant = unitMember.unitMember.tenant;
+  console.log("unitMember==xx>", unitMember);
   //gobalData(item);
   const scrollref = React.createRef();
 
@@ -49,24 +49,38 @@ export default function MemberManageIndivi_screen() {
   const setImage = (image) => {
     if (image) {
       return (
-        <View style={[Styles.boxWithShadow, Styles.w100, Styles.mb20, { height: 200 }]}>
+        <View
+          style={[
+            Styles.boxWithShadow,
+            Styles.w100,
+            Styles.mb20,
+            { height: 200 },
+          ]}
+        >
           <Image
             source={{ uri: image }}
             style={[Styles.h100, Styles.w100, Styles.br_5]}
           />
         </View>
-      )
+      );
     } else {
       return (
-        <View style={[Styles.boxWithShadow, Styles.w100, Styles.mb20, { height: 200 }]}>
+        <View
+          style={[
+            Styles.boxWithShadow,
+            Styles.w100,
+            Styles.mb20,
+            { height: 200 },
+          ]}
+        >
           <Image
             source={require("../../assets/image/image_not_found.png")}
-            style={[Styles.h100, Styles.w100, Styles.br_5, {opacity: 0.3}]}
+            style={[Styles.h100, Styles.w100, Styles.br_5, { opacity: 0.3 }]}
           />
         </View>
-      )
+      );
     }
-  }
+  };
 
   return (
     <View style={[Styles.flex, Styles.al_center]}>

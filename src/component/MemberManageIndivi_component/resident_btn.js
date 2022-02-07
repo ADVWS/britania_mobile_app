@@ -8,22 +8,38 @@ import * as navigate from "../../navigator/RootNavigation";
 import OTP_btn from "../../component/ResidentDetail_component/OTP_btn";
 import * as Global from "../../globalState";
 
-const ResidentBtn = ({item}) => {
-  console.log("INBOUND", item)
+const ResidentBtn = ({ item }) => {
+  console.log("INBOUND", item);
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
   const params = item;
+  const [LANG, setLANG] = useRecoilState(Global.Language);
 
   function gotoResidentDetail(member) {
     navigate.navigate("ResidentDetail", member);
   }
   const setImage = (img) => {
-    if(img){
-      return (<Image source={{ uri: img }} style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]} />)
+    if (img) {
+      return (
+        <Image
+          source={{ uri: img }}
+          style={[
+            { width: 100, height: 100, resizeMode: "cover" },
+            Styles.circle,
+          ]}
+        />
+      );
     } else {
-      return (<Image source={require('../../../assets/image/Britania-connect-assets/default-img-circle.png')} 
-                  style={[{ width: 100, height: 100, resizeMode: "cover" }, Styles.circle]}/>)
+      return (
+        <Image
+          source={require("../../../assets/image/Britania-connect-assets/default-img-circle.png")}
+          style={[
+            { width: 100, height: 100, resizeMode: "cover" },
+            Styles.circle,
+          ]}
+        />
+      );
     }
-  }
+  };
 
   return (
     <View>
@@ -50,8 +66,9 @@ const ResidentBtn = ({item}) => {
                   Styles.mainFont_x,
                   Styles.spacing5,
                   Styles.mt10,
-                ]}>
-                เบอร์โทรศัพท์
+                ]}
+              >
+                {LANG.membermanageindivi_text_07}
               </Text>
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
@@ -77,7 +94,7 @@ const ResidentBtn = ({item}) => {
                           { color: "#f4910d", marginLeft: 10, marginRight: 10 },
                         ]}
                       >
-                        ยังไม่เปิดการใช้งาน
+                        {LANG.membermanageindivi_text_05}
                       </Text>
                     </View>
                   </View>
@@ -103,7 +120,7 @@ const ResidentBtn = ({item}) => {
                             },
                           ]}
                         >
-                          เปิดการใช้งานแล้ว
+                          {LANG.membermanageindivi_text_11}
                         </Text>
                       </View>
                     </View>
@@ -129,7 +146,7 @@ const ResidentBtn = ({item}) => {
 
               <View style={[Styles.w100, Styles.mt10]}>
                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                  ชื่อ-นามสกุล
+                  {LANG.membermanageindivi_text_06}
                 </Text>
                 <Text
                   style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
@@ -137,7 +154,7 @@ const ResidentBtn = ({item}) => {
                   {item.name}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                  อีเมล
+                  {LANG.membermanageindivi_text_08}
                 </Text>
                 <Text
                   style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
@@ -147,9 +164,7 @@ const ResidentBtn = ({item}) => {
               </View>
             </View>
           </View>
-          {item.memberStatus !== "active" ? (
-            <OTP_btn member={item}/>
-          ) : null}
+          {item.memberStatus !== "active" ? <OTP_btn member={item} /> : null}
         </TouchableOpacity>
       ))}
     </View>

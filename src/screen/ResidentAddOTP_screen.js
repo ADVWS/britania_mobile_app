@@ -16,11 +16,12 @@ import * as navigate from "../navigator/RootNavigation";
 import * as Global from "../globalState";
 import mainScript from "../script";
 import Script from "../script/OccupantAddOTP_script";
-import KEYS from "../KEYS.json"
+import KEYS from "../KEYS.json";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function ResidentAddOTP({ route }) {
-  console.log(route.params)
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+  console.log(route.params);
   const [OTPdata, setOTPdata] = React.useState(route.params);
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
@@ -38,21 +39,30 @@ export default function ResidentAddOTP({ route }) {
   const setUnitMember = useSetRecoilState(Global.unitMember);
 
   const sendOTP = () => {
-    var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
+    var otp =
+      String(unit1) +
+      String(unit2) +
+      String(unit3) +
+      String(unit4) +
+      String(unit5) +
+      String(unit6);
     Script.memberConfirmOtp(otp, OTPdata, KEYS.TOKEN, (res) => {
-      console.log(res)
-      if(typeof res === 'object'){
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res
-        setUnitMember(data)
-        navigate.navigate("MemberManageIndivi")
+      console.log(res);
+      if (typeof res === "object") {
+        var data = mainScript.recoilTranform(unitMember);
+        data.unitMember = res;
+        setUnitMember(data);
+        navigate.navigate("MemberManageIndivi");
       }
-    })
-  }
+    });
+  };
   return (
     <>
       <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-        <MainHeader name={"เพิ่มผู้อาศัยร่วม"} backto={"MemberManageIndivi"} />
+        <MainHeader
+          name={LANG.residentaddotp_text_01}
+          backto={"MemberManageIndivi"}
+        />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p30]}>
             <View
@@ -74,12 +84,14 @@ export default function ResidentAddOTP({ route }) {
                 Styles.mt20,
               ]}
             >
-              กรุณากรอกรหัส OTP ที่ส่งไปยังคุณ {OTPdata.name}
+              {LANG.residentaddotp_text_02} {OTPdata.name}
             </Text>
             <Text
               style={[Styles.f_22, Styles.mainFont_x, Styles.black_gray_text]}
             >
-              หมายเลข {mainScript.formatPhoneNumber(OTPdata.mobileNo)} เพื่อเปิดสิทธิ์การใช้งาน
+              {LANG.residentaddotp_text_031}{" "}
+              {mainScript.formatPhoneNumber(OTPdata.mobileNo)}{" "}
+              {LANG.residentaddotp_text_032}
             </Text>
             <View style={[Styles.w100, Styles.al_start]}>
               <Text
@@ -90,7 +102,7 @@ export default function ResidentAddOTP({ route }) {
                   Styles.mt30,
                 ]}
               >
-                รหัส OTP 6 หลัก
+                {LANG.residentaddotp_text_04}
               </Text>
               <View style={[Styles.row, Styles.w100, Styles.mt10]}>
                 <TextInput
@@ -219,7 +231,7 @@ export default function ResidentAddOTP({ route }) {
                     Styles.black_gray_text,
                   ]}
                 >
-                  ยังไม่ได้รับรหัส OTP{" "}
+                  {LANG.residentaddotp_text_05}{" "}
                   <Text
                     style={[
                       Styles.mainColor_text,
@@ -227,8 +239,12 @@ export default function ResidentAddOTP({ route }) {
                       { textDecorationLine: "underline" },
                     ]}
                   >
-                    <Ionicons name="md-refresh-sharp" size={20} color="#f1645e" />
-                    ส่งอีกครั้ง
+                    <Ionicons
+                      name="md-refresh-sharp"
+                      size={20}
+                      color="#f1645e"
+                    />
+                    {LANG.residentaddotp_text_06}
                   </Text>
                 </Text>
               </View>
@@ -243,9 +259,7 @@ export default function ResidentAddOTP({ route }) {
                 Styles.br_5,
                 Styles.boxWithShadow,
               ]}
-              onPress={() =>
-                sendOTP()
-              }
+              onPress={() => sendOTP()}
             >
               <Text
                 style={[
@@ -255,7 +269,7 @@ export default function ResidentAddOTP({ route }) {
                   Styles.text_center,
                 ]}
               >
-                ยืนยัน
+                {LANG.residentaddotp_text_07}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -268,9 +282,7 @@ export default function ResidentAddOTP({ route }) {
                 Styles.border_btn,
                 Styles.p15,
               ]}
-              onPress={() =>
-                navigate.navigate("MemberManageIndivi")
-              }
+              onPress={() => navigate.navigate("MemberManageIndivi")}
             >
               <Text
                 style={[
@@ -281,7 +293,7 @@ export default function ResidentAddOTP({ route }) {
                   Styles.al_center,
                 ]}
               >
-                ข้าม
+                {LANG.residentaddotp_text_08}
               </Text>
             </TouchableOpacity>
           </View>
