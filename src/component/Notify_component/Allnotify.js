@@ -5,8 +5,6 @@ import { Styles } from "../../styles";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
 const Allnotify = (notify) => {
-  console.log("Responded==>");
-  console.log(notify.notify);
   return (
     <View style={[Styles.mt20, Styles.w100]}>
       <Text style={[Styles.mainColor_text, Styles.mainFont, Styles.f_22, Styles.text_right]}>อ่านทั้งหมด (0)</Text>

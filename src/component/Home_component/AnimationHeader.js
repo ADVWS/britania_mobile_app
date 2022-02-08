@@ -34,7 +34,6 @@ const AnimatedHeader = ({ animatedValue }) => {
         Store.getLocalStorege(Key.TOKEN,(tk)=>{
             const token = tk.detail.token
             Script.notificationCountUnread(token, (res)=>{
-                console.log(res)
                 setCounter(res)
             })
         })
@@ -45,7 +44,7 @@ const AnimatedHeader = ({ animatedValue }) => {
             return (
                 <TouchableOpacity disabled={true} onPress={() => navigate.navigate("Notify", { screen })}>
                     <Animated.Text style={{ color: "#000" }}>
-                        <MaterialIcons name="notifications-none" size={26} />
+                        <MaterialIcons name="notifications-none" size={30} />
                     </Animated.Text>
                 </TouchableOpacity>)
         } else {

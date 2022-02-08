@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   ImageBackground
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import {useNavigation} from '@react-navigation/native';
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import * as navigate from "../navigator/RootNavigation";
@@ -43,6 +43,7 @@ export default function InputOTP({ route }) {
   const [alert, setAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const navigation = useNavigation();
 
   function _login() {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
@@ -77,7 +78,13 @@ export default function InputOTP({ route }) {
         var data = JSON.stringify(res)
         Store.setLocalStorege(Key.PROFILE, data, (_res) => {
           setTimeout(() => {
-            navigate.navigate("TabFooter")
+            setTimeout(() => {
+              navigation.reset(({
+                index: 0,
+                routes: [{ name: 'TabFooter' }],
+              }))
+              //navigate.navigate('TabFooter')
+            }, 200);
           }, 500);
         })
       } else {

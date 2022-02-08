@@ -22,6 +22,7 @@ import Vote from "../component/Satisfaction_component/vote";
 const Satisfaction = ({ route }) => {
     console.log(route.params.mechanic)
     const [question, setQuestion] = React.useState(route.params.QUES)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     const [rate, setRate] = React.useState({})
     const sendRate = (rate) => {
         console.log('RATE', rate)
@@ -45,7 +46,7 @@ const Satisfaction = ({ route }) => {
                     Styles.w100,
                     Styles.h100,
                 ]}>
-                <MainHeader name={'ประเมินความพึงพอใจ'} backto={'InformOrder'} param={route.params.paramNav} />
+                <MainHeader name={LANG.satisfaction_text_01} backto={'InformOrder'} param={route.params.paramNav} />
                 <ScrollView style={[Styles.w100, Styles.FFF]}>
                     <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
                         {/* <Image source={{ uri: item.image }} style={[Styles.circle, { height: 110, width: 110 }]} /> */}
@@ -55,17 +56,17 @@ const Satisfaction = ({ route }) => {
                                 {route.params.mechanic ? route.params.mechanic.firstnameThai + ' ' + route.params.mechanic.lastnameThai : '-'}
                             </Text>
                             <Text style={[Styles.f_24, Styles.mainFont, { color: "#8f8f8f" }]}>
-                                เจ้าหน้าที่ Homecare ที่เข้าซ่อม
+                                {LANG.satisfaction_text_02}
                             </Text>
                         </View>
                         <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt10]}>
-                            1 = พึงพอใจน้อยที่สุด     5 = พึงพอใจมากที่สุด
+                            {LANG.satisfaction_text_03}     {LANG.satisfaction_text_04}
                         </Text>
                     </View>
                     <Vote question={question} sendRate={sendRate}/>
                     <View style={[Styles.w100, Styles.p15]}>
                         <Text style={[Styles.f_22, Styles.mainFont_x]}>
-                            ชมเชย/เสนอแนะ
+                            {LANG.satisfaction_text_05}
                         </Text>
                         <TextInput style={[Styles.w100, Styles.p15, Styles.br_5, { borderWidth: 0.5, borderColor: "#DDD" }]} />
                         {route.params.mechanic ?
@@ -73,7 +74,7 @@ const Satisfaction = ({ route }) => {
                                 onPress={() => navigate.navigate('Homecare')}
                                 style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor]}>
                                 <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
-                                    ยืนยัน
+                                    {LANG.occupantadd_text_09}
                                 </Text>
                             </TouchableOpacity>) :
                             (<TouchableOpacity
@@ -81,7 +82,7 @@ const Satisfaction = ({ route }) => {
                                 onPress={() => navigate.navigate('Homecare')}
                                 style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.DDD]}>
                                 <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
-                                    ยืนยัน
+                                    {LANG.occupantadd_text_09}
                                 </Text>
                             </TouchableOpacity>)
                         }

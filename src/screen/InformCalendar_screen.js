@@ -114,7 +114,8 @@ const InformCalendar = ({ route }) => {
                     })
                     setListInform(inform)
                     setlistHistory(history)
-                    navigate.navigate('Homecare')
+                    setConfirmBox(true)
+                    //navigate.navigate('Homecare')
                 }
             })
         }

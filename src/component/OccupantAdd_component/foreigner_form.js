@@ -1,6 +1,10 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput, Button } from "react-native";
 import DatePicker from "react-native-datepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import Modal from 'react-native-modal'
+
 
 import { Styles } from "../../styles";
 import * as Global from "../../globalState";
@@ -12,8 +16,9 @@ import Script from "../../script/OccupantAdd_script";
 import KEYS from "../../KEYS.json"
 
 
-export default function foreigner_form({unit}) {
+export default function foreigner_form({ unit }) {
   console.log('user', unit)
+  const [chosenDate, setChosenDate] = React.useState(new Date());
   const [rawDate, setRawDate] = React.useState('');
   const [name, setName] = React.useState('')
   const [passport, setPassport] = React.useState('')
@@ -21,6 +26,10 @@ export default function foreigner_form({unit}) {
   const [email, setEmail] = React.useState('')
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
+  const [date, setDate] = React.useState(new Date());
+  const [mode, setMode] = React.useState('date');
+  const [show, setShow] = React.useState(false);
+
   const addData = () => {
     var add = {
       unitId: unit.unitId,
@@ -46,8 +55,28 @@ export default function foreigner_form({unit}) {
       }
     })
   };
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
   return (
-    <View style={{ marginBottom: 30 }}>
+    <KeyboardAvoidingView
+      behavior="padding"
+      style={{ marginBottom: 30 }}>
       <Text
         style={[
           Styles.ml5,
@@ -160,7 +189,7 @@ export default function foreigner_form({unit}) {
       </Text>
       <View style={Styles.al_center}>
         {/* <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput> */}
-        <DatePicker
+        {/* <DatePicker
           style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
           //date={date} // Initial date from state
           mode="date" // The enum of date, datetime and time
@@ -189,7 +218,23 @@ export default function foreigner_form({unit}) {
             newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`
             setRawDate(newDate);
           }}
-        />
+        /> */}
+        <View>
+          <View>
+            <Button onPress={showDatepicker} title="Show date picker!                   " />
+          </View>
+          <View>
+            <Button onPress={showTimepicker} title="Show time picker!" />
+          </View>
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={new Date()}
+              mode={'date'}
+              is24Hour={true}
+              display="spinner"
+              onChange={onChange}
+            />
+        </View>
       </View>
 
       <View style={Styles.al_center}>
@@ -235,6 +280,6 @@ export default function foreigner_form({unit}) {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

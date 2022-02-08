@@ -27,7 +27,7 @@ const TH = {
   inputotp_text_05: "ยังไม่ได้รับรหัส OTP ส่งอีกครั้ง",
   inputotp_text_06: "ส่งอีกครั้ง",
   inputotp_text_07: "เข้าสู่ระบบ",
-  home_text_01: "ยินดีต้อนรับ",
+  home_text_01: "ยินดีต้อนรับ คุณ",
   home_text_02: "ข่าวสาร & กิจกรรม",
   home_text_03: "หน้าหลัก",
   home_text_04: "ข้อมูลบ้าน",
@@ -58,6 +58,7 @@ const TH = {
   myhome_text_03: "พื้นที่ใช้สอย",
   myhome_text_04: "ตารางเมตร",
   myhome_text_05: "แจ้งซ่อม",
+  myhome_text_06: "ไม่พบยูนิตที่ท่านครอบครองอยู่",
   homecare_text_01: "แจ้งซ่อม",
   homecare_text_02: "บ้านเลขที่",
   homecare_text_03: "รายการแจ้งซ่อม",
@@ -126,7 +127,7 @@ const TH = {
   residentadd_text_10: "ยกเลิก",
   residentadd_text_11: "หมายเลขหนังสือเดินทาง",
   residentaddotp_text_01: "เพิ่มผู้อาศัยร่วม",
-  residentaddotp_text_02: "กรุณากรอกรหัส OTP ที่ส่งไปยังคุณดวงกมล เมธากุล",
+  residentaddotp_text_02: "กรุณากรอกรหัส OTP ที่ส่งไปยังคุณ",
   residentaddotp_text_031: "หมายเลข ",
   residentaddotp_text_032: " เพื่อเปิดสิทธิ์การใช้งาน",
   residentaddotp_text_04: "รหัส OTP 6 หลัก",
@@ -166,7 +167,7 @@ const TH = {
   occupantadd_text_11: "หมายเลขหนังสือเดินทาง",
   occupantadd_text_12: "วันที่สิทธิ์หมดอายุ",
   occupantaddotp_text_01: "เพิ่มผู้เช่า",
-  occupantaddotp_text_02: "กรุณากรอกรหัส OTP ที่ส่งไปยังคุณดวงกมล เมธากุล",
+  occupantaddotp_text_02: "กรุณากรอกรหัส OTP ที่ส่งไปยังคุณ",
   occupantaddotp_text_03: "หมายเลข 098-334-2334 เพื่อเปิดสิทธิ์การใช้งาน",
   occupantaddotp_text_04: "รหัส OTP 6 หลัก",
   occupantaddotp_text_05: "ยังไม่ได้รับรหัส OTP",
@@ -196,6 +197,11 @@ const TH = {
   occupantedit_text_11: "ยกเลิก",
   occupantedit_text_12: "หมายเลขหนังสือเดินทาง",
   occupantedit_text_13: "วันสิทธิ์หมดอายุ",
+  satisfaction_text_01: "ประเมินความพึงพอใจ",
+  satisfaction_text_02: "เจ้าหน้าที่โฮมแคร์ที่เข้าซ่อม",
+  satisfaction_text_03: "1 = พึงพอใจน้อยที่สุด",
+  satisfaction_text_04: "5 = พึงพอใจมากที่สุด",
+  satisfaction_text_05: "ชมเชย / ข้อเสนอแนะ",
 };
 
 const EN = {
@@ -257,6 +263,7 @@ const EN = {
   myhome_text_03: "Usable area",
   myhome_text_04: "sq.m",
   myhome_text_05: "Request Maintenance Service",
+  myhome_text_06: "Unit Owner not found",
   homecare_text_01: "Request Maintenance Service",
   homecare_text_02: "Home Address",
   homecare_text_03: "List of maintenance",
@@ -397,6 +404,11 @@ const EN = {
   occupantedit_text_11: "Cancel",
   occupantedit_text_12: "Passport Number",
   occupantedit_text_13: "Expiried Date",
+  satisfaction_text_01: "Customer Satisfaction Survey",
+  satisfaction_text_02: "Home care officer",
+  satisfaction_text_03: "1 = Least satisfied",
+  satisfaction_text_04: "5 = Very satisfied",
+  satisfaction_text_05: "Suggestion",
 };
 
 const settingLanguage = (lang) => {

@@ -10,6 +10,7 @@ import Key from "../KEYS.json"
 import { useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
 import LANG from "../LANG";
+import Store from "../store";
 
 export default function Splash() {
   const userProfile = useSetRecoilState(Global.userProfile)
@@ -19,9 +20,6 @@ export default function Splash() {
 
   function runApp() {
     Script.checkToken(Key.TOKEN, (res) => {
-      var myLANG = LANG.settingLanguage('TH')
-      console.log('checkToken', res)
-      setLANG(myLANG)
       if (res.data) {
         if(res.data.me){
           userProfile(res.data)
@@ -31,9 +29,14 @@ export default function Splash() {
           userType(2)
         }
       }
-      setTimeout(() => {
-        navigate.navigate(res.goto)
-      }, 3000);
+      Store.getLocalStorege(Key.LANG, (data)=>{
+        var myLANG = LANG.settingLanguage(data.detail)
+        console.log('check lang', data)
+        setLANG(myLANG)
+        setTimeout(() => {
+          navigate.navigate(res.goto)
+        }, 3000);
+      })
     })
   }
 

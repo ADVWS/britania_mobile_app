@@ -13,6 +13,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import * as Global from "../../globalState"
 
 import { Styles } from "../../styles";
+import Store from "../../store";
+import Key from "../../KEYS.json"
 
 export default class Vote extends React.Component {
 
@@ -24,6 +26,12 @@ export default class Vote extends React.Component {
             vote3: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' },
             vote4: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' }, 
         }
+    }
+
+    componentDidMount(){
+        Store.getLocalStorege(Key.LANG, (res)=>{
+            console.log(res)
+        })
     }
     
     isVote(topic, unit) {

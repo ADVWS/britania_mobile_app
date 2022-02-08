@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
 
 import { Styles } from "../../styles";
 import * as Global from "../../globalState";
@@ -44,7 +44,9 @@ export default function foreigner_form({ unit }) {
   };
 
   return (
-    <View style={{ marginBottom: 30 }}>
+    <KeyboardAvoidingView
+      behavior="padding" 
+      style={{ marginBottom: 30 }}>
       <Text
         style={[
           Styles.ml5,
@@ -188,6 +190,6 @@ export default function foreigner_form({ unit }) {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

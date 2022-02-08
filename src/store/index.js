@@ -23,11 +23,19 @@ const getLocalStorege = async (key, cb) => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
-      var res = {
-        result: true,
-        detail: JSON.parse(value)
+      try {
+        var res = {
+          result: true,
+          detail: JSON.parse(value)
+        }
+        cb(res)
+      } catch (e) {
+        var res = {
+          result: true,
+          detail: value
+        }
+        cb(res)
       }
-      cb(res)
     } else {
       var res = {
         result: false,

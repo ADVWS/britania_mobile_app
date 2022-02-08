@@ -25,6 +25,7 @@ export default function Home() {
     const [feeds, setFeeds] = React.useState([])
     const scrollref = React.createRef();
     const offset = React.useRef(new Animated.Value(0)).current;
+    console.log(userProfile)
     React.useEffect(() => {
         Script.announcement((res) => {
             setBanner(res.banner)

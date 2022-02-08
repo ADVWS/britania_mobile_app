@@ -11,43 +11,36 @@ import Store from '../../store';
 import Script from '../../script/Notification_script';
 import Key from '../../KEYS.json'
 
-const AccountHeader = ({}) => {
+const AccountHeader = ({ }) => {
   var screen = "Account";
   const [userType, setUserType] = useRecoilState(Global.userType);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [counter, setCounter] = React.useState('-')
 
   const setCountNotify = () => {
-      Store.getLocalStorege(Key.TOKEN, (tk) => {
-          const token = tk.detail.token
-          Script.notificationCountUnread(token, (res) => {
-              console.log(res)
-              setCounter(res)
-          })
+    Store.getLocalStorege(Key.TOKEN, (tk) => {
+      const token = tk.detail.token
+      Script.notificationCountUnread(token, (res) => {
+        setCounter(res)
       })
+    })
   }
 
   function setNotify() {
-    var action = false;
-    var color = "#f1645e";
-    if (userType === 1) {
-      color = "#f1645e";
-      action = false;
+    if (userType !== 1) {
+      return (
+        <TouchableOpacity disabled={true} onPress={() => navigate.navigate("Notify", { screen })}>
+          <MaterialIcons name="notifications-none" size={30} color={'#000'} />
+        </TouchableOpacity>)
     } else {
-      color = "#000";
-      action = true;
-    }
-    return (
-      <TouchableOpacity
-        disabled={action}
-        onPress={() => navigate.navigate("Notify", { screen })}
-      >
-        <MaterialIcons name="notifications-none" size={26} color={color} />
-        <View style={{ backgroundColor: "red", borderRadius: 100, height: 25, width: 25, position: 'absolute', top: -12, left: 12, alignItems: 'center', justifyContent: 'center' }}>
+      return (
+        <TouchableOpacity onPress={() => navigate.navigate("Notify", { screen })}>
+          <MaterialIcons name="notifications-none" size={30} color={'#FFF'} />
+          <View style={{ backgroundColor: "red", borderRadius: 100, height: 25, width: 25, position: 'absolute', top: -12, left: 12, alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ color: '#FFF', fontSize: 12 }}>{setCountNotify()}{counter}</Text>
-        </View>
-      </TouchableOpacity>
-    );
+          </View>
+        </TouchableOpacity>)
+    }
   }
 
   return (

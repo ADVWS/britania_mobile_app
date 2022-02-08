@@ -12,8 +12,10 @@ import OccupantBtn from "./occupant_btn";
 const image = require("../../../assets/image/Britania-connect-assets/member-empty.png");
 
 export default function OccupantList({ occupant, item }) {
-  console.log("occupant list===>", item);
   const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
+  console.log("occupant list===>", unitMember.unitMember.tenant);
+
   return (
     <View style={[Styles.w100, Styles.p15]}>
       <TouchableOpacity
@@ -41,9 +43,9 @@ export default function OccupantList({ occupant, item }) {
           {LANG.membermanageindivi_text_12}
         </Text>
       </TouchableOpacity>
-      {occupant.length > 0 ? (
+      {unitMember.unitMember.tenant.length > 0 ? (
         <View style={[Styles.mt10]}>
-          <OccupantBtn occupant={occupant} />
+          <OccupantBtn occupant={unitMember.unitMember.tenant} />
         </View>
       ) : (
         <View style={[Styles.al_center, Styles.p40, Styles.mt30]}>

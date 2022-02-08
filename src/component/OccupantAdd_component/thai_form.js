@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
 import DatePicker from "react-native-datepicker";
 
 import { Styles } from "../../styles";
@@ -47,7 +47,9 @@ export default function thai_form(unit) {
   };
 
   return (
-    <View style={{ marginBottom: 30 }}>
+    <KeyboardAvoidingView
+      behavior="padding"  
+      style={{ marginBottom: 30 }}>
       <Text
         style={[
           Styles.ml5,
@@ -235,6 +237,6 @@ export default function thai_form(unit) {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

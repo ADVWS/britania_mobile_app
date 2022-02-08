@@ -9,6 +9,7 @@ import {
 import Header from "../component/MyHome_component/Header";
 import * as navigate from "../navigator/RootNavigation";
 import {MaterialIcons} from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
@@ -35,7 +36,9 @@ const MyHome = () => {
     startApp()
     function startApp() {
         if(mainScript.isEmptyObject(unitOwner) === null){
-            setUnitOwner(userProfile.me.unitsOwner[0])
+            if(userProfile.me.unitsOwner &&  userProfile.me.unitsOwner !== null){
+                setUnitOwner(userProfile.me.unitsOwner[0])
+            }
         }
     }
 
@@ -73,7 +76,7 @@ const MyHome = () => {
                     Styles.h100
                 ]}>
                 <Header />
-                {userProfile.me.unitsOwner ? (
+                {userProfile.me.unitsOwner &&  userProfile.me.unitsOwner !== null? (
                     <View style={[Styles.w100, Styles.p15, Styles.al_center]}>
                         <View style={[Styles.boxWithShadow, Styles.w100, { height: 250 }]}>
                             {unitOwner.image ? (
@@ -112,7 +115,10 @@ const MyHome = () => {
                             </View>
                         </TouchableOpacity>
                     </View>
-                ) : <></>}
+                ) : (<>
+                    <MaterialCommunityIcons name="home-search" size={120} color="#DDD" style={{marginTop: '30%'}}/>
+                    <Text style={[Styles.mainFont, Styles.f_22, Styles.gray_text, Styles.mt10]}>{LANG.myhome_text_06}</Text>
+                </>)}
             </View>
         </View>
     );

@@ -17,10 +17,12 @@
       "**/*"
     ],
     "ios": {
+      "infoPlist": {
+        "UIUserInterfaceStyle": "Light"
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.pagepro.testpublishapp",
       "buildNumber": "1.0.0"
-
     },
     "android": {
       "adaptiveIcon": {

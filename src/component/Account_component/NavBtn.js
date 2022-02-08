@@ -15,14 +15,13 @@ import { Styles } from "../../styles";
 import Modal_confirm from "../modal_confirm";
 import Store from "../../store";
 import Key from "../../KEYS.json";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
 
 const NavBtn = ({ optiono }) => {
   const [confirm, setConfirm] = React.useState(false);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [userType, setUserType] = useRecoilState(Global.userType);
-
   const logout = (req) => {
     if (req === "CANCEL") {
       setConfirm(false);

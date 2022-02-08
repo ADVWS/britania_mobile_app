@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Image, View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import Modal from "react-native-modal";
+import {useNavigation} from '@react-navigation/native';
 
 import * as navigate from "../navigator/RootNavigation";
 import { useSetRecoilState, useRecoilState } from "recoil";
@@ -13,11 +14,14 @@ import isLANG from "../LANG";
 import Store from "../store";
 import Key from "../KEYS.json"
 
-export default function Login() {
+export default function Login({route}) {
   const [changeLang, setChangeLang] = React.useState(false);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const userType = useSetRecoilState(Global.userType)
   const settingLANG = useSetRecoilState(Global.Language)
+  const setUserProfile = useSetRecoilState(Global.userProfile)
+
+  const navigation = useNavigation();
 
   function selectLang(_selectLang) {
     console.log(_selectLang)
@@ -32,8 +36,13 @@ export default function Login() {
     console.log(data)
     Store.setLocalStorege(Key.TOKEN, data, (call) => {
       userType(2)
+      setUserProfile({})
       setTimeout(() => {
-        navigate.navigate('TabFooter')
+        navigation.reset(({
+          index: 0,
+          routes: [{name: 'TabFooter'}],
+        }))
+        //navigate.navigate('TabFooter')
       }, 200);
     })
   }

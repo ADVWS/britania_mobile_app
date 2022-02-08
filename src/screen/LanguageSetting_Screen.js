@@ -7,29 +7,52 @@ import MainHeader from "../component/mainHeader";
 import * as Global from '../globalState'
 import { useRecoilState, useSetRecoilState } from "recoil";
 import isLANG from "../LANG";
+import Store from "../store";
+import Key from "../KEYS.json";
 
 const LanguageSetting_Screen = () => {
   const [LANG, setLANG] = useRecoilState(Global.Language)
   const [selectThai, setSelectThai] = React.useState(true)
   const [selectEnglish, setSelectEnglish] = React.useState(false)
+  const [reload, setReload] = React.useState(true)
   const settingLANG = useSetRecoilState(Global.Language)
-  console.log(LANG)
   const selectLanguage = (select) => {
+    setReload(false)
     var myLANG;
     if (select == "TH") {
       setSelectThai(true)
       setSelectEnglish(false)
       myLANG = isLANG.settingLanguage(select)
       settingLANG(myLANG)
+      Store.setLocalStorege(Key.LANG, select, (res)=>{
+        setReload(true)
+      })
     } else if (select == "EN") {
       setSelectThai(false)
       setSelectEnglish(true)
       myLANG = isLANG.settingLanguage(select)
       settingLANG(myLANG)
+      Store.setLocalStorege(Key.LANG, select, (res)=>{
+        console.log('save', res)
+        setReload(true)
+      })
     } else {
       alert("language not found");
     }
   };
+
+  const markSelect = () => {
+    Store.getLocalStorege(Key.LANG, (res)=>{
+      if (res.detail == "TH") {
+        setSelectThai(true)
+        setSelectEnglish(false)
+      } else if (res.detail == "EN") {
+        setSelectThai(false)
+        setSelectEnglish(true)
+      }
+    })
+  }
+
 
   return (
     <View
@@ -41,7 +64,9 @@ const LanguageSetting_Screen = () => {
         Styles.FFF,
       ]}
     >
-      <MainHeader name={"ตั้งค่าภาษา / Language"} backto={"Account"} />
+      {reload && <MainHeader name={LANG.account_text_04} backto={"Account"} />}
+      {!reload && <MainHeader name={LANG.account_text_04} backto={"Account"} />}
+      {markSelect()}
       <TouchableOpacity
         style={[
           Styles.boxWithShadow,

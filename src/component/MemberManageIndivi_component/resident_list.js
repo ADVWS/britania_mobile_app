@@ -13,7 +13,7 @@ const image = require("../../../assets/image/Britania-connect-assets/member-empt
 
 export default function ResidentList({ resident, item }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  console.log("===>", resident);
+  const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
   return (
     <View style={[Styles.w100, Styles.p15]}>
       <TouchableOpacity
@@ -41,9 +41,9 @@ export default function ResidentList({ resident, item }) {
           {LANG.membermanageindivi_text_03}
         </Text>
       </TouchableOpacity>
-      {resident.length > 0 ? (
+      {unitMember.unitMember.resident.length > 0 ? (
         <View style={[Styles.mt10]}>
-          <ResidentBtn resident={resident} />
+          <ResidentBtn resident={unitMember.unitMember.resident} />
         </View>
       ) : (
         <View style={[Styles.al_center, Styles.p40, Styles.mt30]}>
