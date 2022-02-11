@@ -81,7 +81,7 @@ const InformContact = ({ route }) => {
     }
 
     return (
-        <View style={[Styles.flex, Styles.al_center]}>
+        <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
             <View
                 style={[
                     Styles.al_center,
@@ -90,14 +90,14 @@ const InformContact = ({ route }) => {
                 ]}>
                 <MainHeader name={'แจ้งซ่อม'} backto={'InformAdd'} param={route.params} />
                 <ScrollView style={[Styles.w100, Styles.flex]}>
-                    <View style={[Styles.w100, Styles.p15, Styles.FFF]}>
+                    <View style={[Styles.w100, Styles.p15, Styles.mainColorF9]}>
                         <Text style={[Styles.f_22, Styles.mainFont]}>
                             ห้องที่ต้องการแจ้งซ่อม
                         </Text>
                         <TextInput
                             value={unitOwner.houseNumber}
                             editable={false}
-                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10,{ borderColor: alAddressColor, borderWidth: 1.5, backgroundColor: "#ebebeb" }]}
+                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, { borderColor: alAddressColor, borderWidth: 1.5, backgroundColor: "#ebebeb" }]}
                             // onChangeText={(val) => {
                             //     setAddress(val)
                             // }}
@@ -112,7 +112,7 @@ const InformContact = ({ route }) => {
                         </Text>
                         <TextInput
                             value={fullname}
-                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, { borderColor: alFullnameColor, borderWidth: 1.5 }]}
+                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, Styles.mainColor_FFFF, { borderColor: alFullnameColor, borderWidth: 1.5 }]}
                             onChangeText={(val) => {
                                 setFullname(val)
                             }}
@@ -127,7 +127,7 @@ const InformContact = ({ route }) => {
                         </Text>
                         <TextInput
                             value={mobileno}
-                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, Styles.mb10, { borderColor: alMobilenoColor, borderWidth: 1.5 }]}
+                            style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, Styles.mb10, Styles.mainColor_FFFF, { borderColor: alMobilenoColor, borderWidth: 1.5 }]}
                             onChangeText={(val) => {
                                 setMobileno(val)
                             }}
@@ -138,7 +138,7 @@ const InformContact = ({ route }) => {
                             </Text>
                         }
                     </View>
-                    <View style={[Styles.w100, Styles.p15, Styles.FFF, Styles.mt10]}>
+                    <View style={[Styles.w100, Styles.p15, Styles.mainColorF9, Styles.mt10]}>
                         <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
                             รายการแจ้งซ่อม
                         </Text>
@@ -147,9 +147,9 @@ const InformContact = ({ route }) => {
                         )}
                         <TouchableOpacity
                             onPress={() => Addmore()}
-                            style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, { borderColor: "#f1645e", borderWidth: 1.5 }]}>
+                            style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, { borderColor: "#bb6a70", borderWidth: 1.5 }]}>
                             <View style={[Styles.w40, Styles.al_end]}>
-                                <Feather name="plus" size={24} color="#f1645e" />
+                                <Feather name="plus" size={24} color="#bb6a70" />
                             </View>
                             <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont]}>
                                 {' '}เพิ่มรายการ
@@ -157,7 +157,7 @@ const InformContact = ({ route }) => {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => gotoinformCalendar()}
-                            style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, Styles.mainColor]}>
+                            style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mb20, Styles.row, Styles.mainColor_bb6]}>
                             <View style={[Styles.w50, Styles.al_end]}>
                                 <Text style={[Styles.f_22, Styles.white_text, Styles.mainFont]}>
                                     ถัดไป

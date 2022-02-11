@@ -36,8 +36,8 @@ export default function Account() {
   };
 
   return (
-    <LinearGradient
-      colors={["#fbd4d4", "#FFF"]}
+    <View
+      colors={["#f9f9f9"]}
       style={[Styles.flex, Styles.al_center]}
     >
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
@@ -52,7 +52,7 @@ export default function Account() {
                     Styles.mt40,
                     Styles.ml5,
                     Styles.mainFont,
-                    Styles.mainColor_text,
+                    Styles.mainColor_5555,
                     Styles.f_24,
                   ]}
                 >
@@ -69,6 +69,6 @@ export default function Account() {
       <Text style={[Styles.mainFont_x, Styles.mb10, Styles.f_24]}>
         {LANG.account_text_08} 1.0.0
       </Text>
-    </LinearGradient>
+    </View>
   );
 }

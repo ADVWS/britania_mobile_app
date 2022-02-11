@@ -298,14 +298,29 @@ export const Styles = StyleSheet.create({
   white_text: {
     color: "#fff",
   },
+  bbb_text: {
+    color: "#bb6a70",
+  },
   black_gray_text: {
     color: "#5c5c5c",
   },
   mainColor_text: {
-    color: "#f1645e",
+    color: "#bb6a70",
+  },
+  mainColor_5555: {
+    color: "#555555",
   },
   mainColor: {
     backgroundColor: "#f1645e",
+  },
+  mainColorF9: {
+    backgroundColor: "#f9f9f9",
+  },
+  mainColor_bb6: {
+    backgroundColor: "#bb6a70",
+  },
+  mainColor_FFFF: {
+    backgroundColor: "#FFFFFF",
   },
   mainFont: {
     fontFamily: "Helvethaica",
@@ -371,7 +386,7 @@ export const Styles = StyleSheet.create({
   },
   border_btn: {
     borderWidth: 2,
-    borderColor: "#f1645e",
+    borderColor: "#bb6a70",
   },
   absolute: {
     position: "absolute",
@@ -402,7 +417,7 @@ export const Styles = StyleSheet.create({
   otpbox: {
     width: "13%",
     height: 45,
-    backgroundColor: "#ffcfcf",
+    backgroundColor: "#ececec",
     borderRadius: 5,
     textAlign: "center",
   },

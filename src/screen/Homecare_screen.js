@@ -44,7 +44,7 @@ function Homecare() {
     }
 
     return (
-        <View style={[Styles.flex]}>
+        <View style={[Styles.flex, Styles.mainColorF9]}>
             <View
                 style={[
                     Styles.al_center,
@@ -55,12 +55,12 @@ function Homecare() {
                 <ScrollView>
                     <TouchableOpacity
                         onPress={() => navigate.navigate('Myproject')}
-                        style={[Styles.w100, Styles.p15, Styles.FFF, Styles.row]}>
+                        style={[Styles.w100, Styles.p15, Styles.mainColorF9, Styles.row]}>
                         <View style={[Styles.w80]}>
                             <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
                                 {unitOwner.projectName}
                             </Text>
-                            <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, { color: '#8f8f8f' }]}>
+                            <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, { color: '#A8A6A6' }]}>
                                 {LANG.homecare_text_02} {unitOwner.houseNumber}
                             </Text>
                         </View>

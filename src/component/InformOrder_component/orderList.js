@@ -50,7 +50,7 @@ const OrderList = ({ data, index, route }) => {
                     Styles.w100,
                     Styles.p15,
                     Styles.br_5,
-                    Styles.FFF,
+                    Styles.mainColorF9,
                     Styles.mt10
                 ]}>
                 <Text style={[Styles.mainColor_text, Styles.f_22, Styles.mainFont_x_db]}>
