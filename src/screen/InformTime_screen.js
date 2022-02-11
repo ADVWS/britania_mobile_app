@@ -24,19 +24,19 @@ const InformTime = () => {
     }
 
     return (
-        <View style={[Styles.flex, Styles.al_center]}>
+        <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
             <View
                 style={[
                     Styles.al_center,
                     Styles.w100,
                     Styles.h100,
-                    Styles.FFF,
+                    Styles.mainColorF9,
                 ]}>
                 <MainHeader name={'เลือกเวลา'} backto={'IncomeCalendar'} />
                 {time.map((items) => (
                     <TouchableOpacity
                         onPress={() => selectInformTime(items)}
-                        style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
+                        style={[Styles.w100, Styles.p15, Styles.mainColorF9, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
                         <Text style={[Styles.f_22, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
                             {items.name}
                         </Text>

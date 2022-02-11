@@ -100,9 +100,8 @@ export default function InputOTP({ route }) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <ImageBackground
-        source={require('../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg')}
-        style={[Styles.flex, Styles.al_center, Styles.jc_center]}
+      <View
+        style={[Styles.flex, Styles.al_center, Styles.jc_center, Styles.mainColorF9]}
       >
         <View
           style={[
@@ -115,7 +114,7 @@ export default function InputOTP({ route }) {
         >
           <View style={[Styles.w100, Styles.al_start]}>
             <TouchableOpacity onPress={() => navigate.navigate("OTP")}>
-              <MaterialIcons name="arrow-back" size={32} color="#f1645e" />
+              <MaterialIcons name="arrow-back" size={32} color="#bb6a70" />
             </TouchableOpacity>
           </View>
           <Text
@@ -279,7 +278,7 @@ export default function InputOTP({ route }) {
                     { textDecorationLine: "underline" },
                   ]}
                 >
-                  <Ionicons name="md-refresh-sharp" size={20} color="#f1645e" />
+                  <Ionicons name="md-refresh-sharp" size={20} color="#bb6a70" />
                   {LANG.inputotp_text_06}
                 </Text>
               </Text>
@@ -293,7 +292,7 @@ export default function InputOTP({ route }) {
               Styles.mt40,
               Styles.w100,
               Styles.p12,
-              Styles.mainColor,
+              Styles.mainColor_bb6,
               Styles.al_center,
               Styles.br_5,
               Styles.boxWithShadow,
@@ -317,7 +316,7 @@ export default function InputOTP({ route }) {
         <Modal isVisible={alert} style={Styles.al_center}>
           <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
         </Modal>
-      </ImageBackground>
+      </View>
     </TouchableWithoutFeedback>
   );
 }

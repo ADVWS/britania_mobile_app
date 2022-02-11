@@ -99,16 +99,17 @@ const InformAdd = ({ route }) => {
     }
 
     return (
-        <View style={[Styles.flex, Styles.al_center]}>
+        <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
             <View
                 style={[
                     Styles.al_center,
                     Styles.w100,
                     Styles.h100
+
                 ]}>
                 <MainHeader name={'แจ้งซ่อม'} backto={'SelectTypeInform'} />
                 <KeyboardAvoidingView style={[Styles.w100, Styles.h100]} behavior="padding">
-                    <ScrollView style={[Styles.w100, Styles.FFF, Styles.flex]}>
+                    <ScrollView style={[Styles.w100, Styles.mainColorF9, Styles.flex]}>
                         <View style={[Styles.w100, Styles.p15]}>
                             <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
                                 ข้อมูลเพิ่มเติม
@@ -117,7 +118,7 @@ const InformAdd = ({ route }) => {
                                 รูปภาพ
                             </Text>
                             <TouchableOpacity onPress={() => { pickImage() }}
-                                style={[Styles.w100, Styles.br_5, Styles.p10, Styles.mt5, Styles.row, Styles.jc_center, { borderColor: "#f1645e", borderWidth: 1.5 }]}>
+                                style={[Styles.w100, Styles.br_5, Styles.p10, Styles.mt5, Styles.row, Styles.jc_center, { borderColor: "#bb6a70", borderWidth: 1.5 }]}>
                                 <Image source={require("../../assets/image/add_image.png")} style={{ width: 30, height: 30 }} />
                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text, Styles.text_center, Styles.p4]}>
                                     เพิ่มรูป
@@ -143,7 +144,7 @@ const InformAdd = ({ route }) => {
                             </Text>
                             <TextInput
                                 value={detail}
-                                style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, { borderColor: alBoxDetail, borderWidth: 1.5, height: 130 }]}
+                                style={[Styles.w100, Styles.mainColor_FFFF ,Styles.p15, Styles.br_5, Styles.mt10, { borderColor: alBoxDetail, borderWidth: 1.5, height: 130 }]}
                                 multiline={true}
                                 numberOfLines={6}
                                 onChangeText={(val) => {
@@ -160,7 +161,7 @@ const InformAdd = ({ route }) => {
                 </KeyboardAvoidingView>
                 <TouchableOpacity
                     onPress={() => gotoInformContact()}
-                    style={[Styles.w90, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor, Styles.absolute, { bottom: 20 }]}>
+                    style={[Styles.w90, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor_bb6, Styles.absolute, { bottom: 20 }]}>
                     <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
                         ยืนยัน
                     </Text>

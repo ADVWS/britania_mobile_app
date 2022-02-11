@@ -35,9 +35,8 @@ export default function Home() {
 
     return (
         <SafeAreaProvider>
-            <LinearGradient
-                colors={["#fbd4d4", "#FFF", "#FFF"]}
-                style={[Styles.flex, Styles.al_center]}>
+            <View
+                style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
                 <View
                     style={[
                         Styles.al_center,
@@ -81,7 +80,7 @@ export default function Home() {
                         </View>
                     </ScrollView>
                 </View>
-            </LinearGradient>
+            </View>
         </SafeAreaProvider>
     );
 }

@@ -61,7 +61,7 @@ const LanguageSetting_Screen = () => {
         Styles.al_center,
         Styles.w100,
         Styles.h100,
-        Styles.FFF,
+        Styles.mainColorF9
       ]}
     >
       {reload && <MainHeader name={LANG.account_text_04} backto={"Account"} />}
@@ -95,7 +95,7 @@ const LanguageSetting_Screen = () => {
         </View>
         <View style={[Styles.jc_center, Styles.al_end]}>
           {selectThai && (
-            <AntDesign name="check" size={24} color="#f1645e" />
+            <AntDesign name="check" size={24} color="#bb6a70" />
           )}
         </View>
       </TouchableOpacity>
@@ -127,7 +127,7 @@ const LanguageSetting_Screen = () => {
         </View>
         <View style={[Styles.jc_center, Styles.al_end]}>
           {selectEnglish && (
-            <AntDesign name="check" size={24} color="#f1645e" />
+            <AntDesign name="check" size={24} color="#bb6a70" />
           )}
         </View>
       </TouchableOpacity>

@@ -298,11 +298,17 @@ export const Styles = StyleSheet.create({
   white_text: {
     color: "#fff",
   },
+  bbb_text: {
+    color: "#bb6a70",
+  },
   black_gray_text: {
     color: "#5c5c5c",
   },
   mainColor_text: {
-    color: "#f1645e",
+    color: "#bb6a70",
+  },
+  mainColor_5555: {
+    color: "#555555",
   },
   mainColor_text2: {
     color: "#555555",
@@ -320,6 +326,15 @@ export const Styles = StyleSheet.create({
     backgroundColor: "#bb6a70",
   },
 
+  mainColorF9: {
+    backgroundColor: "#f9f9f9",
+  },
+  mainColor_bb6: {
+    backgroundColor: "#bb6a70",
+  },
+  mainColor_FFFF: {
+    backgroundColor: "#FFFFFF",
+  },
   mainFont: {
     fontFamily: "Helvethaica",
   },

@@ -35,7 +35,7 @@ const AccountHeader = ({ }) => {
     } else {
       return (
         <TouchableOpacity onPress={() => navigate.navigate("Notify", { screen })}>
-          <MaterialIcons name="notifications-none" size={30} color={'#f1545e'} />
+          <MaterialIcons name="notifications-none" size={30} color={'#555555'} />
           {counter !== '-' && counter !== 0 &&
             <View style={{ backgroundColor: "red", borderRadius: 100, height: 25, width: 25, position: 'absolute', top: -7, left: 15, alignItems: 'center', justifyContent: 'center' }}>
               <Text style={{ color: '#FFF', fontSize: 12 }}>{setCountNotify()}{counter}</Text>
@@ -54,7 +54,7 @@ const AccountHeader = ({ }) => {
         <Text
           style={[
             Styles.mainFont_x,
-            Styles.mainColor_text,
+            Styles.mainColor_5555,
             { fontSize: 32, top: 5 },
           ]}
         >
