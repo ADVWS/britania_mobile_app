@@ -26,7 +26,7 @@ const edit_btn = ({member, openConfirm}) => {
                 <Text
                     style={[
                         Styles.text_center,
-                        Styles.mainColor_text,
+                        Styles.mainColor_text3,
                         Styles.f_22,
                         Styles.mainFont,
                         { marginLeft: "1%" },
@@ -51,7 +51,7 @@ const edit_btn = ({member, openConfirm}) => {
                 <Text
                     style={[
                         Styles.text_center,
-                        Styles.mainColor_text,
+                        Styles.mainColor_text3,
                         Styles.f_22,
                         Styles.mainFont,
                         { marginLeft: "1%" },

@@ -9,7 +9,7 @@ export default class radio extends React.Component {
     this.state = {
       mobile: true,
       email: false,
-      mobile_color: "#f1645e",
+      mobile_color: "#bb6a70",
       email_color: "#9c9c9b",
     };
   }
@@ -19,7 +19,7 @@ export default class radio extends React.Component {
       this.setState({
         mobile: true,
         email: false,
-        mobile_color: "#f1645e",
+        mobile_color: "#bb6a70",
         email_color: "#9c9c9b",
       });
     }
@@ -28,7 +28,7 @@ export default class radio extends React.Component {
         mobile: false,
         email: true,
         mobile_color: "#9c9c9b",
-        email_color: "#f1645e",
+        email_color: "#bb6a70",
       });
     }
     const {isSelectType} = this.props;
@@ -61,7 +61,7 @@ export default class radio extends React.Component {
                 style={[
                   { width: 12, height: 12 },
                   Styles.circle,
-                  Styles.mainColor,
+                  Styles.mainColor3,
                 ]}
               />
             )}
@@ -92,7 +92,7 @@ export default class radio extends React.Component {
                 style={[
                   { width: 12, height: 12 },
                   Styles.circle,
-                  Styles.mainColor,
+                  Styles.mainColor3,
                 ]}
               />
             )}

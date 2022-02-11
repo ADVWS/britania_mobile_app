@@ -7,7 +7,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 const Newsnotify = (notify) => {
   return (
     <View style={[Styles.mt20, Styles.w100]}>
-      <Text style={[Styles.mainColor_text, Styles.mainFont, Styles.f_22, Styles.text_right]}>อ่านทั้งหมด (0)</Text>
+      <Text style={[Styles.mainColor_text3, Styles.mainFont, Styles.f_22, Styles.text_right]}>อ่านทั้งหมด (0)</Text>
       {notify.notify != undefined
         ? notify.notify.map((item) =>
             item.type == news ? (
@@ -30,7 +30,7 @@ const Newsnotify = (notify) => {
                       Styles.circle,
                     ]}
                   >
-                    <SimpleLineIcons name="tag" size={27} color="#f1645e" />
+                    <SimpleLineIcons name="tag" size={27} color="#bb6a70" />
                   </View>
                 </View>
                 <View style={[Styles.w80, Styles.p10]}>

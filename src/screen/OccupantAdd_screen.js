@@ -30,7 +30,7 @@ export default function OccupantAdd({route}) {
   }
 
   return (
-    <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
+    <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.mainColor2]}>
       <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManageIndivi"} />
       <ScrollView
         showsVerticalScrollIndicator={false}
