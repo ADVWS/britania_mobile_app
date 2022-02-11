@@ -260,7 +260,7 @@ export const Styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   FFF: {
-    backgroundColor: "#FFF",
+    backgroundColor: "#f9f9f9",
   },
   DDD: {
     backgroundColor: "#DDD",
@@ -281,7 +281,7 @@ export const Styles = StyleSheet.create({
     backgroundColor: "#e93f59",
   },
   pink_light: {
-    backgroundColor: "#ffcfcf",
+    backgroundColor: "#dadada",
   },
   transparent: {
     backgroundColor: "transparent",
@@ -295,16 +295,26 @@ export const Styles = StyleSheet.create({
   orange_text: {
     color: "#f5a425",
   },
+  BB6_text: {
+    color: "#bb6a70",
+  },
   white_text: {
-    color: "#fff",
+    color: "#f9f9f9",
   },
   black_gray_text: {
     color: "#5c5c5c",
   },
   mainColor_text: {
-    color: "#f1645e",
+    color: "#bb6a70",
   },
+  f9_Color:{
+    backgroundColor: "#f9f9f9"
+  },
+  
   mainColor: {
+    backgroundColor: "#bb6a70",
+  },
+  mainColor2: {
     backgroundColor: "#f1645e",
   },
   mainFont: {
@@ -371,7 +381,11 @@ export const Styles = StyleSheet.create({
   },
   border_btn: {
     borderWidth: 2,
-    borderColor: "#f1645e",
+    borderColor: "#bb6a70",
+  },
+  border_btn2: {
+    borderWidth: 2,
+    borderColor: "#d1d1d1",
   },
   absolute: {
     position: "absolute",
@@ -402,6 +416,13 @@ export const Styles = StyleSheet.create({
   otpbox: {
     width: "13%",
     height: 45,
+    backgroundColor: "#d1d1d1",
+    borderRadius: 5,
+    textAlign: "center",
+  },
+  otpbox2: {
+    width: "13%",
+    height: 45,
     backgroundColor: "#ffcfcf",
     borderRadius: 5,
     textAlign: "center",
@@ -410,7 +431,7 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     borderWidth: 1,
-    borderColor: "#DDD",
+    borderColor: "#f9f9f9",
   },
   spacing5: {
     marginTop: 5,
@@ -425,7 +446,7 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#f1645e",
+    backgroundColor: "#bb6a70",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,

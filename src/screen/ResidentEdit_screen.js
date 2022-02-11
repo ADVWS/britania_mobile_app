@@ -48,7 +48,7 @@ const ResidentEdit = ({route}) => {
             {setImage(member.image)}
            </View>
            <View style={Styles.ml5}>
-           <Text style={[Styles.mainFont,Styles.f_22,Styles.black_gray_text]}>ผู้อาศัยร่วม</Text>
+           <Text style={[Styles.mainFont,Styles.f_22,Styles.black_gray_text,]}>ผู้อาศัยร่วม</Text>
            <Radio isSelectType={isSelectType} type={member.nationType}/>
            </View>
            {type === "thai" && (<ThaiForm item={member}/>)}

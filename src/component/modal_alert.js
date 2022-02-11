@@ -18,7 +18,7 @@ const Modal_alert = ({textAlert, closeModalAlert}) => {
         ]}
       >
         <View style={[Styles.w100]}>
-        <MaterialCommunityIcons name="alert-circle-outline" size={60} color="#f1645e" style={[Styles.text_center]}/>
+        <MaterialCommunityIcons name="alert-circle-outline" size={60} color="#dd6a70" style={[Styles.text_center]}/>
           <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text, Styles.text_center, Styles.mt10]}>
             {textAlert}
           </Text>

@@ -76,14 +76,14 @@ export default class ProfilePicCom extends React.Component {
                     left: 106,
                   },
                   Styles.circle,
-                  { borderWidth: 1, borderColor: "#f1645e" },
+                  { borderWidth: 1, borderColor: "#bb6a70" },
                 ]}
               />
               <TouchableOpacity onPress={() => this._InputImage()}>
                 <MaterialCommunityIcons
                   name="image-plus"
                   size={21}
-                  color="#f1645e"
+                  color="#bb6a70"
                   style={{ position: "absolute", top: 112.5, left: 112.5 }}
                 />
               </TouchableOpacity>

@@ -58,8 +58,8 @@ export default function Signin() {
 
   return (
     <>
-      <ImageBackground
-        source={require("../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg")}
+      <View
+     
         style={[Styles.flex, Styles.al_center, Styles.jc_center]}
       >
         <ScrollView
@@ -68,7 +68,7 @@ export default function Signin() {
         >
           <View style={[Styles.w100, Styles.al_start, Styles.mt30]}>
             <TouchableOpacity onPress={() => navigate.navigate("Login")}>
-              <MaterialIcons name="arrow-back" size={32} color="#f1645e" />
+              <MaterialIcons name="arrow-back" size={32} color="#bb6a70" />
             </TouchableOpacity>
             <Text
               style={[
@@ -169,7 +169,7 @@ export default function Signin() {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </ImageBackground>
+        </View>
       <Modal
         isVisible={loading}
         style={Styles.al_center}

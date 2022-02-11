@@ -109,8 +109,7 @@ export default function OTP({ route }) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <ImageBackground
-        source={require('../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg')}
+     <View
         style={[Styles.flex, Styles.al_center, Styles.jc_center]}
       >
         <View
@@ -277,7 +276,7 @@ export default function OTP({ route }) {
         <Modal isVisible={alert} style={Styles.al_center}>
           <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
         </Modal>
-      </ImageBackground>
+      </View>
     </TouchableWithoutFeedback>
   );
 }

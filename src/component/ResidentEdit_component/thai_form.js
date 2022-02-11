@@ -59,6 +59,7 @@ export default function thai_form({item}) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           value={name}
           onChangeText={(val)=>{
@@ -73,6 +74,7 @@ export default function thai_form({item}) {
           Styles.mainFont,
           Styles.f_22,
           Styles.black_gray_text,
+          
         ]}
       >
         เลขประจำตัวประชาชน
@@ -85,6 +87,7 @@ export default function thai_form({item}) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           value={idcard}
           onChangeText={(val)=>{
@@ -111,6 +114,7 @@ export default function thai_form({item}) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           value={mobileNo}
           onChangeText={(val)=>{
@@ -137,6 +141,7 @@ export default function thai_form({item}) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           value={email}
           onChangeText={(val)=>{

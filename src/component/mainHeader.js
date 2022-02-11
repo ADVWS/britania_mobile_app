@@ -47,14 +47,14 @@ export default class mainHeader extends React.Component {
           Styles.h15,
           Styles.row,
           Styles.p20,
-          Styles.mainColor,
+          Styles.f9_Color,
           Styles.boxWithShadow,
           Styles.mb5,
         ]}
       >
         <View style={[Styles.w10, Styles.al_start, Styles.jc_end, Styles.p5]}>
           <TouchableOpacity onPress={() => this.setData()}>
-            <MaterialIcons name="arrow-back" size={32} color="#fff" />
+            <MaterialIcons name="arrow-back" size={32} color="#bb6a70" />
           </TouchableOpacity>
         </View>
         <View
@@ -63,7 +63,7 @@ export default class mainHeader extends React.Component {
           <Text
             style={[
               Styles.f_24,
-              Styles.white_text,
+              Styles.BB6_text,
               Styles.mainFont_x,
               Styles.mt25,
               Styles.ml5,

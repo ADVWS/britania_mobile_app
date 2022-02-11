@@ -42,6 +42,7 @@ export default function ProfileForm(props) {
             Styles.textfieldbox,
             Styles.mainFont_x,
             Styles.f_20,
+            Styles.border_btn2
           ]}
           value={name}
           onChangeText={(val) => {
@@ -69,6 +70,7 @@ export default function ProfileForm(props) {
             Styles.textfieldbox,
             Styles.mainFont_x,
             Styles.f_20,
+            Styles.border_btn2
           ]}
           value={mainScript.formatPhoneNumber2(mobile)}
           maxLength={10}
@@ -97,6 +99,7 @@ export default function ProfileForm(props) {
             Styles.textfieldbox,
             Styles.mainFont_x,
             Styles.f_20,
+            Styles.border_btn2
           ]}
           value={email}
           onChangeText={(val) => {
