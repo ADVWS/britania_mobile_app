@@ -92,7 +92,7 @@ const OccupantDetail = ({ route }) => {
         <MainHeader name={"ผู้เช่า"} backto={"MemberManageIndivi"} />
         <ScrollView style={[Styles.w100]}>
           <View style={[Styles.w100]}>
-            <View style={[Styles.p12, Styles.FFF]}>
+            <View style={[Styles.p12, Styles.mainColor2]}>
               <View
                 style={[
                   Styles.w100,
@@ -161,8 +161,8 @@ const OccupantDetail = ({ route }) => {
                 {setBtnMember(member.memberStatus)}
               </View>
             </View>
-            <View style={[Styles.p15]}>
-              <Text style={[Styles.mainFont, Styles.mainColor_text, Styles.f_26, Styles.mt10]}>จัดการเมนู</Text>
+            <View style={[Styles.p15 ,Styles.mainColor2]}>
+              <Text style={[Styles.mainFont, Styles.mainColor_text3, Styles.f_26, Styles.mt10]}>จัดการเมนู</Text>
               <Text style={[Styles.mainFont, Styles.f_22, Styles.mt5, { color: '#9f9f9f' }]}>เลือกเมนูที่ต้องการให้ผู้เช่าสามารถมองเห็นได้</Text>
               <View style={[Styles.w100, Styles.FFF, Styles.p20, Styles.br_5, Styles.boxWithShadow, Styles.row, Styles.mt10]}>
                 <View style={[Styles.w50, Styles.jc_center]}>
@@ -172,8 +172,8 @@ const OccupantDetail = ({ route }) => {
                 </View>
                 <View style={[Styles.w50, Styles.al_end]}>
                   <Switch
-                    trackColor={{ false: "#767577", true: "#FFA4A0" }}
-                    thumbColor={switchInform ? "#f1645e" : "#f4f3f4"}
+                    trackColor={{ false: "#767577", true: "#cc8e93" }}
+                    thumbColor={switchInform ? "#bb6a70" : "#f4f3f4"}
                     onValueChange={informSwitch}
                     value={switchInform}
                   />

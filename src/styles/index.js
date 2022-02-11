@@ -298,14 +298,42 @@ export const Styles = StyleSheet.create({
   white_text: {
     color: "#fff",
   },
+  bbb_text: {
+    color: "#bb6a70",
+  },
   black_gray_text: {
     color: "#5c5c5c",
   },
   mainColor_text: {
-    color: "#f1645e",
+    color: "#bb6a70",
+  },
+  mainColor_5555: {
+    color: "#555555",
+  },
+  mainColor_text2: {
+    color: "#555555",
+  },
+  mainColor_text3: {
+    color: "#bb6a70",
   },
   mainColor: {
     backgroundColor: "#f1645e",
+  },
+  mainColor2: {
+    backgroundColor: "#f9f9f9",
+  },
+  mainColor3: {
+    backgroundColor: "#bb6a70",
+  },
+
+  mainColorF9: {
+    backgroundColor: "#f9f9f9",
+  },
+  mainColor_bb6: {
+    backgroundColor: "#bb6a70",
+  },
+  mainColor_FFFF: {
+    backgroundColor: "#FFFFFF",
   },
   mainFont: {
     fontFamily: "Helvethaica",
@@ -371,7 +399,7 @@ export const Styles = StyleSheet.create({
   },
   border_btn: {
     borderWidth: 2,
-    borderColor: "#f1645e",
+    borderColor: "#bb6a70",
   },
   absolute: {
     position: "absolute",
@@ -402,7 +430,7 @@ export const Styles = StyleSheet.create({
   otpbox: {
     width: "13%",
     height: 45,
-    backgroundColor: "#ffcfcf",
+    backgroundColor: "#f9f9f9",
     borderRadius: 5,
     textAlign: "center",
   },
@@ -425,7 +453,7 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#f1645e",
+    backgroundColor: "#bb6a70",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,

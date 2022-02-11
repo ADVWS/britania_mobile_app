@@ -68,7 +68,7 @@ const MyHome = () => {
     }
     
     return (
-        <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
+        <View style={[Styles.flex, Styles.al_center, Styles.mainColor2]}>
             <View
                 style={[
                     Styles.al_center,
@@ -83,7 +83,7 @@ const MyHome = () => {
                                 <Image source={{uri: unitOwner.project.projectImageSrc}} style={[Styles.h100, Styles.w100, Styles.br_5]} />
                             ): <Image source={require("../../assets/image/image_not_found.png")} style={[Styles.h100, Styles.w100, Styles.br_5, {opacity: 0.3}]} />}
                         </View>
-                        <Text style={[{fontSize: 32}, Styles.mainColor_text, Styles.mainFont, Styles.mt20, Styles.text_center, Styles.mainColor_text]}>
+                        <Text style={[{fontSize: 32},Styles.mainFont, Styles.mt20, Styles.text_center, Styles.mainColor_text2]}>
                             {unitOwner.projectName}
                         </Text>
                         <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, Styles.text_center, Styles.gray_text]}>

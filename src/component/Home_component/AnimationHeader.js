@@ -23,15 +23,15 @@ const AnimatedHeader = ({ animatedValue }) => {
     });
     const colorSet = animatedValue.interpolate({
         inputRange: [0, 50],
-        outputRange: ['rgba(241,100,94,0)', 'rgba(241, 100, 94, 1)']
+        outputRange: ['rgba(249, 249, 249,1)', 'rgba(249, 249, 249,1)']
     });
     const imageSet = animatedValue.interpolate({
         inputRange: [0, 50],
-        outputRange: ['rgba(241, 100, 94, 1)', 'rgba(255,255,255,1)']
+        outputRange: ['rgba(85, 85, 85, 1)', 'rgba(85, 85, 85, 1)']
     });
     const iconeSet = animatedValue.interpolate({
         inputRange: [0, 50],
-        outputRange: ['rgba(0, 0, 0, 1)', 'rgba(255,255,255,1)']
+        outputRange: ['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 1)']
     });
     //console.log(imageSet)
     const setCountNotify = () => {

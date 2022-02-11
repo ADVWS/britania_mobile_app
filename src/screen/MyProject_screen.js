@@ -69,9 +69,9 @@ const MyProject = () => {
                     Styles.al_center,
                     Styles.w100,
                     Styles.h100,
-                    Styles.FFF,
+                    Styles.mainColor2,
                 ]}>
-                <MainHeader name={'โครงการของฉัน'} backto={'Homecare'} />
+                <MainHeader name={'โครงการของฉัน'} backto={'Homecare'}  />
                 {userProfile.me.unitsOwner.map((items) => (
                     <TouchableOpacity
                         onPress={() => setDataSelect(items)}

@@ -48,9 +48,8 @@ export default function Login({route}) {
   }
 
   return (
-    <ImageBackground
-      source={require('../../assets/image/Britania-connect-assets/03-login-backgound/hdpi.jpg')}
-      style={[Styles.flex, Styles.al_center, Styles.jc_center]}
+    <View
+      style={[Styles.flex, Styles.al_center, Styles.jc_center, Styles.mainColorF9]}
     >
       <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p40]}>
         <View style={[Styles.w100, Styles.al_end]}>
@@ -71,7 +70,7 @@ export default function Login({route}) {
             style={[
               Styles.w100,
               Styles.p15,
-              Styles.mainColor,
+              Styles.mainColor_bb6,
               Styles.al_center,
               Styles.br_5,
               Styles.mt15,
@@ -131,6 +130,6 @@ export default function Login({route}) {
       <Modal isVisible={changeLang} style={Styles.al_center}>
         <Modal_changeLang selectLang={selectLang} />
       </Modal>
-    </ImageBackground>
+    </View>
   );
 }

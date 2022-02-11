@@ -20,7 +20,7 @@ const InformTopic = ({data}) => {
                 Styles.w100,
                 Styles.p15,
                 Styles.br_5,
-                Styles.FFF,
+                Styles.mainColorF9,
                 Styles.row,
             ]}>
             <View style={[Styles.w50]}>

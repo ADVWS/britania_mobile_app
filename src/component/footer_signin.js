@@ -16,7 +16,7 @@ export default class FooterSignin extends React.Component {
             Styles.bottomMin20,
             Styles.opacity01,
           ]}
-        />
+        />z
       </>
     );
   }

@@ -9,7 +9,7 @@ export default class radio_resadd extends React.Component {
     this.state = {
       thai: true,
       foreign: false,
-      thai_color: "#f1645e",
+      thai_color: "#bb6a70",
       foreign_color: "#9c9c9b",
     };
   }
@@ -19,7 +19,7 @@ export default class radio_resadd extends React.Component {
       this.setState({
         thai: true,
         foreign: false,
-        thai_color: "#f1645e",
+        thai_color: "#bb6a70",
         foreign_color: "#9c9c9b",
       });
     }
@@ -28,7 +28,7 @@ export default class radio_resadd extends React.Component {
         thai: false,
         foreign: true,
         thai_color: "#9c9c9b",
-        foreign_color: "#f1645e",
+        foreign_color: "#bb6a70",
       });
     }
     const {isSelectType} = this.props;

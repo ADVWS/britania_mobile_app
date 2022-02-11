@@ -136,7 +136,7 @@ const InformCalendar = ({ route }) => {
     return (
         <>
             {!confirmBox &&
-                <View style={[Styles.flex, Styles.al_center]}>
+                <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
                     <View
                         style={[
                             Styles.al_center,
@@ -144,7 +144,7 @@ const InformCalendar = ({ route }) => {
                             Styles.h100
                         ]}>
                         <MainHeader name={'เลือกวันที่และเวลา'} backto={'InformContact'} informSet={informSet} />
-                        <ScrollView style={[Styles.w100, Styles.flex, Styles.FFF]}>
+                        <ScrollView style={[Styles.w100, Styles.flex, Styles.mainColorF9]}>
                             <View style={[Styles.w100, Styles.p15]}>
                                 <Text style={[Styles.f_24, Styles.mainFont, Styles.mt5]}>
                                     เลือกวันที่รับบริการ
@@ -156,9 +156,9 @@ const InformCalendar = ({ route }) => {
                                     previousTitle={<MaterialIcons name="arrow-back-ios" size={18} />}
                                     nextTitle={<MaterialIcons name="arrow-forward-ios" size={18} />}
                                     weekdays={["S", "M", "T", "W", "T", "F", "S"]}
-                                    todayBackgroundColor="#ffdbdb"
+                                    todayBackgroundColor="#bb6a70"
                                     todayTextStyle={{ color: "#000" }}
-                                    selectedDayStyle={{ backgroundColor: "#f1645e" }}
+                                    selectedDayStyle={{ backgroundColor: "#bb6a70" }}
                                     selectedDayTextColor="#FFF"
                                     textStyle={[Styles.mainFont_x, Styles.f_20]}
                                     yearTitleStyle={[Styles.mainFont, Styles.f_22]}
@@ -176,14 +176,14 @@ const InformCalendar = ({ route }) => {
                                 </Text>
                                 <TouchableOpacity
                                     onPress={() => navigate.navigate('InformTime')}
-                                    style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, Styles.mb5, { borderColor: "#f1645e", borderWidth: 1.5 }]}>
+                                    style={[Styles.w100, Styles.p10, Styles.br_5, Styles.mt10, Styles.mb5, { borderColor: "#bb6a70", borderWidth: 1.5 }]}>
                                     <Text style={[Styles.f_24, Styles.mainColor_text, Styles.mainFont, Styles.text_center]}>
                                         เลือกเวลา
                                     </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={() => confirmData()}
-                                    style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mt100, Styles.mainColor]}>
+                                    style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt10, Styles.mt100, Styles.mainColor_bb6]}>
                                     <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
                                         ยืนยัน
                                     </Text>
