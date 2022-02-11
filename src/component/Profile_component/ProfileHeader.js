@@ -17,7 +17,7 @@ export default function ProfileHeader() {
         Styles.h15,
         Styles.row,
         Styles.p20,
-        Styles.mainColor,
+        Styles.f9_Color,
       ]}
     >
       <View style={[]} />

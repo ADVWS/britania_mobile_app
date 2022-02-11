@@ -260,7 +260,7 @@ export const Styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   FFF: {
-    backgroundColor: "#FFF",
+    backgroundColor: "#f9f9f9",
   },
   DDD: {
     backgroundColor: "#DDD",
@@ -281,7 +281,7 @@ export const Styles = StyleSheet.create({
     backgroundColor: "#e93f59",
   },
   pink_light: {
-    backgroundColor: "#ffcfcf",
+    backgroundColor: "#dadada",
   },
   transparent: {
     backgroundColor: "transparent",
@@ -295,8 +295,11 @@ export const Styles = StyleSheet.create({
   orange_text: {
     color: "#f5a425",
   },
+  BB6_text: {
+    color: "#bb6a70",
+  },
   white_text: {
-    color: "#fff",
+    color: "#f9f9f9",
   },
   bbb_text: {
     color: "#bb6a70",
@@ -316,9 +319,11 @@ export const Styles = StyleSheet.create({
   mainColor_text3: {
     color: "#bb6a70",
   },
+  
   mainColor: {
-    backgroundColor: "#f1645e",
+    backgroundColor: "#bb6a70",
   },
+
   mainColor2: {
     backgroundColor: "#f9f9f9",
   },
@@ -401,6 +406,10 @@ export const Styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#bb6a70",
   },
+  border_btn2: {
+    borderWidth: 2,
+    borderColor: "#d1d1d1",
+  },
   absolute: {
     position: "absolute",
   },
@@ -430,6 +439,14 @@ export const Styles = StyleSheet.create({
   otpbox: {
     width: "13%",
     height: 45,
+    backgroundColor: "#d1d1d1",
+    borderRadius: 5,
+    textAlign: "center",
+  },
+  otpbox2: {
+    width: "13%",
+    height: 45,
+    backgroundColor: "#ffcfcf",
     backgroundColor: "#f9f9f9",
     borderRadius: 5,
     textAlign: "center",
@@ -438,7 +455,7 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     borderWidth: 1,
-    borderColor: "#DDD",
+    borderColor: "#f9f9f9",
   },
   spacing5: {
     marginTop: 5,

@@ -81,7 +81,7 @@ export default function Profile_screen() {
 
   return (
     <LinearGradient
-      colors={["#FFF", "#FFF"]}
+      colors={["#f9f9f9", "#f9f9f9"]}
       style={[Styles.flex, Styles.al_center]}
     >
       <View style={[Styles.w100, Styles.h100]}>

@@ -67,6 +67,7 @@ export default function thai_form({ unit }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           onChangeText={(val) => {
             setName(val);
@@ -92,6 +93,7 @@ export default function thai_form({ unit }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           onChangeText={(val) => {
             setIdcard(val);
@@ -117,6 +119,7 @@ export default function thai_form({ unit }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           onChangeText={(val) => {
             setMobileNo(val);
@@ -142,6 +145,7 @@ export default function thai_form({ unit }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
+            Styles.border_btn2
           ]}
           onChangeText={(val) => {
             setEmail(val);

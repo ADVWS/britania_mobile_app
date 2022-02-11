@@ -48,7 +48,7 @@ const SelectTypeInform = () => {
                 <MainHeader name={'แจ้งซ่อม'} backto={'Homecare'} />
                 <ScrollView style={[Styles.w100, Styles.FFF]}>
                     <View style={[Styles.w100, Styles.p15]}>
-                        <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
+                        <Text style={[Styles.f_24, Styles.mainFont, ]}>
                             เลือกประเภท
                         </Text>
                     </View>
