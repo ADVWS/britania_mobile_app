@@ -36,8 +36,8 @@ const MyHome = () => {
     startApp()
     function startApp() {
         if(mainScript.isEmptyObject(unitOwner) === null){
-            if(userProfile.me.unitsOwner &&  userProfile.me.unitsOwner !== null){
-                setUnitOwner(userProfile.me.unitsOwner[0])
+            if(userProfile.me.unitsAllowHomecare &&  userProfile.me.unitsAllowHomecare !== null){
+                setUnitOwner(userProfile.me.unitsAllowHomecare[0])
             }
         }
     }
@@ -76,20 +76,20 @@ const MyHome = () => {
                     Styles.h100
                 ]}>
                 <Header />
-                {userProfile.me.unitsOwner &&  userProfile.me.unitsOwner !== null? (
+                {userProfile.me.unitsAllowHomecare &&  userProfile.me.unitsAllowHomecare !== null? (
                     <View style={[Styles.w100, Styles.p15, Styles.al_center]}>
                         <View style={[Styles.boxWithShadow, Styles.w100, { height: 250 }]}>
-                            {unitOwner.image ? (
-                                <Image source={{uri: unitOwner.image}} style={[Styles.h100, Styles.w100, Styles.br_5]} />
+                            {unitOwner.project ? (
+                                <Image source={{uri: unitOwner.project.projectImageSrc}} style={[Styles.h100, Styles.w100, Styles.br_5]} />
                             ): <Image source={require("../../assets/image/image_not_found.png")} style={[Styles.h100, Styles.w100, Styles.br_5, {opacity: 0.3}]} />}
                         </View>
-                        <Text style={[{fontSize: 28}, Styles.mainColor_text, Styles.mainFont, Styles.mt20, Styles.text_center, Styles.mainColor_text]}>
+                        <Text style={[{fontSize: 32}, Styles.mainColor_text, Styles.mainFont, Styles.mt20, Styles.text_center, Styles.mainColor_text]}>
                             {unitOwner.projectName}
                         </Text>
-                        <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, Styles.text_center, Styles.black_gray_text]}>
-                            {unitOwner.detail ? unitOwner.detail : null}
+                        <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, Styles.text_center, Styles.gray_text]}>
+                            บ้านเลขที่ {unitOwner.houseNumber ? unitOwner.houseNumber : null}
                         </Text>
-                        <View style={[Styles.w100, Styles.row]}>
+                        {/* <View style={[Styles.w100, Styles.row]}>
                             <View style={[Styles.w50]}>
                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10, Styles.text_center, Styles.gray_text]}>
                                     {LANG.myhome_text_01} {unitOwner.land ? unitOwner.land : "-"} {LANG.myhome_text_02}
@@ -100,7 +100,7 @@ const MyHome = () => {
                                     {LANG.myhome_text_03} {unitOwner.usablearea ? unitOwner.usablearea : "-"} {LANG.myhome_text_04}
                                 </Text>
                             </View>
-                        </View>
+                        </View> */}
                         <TouchableOpacity onPress={()=>{goToHomecare()}} style={[Styles.boxWithShadow, Styles.w100, Styles.p10, Styles.FFF, Styles.br_5, Styles.mt20, Styles.row]}>
                             <View style={[Styles.w20, Styles.p10]}>
                                 <Image source={require('../../assets/image/tool_icon.png')} style={[Styles.w100, { height: 45 }]} />

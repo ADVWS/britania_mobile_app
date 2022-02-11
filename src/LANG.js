@@ -41,7 +41,7 @@ const TH = {
   account_text_02: "ข้อมูลส่วนตัว",
   account_text_03: "จัดการข้อมูลผู้อาศัย / ผู้เช่า",
   account_text_04: "ตั้งค่าภาษา",
-  account_text_05: "นโยบายความเป้นส่วนตัว",
+  account_text_05: "นโยบายความเป็นส่วนตัว",
   account_text_06: "คอลเซ็นเตอร์",
   account_text_07: "ออกจากระบบ",
   account_text_08: "เวอร์ชั่น",

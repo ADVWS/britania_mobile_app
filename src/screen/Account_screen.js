@@ -16,59 +16,10 @@ export default function Account() {
   const [userType, setUserType] = useRecoilState(Global.userType);
   const [LANG, setLANG] = useRecoilState(Global.Language);
 
-  // console.log(LANG);
-
-  // const [option, setOptions] = React.useState([]);
-  React.useEffect(() => {
-    // setLANG(Global.Language);
-    console.log("mode", userType);
-    // if (userType === 1) {
-    //   setOptions([
-    //     {
-    //       name: LANG.account_text_02,
-    //       nav: "Profile",
-    //     },
-    //     {
-    //       name: LANG.account_text_03,
-    //       nav: "MemberManage",
-    //     },
-    //     {
-    //       name: LANG.account_text_04,
-    //       nav: "Language",
-    //     },
-    //     {
-    //       name: LANG.account_text_05,
-    //       nav: "TermOfService",
-    //     },
-    //     {
-    //       name: LANG.account_text_06,
-    //       nav: "callcen",
-    //     },
-    //   ]);
-    // } else {
-    //   setOptions([
-    //     {
-    //       name: LANG.account_text_04,
-    //       nav: "Language",
-    //     },
-    //     {
-    //       name: LANG.account_text_05,
-    //       nav: "TermOfService",
-    //     },
-    //     {
-    //       name: LANG.account_text_06,
-    //       nav: "callcen",
-    //     },
-    //   ]);
-    // }
-    // console.log("IN Account");
-    // console.log(option);
-  }, []);
-
   const setImageProfile = () => {
     var image = "";
-    if (userProfile.me.image) {
-      image = { uri: userProfile.me.name };
+    if (userProfile.me.profileImage) {
+      image = { uri: userProfile.me.profileImage };
     } else {
       image = require("../../assets/image/Britania-connect-assets/default-img-circle.png");
     }
@@ -76,7 +27,7 @@ export default function Account() {
       <Image
         source={image}
         style={[
-          { width: 100, height: 100, resizeMode: "cover" },
+          { width: 120, height: 120, resizeMode: "cover" },
           Styles.row,
           Styles.circle,
         ]}
@@ -91,8 +42,8 @@ export default function Account() {
     >
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
         <AccountHeader />
-        <View style={[{ marginRight: "10%" }]}>
-          <View style={[Styles.row]}>
+        <View style={[Styles.w100, Styles.p15]}>
+          <View style={[Styles.row, Styles.w100]}>
             {userProfile.me && (
               <>
                 {setImageProfile()}
@@ -111,7 +62,7 @@ export default function Account() {
             )}
           </View>
         </View>
-        <View style={Styles.mt20}>
+        <View>
           <NavBtn />
         </View>
       </View>

@@ -29,11 +29,15 @@ const AnimatedHeader = ({ animatedValue }) => {
         inputRange: [0, 50],
         outputRange: ['rgba(241, 100, 94, 1)', 'rgba(255,255,255,1)']
     });
+    const iconeSet = animatedValue.interpolate({
+        inputRange: [0, 50],
+        outputRange: ['rgba(0, 0, 0, 1)', 'rgba(255,255,255,1)']
+    });
     //console.log(imageSet)
     const setCountNotify = () => {
-        Store.getLocalStorege(Key.TOKEN,(tk)=>{
+        Store.getLocalStorege(Key.TOKEN, (tk) => {
             const token = tk.detail.token
-            Script.notificationCountUnread(token, (res)=>{
+            Script.notificationCountUnread(token, (res) => {
                 setCounter(res)
             })
         })
@@ -50,12 +54,14 @@ const AnimatedHeader = ({ animatedValue }) => {
         } else {
             return (
                 <TouchableOpacity onPress={() => navigate.navigate("Notify", { screen })}>
-                    <Animated.Text style={{ color: imageSet }}>
+                    <Animated.Text style={{ color: iconeSet }}>
                         <MaterialIcons name="notifications-none" size={30} />
                     </Animated.Text>
-                    <View style={{ backgroundColor: "red", borderRadius: 100, height: 25, width: 25, position: 'absolute', top: -12, left: 12, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={{ color: '#FFF', fontSize: 12 }}>{setCountNotify()}{counter}</Text>
-                    </View>
+                    {counter !== '-' && counter !== 0 &&
+                        <View style={[Styles.mainColor, { borderRadius: 100, height: 20, width: 20, position: 'absolute', top: -7, left: 15, alignItems: 'center', justifyContent: 'center' }]}>
+                            <Text style={{ color: '#FFF', fontSize: 12 }}>{setCountNotify()}{counter}</Text>
+                        </View>
+                    }
                 </TouchableOpacity>)
         }
     }

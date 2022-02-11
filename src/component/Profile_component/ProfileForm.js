@@ -10,22 +10,14 @@ import { useRecoilState } from "recoil";
 import * as Global from "../../globalState";
 
 export default function ProfileForm(props) {
+  console.log('props::', props)
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [name, setName] = React.useState(props.userProfile.name);
   const [mobile, setMobile] = React.useState(
-    mainScript.formatPhoneNumber2(props.userProfile.mobileno)
+    mainScript.formatPhoneNumber2(props.userProfile.mobileNo)
   );
   const [email, setEmail] = React.useState(props.userProfile.email);
 
-  const updateUser = () => {
-    Script.userUpdateProfile(email, mobile, name, Key.TOKEN, (res) => {
-      if (typeof res === "object") {
-        const { updateGlobal } = props;
-        this.updateGlobal = updateGlobal;
-        this.updateGlobal(res.userUpdateProfile);
-      }
-    });
-  };
 
   console.log(props.userProfile);
 
@@ -54,6 +46,7 @@ export default function ProfileForm(props) {
           value={name}
           onChangeText={(val) => {
             setName(val);
+            props.editProfile(val, undefined, undefined);
           }}
         />
       </View>
@@ -81,6 +74,7 @@ export default function ProfileForm(props) {
           maxLength={10}
           onChangeText={(val) => {
             setMobile(val);
+            props.editProfile(undefined, val, undefined);
           }}
         />
       </View>
@@ -106,52 +100,10 @@ export default function ProfileForm(props) {
           ]}
           value={email}
           onChangeText={(val) => {
-            setEmail(val);
+            setEmail(val)
+            props.editProfile(undefined, undefined, val);
           }}
         />
-      </View>
-      <View style={Styles.al_center}>
-        <TouchableOpacity
-          onPress={() => updateUser()}
-          style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-        >
-          <Text
-            style={[
-              Styles.white_text,
-              Styles.f_24,
-              Styles.mainFont,
-              { marginLeft: "1%" },
-            ]}
-          >
-            {LANG.profile_text_04}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigate.navigate("Account")}
-          style={[
-            Styles.w90,
-            Styles.row,
-            Styles.mt10,
-            Styles.transparent,
-            Styles.al_center,
-            Styles.br_5,
-            Styles.border_btn,
-            Styles.p15,
-            Styles.jc_center,
-          ]}
-        >
-          <Text
-            style={[
-              Styles.text_center,
-              Styles.mainColor_text,
-              Styles.f_24,
-              Styles.mainFont,
-              { marginLeft: "1%" },
-            ]}
-          >
-            {LANG.profile_text_05}
-          </Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

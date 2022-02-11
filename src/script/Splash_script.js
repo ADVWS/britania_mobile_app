@@ -25,6 +25,9 @@ export const checkToken = async (key, cb) => {
                     email
                     mobileNo
                     status
+                    nationType
+                    idcard
+                    passport
                     unitsOwner {
                         id
                         projectName
@@ -36,7 +39,43 @@ export const checkToken = async (key, cb) => {
                         allowHomecare
                         memberStatus
                         ownerType
+                             expiredDate
+                          memberStatus
                     }
+                    allowMenuHomecare
+                    unitsAllowHomecare {
+                      id
+                      userId
+                      unitId
+                      houseNumber
+                      unitNumber
+                      projectId
+                      projectName
+                      project {
+                        id
+                        name
+                        nameEng
+                        projectType
+                        projectImageSrc
+                      }
+                      unit {
+                        id
+                        unitNumber
+                        houseNumber
+                        titledeedArea
+                        model {
+                          id
+                          name
+                          nameEng
+                        }
+                      }
+                      unitText
+                      ownerType
+                      expiredDate
+                      allowHomecare
+                      memberStatus
+                    }
+                    profileImage
                     }
                 }`;
                 getUser(project, token, cb)

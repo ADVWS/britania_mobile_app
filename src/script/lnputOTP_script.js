@@ -31,6 +31,9 @@ const setProfile = async (token, cb) => {
             email
             mobileNo
             status
+            nationType
+            idcard
+            passport
             unitsOwner {
                 id
                 projectName
@@ -42,9 +45,45 @@ const setProfile = async (token, cb) => {
                 allowHomecare
                 memberStatus
                 ownerType
+                     expiredDate
+                  memberStatus
             }
-        }
-    }`;
+            allowMenuHomecare
+            unitsAllowHomecare {
+              id
+              userId
+              unitId
+              houseNumber
+              unitNumber
+              projectId
+              projectName
+              project {
+                id
+                name
+                nameEng
+                projectType
+                projectImageSrc
+              }
+              unit {
+                id
+                unitNumber
+                houseNumber
+                titledeedArea
+                model {
+                  id
+                  name
+                  nameEng
+                }
+              }
+              unitText
+              ownerType
+              expiredDate
+              allowHomecare
+              memberStatus
+            }
+            profileImage
+            }
+        }`;
     const result = await API.request(project, token);
     console.log('RESULT---===>', result)
     cb(result)

@@ -11,11 +11,14 @@ import * as ImagePicker from "expo-image-picker";
 
 import { Styles } from "../../styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import mainScript from '../../script'
 import * as Global from "../../globalState";
+import Store from "../../store";
+import Key from "../../KEYS.json"
 
 export default class ProfilePicCom extends React.Component {
   state = {
-    image: require("../../../assets/image/Britania-connect-assets/default-img-circle.png"),
+    image: this.props.picture,
   };
 
   _InputImage = async () => {
@@ -27,12 +30,27 @@ export default class ProfilePicCom extends React.Component {
     });
     console.log(result);
     if (!result.cancelled) {
-      this.setState({
-        image: { uri: result.uri },
-      });
-      const { InputValue } = this.props;
-      this.InputValue = InputValue;
-      this.InputValue(undefined, undefined, result.uri);
+      var formdata = new FormData();
+      var Type = result.uri.substring(result.uri.lastIndexOf(".") + 1)
+      var Data={
+        uri: result.uri,
+        name: `upload_image`,
+        type: `image/${Type}` 
+       };      
+      formdata.append('file', Data)
+      formdata.append('target', 'profile')
+      Store.getLocalStorege(Key.TOKEN, (tk)=>{
+        const token = tk.detail.token
+        mainScript.uploadImage(token, formdata,(res)=>{
+          console.log('Upload image', res)
+          this.setState({
+            image: { uri: result.uri },
+          });
+          const {uploadImage} = this.props;
+          this.uploadImage = uploadImage;
+          this.uploadImage(res);
+        })
+      })
     }
   };
 

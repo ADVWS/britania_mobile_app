@@ -1,16 +1,43 @@
 import API from '../graphQL'
 import Store from "../store"
 
-export const userUpdateProfile = async (email, mobileNo, name, key, cb) => {
+export const userUpdateProfile = async (updatedata, image, key, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
-        const UPDATE = `mutation {
-            userUpdateProfile(email: "${email}", mobileNo: "${mobileNo}", name: "${name}") {
-                name
-                mobileNo
-                email
-            }
-        }`;
+        console.log('POST GRAPHQL::::', image)
+        if(image === ''){
+            var UPDATE = `mutation {
+                userUpdateProfile(
+                    email: "${updatedata.email}", 
+                    mobileNo: "${updatedata.mobileNo}", 
+                    name: "${updatedata.name}"
+                ) {
+                    name
+                    mobileNo
+                    email
+                    profileImage
+                }
+            }`;
+        } else {
+            var UPDATE = `mutation {
+                userUpdateProfile(
+                    email: "${updatedata.email}", 
+                    mobileNo: "${updatedata.mobileNo}", 
+                    name: "${updatedata.name}"
+                    inputUserImage: {
+                        fileId: "${image.fileId}"
+                        fileCurName: "${image.fileCurName}"
+                        filePrevName: "${image.filePrevName}"
+                        fileExtension: "${image.fileExtension}"
+                    }
+                ) {
+                    name
+                    mobileNo
+                    email
+                    profileImage
+                }
+            }`;
+        }
         updateUser(UPDATE, token, cb)
     })
 }

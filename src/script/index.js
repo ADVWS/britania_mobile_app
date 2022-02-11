@@ -174,8 +174,32 @@ const isEmptyObject = (obj) => {
 const setTypeInform = (obj) => {
     const [caseType, setCaseType] = useRecoilState(Global.caseType)
     console.log('setType===>', caseType)
-    var index = caseType.map(function(e) { return e.id; }).indexOf(obj);
+    var index = caseType.map(function (e) { return e.id; }).indexOf(obj);
     return caseType[index].nameThai
+}
+
+const uploadImage = (token, file, cb) => {
+    const url = 'https://btnconnectapi.myorigin.net/uploadImage';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer 2b1QVM4xIxZ0JcKoPjJfWtOnfhcqwD4T',
+            'x-token': token
+        },
+        body: file,
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            return cb(data);
+        })
+        .catch(err => {
+            cb(false);
+            console.error(err);
+        });
 }
 
 export default {
@@ -186,5 +210,6 @@ export default {
     formatPhoneNumber2,
     recoilTranform,
     isEmptyObject,
-    setTypeInform
+    setTypeInform,
+    uploadImage
 }

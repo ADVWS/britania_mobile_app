@@ -1,9 +1,13 @@
 import * as React from "react";
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
 import DatePicker from "react-native-datepicker";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import Modal from 'react-native-modal'
 
 import { Styles } from "../../styles";
 import * as Global from "../../globalState";
+import moment from "moment";
+
 import { useSetRecoilState, useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
 import mainScript from "../../script";
@@ -12,6 +16,7 @@ import KEYS from "../../KEYS.json"
 
 export default function thai_form(unit) {
   console.log('user', unit)
+  const [chosenDate, setChosenDate] = React.useState(new Date());
   const [rawDate, setRawDate] = React.useState('');
   const [name, setName] = React.useState('')
   const [idcard, setIdcard] = React.useState('')
@@ -19,6 +24,9 @@ export default function thai_form(unit) {
   const [email, setEmail] = React.useState('')
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
+
+  const [iosDatepicker, setIosDatepicker] = React.useState(false)
+
   const addData = () => {
     var add = {
       unitId: unit.unit.unitId,
@@ -46,7 +54,15 @@ export default function thai_form(unit) {
     })
   };
 
+  const onChangeIosPicker = (event, selectedDate) => { setChosenDate(selectedDate) };
+  const onSelectIosPicker = () => {
+    setRawDate(chosenDate)
+    setIosDatepicker(false)
+  };
+
+
   return (
+    <>
     <KeyboardAvoidingView
       behavior="padding"  
       style={{ marginBottom: 30 }}>
@@ -161,37 +177,48 @@ export default function thai_form(unit) {
         วันที่สิทธิ์หมดอายุ
       </Text>
       <View style={Styles.al_center}>
-        {/* <TextInput style={[Styles.w90,Styles.mt5,Styles.textfieldbox]}></TextInput> */}
-        <DatePicker
-          style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
-          //date={date} // Initial date from state
-          mode="date" // The enum of date, datetime and time
-          placeholder="เลือกวันที่"
-          format="DD-MM-YYYY"
-          minDate="01-01-1970"
-          maxDate="01-01-2500"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              //display: "none",
-              position: "absolute",
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-              width: 0,
-              height: 0,
-            },
-            dateInput: {
-              marginLeft: 0,
-            },
-          }}
-          onDateChange={(datein) => {
-            var newDate = datein.split("-");
-            newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`
-            setRawDate(newDate);
-          }}
-        />
+      { Platform.OS !== 'ios' ? (
+          <DatePicker
+            style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
+            //date={chosenDate} // Initial date from state
+            mode="date" // The enum of date, datetime and time
+            format="DD-MM-YYYY"
+            minDate="01-01-1970"
+            maxDate="01-01-2500"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateText:{color: '#000'},
+              dateIcon: {
+                display: "none",
+                position: "absolute",
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+                width: 0,
+                height: 0,
+              },
+              dateInput: {
+                marginLeft: 0,
+              },
+            }}
+            onDateChange={(datein) => {
+              var newDate = datein.split("-");
+              newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`
+              setRawDate(newDate);
+            }}
+          />) : 
+            (<TouchableOpacity
+              onPress={() => setIosDatepicker(true)}
+              style={[
+                Styles.w90,
+                Styles.mt5,
+                Styles.textfieldbox,
+                Styles.p15
+              ]}>
+              <Text>{rawDate !== '' ? moment(rawDate).format('DD/MM/YYYY') : rawDate}</Text>
+            </TouchableOpacity>)
+          }
       </View>
 
       <View style={Styles.al_center}>
@@ -238,5 +265,39 @@ export default function thai_form(unit) {
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
+    <Modal
+    backdropOpacity={0.3}
+    isVisible={iosDatepicker}
+    onBackdropPress={() => setIosDatepicker(false)}
+    style={Styles.al_center, Styles.jc_end}>
+    <View style={[Styles.boxWithShadow, { width: '120%', right: '10%', top: 20 }]}>
+      <View style={[Styles.row, Styles.w100, { backgroundColor: '#F7F7F7' }]}>
+        <View style={[Styles.w50]}>
+          <TouchableOpacity style={[Styles.w50, Styles.p5, { left: '15%' }]} onPress={() => setIosDatepicker(false)}>
+            <Text style={[Styles.black_gray_text, Styles.mainFont, Styles.f_24]}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[Styles.w55, Styles.al_end]}>
+          <TouchableOpacity style={[Styles.w50, Styles.p5]} onPress={() => onSelectIosPicker()}>
+            <Text style={[Styles.black_gray_text, Styles.mainFont, Styles.f_24]}>Confirm</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={[Styles.boxWithShadow, { backgroundColor: '#F7F7F7' }]}>
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={chosenDate}
+          textColor={'#2b2b2b'}
+          mode={'date'}
+          //is24Hour={true}
+          display="spinner"
+          minimumDate={new Date()}
+          locale="en-en"
+          onChange={onChangeIosPicker}
+        />
+      </View>
+    </View>
+  </Modal>
+  </>
   );
 }
