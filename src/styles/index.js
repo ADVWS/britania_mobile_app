@@ -301,21 +301,44 @@ export const Styles = StyleSheet.create({
   white_text: {
     color: "#f9f9f9",
   },
+  bbb_text: {
+    color: "#bb6a70",
+  },
   black_gray_text: {
     color: "#5c5c5c",
   },
   mainColor_text: {
     color: "#bb6a70",
   },
-  f9_Color:{
-    backgroundColor: "#f9f9f9"
+  mainColor_5555: {
+    color: "#555555",
+  },
+  mainColor_text2: {
+    color: "#555555",
+  },
+  mainColor_text3: {
+    color: "#bb6a70",
   },
   
   mainColor: {
     backgroundColor: "#bb6a70",
   },
+
   mainColor2: {
-    backgroundColor: "#f1645e",
+    backgroundColor: "#f9f9f9",
+  },
+  mainColor3: {
+    backgroundColor: "#bb6a70",
+  },
+
+  mainColorF9: {
+    backgroundColor: "#f9f9f9",
+  },
+  mainColor_bb6: {
+    backgroundColor: "#bb6a70",
+  },
+  mainColor_FFFF: {
+    backgroundColor: "#FFFFFF",
   },
   mainFont: {
     fontFamily: "Helvethaica",
@@ -424,6 +447,7 @@ export const Styles = StyleSheet.create({
     width: "13%",
     height: 45,
     backgroundColor: "#ffcfcf",
+    backgroundColor: "#f9f9f9",
     borderRadius: 5,
     textAlign: "center",
   },

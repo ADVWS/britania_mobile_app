@@ -17,18 +17,18 @@ const Notify = ({ route }) => {
   const backto = route.params.screen;
   const [all, setAll] = React.useState({
     open: true,
-    color: "#f1645e",
+    color: "#bb6a70",
     text: "#FFF",
   });
   const [news, setNews] = React.useState({
     open: false,
     color: "transparent",
-    text: "#f1645e",
+    text: "#bb6a70",
   });
   const [fix, setFix] = React.useState({
     open: false,
     color: "transparent",
-    text: "#f1645e",
+    text: "#bb6a70",
   });
 
   React.useEffect(() => {
@@ -38,8 +38,8 @@ const Notify = ({ route }) => {
   });
 
   function changeTabs(req) {
-    var select = { open: true, color: "#f1645e", text: "#FFF" };
-    var notSelect = { open: false, color: "transparent", text: "#f1645e" };
+    var select = { open: true, color: "#bb6a70", text: "#FFF" };
+    var notSelect = { open: false, color: "transparent", text: "#555555" };
     if (req === "all") {
       setAll(select);
       setNews(notSelect);
@@ -58,9 +58,9 @@ const Notify = ({ route }) => {
   }
 
   return (
-    <View style={[Styles.flex, Styles.al_center]}>
+    <View style={[Styles.flex, Styles.al_center ,Styles.FFF]}>
       <LinearGradient
-        colors={["#fbd4d4", "#FFF", "#FFF"]}
+        colors={["#f9f9f9", "#f9f9f9", "#f9f9f9"]}
         style={[Styles.al_center, Styles.w100, Styles.h100]}
       >
         <MainHeader name={LANG.notify_text_01} backto={backto} />

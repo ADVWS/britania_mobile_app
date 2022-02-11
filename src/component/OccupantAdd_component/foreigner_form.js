@@ -254,7 +254,7 @@ export default function foreigner_form({ unit }) {
             <Text
               style={[
                 Styles.text_center,
-                Styles.mainColor_text,
+                Styles.mainColor_text2,
                 Styles.f_24,
                 Styles.mainFont,
                 { marginLeft: "1%" },

@@ -109,8 +109,14 @@ export default function OTP({ route }) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+<<<<<<< HEAD
      <View
         style={[Styles.flex, Styles.al_center, Styles.jc_center]}
+=======
+      <View
+        
+        style={[Styles.flex, Styles.al_center, Styles.jc_center,Styles.FFF]}
+>>>>>>> 1fda7e619d39ec1b574f25ccf34f09f24a9540e0
       >
         <View
           style={[
@@ -123,12 +129,12 @@ export default function OTP({ route }) {
         >
           <View style={[Styles.w100, Styles.al_start]}>
             <TouchableOpacity onPress={() => navigate.navigate("Signin")}>
-              <MaterialIcons name="arrow-back" size={32} color="#f1645e" />
+              <MaterialIcons name="arrow-back" size={32} color="#bb6a70" />
             </TouchableOpacity>
             <Text
               style={[
                 Styles.mainFont,
-                Styles.mainColor_text,
+                Styles.mainColor_text3,
                 Styles.mt60,
                 Styles.f_26,
               ]}
@@ -142,7 +148,7 @@ export default function OTP({ route }) {
                   style={[
                     Styles.f_26,
                     Styles.mainFont,
-                    Styles.mainColor_text,
+                    Styles.mainColor_text3,
                     Styles.mt30,
                   ]}
                 >
@@ -158,29 +164,29 @@ export default function OTP({ route }) {
                   setItems={setItemsMobile}
                   dropDownDirection=""
                   style={[
-                    Styles.pink_light,
+                    Styles.mainColor2,
                     Styles.mt10,
                     { borderWidth: 0, marginBottom: openMobile ? dropdownMobile : 15 },
                   ]}
-                  labelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
+                  labelStyle={[Styles.mainFont, Styles.mainColor_text2, Styles.f_22]}
                   dropDownContainerStyle={[{ borderWidth: 0 }]}
-                  listItemLabelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
+                  listItemLabelStyle={[Styles.mainFont, Styles.mainColor_text2, Styles.f_22]}
                   ArrowDownIconComponent={({ style }) => (
                     <MaterialIcons
                       name="keyboard-arrow-down"
                       size={30}
-                      color="#f1645e"
+                      color="#bb6a70"
                     />
                   )}
                   ArrowUpIconComponent={({ style }) => (
                     <MaterialIcons
                       name="keyboard-arrow-up"
                       size={30}
-                      color="#f1645e"
+                      color="#bb6a70"
                     />
                   )}
                   TickIconComponent={({ style }) => (
-                    <MaterialIcons name="check" size={25} color="#f1645e" />
+                    <MaterialIcons name="check" size={25} color="#bb6a70" />
                   )}
                 />
               </>
@@ -191,7 +197,7 @@ export default function OTP({ route }) {
                   style={[
                     Styles.f_26,
                     Styles.mainFont,
-                    Styles.mainColor_text,
+                    Styles.mainColor_text3,
                     Styles.mt30,
                   ]}
                 >
@@ -207,29 +213,29 @@ export default function OTP({ route }) {
                   setItems={setItemsEmail}
                   dropDownDirection=""
                   style={[
-                    Styles.pink_light,
+                    Styles.mainColor2,
                     Styles.mt10,
                     { borderWidth: 0, marginBottom: openEmail ? dropdownEmail : 15 },
                   ]}
-                  labelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
+                  labelStyle={[Styles.mainFont, Styles.mainColor_text2, Styles.f_22]}
                   dropDownContainerStyle={[{ borderWidth: 0 }]}
-                  listItemLabelStyle={[Styles.mainFont, Styles.black_gray_text, Styles.f_22]}
+                  listItemLabelStyle={[Styles.mainFont, Styles.mainColor_text2, Styles.f_22]}
                   ArrowDownIconComponent={({ style }) => (
                     <MaterialIcons
                       name="keyboard-arrow-down"
                       size={30}
-                      color="#f1645e"
+                      color="#bb6a70"
                     />
                   )}
                   ArrowUpIconComponent={({ style }) => (
                     <MaterialIcons
                       name="keyboard-arrow-up"
                       size={30}
-                      color="#f1645e"
+                      color="#bb6a70"
                     />
                   )}
                   TickIconComponent={({ style }) => (
-                    <MaterialIcons name="check" size={25} color="#f1645e" />
+                    <MaterialIcons name="check" size={25} color="#bb6a70" />
                   )}
                 />
               </>
@@ -240,7 +246,7 @@ export default function OTP({ route }) {
             style={[
               Styles.w100,
               Styles.p12,
-              Styles.mainColor,
+              Styles.mainColor3,
               Styles.al_center,
               Styles.br_5,
               Styles.boxWithShadow,
@@ -262,7 +268,7 @@ export default function OTP({ route }) {
           style={[
             Styles.f_22,
             Styles.mainFont_x,
-            Styles.mainColor_text,
+            Styles.mainColor_text2,
             Styles.text_center,
             Styles.mb20,
             {bottom: 10}

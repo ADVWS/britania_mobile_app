@@ -242,7 +242,7 @@ export default function ResidentAddOTP({ route }) {
                     <Ionicons
                       name="md-refresh-sharp"
                       size={20}
-                      color="#f1645e"
+                      color="#dd6a70"
                     />
                     {LANG.residentaddotp_text_06}
                   </Text>

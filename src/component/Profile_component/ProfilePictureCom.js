@@ -76,7 +76,11 @@ export default class ProfilePicCom extends React.Component {
                     left: 106,
                   },
                   Styles.circle,
+<<<<<<< HEAD
                   { borderWidth: 1, borderColor: "#bb6a70" },
+=======
+             
+>>>>>>> 1fda7e619d39ec1b574f25ccf34f09f24a9540e0
                 ]}
               />
               <TouchableOpacity onPress={() => this._InputImage()}>

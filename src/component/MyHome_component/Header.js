@@ -32,22 +32,22 @@ const Header = () => {
         } else {
             return (
                 <TouchableOpacity onPress={() => navigate.navigate("Notify", { screen })}>
-                    <MaterialIcons name="notifications-none" size={30} color={'#FFF'} />
+                    <MaterialIcons name="notifications-none" size={30} color={'#555555'} />
                     {counter !== '-' && counter !== 0 &&
                         <View style={{ backgroundColor: "red", borderRadius: 100, height: 25, width: 25, position: 'absolute', top: -12, left: 12, alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{ color: '#FFF', fontSize: 12 }}>{setCountNotify()}{counter}</Text>
+                            <Text style={{ color: '#f9f9f9', fontSize: 12 }}>{setCountNotify()}{counter}</Text>
                         </View>
                     }
                 </TouchableOpacity>)
         }
     }
     return (
-        <View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, Styles.mainColor, Styles.boxWithShadow, Styles.mb5]}>
+        <View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, Styles.mainColor2,Styles.mb5]}>
             <View style={[Styles.w20]} />
             <View style={[Styles.w60, Styles.al_center, Styles.jc_end, { bottom: 5 }]}>
                 <Image
                     source={require("../../../assets/image/logo-header.png")}
-                    style={[Styles.w70, { tintColor: '#FFF', height: '32%' }]}
+                    style={[Styles.w70, { tintColor: '#555555', height: '32%' }]}
                 />
             </View>
             <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>

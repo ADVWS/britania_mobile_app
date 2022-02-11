@@ -53,7 +53,7 @@ const InformList = () => {
                     Styles.br_5,
                     Styles.al_center,
                     Styles.jc_center,
-                    Styles.mainColor,
+                    Styles.mainColor_bb6,
                     Styles.boxWithShadow,
                     Styles.row
                 ]}>

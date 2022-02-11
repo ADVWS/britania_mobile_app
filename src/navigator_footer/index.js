@@ -22,7 +22,7 @@ const AllTabBottom = () => {
                     <Tab.Navigator ref={navigationRef}
                         initialRouteName={'Home'}
                         screenOptions={{
-                            tabBarActiveTintColor: '#f1645e',
+                            tabBarActiveTintColor: '#bb6a70',
                             headerShown: false,
                         }}>
                         <Tab.Screen
@@ -62,7 +62,7 @@ const AllTabBottom = () => {
                     <Tab.Navigator ref={navigationRef}
                         initialRouteName={'Home'}
                         screenOptions={{
-                            tabBarActiveTintColor: '#f1645e',
+                            tabBarActiveTintColor: '#bb6a70',
                             headerShown: false,
                         }}>
                         <Tab.Screen
@@ -92,7 +92,7 @@ const AllTabBottom = () => {
                     <Tab.Navigator ref={navigationRef}
                         initialRouteName={'Home'}
                         screenOptions={{
-                            tabBarActiveTintColor: '#f1645e',
+                            tabBarActiveTintColor: '##bb6a70',
                             headerShown: false,
                         }}>
                         <Tab.Screen

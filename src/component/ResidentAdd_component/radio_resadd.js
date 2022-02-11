@@ -11,21 +11,21 @@ export default function radio_resadd(props) {
   const [thai, setThai] = React.useState(true);
   const [foreign, setForeign] = React.useState(false);
 
-  const [thaiColor, setThaiColor] = React.useState("#f1645e");
+  const [thaiColor, setThaiColor] = React.useState("#bb6a70");
   const [foreignColor, setForeignColor] = React.useState("#9c9c9b");
 
   const selectType = (type) => {
     if (type == "thai") {
       setThai(true);
       setForeign(false);
-      setThaiColor("#f1645e");
+      setThaiColor("#bb6a70");
       setForeignColor("#9c9c9b");
     }
     if (type === "foreign") {
       setThai(false);
       setForeign(true);
       setThaiColor("#9c9c9b");
-      setForeignColor("#f1645e");
+      setForeignColor("#bb6a70");
     }
     const { isSelectType } = props;
     props.isSelectType(type);
@@ -55,7 +55,7 @@ export default function radio_resadd(props) {
               style={[
                 { width: 12, height: 12 },
                 Styles.circle,
-                Styles.mainColor,
+                Styles.mainColor3,
               ]}
             />
           )}
@@ -93,7 +93,7 @@ export default function radio_resadd(props) {
               style={[
                 { width: 12, height: 12 },
                 Styles.circle,
-                Styles.mainColor,
+                Styles.mainColor3,
               ]}
             />
           )}

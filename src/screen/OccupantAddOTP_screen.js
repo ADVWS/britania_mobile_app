@@ -56,7 +56,7 @@ export default function OccupantAddOTP({route}) {
         <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p30]}>
           <View
             style={[
-              { height: 100, width: 100, backgroundColor: "#ffcfcf" },
+              { height: 100, width: 100, backgroundColor: "#f9f9f9" },
               Styles.circle,
             ]}
           >
@@ -85,7 +85,7 @@ export default function OccupantAddOTP({route}) {
               style={[
                 Styles.f_26,
                 Styles.mainFont,
-                Styles.mainColor_text,
+                Styles.mainColor_text3,
                 Styles.mt30,
               ]}
             >
@@ -221,12 +221,12 @@ export default function OccupantAddOTP({route}) {
                 ยังไม่ได้รับรหัส OTP{" "}
                 <Text
                   style={[
-                    Styles.mainColor_text,
+                    Styles.mainColor_text3,
                     Styles.mainFont_x_db,
                     { textDecorationLine: "underline" },
                   ]}
                 >
-                  <Ionicons name="md-refresh-sharp" size={20} color="#f1645e" />
+                  <Ionicons name="md-refresh-sharp" size={20} color="#bb6a70" />
                   ส่งอีกครั้ง
                 </Text>
               </Text>
@@ -237,7 +237,7 @@ export default function OccupantAddOTP({route}) {
               Styles.mt40,
               Styles.w100,
               Styles.p12,
-              Styles.mainColor,
+              Styles.mainColor3,
               Styles.al_center,
               Styles.br_5,
               Styles.boxWithShadow,
@@ -275,7 +275,7 @@ export default function OccupantAddOTP({route}) {
               style={[
                 Styles.f_24,
                 Styles.mainFont,
-                Styles.mainColor_text,
+                Styles.mainColor_text3,
                 Styles.text_center,
                 Styles.al_center,
               ]}

@@ -259,7 +259,7 @@ export default function thai_form(unit) {
           <Text
             style={[
               Styles.text_center,
-              Styles.mainColor_text,
+              Styles.mainColor_text3,
               Styles.f_24,
               Styles.mainFont,
               { marginLeft: "1%" },

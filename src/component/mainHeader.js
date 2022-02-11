@@ -47,12 +47,18 @@ export default class mainHeader extends React.Component {
           Styles.h15,
           Styles.row,
           Styles.p20,
+<<<<<<< HEAD
           Styles.f9_Color,
+=======
+          Styles.mainColor2,
+>>>>>>> 1fda7e619d39ec1b574f25ccf34f09f24a9540e0
           Styles.boxWithShadow,
+          Styles.mainColorF9,
+          // Styles.boxWithShadow,
           Styles.mb5,
         ]}
       >
-        <View style={[Styles.w10, Styles.al_start, Styles.jc_end, Styles.p5]}>
+        <View style={[Styles.w10, Styles.al_start, Styles.jc_end, Styles.p5 ]}>
           <TouchableOpacity onPress={() => this.setData()}>
             <MaterialIcons name="arrow-back" size={32} color="#bb6a70" />
           </TouchableOpacity>
@@ -63,11 +69,17 @@ export default class mainHeader extends React.Component {
           <Text
             style={[
               Styles.f_24,
+<<<<<<< HEAD
               Styles.BB6_text,
+=======
+              Styles.mainColor_text3,
+              Styles.bbb_text,
+>>>>>>> 1fda7e619d39ec1b574f25ccf34f09f24a9540e0
               Styles.mainFont_x,
-              Styles.mt25,
+              Styles.mt5,
               Styles.ml5,
               { top: 2 },
+              
             ]}
           >
             {this.state.header_name}

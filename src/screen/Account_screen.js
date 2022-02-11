@@ -37,6 +37,7 @@ export default function Account() {
 
   return (
     <View
+      colors={["#f9f9f9"]}
       style={[Styles.flex, Styles.al_center]}
     >
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
@@ -51,7 +52,7 @@ export default function Account() {
                     Styles.mt40,
                     Styles.ml5,
                     Styles.mainFont,
-                    Styles.mainColor_text,
+                    Styles.mainColor_5555,
                     Styles.f_24,
                   ]}
                 >
