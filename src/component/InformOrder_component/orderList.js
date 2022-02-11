@@ -101,42 +101,48 @@ const OrderList = ({ data, index, route }) => {
                         )
                     }
                 </ScrollView>
-                <TouchableOpacity
-                    onPress={() => gotoResponsible(data.homecareName)}
-                    style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt20, { backgroundColor: '#ffecec' }]}>
-                    <View style={[Styles.w80]}>
-                        <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
-                            {LANG.homecare_text_17}
-                        </Text>
-                    </View>
-                    <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
-                        <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.mainColor_text} />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => gotoOnsite(data.homecareName)}
-                    style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, { backgroundColor: '#ffecec' }]}>
-                    <View style={[Styles.w80]}>
-                        <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
-                            {LANG.homecare_text_18}
-                        </Text>
-                    </View>
-                    <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
-                        <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.mainColor_text} />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => gotoRepiairList(data.homecareName)}
-                    style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, Styles.mb10, { backgroundColor: '#ffecec' }]}>
-                    <View style={[Styles.w80]}>
-                        <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
-                            {LANG.homecare_text_19}
-                        </Text>
-                    </View>
-                    <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
-                        <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.mainColor_text} />
-                    </View>
-                </TouchableOpacity>
+                {data.status !== 'Pending' &&
+                    <TouchableOpacity
+                        onPress={() => gotoResponsible(data.homecareName)}
+                        style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt20, { backgroundColor: '#ffecec' }]}>
+                        <View style={[Styles.w80]}>
+                            <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
+                                {LANG.homecare_text_17}
+                            </Text>
+                        </View>
+                        <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
+                            <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.mainColor_text} />
+                        </View>
+                    </TouchableOpacity>
+                }
+                {data.status !== 'Pending' && data.status !== 'Assign' &&
+                    <TouchableOpacity
+                        onPress={() => gotoOnsite(data.homecareName)}
+                        style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, { backgroundColor: '#ffecec' }]}>
+                        <View style={[Styles.w80]}>
+                            <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
+                                {LANG.homecare_text_18}
+                            </Text>
+                        </View>
+                        <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
+                            <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.mainColor_text} />
+                        </View>
+                    </TouchableOpacity>
+                }
+                {data.status !== 'Pending' && data.status !== 'Assign' && data.status !== 'Checking' && data.status !== "Hold-Customer" &&
+                    <TouchableOpacity
+                        onPress={() => gotoRepiairList(data.homecareName)}
+                        style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, Styles.mb10, { backgroundColor: '#ffecec' }]}>
+                        <View style={[Styles.w80]}>
+                            <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
+                                {LANG.homecare_text_19}
+                            </Text>
+                        </View>
+                        <View style={[Styles.w20, Styles.al_end, Styles.jc_center]}>
+                            <MaterialIcons name="arrow-forward-ios" size={20} style={Styles.mainColor_text} />
+                        </View>
+                    </TouchableOpacity>
+                }
                 {route === "SUCCESS" &&
                     <TouchableOpacity
                         onPress={() => gotoSatisfaction(data.homecareName)}

@@ -31,7 +31,6 @@ const InformCalendar = ({ route }) => {
     const [selectDate, setSelectDate] = React.useState(moment())
     const [confirmBox, setConfirmBox] = React.useState(false)
     const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
-    console.log('Check route', selectDate)
 
     const [time, setTime] = useRecoilState(Global.checkInTime)
     const [newInform, setNewInform] = useRecoilState(Global.newInform)
@@ -66,8 +65,7 @@ const InformCalendar = ({ route }) => {
     }
 
     function onDateChange(date) {
-        var dateInform = moment()
-        setSelectDate(dateInform)
+        setSelectDate(date)
     }
 
     function confirmData() {
@@ -83,23 +81,32 @@ const InformCalendar = ({ route }) => {
             dataset = mainScript.recoilTranform(newInform)
             dataset.unitOwnerId = unitOwner.id
             dataset.checkInRangeTime = String(selectTime)
-            dataset.checkInDate = selectDate
+            dataset.checkInDate = moment(selectDate).format('YYYY-MM-DD HH:mm:ss')
             var detailTemp = ''
             dataset.details.map((item)=>{
-                console.log(item.file)
                 detailTemp += 
                     `{
                         categoryId: "${item.categoryId}"
                         description: "${item.description}"
-                        files: ${item.file.length === 0 ? '[]': item.file}
-                    }`
+                    `
+                if(item.file.length <= 0){
+                    detailTemp += 'files: []'
+                } else {
+                    detailTemp += `files: [`
+                    for(let i = 0; i < item.file.length; i++){
+                        detailTemp += `{
+                            fileId: "${item.file[i].fileId}"
+                            fileCurName: "${item.file[i].fileCurName}"
+                            filePrevName: "${item.file[i].filePrevName}"
+                            fileExtension: "${item.file[i].fileExtension}"
+                        }`
+                    }
+                    detailTemp += ']'
+                }
             })
-            detailTemp += ''
+            detailTemp += '}'
             dataset.details = JSON.stringify(dataset.details)
-            console.log('dataset', moment(dataset.selectDate).format('DD/MM/YYYY HH:mm:sss'))
-            console.log('dataset', dataset)
             Script.homecareCreateCase(Key.TOKEN, detailTemp, dataset, unitOwner.id, (res)=>{
-                console.log('DATA SORT', res)
                 if(res.homecareAllCase && res.homecareAllCase !== null){
                     res.homecareAllCase.map((item)=>{
                         if(informStatus.indexOf(item.status) !== -1){
@@ -149,7 +156,7 @@ const InformCalendar = ({ route }) => {
                                     previousTitle={<MaterialIcons name="arrow-back-ios" size={18} />}
                                     nextTitle={<MaterialIcons name="arrow-forward-ios" size={18} />}
                                     weekdays={["S", "M", "T", "W", "T", "F", "S"]}
-                                    todayBackgroundColor="#f1645e"
+                                    todayBackgroundColor="#ffdbdb"
                                     todayTextStyle={{ color: "#000" }}
                                     selectedDayStyle={{ backgroundColor: "#f1645e" }}
                                     selectedDayTextColor="#FFF"

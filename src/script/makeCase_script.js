@@ -1,23 +1,21 @@
 import moment from 'moment';
 import API from '../graphQL'
 import Store from '../store';
+import {gql} from 'graphql-request'
 
-export const homecareCreateCase = async (key, detailTemp,data, unitOwnerId, cb) => {
+export const homecareCreateCase = async (key, detailTemp, data, unitOwnerId, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
-        console.log(data.checkInDate)
-        const CASE = `
+        const CASE = gql`
         mutation{
             homecareCreateCase(
                 input: {
-                        unitOwnerId: "${data.unitOwnerId}"
-                        owner: "${data.owner}"
-                        phoneOwner: "${data.phoneOwner}"
-                        checkInDate: "${new Date(data.checkInDate)}"
-                        checkInRangeTime: "${data.checkInRangeTime}"
-                        details: [
-                            ${detailTemp}
-                        ]
+                    unitOwnerId: "${data.unitOwnerId}"
+                    owner: "${data.owner}"
+                    phoneOwner: "${data.phoneOwner}"
+                    checkInDate: "${data.checkInDate}"
+                    checkInRangeTime: "${data.checkInRangeTime}"
+                    details: ${detailTemp}
                 }
             ) {
                 id
@@ -74,7 +72,6 @@ export const homecareCreateCase = async (key, detailTemp,data, unitOwnerId, cb) 
             }
         }`;
         console.log('MY BODY', CASE)
-        
         setHomecareCreateCase(CASE, token, unitOwnerId, cb)
     })
 }

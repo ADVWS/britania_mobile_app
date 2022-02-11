@@ -14,8 +14,9 @@ import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from 'expo-image-picker';
 import mainScript from "../script";
-
+import Key from "../KEYS.json"
 import * as Global from "../globalState"
+import Store from "../store";
 
 import { Styles } from "../styles";
 
@@ -24,8 +25,7 @@ import MainHeader from "../component/mainHeader";
 
 const InformAdd = ({ route }) => {
     console.log(route.params)
-    const [newInform, setNewInform] = useRecoilState(Global.newInform)
-    const [thisinformType, setthisInformType] = useRecoilState(Global.informSelectType)
+    const [gallery, setGallery] = React.useState([])
     const [caseList, setCaseList] = useRecoilState(Global.caseList)
     const _setCaseList = useSetRecoilState(Global.caseList)
 
@@ -38,7 +38,7 @@ const InformAdd = ({ route }) => {
     const [alDetail, setAlDetail] = React.useState(false);
     const [alBoxDetail, setAlBoxDetail] = React.useState("#DDD")
     const [alImage, setAlImage] = React.useState(false);
-    
+
     console.log(caseList)
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -50,16 +50,33 @@ const InformAdd = ({ route }) => {
         });
         var imageset = imageAdd
         console.log(result);
-        setDisplay(false)
-        if (!result.cancelled) {
-            imageset.push(result.uri)
-            setImageAdd(imageset);
-            if (imageAdd.length > 0) {
-                setDisplay(true)
-            } else {
+        var formdata = new FormData();
+        var Type = result.uri.substring(result.uri.lastIndexOf(".") + 1)
+        var Data = {
+            uri: result.uri,
+            name: `upload_image`,
+            type: `image/${Type}`
+        };
+        formdata.append('file', Data)
+        formdata.append('target', 'profile')
+        Store.getLocalStorege(Key.TOKEN, (tk) => {
+            const token = tk.detail.token
+            mainScript.uploadImage(token, formdata, (res) => {
+                var galleryArray = gallery
+                galleryArray.push(res)
+                console.log('galleryArray:::', galleryArray)
                 setDisplay(false)
-            }
-        }
+                if (!result.cancelled) {
+                    imageset.push(result.uri)
+                    setImageAdd(imageset);
+                    if (imageAdd.length > 0) {
+                        setDisplay(true)
+                    } else {
+                        setDisplay(false)
+                    }
+                }
+            })
+        })
     };
 
     function gotoInformContact() {
@@ -72,23 +89,18 @@ const InformAdd = ({ route }) => {
             setAlDetail(true)
             setAlBoxDetail('red')
         }
-        // if (imageAdd.length === 0) {
-        //     checker.push(false)
-        //     setAlImage(true)
-        // }
         if (checker.indexOf(false) !== -1) {
             return
         }
-        // var informData = {}
-        // informData.type = thisinformType.type
-        // var informSet = []
         setIsCase(mainScript.recoilTranform(isCase))
         isCase.description = detail
-        if (imageAdd.length === 0) {
+        if (gallery.length === 0) {
             isCase.file = []
+        } else {
+            isCase.file = gallery
         }
         var newCase = [isCase]
-        if(caseList.length > 0){
+        if (caseList.length > 0) {
             var setNewcase = mainScript.recoilTranform(caseList)
             setNewcase.push(isCase)
             _setCaseList(setNewcase)

@@ -77,7 +77,7 @@ const TH = {
   homecare_text_16: "รูปภาพ",
   homecare_text_17: "เจ้าหน้าที่ โฮมแคร์ที่เข้าตรวจสอบ",
   homecare_text_18: "ตรวจสอบหน้างาน",
-  homecare_text_19: "รายการแก้ไข",
+  homecare_text_19: "เข้าซ่อม",
   homecare_text_20: "ประเมินแล้ว",
   homecare_text_21: "การประเมินความพึงพอใจ",
   homecare_text_22: "เจ้าหน้าที่ โฮมแคร์ที่เข้าตรวจสอบ",

@@ -15,6 +15,7 @@ import { Styles } from "../../styles";
 
 
 const InformOrderList = ({ item }) => {
+    console.log('InformOrderList=', item)
     return (
         <>
             <View style={[Styles.w100, Styles.p15, Styles.mt15, Styles.br_5, { backgroundColor: "#ffecec" }]}>
@@ -43,7 +44,7 @@ const InformOrderList = ({ item }) => {
                 <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
                     {item.file.length > 0 ? (item.file.map((img) => (
                         <Image
-                            source={{ uri: img }}
+                            source={{ uri: `https://btnconnectapi.myorigin.net/image/profile/${img.fileCurName}` }}
                             style={[Styles.br_5, { width: 120, height: 120, marginRight: 10 }]}
                         />
                     ))) : (

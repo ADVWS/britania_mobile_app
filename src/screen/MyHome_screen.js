@@ -30,7 +30,7 @@ const MyHome = () => {
 
     const setListInform = useSetRecoilState(Global.dataListInform)
     const setlistHistory = useSetRecoilState(Global.dataListHistory)
-    const informStatus = ['Pending', 'Checking', 'Assign', 'Reject', 'ReInprocess', 'Hold-Customer', 'Unapproved']
+    const informStatus = ['Pending', 'Checking', 'Assign', 'Reject', 'ReInprocess', 'Hold-Customer', 'Unapproved', 'Inprocess']
     const historyStatus = ['Finish', 'Close']
     console.log(userProfile)
     startApp()

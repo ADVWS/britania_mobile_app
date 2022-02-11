@@ -13,25 +13,25 @@ export function statusTranform(key) {
     switch (key) {
         case 'Pending':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
-                        รับเรื่องแจ้งซ่อม
+                <View style={[Styles.circle, { backgroundColor: "#fff6dd" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#d3a12f", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
         case 'Checking':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
-                        เข้าตรวจสอบหน้างาน
+                <View style={[Styles.circle, { backgroundColor: "#ffe7cb" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#e37626", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
         case 'Assign':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
-                        รอเข้าซ่อม
+                <View style={[Styles.circle, { backgroundColor: "#f2ffc5" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#91a322", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
@@ -39,55 +39,55 @@ export function statusTranform(key) {
             return (
                 <View style={[Styles.circle, { backgroundColor: "#f4c7cc" }]}>
                     <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#782d36", marginLeft: 5, marginRight: 5 }]}>
-                        ไม่อยู่ในเงื่อนไขการรับประกัน
+                        {key}
                     </Text>
                 </View>
             )
         case 'Inprocess':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#c4e4f9" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#267bbf", marginLeft: 10, marginRight: 10 }]}>
-                        อยู่ในระหว่างการซ่อม
+                <View style={[Styles.circle, { backgroundColor: "#dbefff" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#418dc8", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
         case 'ReInprocess':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#dbecfc" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#267bbf", marginLeft: 10, marginRight: 10 }]}>
-                        ซ่อมซ้ำ
+                <View style={[Styles.circle, { backgroundColor: "#dbefff" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#418dc8", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
         case 'Hold-Customer':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
-                        ลูกบ้านยังไม่สะดวก
+                <View style={[Styles.circle, { backgroundColor: "#ebe3fb" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#7b52d3", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
         case 'Unapproved':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#fcf4d4" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#f4910d", marginLeft: 10, marginRight: 10 }]}>
-                        รายการแจ้งซ่อมรออนุมัติ
+                <View style={[Styles.circle, { backgroundColor: "#ffe7cb" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#e37626", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
         case 'Finish':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#dcfcf4" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#3fc89b", marginLeft: 10, marginRight: 10 }]}>
-                        เสร็จสิ้น
+                <View style={[Styles.circle, { backgroundColor: "#d8fff1" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#4dcca3", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
         case 'Close':
             return (
-                <View style={[Styles.circle, { backgroundColor: "#DDD" }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#FFF", marginLeft: 10, marginRight: 10 }]}>
-                        ปิดงาน
+                <View style={[Styles.circle, { backgroundColor: "#d8fff1" }]}>
+                    <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#4dcca3", marginLeft: 10, marginRight: 10 }]}>
+                        {key}
                     </Text>
                 </View>
             )
