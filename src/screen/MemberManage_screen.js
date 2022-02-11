@@ -15,8 +15,8 @@ export default function MemberManage() {
     <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
         <MainHeader name={LANG.membermanage_text_01} backto={"Account"} />
-        {home.me.unitsOwner && home.me.unitsOwner !== null ? (
-          <HomeList homeList={home.me.unitsOwner} userProfile={home.me} />
+        {home.me.unitsAllowHomecare && home.me.unitsAllowHomecare !== null ? (
+          <HomeList homeList={home.me.unitsAllowHomecare} userProfile={home.me} />
         ): (<>
           <MaterialCommunityIcons name="home-search" size={120} color="#DDD" style={{marginTop: '30%'}}/>
           <Text style={[Styles.mainFont, Styles.f_22, Styles.gray_text, Styles.mt10]}>{LANG.myhome_text_06}</Text>

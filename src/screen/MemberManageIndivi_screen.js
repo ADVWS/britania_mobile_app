@@ -47,7 +47,7 @@ export default function MemberManageIndivi_screen() {
   };
 
   const setImage = (image) => {
-    if (image) {
+    if (image.projectImageSrc && image.projectImageSrc !== null) {
       return (
         <View
           style={[
@@ -58,7 +58,7 @@ export default function MemberManageIndivi_screen() {
           ]}
         >
           <Image
-            source={{ uri: image }}
+            source={{ uri: image.projectImageSrc }}
             style={[Styles.h100, Styles.w100, Styles.br_5]}
           />
         </View>
@@ -93,7 +93,7 @@ export default function MemberManageIndivi_screen() {
           style={[Styles.w100, Styles.h75]}
         >
           <View style={[Styles.w100, Styles.p15, Styles.al_center, Styles.FFF]}>
-            {setImage(unitMember.image)}
+            {setImage(unitMember.project)}
             <View style={Styles.w80}>
               <Text
                 style={[

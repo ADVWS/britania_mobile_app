@@ -109,14 +109,8 @@ export default function OTP({ route }) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-<<<<<<< HEAD
-     <View
-        style={[Styles.flex, Styles.al_center, Styles.jc_center]}
-=======
-      <View
-        
+      <View  
         style={[Styles.flex, Styles.al_center, Styles.jc_center,Styles.FFF]}
->>>>>>> 1fda7e619d39ec1b574f25ccf34f09f24a9540e0
       >
         <View
           style={[

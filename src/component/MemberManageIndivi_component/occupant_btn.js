@@ -90,76 +90,103 @@ export default function OccupantBtn({ item }) {
                 {moment(item.expiredDate).format("DD/MM/YYYY")}
               </Text>
             </View>
-            <View style={[Styles.mt5]}>
-              <View style={Styles.row}>
-                {item.memberStatus === "pending" ? (
-                  <View style={[Styles.w65]}>
-                    <View
-                      style={[
-                        Styles.circle,
-                        { backgroundColor: "#fcf4d4" },
-                        Styles.al_center,
-                      ]}
-                    >
-                      <Text
-                        style={[
-                          Styles.f_24,
-                          Styles.mainFont_x,
-                          {
-                            color: "#f4910d",
-                            marginLeft: 10,
-                            marginRight: 10,
-                          },
-                        ]}
-                      >
-                        {LANG.membermanageindivi_text_05}
-                      </Text>
-                    </View>
-                  </View>
-                ) : null}
+            <View style={[Styles.mt5, Styles.w60]}>
+              <View style={[Styles.row, Styles.w100]}>
                 {item.memberStatus === "active" ? (
-                  <View>
-                    <View style={[Styles.w65]}>
-                      <View
-                        style={[
-                          Styles.circle,
-                          { backgroundColor: "#dcfcf4" },
-                          Styles.al_center,
-                        ]}
-                      >
-                        <Text
+                  <>
+                    <View style={[Styles.w60, Styles.p5]}>
+                      <View style={[Styles.w100]}>
+                        <View
                           style={[
-                            Styles.f_24,
-                            Styles.mainFont_x,
-                            {
-                              color: "#3fc89b",
-                              marginLeft: 10,
-                              marginRight: 10,
-                            },
+                            Styles.circle,
+                            { backgroundColor: "#dcfcf4" },
+                            Styles.al_center,
                           ]}
                         >
-                          {LANG.membermanageindivi_text_11}
-                        </Text>
+                          <Text
+                            style={[
+                              Styles.f_24,
+                              Styles.mainFont_x,
+                              {
+                                color: "#3fc89b",
+                                marginLeft: 10,
+                                marginRight: 10,
+                              },
+                            ]}
+                          >
+                            {LANG.membermanageindivi_text_11}
+                          </Text>
+                        </View>
                       </View>
                     </View>
-                  </View>
-                ) : null}
-                <View style={Styles.w10}></View>
-                <View
-                  style={[
-                    { width: 30, height: 30, backgroundColor: "#EEEEEE" },
-                    Styles.circle,
-                  ]}
-                >
-                  <View>
-                    <AntDesign
-                      name="right"
-                      size={20}
-                      color="gray"
-                      style={[Styles.mt5, { marginLeft: 5 }]}
-                    />
-                  </View>
-                </View>
+                    <View style={[Styles.w40, Styles.p5]}>
+                      <View style={[Styles.w100, Styles.al_end]}>
+                        <View
+                          style={[
+                            { width: 30, height: 30, backgroundColor: "#EEEEEE", right: 10 },
+                            Styles.circle,
+                            Styles.al_center,
+                            Styles.jc_center
+                          ]}>
+                          <View>
+                            <AntDesign
+                              name="right"
+                              size={20}
+                              color="gray"
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                  </>
+                ) : (
+                  <>
+                    <View style={[Styles.w60, Styles.p5]}>
+                      <View style={[Styles.w100]}>
+                        <View
+                          style={[
+                            Styles.circle,
+                            { backgroundColor: "#fcf4d4" },
+                            Styles.al_center,
+                          ]}
+                        >
+                          <Text
+                            style={[
+                              Styles.f_24,
+                              Styles.mainFont_x,
+                              {
+                                color: "#f4910d",
+                                marginLeft: 10,
+                                marginRight: 10,
+                              },
+                            ]}
+                          >
+                            {LANG.membermanageindivi_text_05}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View style={[Styles.w40, Styles.p5]}>
+                      <View style={[Styles.w100, Styles.al_end]}>
+                        <View
+                          style={[
+                            { width: 30, height: 30, backgroundColor: "#EEEEEE", right: 10 },
+                            Styles.circle,
+                            Styles.al_center,
+                            Styles.jc_center
+                          ]}>
+                          <View>
+                            <AntDesign
+                              name="right"
+                              size={20}
+                              color="gray"
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                  </>
+                )}
               </View>
               <View style={[Styles.w100, { marginTop: 7 }]}>
                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>

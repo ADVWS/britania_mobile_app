@@ -14,7 +14,9 @@ import * as Global from "../../globalState";
 const HomeList = ({ homeList }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const setUnitMember = useSetRecoilState(Global.unitMember);
+
   const selectProject = (item) => {
+    console.log(item)
     Script.unitMemberAll(item, KEYS.TOKEN, (unitMember) => {
       var data = mainScript.recoilTranform(item);
       data.unitMember = unitMember;
