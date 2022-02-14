@@ -33,7 +33,7 @@ const Modal_alert = ({textAlert, closeModalAlert}) => {
               Styles.br_5
             ]}
           >
-            <Text style={[Styles.f_16, Styles.mainFont, Styles.text_center, Styles.white_text]}>Close</Text>
+            <Text style={[Styles.f_22, Styles.mainFont, Styles.text_center, Styles.white_text]}>Close</Text>
           </TouchableOpacity>
         </View>
       </View>

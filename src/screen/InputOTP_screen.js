@@ -6,9 +6,8 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
-  ImageBackground
 } from "react-native";
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import * as navigate from "../navigator/RootNavigation";
@@ -21,10 +20,14 @@ import * as Global from "../globalState"
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
 import Script from "../script/lnputOTP_script";
+import { sendOTP } from "../script/OTP_script";
 import Store from "../store";
 import Key from "../KEYS.json"
 
 export default function InputOTP({ route }) {
+  var timer = 60
+  const [optData, setoptData] = React.useState(route.params);
+  const [refNo, setRefNo] = React.useState(optData.OTP.refNo);
   const userProfile = useSetRecoilState(Global.userProfile)
   const userType = useSetRecoilState(Global.userType)
   const [LANG, setLANG] = useRecoilState(Global.Language)
@@ -44,6 +47,10 @@ export default function InputOTP({ route }) {
   const [textAlert, setTextAlert] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const navigation = useNavigation();
+  const [countDown, setCountDown] = React.useState(false);
+  const [displayTime, setDisplayTime] = React.useState(timer);
+  var setOTPTimer;
+
 
   function _login() {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
@@ -52,8 +59,7 @@ export default function InputOTP({ route }) {
     //navigate.navigate("TabFooter")
     //return
     setLoading(true)
-    Script.login(route.params, otp, (res) => {
-      console.log(res)
+    Script.login(optData, otp, (res) => {
       if (typeof res === 'object') {
         var data = JSON.stringify(res.login)
         Store.setLocalStorege(Key.TOKEN, data, (call) => {
@@ -96,6 +102,47 @@ export default function InputOTP({ route }) {
     })
   }
 
+  async function resendOtp() {
+    var valueMobile
+    var valueEmail
+    if (optData.OTP.type === "mobile") {
+      valueMobile = optData.OTP.sendTo
+      valueEmail = undefined
+    } else if (optData.OTP.type === "email") {
+      valueMobile = undefined
+      valueEmail = optData.OTP.sendTo
+    }
+    sendOTP(valueMobile, valueEmail, optData.OTP.type, (res) => {
+      if (typeof res === 'object') {
+        var data = optData
+        if (optData.OTP.type === "mobile") {
+          data["OTP"] = res.sendMobileOtp
+          setRefNo(res.sendMobileOtp.refNo)
+        } else if (optData.OTP.type === "email") {
+          data["OTP"] = res.sendEmailOtp
+          setRefNo(res.sendEmailOtp.refNo)
+        }
+        setCountDown(true)
+        setOTPTimer = setInterval(OTPTimer, 1000);
+      } else {
+        setTimeout(() => {
+          setTextAlert(res)
+          setAlert(true)
+        }, 500);
+      }
+    })
+  }
+
+  function OTPTimer() {
+    timer--;
+    console.log(timer)
+    setDisplayTime(timer)
+    if (timer == 0) {
+      setCountDown(false)
+      clearInterval(setOTPTimer);
+    }
+  }
+
   const closeModalAlert = () => setAlert(false)
 
   return (
@@ -113,7 +160,7 @@ export default function InputOTP({ route }) {
           ]}
         >
           <View style={[Styles.w100, Styles.al_start]}>
-            <TouchableOpacity onPress={() => navigate.navigate("OTP")}>
+            <TouchableOpacity onPress={() => navigate.navigate("OTP", optData)}>
               <MaterialIcons name="arrow-back" size={32} color="#bb6a70" />
             </TouchableOpacity>
           </View>
@@ -125,12 +172,12 @@ export default function InputOTP({ route }) {
               Styles.mt60,
             ]}
           >
-            {LANG.inputotp_text_01} {route.params.OTP.sendTo}
+            {route.params.OTP.type === "mobile" ? LANG.inputotp_text_01 : LANG.inputotp_text_02} {route.params.OTP.sendTo}
           </Text>
           <Text
             style={[Styles.f_24, Styles.mainFont_x, Styles.black_gray_text]}
           >
-            {LANG.inputotp_text_03} : {route.params.OTP.refNo}
+            {LANG.inputotp_text_03} : {refNo}
           </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
@@ -263,25 +310,44 @@ export default function InputOTP({ route }) {
               />
             </View>
             <View style={[Styles.al_end, Styles.w100, Styles.mt10]}>
-              <Text
-                style={[
-                  Styles.f_22,
-                  Styles.mainFont,
-                  Styles.black_gray_text,
-                ]}
-              >
-                {LANG.inputotp_text_05}{" "}
-                <Text
-                  style={[
-                    Styles.mainColor_text,
-                    Styles.mainFont,
-                    { textDecorationLine: "underline" },
-                  ]}
-                >
-                  <Ionicons name="md-refresh-sharp" size={20} color="#bb6a70" />
-                  {LANG.inputotp_text_06}
-                </Text>
-              </Text>
+              <View style={[Styles.row, Styles.w100]}>
+                <View style={[{ width: '75%' }, Styles.al_end]}>
+                  <Text
+                    style={[
+                      Styles.f_22,
+                      Styles.mainFont,
+                      Styles.black_gray_text,
+                    ]}
+                  >
+                    {LANG.inputotp_text_05}
+                  </Text>
+                </View>
+                {!countDown ? (
+                  <TouchableOpacity style={[Styles.w25, Styles.al_end]}
+                    onPress={() => resendOtp()}>
+                    <Text
+                      style={[
+                        Styles.f_22,
+                        Styles.mainColor_text,
+                        Styles.mainFont,
+                        { textDecorationLine: "underline" },
+                      ]}
+                    >
+                      <Ionicons name="md-refresh-sharp" size={20} color="#bb6a70" />
+                      {LANG.inputotp_text_06}
+                    </Text>
+                  </TouchableOpacity>) : 
+                  (<Text
+                    style={[
+                      Styles.f_22,
+                      Styles.mainFont,
+                      Styles.black_gray_text,
+                    ]}
+                  >
+                    ในอีก <Text style={[Styles.mainColor_text3]}>{displayTime}</Text> วินาที 
+                  </Text>)
+                }
+              </View>
             </View>
           </View>
           <TouchableOpacity

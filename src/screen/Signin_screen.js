@@ -5,19 +5,16 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
-  ImageBackground,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 
 // import * as navigate from "../navigator/RootNavigation";
 import * as navigate from "../navigator/RootNavigation";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import * as Global from '../globalState'
 
 import { Styles } from "../styles";
-import FooterSignin from "../component/footer_signin";
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
 import Script from "../script/Signin_script";
@@ -29,6 +26,7 @@ export default function Signin() {
   const [textAlert, setTextAlert] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [boxAlert, setBoxAlert] = React.useState("transparent")
 
   function isClearBtn() {
     if (userid.length > 1) {
@@ -39,6 +37,13 @@ export default function Signin() {
   }
 
   function isGetProfileOtp() {
+    setBoxAlert('transparent')
+    if(userid === ""){
+      setTextAlert('กรุณาระบุหมายเลขบัตรประชาชน / หมายเลขหนังสือเดินทาง');
+      setBoxAlert('red')
+      setAlert(true);
+      return
+    }
     setLoading(true);
     Script.getProfileOtp(userid, (res) => {
       console.log("RESULT", res);
@@ -92,7 +97,7 @@ export default function Signin() {
             >
               {LANG.signin_text_02}
             </Text>
-            <View style={[Styles.row, Styles.mt15]}>
+            <View style={[Styles.row, Styles.mt15,  {borderColor: boxAlert, borderWidth: 2, borderRadius: 5}]}>
               <TextInput
                 value={userid}
                 maxLength={13}
@@ -129,7 +134,7 @@ export default function Signin() {
                       Styles.circle,
                     ]}
                   >
-                    <Ionicons name="close" size={18} color="red" />
+                    <Ionicons name="close" size={18} color="#bb6a70" />
                   </TouchableOpacity>
                 )}
               </View>

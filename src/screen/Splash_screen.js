@@ -42,10 +42,10 @@ export default function Splash() {
 
   return (
     <View style={[Styles.flex]}>
-      <ImageBackground
-        source={require('../../assets/image/bg.jpg')}
-        resizeMode="cover"
-        style={[Styles.al_center, Styles.jc_center, Styles.h100, Styles.w100]}/>
+      <View
+        style={[Styles.al_center, Styles.jc_center, Styles.h100, Styles.w100, Styles.mainColor2]}>
+          <Image source={require('../../assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-03.png')} style={[{width: 350, height: 350}]}/>
+      </View>
     </View>
   );
 }

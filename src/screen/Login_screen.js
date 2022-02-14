@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Image, View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import Modal from "react-native-modal";
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import * as navigate from "../navigator/RootNavigation";
 import { useSetRecoilState, useRecoilState } from "recoil";
@@ -14,7 +14,7 @@ import isLANG from "../LANG";
 import Store from "../store";
 import Key from "../KEYS.json"
 
-export default function Login({route}) {
+export default function Login({ route }) {
   const [changeLang, setChangeLang] = React.useState(false);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const userType = useSetRecoilState(Global.userType)
@@ -28,10 +28,13 @@ export default function Login({route}) {
     var myLANG = isLANG.settingLanguage(_selectLang)
     settingLANG(myLANG)
     setChangeLang(false);
+    Store.setLocalStorege(Key.LANG, _selectLang, (res) => {
+      console.log(res)
+    })
   }
 
   function nonMember() {
-    var nonMember = {type: 'non Member'}
+    var nonMember = { type: 'non Member' }
     var data = JSON.stringify(nonMember)
     console.log(data)
     Store.setLocalStorege(Key.TOKEN, data, (call) => {
@@ -40,7 +43,7 @@ export default function Login({route}) {
       setTimeout(() => {
         navigation.reset(({
           index: 0,
-          routes: [{name: 'TabFooter'}],
+          routes: [{ name: 'TabFooter' }],
         }))
         //navigate.navigate('TabFooter')
       }, 200);
@@ -51,15 +54,15 @@ export default function Login({route}) {
     <View
       style={[Styles.flex, Styles.al_center, Styles.jc_center, Styles.mainColorF9]}
     >
-      <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p40]}>
-        <View style={[Styles.w100, Styles.al_end]}>
+      <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p40, Styles.jc_center, { top: '-5%' }]}>
+        <View style={[Styles.w100, Styles.al_end, { top: '-12%' }]}>
           <TouchableOpacity onPress={() => setChangeLang(true)}>
-            <Text style={[Styles.f_16, Styles.mainColor_text]}>TH / EN</Text>
+            <Text style={[Styles.f_16, Styles.black_gray_text]}>TH / EN</Text>
           </TouchableOpacity>
         </View>
         <Image
-          source={require("../../assets/image/logo2.png")}
-          style={[Styles.w70, Styles.h10, Styles.mt60]}
+          source={require("../../assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-15.png")}
+          style={[Styles.w80, { height: '5%' }]}
         />
         <View style={[Styles.w100, Styles.al_start, Styles.mt35per]}>
           <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text]}>
@@ -99,7 +102,7 @@ export default function Login({route}) {
             {LANG.login_text_03}
           </Text>
           <TouchableOpacity
-            onPress={()=> nonMember()}
+            onPress={() => nonMember()}
             style={[
               Styles.w100,
               Styles.p15,
@@ -123,10 +126,10 @@ export default function Login({route}) {
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mainColor_text]}>
+      <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mainColor_text, { top: '-2%' }]}>
         {LANG.login_text_05} <Text style={[Styles.mainFont]}>{LANG.login_text_06}</Text>
       </Text>
-      <Text style={[Styles.f_24, Styles.mt10, Styles.mainFont_x]}>{LANG.login_text_07} 1.0.0</Text>
+      <Text style={[Styles.f_24, Styles.mt10, Styles.mainFont_x, { top: '-2%' }]}>{LANG.login_text_07} 1.0.0</Text>
       <Modal isVisible={changeLang} style={Styles.al_center}>
         <Modal_changeLang selectLang={selectLang} />
       </Modal>

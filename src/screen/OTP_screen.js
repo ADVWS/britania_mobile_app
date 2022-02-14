@@ -160,7 +160,7 @@ export default function OTP({ route }) {
                   style={[
                     Styles.mainColor2,
                     Styles.mt10,
-                    { borderWidth: 0, marginBottom: openMobile ? dropdownMobile : 15 },
+                    { borderWidth: 0, marginBottom: openMobile ? dropdownMobile : 15, backgroundColor: '#DDD' },
                   ]}
                   labelStyle={[Styles.mainFont, Styles.mainColor_text2, Styles.f_22]}
                   dropDownContainerStyle={[{ borderWidth: 0 }]}
@@ -209,7 +209,7 @@ export default function OTP({ route }) {
                   style={[
                     Styles.mainColor2,
                     Styles.mt10,
-                    { borderWidth: 0, marginBottom: openEmail ? dropdownEmail : 15 },
+                    { borderWidth: 0, marginBottom: openEmail ? dropdownEmail : 15, backgroundColor: '#DDD' },
                   ]}
                   labelStyle={[Styles.mainFont, Styles.mainColor_text2, Styles.f_22]}
                   dropDownContainerStyle={[{ borderWidth: 0 }]}
