@@ -30,10 +30,11 @@ const ResidentEdit = ({route}) => {
     }
     
     const setImage = (img) => {
+        console.log(img)
         if (img) {
             return (<ProfilePicCom picture={{uri: img}} />)
         } else {
-            return (<ProfilePicCom />)
+            return (<ProfilePicCom picture={require('../../assets/image/Britania-connect-assets/default-img-circle.png')}/>)
         }
     }
 

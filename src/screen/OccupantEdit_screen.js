@@ -31,7 +31,7 @@ const OccupantEdit = ({ route }) => {
         if (img) {
             return (<ProfilePicCom picture={{uri: img}} />)
         } else {
-            return (<ProfilePicCom />)
+            return (<ProfilePicCom picture={require('../../assets/image/Britania-connect-assets/default-img-circle.png')}/>)
         }
     }
 

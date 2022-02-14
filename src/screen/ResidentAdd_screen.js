@@ -16,11 +16,11 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 export default function ResidentAdd({ route }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [unit, setUnit] = React.useState(route.params);
-  const [picture, setPicture] = React.useState([
+  const [picture, setPicture] = React.useState(
     {
       image: require("../../assets/image/Britania-connect-assets/default-img-circle.png"),
     },
-  ]);
+  );
 
   const [type, setType] = React.useState("thai");
 

@@ -219,7 +219,8 @@ export default function thai_form(unit) {
                 Styles.w90,
                 Styles.mt5,
                 Styles.textfieldbox,
-                Styles.p15
+                Styles.p15,
+                {borderWidth: 2, borderColor: "#DDD"}
               ]}>
               <Text>{rawDate !== '' ? moment(rawDate).format('DD/MM/YYYY') : rawDate}</Text>
             </TouchableOpacity>)

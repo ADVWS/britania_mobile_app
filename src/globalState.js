@@ -41,6 +41,11 @@ export const checkInTime = atom({
   default: []
 })
 
+export const project = atom({
+  key: "project",
+  default: false
+})
+
 export const dataMyHome = atom({
   key: "dataMyHome",
   default: {

@@ -23,7 +23,7 @@ const ResidentBtn = ({ item }) => {
         <Image
           source={{ uri: img }}
           style={[
-            { width: 100, height: 100, resizeMode: "cover" },
+            { width: 90, height: 90, resizeMode: "cover" },
             Styles.circle,
           ]}
         />
@@ -33,7 +33,7 @@ const ResidentBtn = ({ item }) => {
         <Image
           source={require("../../../assets/image/Britania-connect-assets/default-img-circle.png")}
           style={[
-            { width: 100, height: 100, resizeMode: "cover" },
+            { width: 90, height: 90, resizeMode: "cover" },
             Styles.circle,
           ]}
         />
@@ -80,7 +80,7 @@ const ResidentBtn = ({ item }) => {
               <View style={[Styles.row, Styles.w100, Styles.p5]}>
                 {item.memberStatus === "active" ? (
                   <>
-                    <View style={[Styles.w60]}>
+                    <View style={[Styles.w70]}>
                       <View style={[Styles.w100]}>
                         <View
                           style={[
@@ -91,7 +91,7 @@ const ResidentBtn = ({ item }) => {
                         >
                           <Text
                             style={[
-                              Styles.f_24,
+                              Styles.f_22,
                               Styles.mainFont_x,
                               {
                                 color: "#3fc89b",
@@ -105,7 +105,7 @@ const ResidentBtn = ({ item }) => {
                         </View>
                       </View>
                     </View>
-                    <View style={[Styles.w40]}>
+                    <View style={[Styles.w30]}>
                       <View style={[Styles.w100, Styles.al_end]}>
                         <View
                           style={[
@@ -127,7 +127,7 @@ const ResidentBtn = ({ item }) => {
                   </>
                 ) : (
                   <>
-                    <View style={[Styles.w60, Styles.p5]}>
+                    <View style={[Styles.w70, Styles.p5]}>
                       <View style={[Styles.w100]}>
                         <View
                           style={[
@@ -138,7 +138,7 @@ const ResidentBtn = ({ item }) => {
                         >
                           <Text
                             style={[
-                              Styles.f_24,
+                              Styles.f_22,
                               Styles.mainFont_x,
                               {
                                 color: "#f4910d",
@@ -152,7 +152,7 @@ const ResidentBtn = ({ item }) => {
                         </View>
                       </View>
                     </View>
-                    <View style={[Styles.w40, Styles.p5]}>
+                    <View style={[Styles.w30, Styles.p5]}>
                       <View style={[Styles.w100, Styles.al_end]}>
                         <View
                           style={[

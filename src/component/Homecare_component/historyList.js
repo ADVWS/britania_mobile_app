@@ -2,13 +2,11 @@ import * as React from "react";
 import {
     View,
     Text,
-    Image,
-    ScrollView,
     TouchableOpacity,
 } from "react-native";
 import moment from 'moment';
 import 'moment/locale/th';
-import { MaterialIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from '@expo/vector-icons'; 
 import * as navigate from "../../navigator/RootNavigation";
 import Script from "../../script";
 import { Styles } from "../../styles";
@@ -18,7 +16,6 @@ import * as Global from "../../globalState"
 
 const HistoryList = () => {
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
-    const [historyDetail, setHistoryDetail] = useRecoilState(Global.dataInformDetail)
     const gobalData = useSetRecoilState(Global.dataInformDetail)
     const [LANG, setLANG] = useRecoilState(Global.Language)
     function viewDetailOrder(data) {
@@ -78,7 +75,8 @@ const HistoryList = () => {
                 </TouchableOpacity>
             )) : (
                 <View style={[Styles.w100, Styles.al_center, Styles.jc_center, { height: 400 }]}>
-                    <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{ height: 75, width: 75 }} />
+                    {/* <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{ height: 75, width: 75 }} /> */}
+                    <SimpleLineIcons name="wrench" size={60} color="#9f9f9f" />
                     <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10, { color: "#9f9f9f" }]}>{LANG.homecare_text_05}</Text>
                 </View>
             )}

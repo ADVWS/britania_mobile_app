@@ -5,7 +5,8 @@ import { navigationRef } from "./RootNavigation";
 import HomeScreen from '../screen/Home_screen';
 import MyHomeScreen from '../screen/MyHome_screen';
 import AccountScreen from '../screen/Account_screen';
-import { useRecoilState } from "recoil";
+import MyProjectFirst from "../screen/MyProjectFirst_screen"
+import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from '../globalState'
 
 
@@ -14,8 +15,15 @@ const Tab = createBottomTabNavigator();
 const AllTabBottom = () => {
     const [userType, setUserType] = useRecoilState(Global.userType)
     const [LANG, setLANG] = useRecoilState(Global.Language)
+    const [userProfile, setUserProfile] = useRecoilState(Global.userProfile)
+    const [project, _setProject] = useRecoilState(Global.project)
+    const setProject = useSetRecoilState(Global.project)
+    if(userProfile.me.unitsAllowHomecare){
+        if(userProfile.me.unitsAllowHomecare.length <= 1){
+            setProject(true)
+        }
+    }
     function getScreenList(TYPE) {
-        console.log(TYPE)
         switch (TYPE) {
             case 1:
                 return (
@@ -37,7 +45,8 @@ const AllTabBottom = () => {
                             }} />
                         <Tab.Screen
                             name="HomeDetail"
-                            component={MyHomeScreen}
+                            component={project ? MyHomeScreen : MyProjectFirst}
+                            //component={project ? MyProjectFirst : MyHomeScreen}
                             options={{
                                 tabBarLabel: LANG.home_text_04,
                                 tabBarLabelStyle: { fontSize: 18, fontFamily: "Helvethaica_x" },

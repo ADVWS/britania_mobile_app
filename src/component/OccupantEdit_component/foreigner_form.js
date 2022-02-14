@@ -79,6 +79,7 @@ export default function foreigner_form({ item }) {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
+              {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={name}
             onChangeText={(val) => {
@@ -105,6 +106,7 @@ export default function foreigner_form({ item }) {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
+              {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={passport}
             onChangeText={(val) => {
@@ -131,6 +133,7 @@ export default function foreigner_form({ item }) {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
+              {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={mobileNo}
             onChangeText={(val) => {
@@ -157,6 +160,7 @@ export default function foreigner_form({ item }) {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
+              {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={email}
             onChangeText={(val) => {
@@ -214,7 +218,8 @@ export default function foreigner_form({ item }) {
                 Styles.w90,
                 Styles.mt5,
                 Styles.textfieldbox,
-                Styles.p15
+                Styles.p15,
+                {borderWidth: 2, borderColor: "#DDD"}
               ]}>
               <Text>{rawDate !== '' ? moment(rawDate).format('DD/MM/YYYY') : rawDate}</Text>
             </TouchableOpacity>)

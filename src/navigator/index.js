@@ -39,6 +39,7 @@ import TermOfService from "../screen/TermOfService_screen";
 import Notify from "../screen/Notify_screen";
 import ResidentDetail from "../screen/ResidentDetail_screen";
 import OccupantDetail from "../screen/OccupantDetail_screen";
+import MyHome from "../screen/MyHome_screen";
 const Stack = createNativeStackNavigator();
 
 function AllNavigator() {
@@ -54,6 +55,7 @@ function AllNavigator() {
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Language" component={LanguageSetting} />
         <Stack.Screen name="TabFooter" component={AllTabBottom} />
+        <Stack.Screen name="MyHome" component={MyHome} />
         <Stack.Screen name="Homecare" component={HomecareScreen} />
         <Stack.Screen name="Myproject" component={MyProject} />
         <Stack.Screen name="InformOrder" component={InformOrderScreen} />

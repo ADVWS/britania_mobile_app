@@ -1,7 +1,6 @@
 import * as React from "react";
 import { View, Text, Image } from "react-native";
 
-import { LinearGradient } from "expo-linear-gradient";
 import NavBtn from "../component/Account_component/NavBtn";
 import AccountHeader from "../component/Account_component/AccountHeader";
 import { useRecoilState } from "recoil";
@@ -13,7 +12,6 @@ import { Styles } from "../styles";
 export default function Account() {
   //Profile Data
   const [userProfile, setUserProfile] = useRecoilState(Global.userProfile);
-  const [userType, setUserType] = useRecoilState(Global.userType);
   const [LANG, setLANG] = useRecoilState(Global.Language);
 
   const setImageProfile = () => {

@@ -48,7 +48,6 @@ export default class mainHeader extends React.Component {
           Styles.row,
           Styles.p20,
           Styles.mainColor2,
-          Styles.boxWithShadow,
           Styles.mainColorF9,
           // Styles.boxWithShadow,
           Styles.mb5,

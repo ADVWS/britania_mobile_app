@@ -27,6 +27,7 @@ function Homecare() {
     const [listInform, setListInform] = useRecoilState(Global.dataListInform)
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
     const [LANG, setLANG] = useRecoilState(Global.Language)
+    const [project, _setProject] = useRecoilState(Global.project)
     const [selected, setSelected] = React.useState('INFORM')
     console.log('==>',moment())
     function selectMenu(SELECT) {
@@ -51,7 +52,7 @@ function Homecare() {
                     Styles.w100,
                     Styles.h100
                 ]}>
-                <MainHeader name={LANG.homecare_text_01} backto={'TabFooter'} />
+                <MainHeader name={LANG.homecare_text_01} backto={project ? 'TabFooter' : 'MyHome'} />
                 <ScrollView>
                     <TouchableOpacity
                         onPress={() => navigate.navigate('Myproject')}

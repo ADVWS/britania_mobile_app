@@ -46,14 +46,14 @@ const AnimatedHeader = ({ animatedValue }) => {
     function setNotify() {
         if (userType !== 1) {
             return (
-                <TouchableOpacity disabled={true} onPress={() => navigate.navigate("Notify", { screen })}>
+                <TouchableOpacity disabled={true} onPress={() => navigate.navigate("Notify", { screen })} style={{top: 3}}>
                     <Animated.Text style={{ color: "#000" }}>
                         <MaterialIcons name="notifications-none" size={30} />
                     </Animated.Text>
                 </TouchableOpacity>)
         } else {
             return (
-                <TouchableOpacity onPress={() => navigate.navigate("Notify", { screen })}>
+                <TouchableOpacity onPress={() => navigate.navigate("Notify", { screen })} style={{top: 3}}>
                     <Animated.Text style={{ color: iconeSet }}>
                         <MaterialIcons name="notifications-none" size={30} />
                     </Animated.Text>
@@ -70,8 +70,9 @@ const AnimatedHeader = ({ animatedValue }) => {
             <View style={[Styles.w20]} />
             <View style={[Styles.w60, Styles.al_center, Styles.jc_end, { bottom: 5 }]}>
                 <Animated.Image
-                    source={require("../../../assets/image/logo-header.png")}
-                    style={[Styles.w70, { tintColor: imageSet, height: '32%' }]}
+                    source={require("../../../assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-15.png")}
+                    // style={[Styles.w70, { tintColor: imageSet, height: '32%' }]}
+                    style={[Styles.w100, {height: '35%' }]}
                 />
             </View>
             <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
