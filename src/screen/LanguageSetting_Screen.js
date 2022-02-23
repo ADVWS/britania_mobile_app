@@ -16,12 +16,14 @@ const LanguageSetting_Screen = () => {
   const [selectEnglish, setSelectEnglish] = React.useState(false)
   const [reload, setReload] = React.useState(true)
   const settingLANG = useSetRecoilState(Global.Language)
+  const setLANGTEXT = useSetRecoilState(Global.LANGTEXT)
   const selectLanguage = (select) => {
     setReload(false)
     var myLANG;
     if (select == "TH") {
       setSelectThai(true)
       setSelectEnglish(false)
+      setLANGTEXT(select)
       myLANG = isLANG.settingLanguage(select)
       settingLANG(myLANG)
       Store.setLocalStorege(Key.LANG, select, (res)=>{
@@ -30,6 +32,7 @@ const LanguageSetting_Screen = () => {
     } else if (select == "EN") {
       setSelectThai(false)
       setSelectEnglish(true)
+      setLANGTEXT(select)
       myLANG = isLANG.settingLanguage(select)
       settingLANG(myLANG)
       Store.setLocalStorege(Key.LANG, select, (res)=>{

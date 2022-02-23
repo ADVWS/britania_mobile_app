@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import { Image, View, Text, TouchableOpacity, ImageBackground, Touchable, TouchableWithoutFeedback } from "react-native";
 import Modal from "react-native-modal";
 import { useNavigation } from '@react-navigation/native';
 
@@ -130,8 +130,8 @@ export default function Login({ route }) {
         {LANG.login_text_05} <Text style={[Styles.mainFont]}>{LANG.login_text_06}</Text>
       </Text>
       <Text style={[Styles.f_24, Styles.mt10, Styles.mainFont_x, { top: '-2%' }]}>{LANG.login_text_07} 1.0.0</Text>
-      <Modal isVisible={changeLang} style={Styles.al_center}>
-        <Modal_changeLang selectLang={selectLang} />
+      <Modal isVisible={changeLang} style={Styles.al_center} onBackdropPress={()=> setChangeLang(false)}>
+            <Modal_changeLang selectLang={selectLang} />
       </Modal>
     </View>
   );

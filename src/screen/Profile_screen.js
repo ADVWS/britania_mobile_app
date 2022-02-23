@@ -7,6 +7,8 @@ import { Styles } from "../styles";
 import mainScript from "../script";
 import Script from "../script/Profile_script";
 import * as navigate from "../navigator/RootNavigation";
+import Modal from "react-native-modal";
+import Modal_alert  from "../component/modal_alert";
 
 import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import ProfileForm from "../component/Profile_component/ProfileForm";
@@ -24,11 +26,12 @@ export default function Profile_screen() {
   const [name, setName] = React.useState(userProfile.me.name);
   const [mobile, setMobile] = React.useState(userProfile.me.mobileNo);
   const [email, setEmail] = React.useState(userProfile.me.email);
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState('');
   const updateUserProfile = useSetRecoilState(Global.userProfile);
   const setImage = () => {
     var image = "";
     if (userProfile.me.profileImage) {
-      console.log('image:::', userProfile.me.profileImage)
       image = { uri: userProfile.me.profileImage };
       //setulImage(userProfile.me.profileImage)
     } else {
@@ -42,6 +45,7 @@ export default function Profile_screen() {
   }
 
   const editProfile = (name, mobileNo, email) => {
+    console.log(mobileNo)
     if(name){
       setName(name)
     }
@@ -51,13 +55,13 @@ export default function Profile_screen() {
     if(email){
       setEmail(email)
     }
+    return
   }
 
-  const updateUser = () => {
+  const updateUser = (inputName, inputMobile) => {
     var updatedata = {
-      email: email,
-      mobileNo: mobile,
-      name: name,
+      mobileNo: inputMobile,
+      name: inputName,
     }
     console.log(updatedata)
     Script.userUpdateProfile(updatedata, ulImage, Key.TOKEN, (res) => {
@@ -68,7 +72,6 @@ export default function Profile_screen() {
   };
 
   const updateGlobal = (data) => {
-    console.log("VALUE:::", data);
     var user = mainScript.recoilTranform(userProfile);
     user.me.name = data.name 
     user.me.mobileNo = data.mobileNo
@@ -93,23 +96,9 @@ export default function Profile_screen() {
             userProfile={userProfile.me}
             LANG={LANG}
             editProfile={editProfile}
+            updateUser={updateUser}
           />
           <View style={Styles.al_center}>
-            <TouchableOpacity
-              onPress={() => updateUser()}
-              style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-            >
-              <Text
-                style={[
-                  Styles.white_text,
-                  Styles.f_24,
-                  Styles.mainFont,
-                  { marginLeft: "1%" },
-                ]}
-              >
-                {LANG.profile_text_04}
-              </Text>
-            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigate.navigate("Account")}
               style={[

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
 
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
@@ -8,6 +8,8 @@ import mainScript from "../../script"
 import * as Global from "../../globalState";
 import KEYS from "../../KEYS.json"
 import Script from "../../script/ResidentEdit_script"
+import Modal from "react-native-modal";
+import Modal_alert  from "../../component/modal_alert";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
 
@@ -19,8 +21,28 @@ export default function thai_form({item}) {
   const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
   const [email, setEmail] = React.useState(member.email)
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState('');
   const setUnitMember = useSetRecoilState(Global.unitMember);
   const saveEdit = () => {
+    var checker = []
+    if(name === ''){
+      checker.push(false)
+    }
+    if(idcard === ''){
+      checker.push(false)
+    }
+    if(mobileNo === ''){
+      checker.push(false)
+    }
+    if(email === ''){
+      checker.push(false)
+    }
+    if(checker.indexOf(false) !== -1){
+      setTextAlert('กรุณาระบุข้อมูลให้ครบถ้วน')
+      setAlert(true)
+      return
+    }
     var edit = {
       name: name,
       idcard: idcard,
@@ -38,8 +60,13 @@ export default function thai_form({item}) {
       }
     })
   }
+
+  const closeModalAlert = () => setAlert(false)
+
   return (
-    <View style={{ marginBottom: 30 }}>
+    <KeyboardAvoidingView
+      behavior="padding" 
+      style={{ marginBottom: 30 }}>
       <Text
         style={[
           Styles.ml5,
@@ -192,6 +219,9 @@ export default function thai_form({item}) {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+      <Modal isVisible={alert} style={Styles.al_center}>
+          <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+    </KeyboardAvoidingView>
   );
 }

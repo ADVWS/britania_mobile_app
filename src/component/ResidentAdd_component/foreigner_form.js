@@ -9,6 +9,8 @@ import * as navigate from "../../navigator/RootNavigation";
 import mainScript from "../../script";
 import Script from "../../script/ResidentAdd_script";
 import KEYS from "../../KEYS.json";
+import Modal from "react-native-modal";
+import Modal_alert from "../../component/modal_alert";
 
 export default function foreigner_form({ unit }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
@@ -18,7 +20,28 @@ export default function foreigner_form({ unit }) {
   const [email, setEmail] = React.useState("");
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
+
   const addData = () => {
+    var checker = [];
+    if (name === "") {
+      checker.push(false);
+    }
+    if (passport === "") {
+      checker.push(false);
+    }
+    if (mobileNo === "") {
+      checker.push(false);
+    }
+    if (email === "") {
+      checker.push(false);
+    }
+    if (checker.indexOf(false) !== -1) {
+      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setAlert(true);
+      return;
+    }
     var add = {
       unitId: unit.unitId,
       ownerType: "coowner",
@@ -42,6 +65,8 @@ export default function foreigner_form({ unit }) {
       }
     });
   };
+
+  const closeModalAlert = () => setAlert(false);
 
   return (
     <KeyboardAvoidingView
@@ -68,9 +93,7 @@ export default function foreigner_form({ unit }) {
             Styles.mainFont_x,
             Styles.border_btn2
           ]}
-          onChangeText={(val) => {
-            setName(val);
-          }}
+          onChangeText={setName}
         />
       </View>
       <Text
@@ -94,9 +117,7 @@ export default function foreigner_form({ unit }) {
             Styles.mainFont_x,
             Styles.border_btn2
           ]}
-          onChangeText={(val) => {
-            setPassport(val);
-          }}
+          onChangeText={setPassport}
         />
       </View>
       <Text
@@ -120,9 +141,7 @@ export default function foreigner_form({ unit }) {
             Styles.mainFont_x,
             Styles.border_btn2
           ]}
-          onChangeText={(val) => {
-            setMobileNo(val);
-          }}
+          onChangeText={setMobileNo}
         />
       </View>
       <Text
@@ -146,9 +165,7 @@ export default function foreigner_form({ unit }) {
             Styles.mainFont_x,
             Styles.border_btn2
           ]}
-          onChangeText={(val) => {
-            setEmail(val);
-          }}
+          onChangeText={setEmail}
         />
       </View>
       <View style={Styles.al_center}>
@@ -194,6 +211,9 @@ export default function foreigner_form({ unit }) {
           </Text>
         </TouchableOpacity>
       </View>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
     </KeyboardAvoidingView>
   );
 }

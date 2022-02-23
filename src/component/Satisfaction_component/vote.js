@@ -25,13 +25,18 @@ export default class Vote extends React.Component {
             vote2: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' },
             vote3: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' },
             vote4: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' }, 
-        }
+        },
+        open: false
     }
 
     componentDidMount(){
-        Store.getLocalStorege(Key.LANG, (res)=>{
-            console.log(res)
+        this.props.question.map((item, index)=>{
+            for(let i = 0; i < item.defaultScore; i++){
+                this.state.star[`vote${index + 1}`][`color${i + 1}`] = '#fcbc04'
+            }
+            this.state.vote[`vote${index + 1}`] = Number(item.defaultScore)
         })
+        this.setState({open: true})
     }
     
     isVote(topic, unit) {
@@ -75,22 +80,26 @@ export default class Vote extends React.Component {
     render() {
         return (
             <>
-                {this.props.question.map((item)=>(
-                    <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
-                        <Text style={[Styles.f_22, Styles.mainFont_x]}>
-                            {item.wordThai}
-                        </Text>
-                        <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
-                            <View style={[Styles.w20]} />
-                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 1)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color1} style={[Styles.text_center]} /></TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 2)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color2} style={[Styles.text_center]} /></TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 3)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color3} style={[Styles.text_center]} /></TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 4)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color4} style={[Styles.text_center]} /></TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 5)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color5} style={[Styles.text_center]} /></TouchableOpacity>
-                            <View style={[Styles.w20]} />
-                        </View>
-                    </View>
-                ))}
+                {this.state.open &&
+                    <>
+                        {this.props.question.map((item)=>(
+                            <View style={[Styles.w100, Styles.p15, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
+                                <Text style={[Styles.f_22, Styles.mainFont_x]}>
+                                    {this.props.LANG === 'TH' ? item.wordThai : (item.wordEng ? item.wordEng : item.wordThai)}
+                                </Text>
+                                <View style={[Styles.w100, Styles.al_center, Styles.row, Styles.mt10]}>
+                                    <View style={[Styles.w20]} />
+                                    <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 1)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color1} style={[Styles.text_center]} /></TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 2)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color2} style={[Styles.text_center]} /></TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 3)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color3} style={[Styles.text_center]} /></TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 4)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color4} style={[Styles.text_center]} /></TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.isVote(`vote${item.seq}`, 5)} style={[Styles.w12]}><FontAwesome name="star" size={35} color={this.state.star[`vote${item.seq}`].color5} style={[Styles.text_center]} /></TouchableOpacity>
+                                    <View style={[Styles.w20]} />
+                                </View>
+                            </View>
+                        ))}
+                    </>
+                }
             </>
         );
     }

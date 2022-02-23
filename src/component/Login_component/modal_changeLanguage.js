@@ -2,13 +2,16 @@ import * as React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Styles } from "../../styles";
 import * as Global from '../../globalState'
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 const Modal_changeLang = ({selectLang}) => {
 
   const [LANG, setLANG] = useRecoilState(Global.Language)
+  const setLANGTEXT = useSetRecoilState(Global.LANGTEXT)
+
 
   const isSelectLang = (LN) => {
+    setLANGTEXT(LN)
     selectLang(LN);
   }
 

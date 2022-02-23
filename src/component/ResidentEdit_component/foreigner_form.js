@@ -1,24 +1,51 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput,
+} from "react-native";
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
-import mainScript from "../../script"
-import Script from "../../script/OccupantEdit_script"
-import KEYS from "../../KEYS.json"
+import mainScript from "../../script";
+import Script from "../../script/OccupantEdit_script";
+import KEYS from "../../KEYS.json";
+import Modal from "react-native-modal";
+import Modal_alert from "../../component/modal_alert";
 
 export default function foreigner_form({ item }) {
-
-  const [member, setMember] = React.useState(item)
-  const [name, setName] = React.useState(member.name)
-  const [passport, setPassport] = React.useState(member.passport)
-  const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
-  const [email, setEmail] = React.useState(member.email)
+  const [member, setMember] = React.useState(item);
+  const [name, setName] = React.useState(member.name);
+  const [passport, setPassport] = React.useState(member.passport);
+  const [mobileNo, setMobileNo] = React.useState(member.mobileNo);
+  const [email, setEmail] = React.useState(member.email);
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
+  console.log(member);
   const saveEdit = () => {
+    var checker = [];
+    if (name === "") {
+      checker.push(false);
+    }
+    if (passport === "") {
+      checker.push(false);
+    }
+    if (mobileNo === "") {
+      checker.push(false);
+    }
+    if (email === "") {
+      checker.push(false);
+    }
+    if (checker.indexOf(false) !== -1) {
+      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setAlert(true);
+      return;
+    }
     var edit = {
       name: name,
       passport: passport,
@@ -27,19 +54,26 @@ export default function foreigner_form({ item }) {
       email: email,
       nationType: "foreign",
       unitMemberId: member.unitMemberId,
-    }
-    Script.memberUpdateProfile_foreign(edit, KEYS.TOKEN, member.unitid,(res)=>{
-      if(typeof res === 'object'){
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res
-        setUnitMember(data)
-        navigate.navigate("MemberManageIndivi")
+    };
+    Script.memberUpdateProfile_foreign(
+      edit,
+      KEYS.TOKEN,
+      member.unitid,
+      (res) => {
+        if (typeof res === "object") {
+          var data = mainScript.recoilTranform(unitMember);
+          data.unitMember = res;
+          setUnitMember(data);
+          navigate.navigate("MemberManageIndivi");
+        }
       }
-    })
-  }
+    );
+  };
+
+  const closeModalAlert = () => setAlert(false);
 
   return (
-    <View style={{ marginBottom: 30 }}>
+    <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
       <Text
         style={[
           Styles.ml5,
@@ -59,12 +93,10 @@ export default function foreigner_form({ item }) {
             Styles.f_20,
             Styles.textfieldbox,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={name}
-          onChangeText={(val) => {
-            setName(val)
-          }}
+          onChangeText={setName}
         />
       </View>
       <Text
@@ -86,12 +118,12 @@ export default function foreigner_form({ item }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
-          value={passport}
-          onChangeText={(val)=>{
-            setPassport(val)
-          }}
+          value={
+            passport !== "null" ? (passport !== null ? passport : null) : "-"
+          }
+          onChangeText={setPassport}
         />
       </View>
       <Text
@@ -113,12 +145,10 @@ export default function foreigner_form({ item }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={mobileNo}
-          onChangeText={(val)=>{
-            setMobileNo(val)
-          }}
+          onChangeText={setMobileNo}
         />
       </View>
       <Text
@@ -140,12 +170,10 @@ export default function foreigner_form({ item }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={email}
-          onChangeText={(val)=>{
-            setEmail(val)
-          }}
+          onChangeText={setEmail}
         />
       </View>
       <View style={Styles.al_center}>
@@ -191,6 +219,9 @@ export default function foreigner_form({ item }) {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+    </KeyboardAvoidingView>
   );
 }

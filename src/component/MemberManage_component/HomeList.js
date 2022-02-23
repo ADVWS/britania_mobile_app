@@ -10,17 +10,21 @@ import Script from "../../script/MemberManage_script";
 import KEYS from "../../KEYS.json";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
+import Modal from "react-native-modal";
+import Modal_loading from "../modal_loading";
 
 const HomeList = ({ homeList }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-
+  const [load, setLoad] = React.useState(false)
   const selectProject = (item) => {
+    setLoad(true)
     console.log(item)
     Script.unitMemberAll(item, KEYS.TOKEN, (unitMember) => {
       var data = mainScript.recoilTranform(item);
       data.unitMember = unitMember;
       setUnitMember(data);
+      setLoad(false)
       navigate.navigate("MemberManageIndivi");
     });
   };
@@ -70,6 +74,9 @@ const HomeList = ({ homeList }) => {
           </View>
         </TouchableOpacity>
       ))}
+      <Modal isVisible={load} style={Styles.al_center}>
+          <Modal_loading />
+      </Modal>
     </View>
   );
 };

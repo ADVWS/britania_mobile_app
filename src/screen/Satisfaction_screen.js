@@ -23,6 +23,7 @@ const Satisfaction = ({ route }) => {
     console.log(route.params.mechanic)
     const [question, setQuestion] = React.useState(route.params.QUES)
     const [LANG, setLANG] = useRecoilState(Global.Language)
+    const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
     const [rate, setRate] = React.useState({})
     const sendRate = (rate) => {
         console.log('RATE', rate)
@@ -63,7 +64,7 @@ const Satisfaction = ({ route }) => {
                             {LANG.satisfaction_text_03}     {LANG.satisfaction_text_04}
                         </Text>
                     </View>
-                    <Vote question={question} sendRate={sendRate}/>
+                    <Vote question={question} sendRate={sendRate} LANG={LANGTEXT}/>
                     <View style={[Styles.w100, Styles.p15]}>
                         <Text style={[Styles.f_22, Styles.mainFont_x]}>
                             {LANG.satisfaction_text_05}

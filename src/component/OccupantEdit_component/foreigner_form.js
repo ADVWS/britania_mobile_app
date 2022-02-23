@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput, Platform } from "react-native";
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput, Platform } from "react-native";
 import DatePicker from "react-native-datepicker";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Modal from 'react-native-modal'
@@ -12,6 +12,7 @@ import Script from "../../script/OccupantEdit_script"
 import KEYS from "../../KEYS.json"
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { Styles } from "../../styles";
+import Modal_alert from "../../component/modal_alert";
 
 export default function foreigner_form({ item }) {
   const [member, setMember] = React.useState(item)
@@ -26,13 +27,31 @@ export default function foreigner_form({ item }) {
   const [email, setEmail] = React.useState(member.email)
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
   const [iosDatepicker, setIosDatepicker] = React.useState(false)
 
-  console.log(member.expiredDate)
-
+  const closeModalAlert = () => setAlert(false);
 
   const saveEdit = () => {
+    var checker = [];
+    if (name === "") {
+      checker.push(false);
+    }
+    if (passport === "") {
+      checker.push(false);
+    }
+    if (mobileNo === "") {
+      checker.push(false);
+    }
+    if (email === "") {
+      checker.push(false);
+    }
+    if (checker.indexOf(false) !== -1) {
+      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setAlert(true);
+      return;
+    }
     var edit = {
       name: name,
       passport: passport,
@@ -59,7 +78,9 @@ export default function foreigner_form({ item }) {
   };
   return (
     <>
-      <View style={{ marginBottom: 30 }}>
+      <KeyboardAvoidingView
+      behavior="padding"
+      style={{ marginBottom: 30 }}>
         <Text
           style={[
             Styles.ml5,
@@ -82,9 +103,7 @@ export default function foreigner_form({ item }) {
               {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={name}
-            onChangeText={(val) => {
-              setName(val)
-            }}
+            onChangeText={setName}
           />
         </View>
         <Text
@@ -109,9 +128,7 @@ export default function foreigner_form({ item }) {
               {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={passport}
-            onChangeText={(val) => {
-              setPassport(val)
-            }}
+            onChangeText={setPassport}
           />
         </View>
         <Text
@@ -136,9 +153,7 @@ export default function foreigner_form({ item }) {
               {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={mobileNo}
-            onChangeText={(val) => {
-              setMobileNo(val)
-            }}
+            onChangeText={setMobileNo}
           />
         </View>
         <Text
@@ -163,9 +178,7 @@ export default function foreigner_form({ item }) {
               {borderWidth: 2, borderColor: "#DDD"}
             ]}
             value={email}
-            onChangeText={(val) => {
-              setEmail(val)
-            }}
+            onChangeText={setEmail}
           />
         </View>
         <Text
@@ -268,7 +281,7 @@ export default function foreigner_form({ item }) {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
       <Modal
         backdropOpacity={0.3}
         isVisible={iosDatepicker}
@@ -301,6 +314,9 @@ export default function foreigner_form({ item }) {
             />
           </View>
         </View>
+      </Modal>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
       </Modal>
     </>
   );

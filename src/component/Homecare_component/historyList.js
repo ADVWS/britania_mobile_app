@@ -3,6 +3,7 @@ import {
     View,
     Text,
     TouchableOpacity,
+    Image
 } from "react-native";
 import moment from 'moment';
 import 'moment/locale/th';
@@ -75,8 +76,7 @@ const HistoryList = () => {
                 </TouchableOpacity>
             )) : (
                 <View style={[Styles.w100, Styles.al_center, Styles.jc_center, { height: 400 }]}>
-                    {/* <Image source={require('../../../assets/image/Britania-connect-assets/05-maintenanace/maintenance-empty.png')} style={{ height: 75, width: 75 }} /> */}
-                    <SimpleLineIcons name="wrench" size={60} color="#9f9f9f" />
+                    <Image source={require('../../../assets/image/empty_case.png')} style={{ height: 75, width: 75, tintColor: "#9f9f9f"}} />
                     <Text style={[Styles.mainFont, Styles.f_20, Styles.mt10, { color: "#9f9f9f" }]}>{LANG.homecare_text_05}</Text>
                 </View>
             )}

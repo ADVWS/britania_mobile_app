@@ -8,18 +8,38 @@ import Script from "../../script/Profile_script";
 import Key from "../../KEYS.json";
 import { useRecoilState } from "recoil";
 import * as Global from "../../globalState";
+import Modal from "react-native-modal";
+import Modal_alert  from "../../component/modal_alert";
 
 export default function ProfileForm(props) {
-  console.log('props::', props)
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [name, setName] = React.useState(props.userProfile.name);
   const [mobile, setMobile] = React.useState(
     mainScript.formatPhoneNumber2(props.userProfile.mobileNo)
   );
   const [email, setEmail] = React.useState(props.userProfile.email);
+  const nameref = React.createRef();
+  const mobileref = React.createRef();
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState('');
 
+  const checkData = () => {
+    var checker = []
+    if(name === ''){
+      checker.push(false)
+    }
+    if(mobile === ''){
+      checker.push(false)
+    }
+    if(checker.indexOf(false) !== -1){
+      setTextAlert('กรุณาระบุข้อมูลให้ครบถ้วน')
+      setAlert(true)
+      return
+    }
+    props.updateUser(name, mobile)
+  }
 
-  console.log(props.userProfile);
+  const closeModalAlert = () => setAlert(false)
 
   return (
     <View>
@@ -36,19 +56,17 @@ export default function ProfileForm(props) {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
+          ref={nameref}
           style={[
             Styles.w90,
             Styles.mt10,
             Styles.textfieldbox,
             Styles.mainFont_x,
             Styles.f_20,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={name}
-          onChangeText={(val) => {
-            setName(val);
-            props.editProfile(val, undefined, undefined);
-          }}
+          onChangeText={setName}
         />
       </View>
       <Text
@@ -64,50 +82,41 @@ export default function ProfileForm(props) {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
+          ref={mobileref}
           style={[
             Styles.w90,
             Styles.mt5,
             Styles.textfieldbox,
             Styles.mainFont_x,
             Styles.f_20,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
-          value={mainScript.formatPhoneNumber2(mobile)}
+          value={mobile}
           maxLength={10}
-          onChangeText={(val) => {
-            setMobile(val);
-            props.editProfile(undefined, val, undefined);
-          }}
+          onChangeText={setMobile}
+          keyboardType="numeric"
         />
       </View>
-      <Text
-        style={[
-          Styles.ml5,
-          Styles.mt10,
-          Styles.mainFont,
-          Styles.f_22,
-          Styles.black_gray_text,
-        ]}
-      >
-        {LANG.otp_text_03}
-      </Text>
       <View style={Styles.al_center}>
-        <TextInput
-          style={[
-            Styles.w90,
-            Styles.mt10,
-            Styles.textfieldbox,
-            Styles.mainFont_x,
-            Styles.f_20,
-            Styles.border_btn2
-          ]}
-          value={email}
-          onChangeText={(val) => {
-            setEmail(val)
-            props.editProfile(undefined, undefined, val);
-          }}
-        />
+        <TouchableOpacity
+          onPress={() => checkData()}
+          style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
+        >
+          <Text
+            style={[
+              Styles.white_text,
+              Styles.f_24,
+              Styles.mainFont,
+              { marginLeft: "1%" },
+            ]}
+          >
+            {LANG.profile_text_04}
+          </Text>
+        </TouchableOpacity>
       </View>
+      <Modal isVisible={alert} style={Styles.al_center}>
+          <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
     </View>
   );
 }

@@ -22,6 +22,15 @@ export default function ResidentAdd({ route }) {
     },
   );
 
+  const setImage = (img) => {
+    console.log(img)
+    if (img) {
+        return (<ProfilePicCom picture={{uri: img}} />)
+    } else {
+        return (<ProfilePicCom picture={require('../../assets/image/Britania-connect-assets/default-img-circle.png')}/>)
+    }
+  }
+
   const [type, setType] = React.useState("thai");
 
   function isSelectType(TYPE) {
@@ -40,7 +49,7 @@ export default function ResidentAdd({ route }) {
         style={[Styles.w100, Styles.h75]}
       >
         <View style={Styles.al_center}>
-          <ProfilePicCom picture={picture} />
+          {setImage()}
         </View>
         <View style={Styles.ml5}>
           <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>

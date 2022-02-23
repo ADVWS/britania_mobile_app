@@ -8,7 +8,6 @@ export const userUpdateProfile = async (updatedata, image, key, cb) => {
         if(image === ''){
             var UPDATE = `mutation {
                 userUpdateProfile(
-                    email: "${updatedata.email}", 
                     mobileNo: "${updatedata.mobileNo}", 
                     name: "${updatedata.name}"
                 ) {
@@ -21,7 +20,6 @@ export const userUpdateProfile = async (updatedata, image, key, cb) => {
         } else {
             var UPDATE = `mutation {
                 userUpdateProfile(
-                    email: "${updatedata.email}", 
                     mobileNo: "${updatedata.mobileNo}", 
                     name: "${updatedata.name}"
                     inputUserImage: {

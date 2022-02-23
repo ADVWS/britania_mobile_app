@@ -29,6 +29,15 @@ export default function OccupantAdd({route}) {
     setType(TYPE);
   }
 
+  const setImage = (img) => {
+    console.log(img)
+    if (img) {
+        return (<ProfilePicCom picture={{uri: img}} />)
+    } else {
+        return (<ProfilePicCom picture={require('../../assets/image/Britania-connect-assets/default-img-circle.png')}/>)
+    }
+  }
+
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.mainColor2]}>
       <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManageIndivi"} />
@@ -38,7 +47,7 @@ export default function OccupantAdd({route}) {
         style={[Styles.w100, Styles.h75]}
       >
         <View style={Styles.al_center}>
-          <ProfilePicCom picture={picture} />
+          {setImage()}
         </View>
         <View style={Styles.ml5}>
           <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>

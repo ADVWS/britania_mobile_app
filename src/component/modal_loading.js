@@ -19,8 +19,8 @@ const Modal_loading = ({closeModalLoading}) => {
         ]}
       >
         <View style={[Styles.w100]}>
-          <ActivityIndicator size="large" color={"#f1645e"}/>
-          <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text, Styles.text_center, Styles.mt10]}>
+          <ActivityIndicator size="large" color={"#bb6a70"}/>
+          <Text style={[Styles.f_22, Styles.mainFont, Styles.BB6_text, Styles.text_center, Styles.mt10]}>
               Loading...
           </Text>
         </View>

@@ -1,36 +1,65 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, Image, TextInput, Platform } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput,
+  Platform,
+} from "react-native";
 import DatePicker from "react-native-datepicker";
-import DateTimePicker from '@react-native-community/datetimepicker';
-import Modal from 'react-native-modal'
+import DateTimePicker from "@react-native-community/datetimepicker";
+import Modal from "react-native-modal";
 
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 import moment from "moment";
 import * as Global from "../../globalState";
-import mainScript from "../../script"
-import Script from "../../script/OccupantEdit_script"
-import KEYS from "../../KEYS.json"
+import mainScript from "../../script";
+import Script from "../../script/OccupantEdit_script";
+import KEYS from "../../KEYS.json";
+import Modal_alert from "../../component/modal_alert";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 const thai_form = ({ item }) => {
-  const [member, setMember] = React.useState(item)
+  const [member, setMember] = React.useState(item);
   const [date, setDate] = React.useState(
     moment(member.expiredDate).format("DD-MM-YYYY")
   );
-  const [chosenDate, setChosenDate] = React.useState(new Date(member.expiredDate));
+  const [chosenDate, setChosenDate] = React.useState(
+    new Date(member.expiredDate)
+  );
   const [rawDate, setRawDate] = React.useState(member.expiredDate);
-  const [name, setName] = React.useState(member.name)
-  const [idcard, setIdcard] = React.useState(member.idcard)
-  const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
-  const [email, setEmail] = React.useState(member.email)
+  const [name, setName] = React.useState(member.name);
+  const [idcard, setIdcard] = React.useState(member.idcard);
+  const [mobileNo, setMobileNo] = React.useState(member.mobileNo);
+  const [email, setEmail] = React.useState(member.email);
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-
-  const [iosDatepicker, setIosDatepicker] = React.useState(false)
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
+  const [iosDatepicker, setIosDatepicker] = React.useState(false);
 
   const saveEdit = () => {
+    var checker = [];
+    if (name === "") {
+      checker.push(false);
+    }
+    if (idcard === "") {
+      checker.push(false);
+    }
+    if (mobileNo === "") {
+      checker.push(false);
+    }
+    if (email === "") {
+      checker.push(false);
+    }
+    if (checker.indexOf(false) !== -1) {
+      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setAlert(true);
+      return;
+    }
     var edit = {
       name: name,
       idcard: idcard,
@@ -38,27 +67,31 @@ const thai_form = ({ item }) => {
       email: email,
       nationType: "thai",
       unitMemberId: member.unitMemberId,
-      expiredDate: rawDate
-    }
+      expiredDate: rawDate,
+    };
     Script.memberUpdateProfile_thai(edit, KEYS.TOKEN, member.unitid, (res) => {
-      if (typeof res === 'object') {
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res
-        setUnitMember(data)
-        navigate.navigate("MemberManageIndivi")
+      if (typeof res === "object") {
+        var data = mainScript.recoilTranform(unitMember);
+        data.unitMember = res;
+        setUnitMember(data);
+        navigate.navigate("MemberManageIndivi");
       }
-    })
-  }
-
-  const onChangeIosPicker = (event, selectedDate) => { setChosenDate(selectedDate) };
-  const onSelectIosPicker = () => {
-    setRawDate(chosenDate)
-    setIosDatepicker(false)
+    });
   };
+
+  const onChangeIosPicker = (event, selectedDate) => {
+    setChosenDate(selectedDate);
+  };
+  const onSelectIosPicker = () => {
+    setRawDate(chosenDate);
+    setIosDatepicker(false);
+  };
+
+  const closeModalAlert = () => setAlert(false);
 
   return (
     <>
-      <View style={{ marginBottom: 30 }}>
+      <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
         <Text
           style={[
             Styles.ml5,
@@ -78,12 +111,10 @@ const thai_form = ({ item }) => {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
-              {borderWidth: 2, borderColor: "#DDD"}
+              { borderWidth: 2, borderColor: "#DDD" },
             ]}
             value={name}
-            onChangeText={(val) => {
-              setName(val)
-            }}
+            onChangeText={setName}
           />
         </View>
         <Text
@@ -105,12 +136,10 @@ const thai_form = ({ item }) => {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
-              {borderWidth: 2, borderColor: "#DDD"}
+              { borderWidth: 2, borderColor: "#DDD" },
             ]}
             value={idcard}
-            onChangeText={(val) => {
-              setIdcard(val)
-            }}
+            onChangeText={setIdcard}
           />
         </View>
         <Text
@@ -132,12 +161,10 @@ const thai_form = ({ item }) => {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
-              {borderWidth: 2, borderColor: "#DDD"}
+              { borderWidth: 2, borderColor: "#DDD" },
             ]}
             value={mobileNo}
-            onChangeText={(val) => {
-              setMobileNo(val)
-            }}
+            onChangeText={setMobileNo}
           />
         </View>
         <Text
@@ -147,7 +174,8 @@ const thai_form = ({ item }) => {
             Styles.mainFont,
             Styles.f_22,
             Styles.black_gray_text,
-          ]}>
+          ]}
+        >
           อีเมล
         </Text>
         <View style={Styles.al_center}>
@@ -158,12 +186,10 @@ const thai_form = ({ item }) => {
               Styles.textfieldbox,
               Styles.f_20,
               Styles.mainFont_x,
-              {borderWidth: 2, borderColor: "#DDD"}
+              { borderWidth: 2, borderColor: "#DDD" },
             ]}
             value={email}
-            onChangeText={(val) => {
-              setEmail(val)
-            }}
+            onChangeText={setEmail}
           />
         </View>
         <Text
@@ -178,7 +204,7 @@ const thai_form = ({ item }) => {
           วันที่สิทธิ์หมดอายุ
         </Text>
         <View style={Styles.al_center}>
-          {Platform.OS !== 'ios' ? (
+          {Platform.OS !== "ios" ? (
             <DatePicker
               style={[Styles.w90, Styles.mt5, Styles.textfieldbox]}
               date={date} // Initial date from state
@@ -189,7 +215,7 @@ const thai_form = ({ item }) => {
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={{
-                dateText: { color: '#000' },
+                dateText: { color: "#000" },
                 dateIcon: {
                   display: "none",
                   position: "absolute",
@@ -204,24 +230,30 @@ const thai_form = ({ item }) => {
                 },
               }}
               onDateChange={(datein) => {
-                setDate(datein)
+                setDate(datein);
                 var newDate = datein.split("-");
-                newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`
+                newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`;
                 setRawDate(newDate);
               }}
-            />) :
-            (<TouchableOpacity
+            />
+          ) : (
+            <TouchableOpacity
               onPress={() => setIosDatepicker(true)}
               style={[
                 Styles.w90,
                 Styles.mt5,
                 Styles.textfieldbox,
                 Styles.p15,
-                {borderWidth: 2, borderColor: "#DDD"}
-              ]}>
-              <Text>{rawDate !== '' ? moment(rawDate).format('DD/MM/YYYY') : rawDate}</Text>
-            </TouchableOpacity>)
-          }
+                { borderWidth: 2, borderColor: "#DDD" },
+              ]}
+            >
+              <Text>
+                {rawDate !== ""
+                  ? moment(rawDate).format("DD/MM/YYYY")
+                  : rawDate}
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={Styles.al_center}>
@@ -267,31 +299,53 @@ const thai_form = ({ item }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
       <Modal
         backdropOpacity={0.3}
         isVisible={iosDatepicker}
         onBackdropPress={() => setIosDatepicker(false)}
-        style={Styles.al_center, Styles.jc_end}>
-        <View style={[Styles.boxWithShadow, { width: '120%', right: '10%', top: 20 }]}>
-          <View style={[Styles.row, Styles.w100, { backgroundColor: '#F7F7F7' }]}>
+        style={(Styles.al_center, Styles.jc_end)}
+      >
+        <View
+          style={[
+            Styles.boxWithShadow,
+            { width: "120%", right: "10%", top: 20 },
+          ]}
+        >
+          <View
+            style={[Styles.row, Styles.w100, { backgroundColor: "#F7F7F7" }]}
+          >
             <View style={[Styles.w50]}>
-              <TouchableOpacity style={[Styles.w50, Styles.p5, { left: '15%' }]} onPress={() => setIosDatepicker(false)}>
-                <Text style={[Styles.black_gray_text, Styles.mainFont, Styles.f_24]}>Cancel</Text>
+              <TouchableOpacity
+                style={[Styles.w50, Styles.p5, { left: "15%" }]}
+                onPress={() => setIosDatepicker(false)}
+              >
+                <Text
+                  style={[Styles.black_gray_text, Styles.mainFont, Styles.f_24]}
+                >
+                  Cancel
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={[Styles.w55, Styles.al_end]}>
-              <TouchableOpacity style={[Styles.w50, Styles.p5]} onPress={() => onSelectIosPicker()}>
-                <Text style={[Styles.black_gray_text, Styles.mainFont, Styles.f_24]}>Confirm</Text>
+              <TouchableOpacity
+                style={[Styles.w50, Styles.p5]}
+                onPress={() => onSelectIosPicker()}
+              >
+                <Text
+                  style={[Styles.black_gray_text, Styles.mainFont, Styles.f_24]}
+                >
+                  Confirm
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[Styles.boxWithShadow, { backgroundColor: '#F7F7F7' }]}>
+          <View style={[Styles.boxWithShadow, { backgroundColor: "#F7F7F7" }]}>
             <DateTimePicker
               testID="dateTimePicker"
               value={chosenDate}
-              textColor={'#2b2b2b'}
-              mode={'date'}
+              textColor={"#2b2b2b"}
+              mode={"date"}
               //is24Hour={true}
               display="spinner"
               minimumDate={new Date()}
@@ -301,8 +355,11 @@ const thai_form = ({ item }) => {
           </View>
         </View>
       </Modal>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
     </>
   );
-}
+};
 
-export default thai_form
+export default thai_form;

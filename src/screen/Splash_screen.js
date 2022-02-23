@@ -16,6 +16,8 @@ export default function Splash() {
   const userProfile = useSetRecoilState(Global.userProfile)
   const userType = useSetRecoilState(Global.userType)
   const setLANG = useSetRecoilState(Global.Language)
+  const setLANGTEXT = useSetRecoilState(Global.LANGTEXT)
+
   runApp()
 
   function runApp() {
@@ -30,6 +32,7 @@ export default function Splash() {
         }
       }
       Store.getLocalStorege(Key.LANG, (data)=>{
+        setLANGTEXT(data.detail)
         var myLANG = LANG.settingLanguage(data.detail)
         console.log('check lang', data)
         setLANG(myLANG)
