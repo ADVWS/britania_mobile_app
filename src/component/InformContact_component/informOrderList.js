@@ -13,33 +13,38 @@ import mainScript from "../../script";
 import * as navigate from "../../navigator/RootNavigation";
 import { Styles } from "../../styles";
 
+import * as Global from "../../globalState"
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-const InformOrderList = ({ item }) => {
+
+const InformOrderList = ({ item, deleteItem }) => {
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     console.log('InformOrderList=', item)
+
     return (
         <>
             <View style={[Styles.w100, Styles.p15, Styles.mt15, Styles.br_5, { backgroundColor: "#ffecec" }]}>
                 <View style={[Styles.w100, Styles.row]}>
                     <View style={[Styles.w50]}>
                         <Text style={[Styles.f_22, Styles.mainFont]}>
-                            ประเภท
+                            {LANG.informcontact_text_06}
                         </Text>
                         <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
-                            {mainScript.setTypeInform(item.categoryId)}
+                            {mainScript.setTypeInform(item.categoryId, LANG)}
                         </Text>
                     </View>
-                    <View style={[Styles.w50, Styles.al_end]}>
+                    <TouchableOpacity style={[Styles.w50, Styles.al_end]} onPress={()=>deleteItem(item.description)}>
                         <Feather name="trash" size={20} style={[Styles.mainColor_text]} />
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10,]}>
-                    รายละเอียด
+                    {LANG.informcontact_text_07}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt5, { color: "#8f8f8f" }]}>
                     {item.description}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mt10,]}>
-                    รูปภาพ
+                    {LANG.informcontact_text_08}
                 </Text>
                 <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
                     {item.file.length > 0 ? (item.file.map((img) => (

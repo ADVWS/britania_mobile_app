@@ -11,17 +11,13 @@ import Radio from "../component/ResidentAdd_component/radio_resadd";
 import ThaiForm from "../component/OccupantAdd_component/thai_form";
 import ForeignForm from "../component/OccupantAdd_component/foreigner_form";
 import * as Global from "../globalState";
-
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 export default function OccupantAdd({route}) {
   console.log('item', route.params)
   const [unit, setUnit] = React.useState(route.params)
-  const [picture, setPicture] = React.useState(
-    {
-      image: require("../../assets/image/Britania-connect-assets/default-img-circle.png"),
-    },
-  );
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+
 
   const [type, setType] = React.useState("thai");
 
@@ -40,7 +36,7 @@ export default function OccupantAdd({route}) {
 
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.mainColor2]}>
-      <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManageIndivi"} />
+      <MainHeader name={LANG.occupantadd_text_01} backto={"MemberManageIndivi"} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
@@ -51,7 +47,7 @@ export default function OccupantAdd({route}) {
         </View>
         <View style={Styles.ml5}>
           <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>
-            ผู้เช่า
+            {LANG.occupantadd_text_02}
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>

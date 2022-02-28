@@ -15,8 +15,10 @@ import Script from "../../script/OccupantEdit_script";
 import KEYS from "../../KEYS.json";
 import Modal from "react-native-modal";
 import Modal_alert from "../../component/modal_alert";
+//import LANG from "../../LANG";
 
 export default function foreigner_form({ item }) {
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const [member, setMember] = React.useState(item);
   const [name, setName] = React.useState(member.name);
   const [passport, setPassport] = React.useState(member.passport);
@@ -42,7 +44,7 @@ export default function foreigner_form({ item }) {
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {
-      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setTextAlert(LANG.alert_text_01);
       setAlert(true);
       return;
     }
@@ -83,7 +85,7 @@ export default function foreigner_form({ item }) {
           Styles.black_gray_text,
         ]}
       >
-        ชื่อ-นามสกุล
+        {LANG.residentedit_text_06}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -108,7 +110,7 @@ export default function foreigner_form({ item }) {
           Styles.black_gray_text,
         ]}
       >
-        หมายเลขหนังสือเดินทาง
+        {LANG.residentedit_text_12}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -135,7 +137,7 @@ export default function foreigner_form({ item }) {
           Styles.black_gray_text,
         ]}
       >
-        เบอร์โทรศัพท์
+         {LANG.residentedit_text_08}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -160,7 +162,7 @@ export default function foreigner_form({ item }) {
           Styles.black_gray_text,
         ]}
       >
-        อีเมล์
+        {LANG.residentedit_text_09}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -189,7 +191,7 @@ export default function foreigner_form({ item }) {
               { marginLeft: "1%" },
             ]}
           >
-            บันทึก
+            {LANG.residentedit_text_13}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -215,7 +217,7 @@ export default function foreigner_form({ item }) {
               { marginLeft: "1%" },
             ]}
           >
-            ยกเลิก
+            {LANG.residentedit_text_11}
           </Text>
         </TouchableOpacity>
       </View>

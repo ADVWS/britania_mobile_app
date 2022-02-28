@@ -19,8 +19,10 @@ import MainHeader from "../component/mainHeader";
 
 const SelectTypeInform = () => {
     const [caseType, setCaseType] = useRecoilState(Global.caseType)
-    const [caseList, setCaseList] = useRecoilState(Global.caseType)
-    const _caseList = useSetRecoilState(Global.caseList)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
+    const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
+
+    console.log(LANGTEXT)
 
     function gotoInformAdd(param, name) {
         var details = {
@@ -45,11 +47,11 @@ const SelectTypeInform = () => {
                     Styles.w100,
                     Styles.h100
                 ]}>
-                <MainHeader name={'แจ้งซ่อม'} backto={'Homecare'} />
+                <MainHeader name={LANG.type_text_01} backto={'Homecare'} />
                 <ScrollView style={[Styles.w100, Styles.FFF]}>
                     <View style={[Styles.w100, Styles.p15]}>
                         <Text style={[Styles.f_24, Styles.mainFont, ]}>
-                            เลือกประเภท
+                            {LANG.type_text_02}
                         </Text>
                     </View>
                     {caseType.map((item) => (
@@ -60,7 +62,7 @@ const SelectTypeInform = () => {
                             </View>
                             <View style={[Styles.w80, Styles.jc_center]}>
                                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.pl10]}>
-                                    {item.nameThai}
+                                    {LANGTEXT === 'TH' ? item.nameThai : LANG[`type_${item.seq}`]}
                                 </Text>
                             </View>
                             <View style={[Styles.w10, Styles.al_center, Styles.jc_center]}>

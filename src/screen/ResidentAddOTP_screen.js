@@ -16,12 +16,15 @@ import * as navigate from "../navigator/RootNavigation";
 import * as Global from "../globalState";
 import mainScript from "../script";
 import Script from "../script/OccupantAddOTP_script";
+import ResentOTP from "../script/ResidentAdd_script";
 import KEYS from "../KEYS.json";
 import { useSetRecoilState, useRecoilState } from "recoil";
+import Store from "../store";
 
 export default function ResidentAddOTP({ route }) {
+  var timer = 60
+  const [LANGSELECT, setLANGSELECT] = useRecoilState(Global.LANGTEXT)
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  console.log(route.params);
   const [OTPdata, setOTPdata] = React.useState(route.params);
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
@@ -37,6 +40,11 @@ export default function ResidentAddOTP({ route }) {
   const unit6ref = React.createRef();
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
+  const [countDown, setCountDown] = React.useState(false);
+  const [displayTime, setDisplayTime] = React.useState(timer);
+  var setOTPTimer;
+
+  console.log('OTPdata', OTPdata)
 
   const sendOTP = () => {
     var otp =
@@ -49,6 +57,7 @@ export default function ResidentAddOTP({ route }) {
     Script.memberConfirmOtp(otp, OTPdata, KEYS.TOKEN, (res) => {
       console.log(res);
       if (typeof res === "object") {
+        clearInterval(setOTPTimer);
         var data = mainScript.recoilTranform(unitMember);
         data.unitMember = res;
         setUnitMember(data);
@@ -56,6 +65,37 @@ export default function ResidentAddOTP({ route }) {
       }
     });
   };
+
+  const reSentOTP = () => {
+    Store.getLocalStorege(KEYS.TOKEN, (res) => {
+      const token = res.detail.token;
+      ResentOTP.memberResendOtp(
+        token,
+        OTPdata.mobileNo,
+        unitMember.unitId,
+        (res) => {
+          console.log("callback", res);
+          var otp = OTPdata;
+          otp.refNo = res.refNo;
+          setOTPdata(otp)
+          setCountDown(true)
+          setOTPTimer = setInterval(OTPTimer, 1000);
+          console.log(otp)
+        }
+      );
+    });
+  };
+
+  function OTPTimer() {
+    timer--;
+    console.log(timer)
+    setDisplayTime(timer)
+    if (timer == 0) {
+      setCountDown(false)
+      clearInterval(setOTPTimer);
+    }
+  }
+
   return (
     <>
       <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
@@ -82,6 +122,7 @@ export default function ResidentAddOTP({ route }) {
                 Styles.mainFont_x,
                 Styles.black_gray_text,
                 Styles.mt20,
+                Styles.text_center,
               ]}
             >
               {LANG.residentaddotp_text_02} {OTPdata.name}
@@ -224,29 +265,61 @@ export default function ResidentAddOTP({ route }) {
                 />
               </View>
               <View style={[Styles.al_end, Styles.w100, Styles.mt10]}>
-                <Text
-                  style={[
-                    Styles.f_22,
-                    Styles.mainFont_x,
-                    Styles.black_gray_text,
-                  ]}
-                >
-                  {LANG.residentaddotp_text_05}{" "}
-                  <Text
+                <View style={[Styles.row, Styles.w100]}>
+                  <View
                     style={[
-                      Styles.mainColor_text,
-                      Styles.mainFont_x_db,
-                      { textDecorationLine: "underline" },
+                      { width: LANGSELECT === "TH" ? "75%" : "70%" },
+                      Styles.al_end,
                     ]}
                   >
-                    <Ionicons
-                      name="md-refresh-sharp"
-                      size={20}
-                      color="#dd6a70"
-                    />
-                    {LANG.residentaddotp_text_06}
-                  </Text>
-                </Text>
+                    <Text
+                      style={[
+                        Styles.f_20,
+                        Styles.mainFont,
+                        Styles.black_gray_text,
+                        { top: 2 },
+                      ]}
+                    >
+                      {LANG.inputotp_text_05}
+                    </Text>
+                  </View>
+                  {!countDown ? (
+                    <TouchableOpacity
+                      style={[Styles.w25, Styles.al_end]}
+                      onPress={() => reSentOTP()}
+                    >
+                      <Text
+                        style={[
+                          Styles.f_20,
+                          Styles.mainColor_text,
+                          Styles.mainFont,
+                          { textDecorationLine: "underline" },
+                        ]}
+                      >
+                        <Ionicons
+                          name="md-refresh-sharp"
+                          size={20}
+                          color="#bb6a70"
+                        />
+                        {LANG.inputotp_text_06}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <Text
+                      style={[
+                        Styles.f_22,
+                        Styles.mainFont,
+                        Styles.black_gray_text,
+                      ]}
+                    >
+                      {LANG.inputotp_text_08}{" "}
+                      <Text style={[Styles.mainColor_text3]}>
+                        {displayTime}
+                      </Text>{" "}
+                      {LANG.inputotp_text_09}
+                    </Text>
+                  )}
+                </View>
               </View>
             </View>
             <TouchableOpacity

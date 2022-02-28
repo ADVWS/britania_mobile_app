@@ -31,6 +31,7 @@ export default function InputOTP({ route }) {
   const userProfile = useSetRecoilState(Global.userProfile)
   const userType = useSetRecoilState(Global.userType)
   const [LANG, setLANG] = useRecoilState(Global.Language)
+  const [LANGSELECT, setLANGSELECT] = useRecoilState(Global.LANGTEXT)
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -50,8 +51,6 @@ export default function InputOTP({ route }) {
   const [countDown, setCountDown] = React.useState(false);
   const [displayTime, setDisplayTime] = React.useState(timer);
   var setOTPTimer;
-
-
   function _login() {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
     setLoading(false)
@@ -59,6 +58,7 @@ export default function InputOTP({ route }) {
     //navigate.navigate("TabFooter")
     //return
     setLoading(true)
+    clearInterval(setOTPTimer);
     Script.login(optData, otp, (res) => {
       if (typeof res === 'object') {
         var data = JSON.stringify(res.login)
@@ -311,12 +311,13 @@ export default function InputOTP({ route }) {
             </View>
             <View style={[Styles.al_end, Styles.w100, Styles.mt10]}>
               <View style={[Styles.row, Styles.w100]}>
-                <View style={[{ width: '75%' }, Styles.al_end]}>
+                <View style={[{ width: LANGSELECT === 'TH' ? '75%' : '70%'}, Styles.al_end]}>
                   <Text
                     style={[
-                      Styles.f_22,
+                      Styles.f_20,
                       Styles.mainFont,
                       Styles.black_gray_text,
+                      {top: 2}
                     ]}
                   >
                     {LANG.inputotp_text_05}
@@ -327,7 +328,7 @@ export default function InputOTP({ route }) {
                     onPress={() => resendOtp()}>
                     <Text
                       style={[
-                        Styles.f_22,
+                        Styles.f_20,
                         Styles.mainColor_text,
                         Styles.mainFont,
                         { textDecorationLine: "underline" },
@@ -344,7 +345,7 @@ export default function InputOTP({ route }) {
                       Styles.black_gray_text,
                     ]}
                   >
-                    ในอีก <Text style={[Styles.mainColor_text3]}>{displayTime}</Text> วินาที 
+                    {LANG.inputotp_text_08} <Text style={[Styles.mainColor_text3]}>{displayTime}</Text> {LANG.inputotp_text_09} 
                   </Text>)
                 }
               </View>

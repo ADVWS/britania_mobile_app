@@ -14,7 +14,7 @@ import Modal_alert  from "../../component/modal_alert";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 export default function thai_form({item}) {
-  const callback = useRecoilState(Global.callbackEdit);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const [member, setMember] = React.useState(item)
   const [name, setName] = React.useState(member.name)
   const [idcard, setIdcard] = React.useState(member.idcard)
@@ -39,7 +39,7 @@ export default function thai_form({item}) {
       checker.push(false)
     }
     if(checker.indexOf(false) !== -1){
-      setTextAlert('กรุณาระบุข้อมูลให้ครบถ้วน')
+      setTextAlert(LANG.alert_text_01)
       setAlert(true)
       return
     }
@@ -76,7 +76,7 @@ export default function thai_form({item}) {
           Styles.black_gray_text,
         ]}
       >
-        ชื่อ-นามสกุล
+        {LANG.residentedit_text_06}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -104,7 +104,7 @@ export default function thai_form({item}) {
           
         ]}
       >
-        เลขประจำตัวประชาชน
+        {LANG.residentedit_text_07}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -131,7 +131,7 @@ export default function thai_form({item}) {
           Styles.black_gray_text,
         ]}
       >
-        เบอร์โทรศัพท์
+        {LANG.residentedit_text_08}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -158,7 +158,7 @@ export default function thai_form({item}) {
           Styles.black_gray_text,
         ]}
       >
-        อีเมล์
+        {LANG.residentedit_text_09}
       </Text>
       <View style={Styles.al_center}>
         <TextInput
@@ -189,7 +189,7 @@ export default function thai_form({item}) {
               { marginLeft: "1%" },
             ]}
           >
-            บันทึก
+            {LANG.residentedit_text_13}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -215,7 +215,7 @@ export default function thai_form({item}) {
               { marginLeft: "1%" },
             ]}
           >
-            ยกเลิก
+            {LANG.residentedit_text_11}
           </Text>
         </TouchableOpacity>
       </View>

@@ -80,7 +80,7 @@ export default class radio_resadd extends React.Component {
             )}
           </TouchableOpacity>
           <Text style={[Styles.ml5, Styles.mainFont, {fontSize: 22, color: "#8f8f8f"}]}>
-            บุคคลสัญชาติไทย
+            {this.props.LANG.occupantedit_text_04}
           </Text>
         </View>
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>
@@ -111,7 +111,7 @@ export default class radio_resadd extends React.Component {
             )}
           </TouchableOpacity>
           <Text style={[Styles.ml5, Styles.mainFont, , {fontSize: 22, color: "#8f8f8f"}]}>
-            บุคคลต่างชาติ
+            {this.props.LANG.occupantedit_text_05}
           </Text>
         </View>
       </View>

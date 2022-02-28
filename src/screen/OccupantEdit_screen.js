@@ -22,6 +22,7 @@ import * as Global from "../globalState"
 const OccupantEdit = ({ route }) => {
     const [member, setMember] = React.useState(route.params);
     const [type, setType] = React.useState(member.nationType);
+    const [LANG, setLANG] = useRecoilState(Global.Language);
 
     function isSelectType(TYPE) {
         setType(TYPE);
@@ -37,7 +38,7 @@ const OccupantEdit = ({ route }) => {
 
     return (
         <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-            <MainHeader name={'แก้ไขผู้เช่า'} backto={'OccupantDetail'} />
+            <MainHeader name={LANG.occupantedit_text_01} backto={'OccupantDetail'} />
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}
@@ -46,8 +47,8 @@ const OccupantEdit = ({ route }) => {
                     {setImage(member.image)}
                 </View>
                 <View style={Styles.ml5}>
-                    <Text style={[Styles.mainFont, Styles.f_22, Styles.black_gray_text]}>ผู้เช่า</Text>
-                    <Radio isSelectType={isSelectType} type={member.nationType} />
+                    <Text style={[Styles.mainFont, Styles.f_22, Styles.black_gray_text]}>{LANG.occupantedit_text_03}</Text>
+                    <Radio isSelectType={isSelectType} type={member.nationType} LANG={LANG}/>
                 </View>
                 {type === "thai" && (<ThaiForm item={member} />)}
                 {type === "foreign" && (<ForeignForm item={member} />)}

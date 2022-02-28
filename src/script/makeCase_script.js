@@ -146,6 +146,30 @@ export const homecareAllCase = async (unitOwnerId, token, cb) => {
         const result = await API.request(ALLCASE, token);
         cb(result)
 }
+
+export const homecareGetCalendarHoliday = async (stateDate, endDate, key, cb) => {
+    Store.getLocalStorege(key, (res) => {
+         const token = res.detail.token
+         const HOLIDAY = `
+                query {
+                    homecareGetCalendarHoliday(startDate: "${stateDate}", endDate: "${endDate}"){
+                        id,
+                        date,
+                        title
+                    }
+                }
+            `;
+        checkHoliday(HOLIDAY, token, cb)
+    })
+}
+
+const checkHoliday = async (HOLIDAY, token, cb) => {
+    const result = await API.request(HOLIDAY, token);
+    cb(result)
+}
+
+
 export default {
-    homecareCreateCase
+    homecareCreateCase,
+    homecareGetCalendarHoliday
 }

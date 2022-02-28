@@ -30,13 +30,17 @@ export default class mainHeader extends React.Component {
     }
     var paramNav = "";
     var informSet;
+    var defaultTime;
     if (this.props.param) {
       paramNav = this.props.param;
     }
     if (this.props.informSet) {
       informSet = this.props.informSet;
     }
-    navigate.navigate(this.state.back_btn, { paramNav, informSet });
+    if (this.props.defaultTime) {
+      defaultTime = this.props.defaultTime
+    }
+    navigate.navigate(this.state.back_btn, { paramNav, informSet, defaultTime });
   }
 
   render() {

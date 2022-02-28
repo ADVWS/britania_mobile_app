@@ -25,6 +25,7 @@ import MainHeader from "../component/mainHeader";
 
 const InformAdd = ({ route }) => {
     console.log(route.params)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     const [gallery, setGallery] = React.useState([])
     const [caseList, setCaseList] = useRecoilState(Global.caseList)
     const _setCaseList = useSetRecoilState(Global.caseList)
@@ -119,21 +120,21 @@ const InformAdd = ({ route }) => {
                     Styles.h100
 
                 ]}>
-                <MainHeader name={'แจ้งซ่อม'} backto={'SelectTypeInform'} />
+                <MainHeader name={LANG.informadd_text_01} backto={'SelectTypeInform'} />
                 <KeyboardAvoidingView style={[Styles.w100, Styles.h100]} behavior="padding">
                     <ScrollView style={[Styles.w100, Styles.mainColorF9, Styles.flex]}>
                         <View style={[Styles.w100, Styles.p15]}>
                             <Text style={[Styles.f_24, Styles.mainFont, Styles.mainColor_text]}>
-                                ข้อมูลเพิ่มเติม
+                                {LANG.informadd_text_02}
                             </Text>
                             <Text style={[Styles.f_24, Styles.mainFont, Styles.mt20]}>
-                                รูปภาพ
+                                {LANG.informadd_text_03}
                             </Text>
                             <TouchableOpacity onPress={() => { pickImage() }}
                                 style={[Styles.w100, Styles.br_5, Styles.p10, Styles.mt5, Styles.row, Styles.jc_center, { borderColor: "#bb6a70", borderWidth: 1.5 }]}>
-                                <Image source={require("../../assets/image/add_image.png")} style={{ width: 30, height: 30 }} />
+                                <Image source={require("../../assets/image/add_image.png")} style={{ width: 30, height: 30, tintColor: "#bb6a70" }} />
                                 <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text, Styles.text_center, Styles.p4]}>
-                                    เพิ่มรูป
+                                    {LANG.informadd_text_04}
                                 </Text>
                             </TouchableOpacity>
                             {display &&
@@ -146,13 +147,13 @@ const InformAdd = ({ route }) => {
                                     ))}
                                 </ScrollView>
                             }
-                            {alImage &&
+                            {/* {alImage &&
                                 <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
                                     กรุณาระบุ "รูปภาพ"
                                 </Text>
-                            }
+                            } */}
                             <Text style={[Styles.f_24, Styles.mainFont, Styles.mt20]}>
-                                รายระเอียด
+                                 {LANG.informadd_text_05}
                             </Text>
                             <TextInput
                                 value={detail}
@@ -165,7 +166,7 @@ const InformAdd = ({ route }) => {
                             />
                             {alDetail &&
                                 <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
-                                    กรุณาระบุ "รายละเอียด"
+                                    {LANG.informadd_text_07}
                                 </Text>
                             }
                         </View>
@@ -175,7 +176,7 @@ const InformAdd = ({ route }) => {
                     onPress={() => gotoInformContact()}
                     style={[Styles.w90, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor_bb6, Styles.absolute, { bottom: 20 }]}>
                     <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
-                        ยืนยัน
+                        {LANG.informadd_text_06}
                     </Text>
                 </TouchableOpacity>
             </View>

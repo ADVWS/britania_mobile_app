@@ -30,6 +30,7 @@ export const setData = async (UNIT, token, unit, cb) => {
     unitMember.unitMemberAll = result.unitMemberAll
     unitMember.tenant = []
     unitMember.resident = []
+    console.log('setData==>', unitMember.unitMemberAll.length)
     for (let i = 0; i < unitMember.unitMemberAll.length; i++) {
         if (unitMember.unitMemberAll[i].ownerType === 'tenant') {
             unitMember.unitMemberAll[i].unitid = unit.id

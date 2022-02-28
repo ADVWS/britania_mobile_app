@@ -30,6 +30,8 @@ const thai_form = ({ item }) => {
   const [chosenDate, setChosenDate] = React.useState(
     new Date(member.expiredDate)
   );
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+
   const [rawDate, setRawDate] = React.useState(member.expiredDate);
   const [name, setName] = React.useState(member.name);
   const [idcard, setIdcard] = React.useState(member.idcard);
@@ -101,7 +103,7 @@ const thai_form = ({ item }) => {
             Styles.black_gray_text,
           ]}
         >
-          ชื่อ-นามสกุล
+          {LANG.occupantedit_text_06}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -126,7 +128,7 @@ const thai_form = ({ item }) => {
             Styles.black_gray_text,
           ]}
         >
-          เลขประจำตัวประชาชน
+          {LANG.occupantedit_text_07}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -151,7 +153,7 @@ const thai_form = ({ item }) => {
             Styles.black_gray_text,
           ]}
         >
-          เบอร์โทรศัพท์
+          {LANG.occupantedit_text_08}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -176,7 +178,7 @@ const thai_form = ({ item }) => {
             Styles.black_gray_text,
           ]}
         >
-          อีเมล
+          {LANG.occupantedit_text_09}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -201,7 +203,7 @@ const thai_form = ({ item }) => {
             Styles.black_gray_text,
           ]}
         >
-          วันที่สิทธิ์หมดอายุ
+          {LANG.occupantedit_text_13}
         </Text>
         <View style={Styles.al_center}>
           {Platform.OS !== "ios" ? (
@@ -269,7 +271,7 @@ const thai_form = ({ item }) => {
                 { marginLeft: "1%" },
               ]}
             >
-              บันทึก
+              {LANG.occupantedit_text_10}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -295,7 +297,7 @@ const thai_form = ({ item }) => {
                 { marginLeft: "1%" },
               ]}
             >
-              ยกเลิก
+              {LANG.occupantedit_text_11}
             </Text>
           </TouchableOpacity>
         </View>

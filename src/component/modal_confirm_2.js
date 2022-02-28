@@ -2,10 +2,13 @@ import * as React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Global from "../globalState";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 import { Styles } from "../styles";
 
 const Modal_confirm_2 = ({ text, confirmFunction }) => {
+    const [LANG, setLANG] = useRecoilState(Global.Language);
     return (
         <View
             style={[
@@ -30,7 +33,7 @@ const Modal_confirm_2 = ({ text, confirmFunction }) => {
                             Styles.mt15,
                         ]}
                     >
-                        <Text style={[Styles.f_22, Styles.mainFont, Styles.text_right, {color: 'red'}]}>ตกลง</Text>
+                        <Text style={[Styles.f_22, Styles.mainFont, Styles.text_right, {color: 'red'}]}>{LANG.informcalendar_text_06}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

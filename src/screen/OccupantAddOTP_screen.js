@@ -17,10 +17,15 @@ import * as navigate from "../navigator/RootNavigation";
 import * as Global from "../globalState";
 import mainScript from "../script";
 import Script from "../script/OccupantAddOTP_script";
+import ResentOTP from "../script/ResidentAdd_script";
 import KEYS from "../KEYS.json"
 import { useSetRecoilState, useRecoilState } from "recoil";
+import Store from "../store";
 
 export default function OccupantAddOTP({route}) {
+  var timer = 60
+  const [LANGSELECT, setLANGSELECT] = useRecoilState(Global.LANGTEXT)
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const [OTPdata, setOTPdata] = React.useState(route.params);
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
@@ -36,6 +41,9 @@ export default function OccupantAddOTP({route}) {
   const unit6ref = React.createRef();
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
+  const [countDown, setCountDown] = React.useState(false);
+  const [displayTime, setDisplayTime] = React.useState(timer);
+  var setOTPTimer;
 
   const sendOTP = () => {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
@@ -49,9 +57,40 @@ export default function OccupantAddOTP({route}) {
       }
     })
   }
+
+  const reSentOTP = () => {
+    Store.getLocalStorege(KEYS.TOKEN, (res) => {
+      const token = res.detail.token;
+      ResentOTP.memberResendOtp(
+        token,
+        OTPdata.mobileNo,
+        unitMember.unitId,
+        (res) => {
+          console.log("callback", res);
+          var otp = OTPdata;
+          otp.refNo = res.refNo;
+          setOTPdata(otp)
+          setCountDown(true)
+          setOTPTimer = setInterval(OTPTimer, 1000);
+          console.log(otp)
+        }
+      );
+    });
+  };
+
+  function OTPTimer() {
+    timer--;
+    console.log(timer)
+    setDisplayTime(timer)
+    if (timer == 0) {
+      setCountDown(false)
+      clearInterval(setOTPTimer);
+    }
+  }
+
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={"เพิ่มผู้เช่า"} backto={"MemberManageIndivi"} />
+      <MainHeader name={LANG.occupantaddotp_text_01} backto={"MemberManageIndivi"} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={[Styles.al_center, Styles.w100, Styles.h90, Styles.p30]}>
           <View
@@ -73,12 +112,12 @@ export default function OccupantAddOTP({route}) {
               Styles.mt20,
             ]}
           >
-            กรุณากรอกรหัส OTP ที่ส่งไปยังคุณ {OTPdata.name}
+            {LANG.occupantaddotp_text_02} {OTPdata.name}
           </Text>
           <Text
             style={[Styles.f_22, Styles.mainFont_x, Styles.black_gray_text]}
           >
-            หมายเลข {mainScript.formatPhoneNumber(OTPdata.mobileNo)} เพื่อเปิดสิทธิ์การใช้งาน
+            {LANG.occupantaddotp_text_03} {mainScript.formatPhoneNumber(OTPdata.mobileNo)} {LANG.occupantaddotp_text_03_1}
           </Text>
           <View style={[Styles.w100, Styles.al_start]}>
             <Text
@@ -89,7 +128,7 @@ export default function OccupantAddOTP({route}) {
                 Styles.mt30,
               ]}
             >
-              รหัส OTP 6 หลัก
+              {LANG.occupantaddotp_text_04}
             </Text>
             <View style={[Styles.row, Styles.w100, Styles.mt10]}>
               <TextInput
@@ -211,26 +250,62 @@ export default function OccupantAddOTP({route}) {
               />
             </View>
             <View style={[Styles.al_end, Styles.w100, Styles.mt10]}>
-              <Text
-                style={[
-                  Styles.f_22,
-                  Styles.mainFont_x,
-                  Styles.black_gray_text,
-                ]}
-              >
-                ยังไม่ได้รับรหัส OTP{" "}
-                <Text
-                  style={[
-                    Styles.mainColor_text3,
-                    Styles.mainFont_x_db,
-                    { textDecorationLine: "underline" },
-                  ]}
-                >
-                  <Ionicons name="md-refresh-sharp" size={20} color="#bb6a70" />
-                  ส่งอีกครั้ง
-                </Text>
-              </Text>
-            </View>
+                <View style={[Styles.row, Styles.w100]}>
+                  <View
+                    style={[
+                      { width: LANGSELECT === "TH" ? "75%" : "70%" },
+                      Styles.al_end,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        Styles.f_20,
+                        Styles.mainFont,
+                        Styles.black_gray_text,
+                        { top: 2 },
+                      ]}
+                    >
+                      {LANG.inputotp_text_05}
+                    </Text>
+                  </View>
+                  {!countDown ? (
+                    <TouchableOpacity
+                      style={[Styles.w25, Styles.al_end]}
+                      onPress={() => reSentOTP()}
+                    >
+                      <Text
+                        style={[
+                          Styles.f_20,
+                          Styles.mainColor_text,
+                          Styles.mainFont,
+                          { textDecorationLine: "underline" },
+                        ]}
+                      >
+                        <Ionicons
+                          name="md-refresh-sharp"
+                          size={20}
+                          color="#bb6a70"
+                        />
+                        {LANG.inputotp_text_06}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <Text
+                      style={[
+                        Styles.f_22,
+                        Styles.mainFont,
+                        Styles.black_gray_text,
+                      ]}
+                    >
+                      {LANG.inputotp_text_08}{" "}
+                      <Text style={[Styles.mainColor_text3]}>
+                        {displayTime}
+                      </Text>{" "}
+                      {LANG.inputotp_text_09}
+                    </Text>
+                  )}
+                </View>
+              </View>
           </View>
           <TouchableOpacity
             style={[
@@ -254,7 +329,7 @@ export default function OccupantAddOTP({route}) {
                 Styles.text_center,
               ]}
             >
-              ยืนยัน
+              {LANG.occupantaddotp_text_07}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -280,7 +355,7 @@ export default function OccupantAddOTP({route}) {
                 Styles.al_center,
               ]}
             >
-              ข้าม
+              {LANG.occupantaddotp_text_08}
             </Text>
           </TouchableOpacity>
         </View>

@@ -18,10 +18,18 @@ import MainHeader from "../component/mainHeader";
 
 const InformTime = () => {
     const [time, setTime] = useRecoilState(Global.checkInTime)
-
+    const [LANG, setLANG] = useRecoilState(Global.Language)
+    const [defaultTime, setDefaultTime] = React.useState({
+        name: time[0].name,
+        value: time[0].value
+    })
     function selectInformTime(InformTime) {
+        console.log('InformTime', InformTime)
         navigate.navigate('InformCalendar', InformTime)
     }
+    var paramNav
+
+    console.log(time[0])
 
     return (
         <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
@@ -32,7 +40,7 @@ const InformTime = () => {
                     Styles.h100,
                     Styles.mainColorF9,
                 ]}>
-                <MainHeader name={'เลือกเวลา'} backto={'IncomeCalendar'} />
+                <MainHeader name={LANG.informcalendar_text_03} backto={'InformCalendar'} defaultTime={defaultTime}/>
                 {time.map((items) => (
                     <TouchableOpacity
                         onPress={() => selectInformTime(items)}

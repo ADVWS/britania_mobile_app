@@ -5,9 +5,13 @@ import {
     TouchableOpacity,
 } from "react-native";
 import * as navigate from "../../navigator/RootNavigation";
+import { useRecoilState } from "recoil";
+import * as Global from "../../globalState";
 import { Styles } from "../../styles";
 
 const edit_btn = ({member, openConfirm}) => {
+    const [LANG, setLANG] = useRecoilState(Global.Language);
+
     return (
         <View style={Styles.row}>
             <TouchableOpacity
@@ -31,7 +35,7 @@ const edit_btn = ({member, openConfirm}) => {
                         Styles.mainFont,
                         { marginLeft: "1%" },
                     ]}>
-                    ลบ
+                    {LANG.residentdetail_text_06}
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -56,7 +60,7 @@ const edit_btn = ({member, openConfirm}) => {
                         Styles.mainFont,
                         { marginLeft: "1%" },
                     ]}>
-                    แก้ไข
+                    {LANG.residentdetail_text_07}
                 </Text>
             </TouchableOpacity>
         </View>

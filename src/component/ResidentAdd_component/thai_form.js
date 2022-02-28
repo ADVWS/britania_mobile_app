@@ -37,7 +37,7 @@ export default function thai_form({ unit }) {
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {
-      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setTextAlert(LANG.alert_text_01);
       setAlert(true);
       return;
     }

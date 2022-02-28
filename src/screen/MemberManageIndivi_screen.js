@@ -1,15 +1,7 @@
 import * as React from "react";
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  Animated,
-} from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import MainHeader from "../component/mainHeader";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 import { Styles } from "../styles";
 import ResidentList from "../component/MemberManageIndivi_component/resident_list";
@@ -18,8 +10,7 @@ import MenuBtn from "../component/MemberManageIndivi_component/menu_manage_btn";
 import * as Global from "../globalState";
 
 export default function MemberManageIndivi_screen() {
-  const [LANG, setLANG] = useRecoilState(Global.Language);
-  const gobalData = useSetRecoilState(Global.callbackAccount);
+  const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT);
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
   const resident = unitMember.unitMember.resident;
   const occupant = unitMember.unitMember.tenant;
@@ -85,7 +76,7 @@ export default function MemberManageIndivi_screen() {
   return (
     <View style={[Styles.flex, Styles.al_center]}>
       <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
-        <MainHeader name={unitMember.projectName} backto={"MemberManage"} />
+        <MainHeader name={LANGTEXT === 'TH' ? unitMember.projectName : unitMember.project.nameEng} backto={"MemberManage"} />
         <ScrollView
           ref={scrollref}
           showsVerticalScrollIndicator={false}
@@ -103,7 +94,7 @@ export default function MemberManageIndivi_screen() {
                   Styles.text_center,
                 ]}
               >
-                {unitMember.projectName}
+                {LANGTEXT === 'TH' ? unitMember.projectName : unitMember.project.nameEng}
               </Text>
             </View>
           </View>

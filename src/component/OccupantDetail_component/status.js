@@ -4,8 +4,12 @@ import {
     Text,
 } from "react-native";
 import { Styles } from "../../styles";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import * as Global from "../../globalState";
 
 const status = ({status}) => {
+    const [LANG, setLANG] = useRecoilState(Global.Language);
+
     if (status === 'active') {
         return (
             <View>
@@ -19,7 +23,7 @@ const status = ({status}) => {
                     >
                         <Text
                             style={[
-                                Styles.f_24,
+                                Styles.f_22,
                                 Styles.mainFont,
                                 {
                                     color: "#3fc89b",
@@ -28,7 +32,7 @@ const status = ({status}) => {
                                 },
                             ]}
                         >
-                            เปิดการใช้งานแล้ว
+                            {LANG.occupantdetail_text_02}
                         </Text>
                     </View>
                 </View>
@@ -46,7 +50,7 @@ const status = ({status}) => {
                 >
                     <Text
                         style={[
-                            Styles.f_24,
+                            Styles.f_22,
                             Styles.mainFont,
                             {
                                 color: "#f4910d",
@@ -55,7 +59,7 @@ const status = ({status}) => {
                             },
                         ]}
                     >
-                        ยังไม่เปิดการใช้งาน
+                        {LANG.occupantdetail_text_12}
                     </Text>
                 </View>
             </View>

@@ -23,6 +23,7 @@ import Modal_alert from "../../component/modal_alert";
 
 export default function thai_form(unit) {
   console.log("user", unit);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const [chosenDate, setChosenDate] = React.useState(new Date());
   const [rawDate, setRawDate] = React.useState("");
   const [name, setName] = React.useState("");
@@ -54,7 +55,7 @@ export default function thai_form(unit) {
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {
-      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setTextAlert(LANG.alert_text_01);
       setAlert(true);
       return;
     }
@@ -106,7 +107,7 @@ export default function thai_form(unit) {
             Styles.black_gray_text,
           ]}
         >
-          ชื่อ-นามสกุล
+          {LANG.occupantadd_text_05}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -130,7 +131,7 @@ export default function thai_form(unit) {
             Styles.black_gray_text,
           ]}
         >
-          เลขประจำตัวประชาชน
+          {LANG.occupantadd_text_06}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -154,7 +155,7 @@ export default function thai_form(unit) {
             Styles.black_gray_text,
           ]}
         >
-          เบอร์โทรศัพท์
+          {LANG.occupantadd_text_07}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -178,7 +179,7 @@ export default function thai_form(unit) {
             Styles.black_gray_text,
           ]}
         >
-          อีเมล
+          {LANG.occupantadd_text_08}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -202,7 +203,7 @@ export default function thai_form(unit) {
             Styles.black_gray_text,
           ]}
         >
-          วันที่สิทธิ์หมดอายุ
+          {LANG.occupantadd_text_12}
         </Text>
         <View style={Styles.al_center}>
           {Platform.OS !== "ios" ? (
@@ -269,7 +270,7 @@ export default function thai_form(unit) {
                 { marginLeft: "1%" },
               ]}
             >
-              บันทึก
+              {LANG.occupantadd_text_09}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -295,7 +296,7 @@ export default function thai_form(unit) {
                 { marginLeft: "1%" },
               ]}
             >
-              ยกเลิก
+              {LANG.occupantadd_text_10}
             </Text>
           </TouchableOpacity>
         </View>

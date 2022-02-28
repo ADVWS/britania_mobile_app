@@ -6,11 +6,10 @@ import * as Global from "../../globalState";
 import { Styles } from "../../styles";
 
 export default function radio_resadd(props) {
+  
   const [LANG, setLANG] = useRecoilState(Global.Language);
-
   const [thai, setThai] = React.useState(true);
   const [foreign, setForeign] = React.useState(false);
-
   const [thaiColor, setThaiColor] = React.useState("#bb6a70");
   const [foreignColor, setForeignColor] = React.useState("#9c9c9b");
 

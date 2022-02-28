@@ -70,7 +70,7 @@ const ResidentDetail = ({ route }) => {
   return (
     <View style={[Styles.flex, Styles.al_center]}>
       <View style={[Styles.al_center, Styles.w100, Styles.h100]}>
-        <MainHeader name={"ผู้อยู่อาศัยร่วม"} backto={"MemberManageIndivi"} />
+        <MainHeader name={LANG.residentdetail_text_01} backto={"MemberManageIndivi"} />
         <ScrollView style={[Styles.w100, Styles.p15, Styles.FFF]}>
           <View>
             <View
@@ -90,7 +90,7 @@ const ResidentDetail = ({ route }) => {
                   <Text
                     style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}
                   >
-                    เบอร์โทรศัพท์
+                    {LANG.residentdetail_text_04}
                   </Text>
                   <Text
                     style={[
@@ -108,7 +108,7 @@ const ResidentDetail = ({ route }) => {
                   </View>
                   <View style={[Styles.w100, { marginTop: 7 }]}>
                     <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
-                      ชื่อ-นามสกุล
+                      {LANG.residentdetail_text_03}
                     </Text>
                     <Text
                       style={[
@@ -122,7 +122,7 @@ const ResidentDetail = ({ route }) => {
                     <Text
                       style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}
                     >
-                      อีเมล
+                      {LANG.residentdetail_text_05}
                     </Text>
                     <Text
                       style={[
@@ -142,7 +142,7 @@ const ResidentDetail = ({ route }) => {
         </ScrollView>
       </View>
       <Modal isVisible={alert} style={Styles.al_center}>
-        <Modal_confirm text={`ยืนยันการลบผู้อาศัยร่วม ${member.name}`} confirmFunction={confirm}/>
+        <Modal_confirm text={`${LANG.residentdetail_text_09} ${member.name}`} confirmFunction={confirm}/>
       </Modal>
     </View>
   );

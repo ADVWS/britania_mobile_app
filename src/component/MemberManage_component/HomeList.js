@@ -15,19 +15,27 @@ import Modal_loading from "../modal_loading";
 
 const HomeList = ({ homeList }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-  const [load, setLoad] = React.useState(false)
+  const [load, setLoad] = React.useState(false);
+
   const selectProject = (item) => {
-    setLoad(true)
-    console.log(item)
-    Script.unitMemberAll(item, KEYS.TOKEN, (unitMember) => {
-      var data = mainScript.recoilTranform(item);
-      data.unitMember = unitMember;
-      setUnitMember(data);
-      setLoad(false)
-      navigate.navigate("MemberManageIndivi");
-    });
+    try {
+      setLoad(true);
+      console.log(item);
+      Script.unitMemberAll(item, KEYS.TOKEN, (unitMember) => {
+        var data = mainScript.recoilTranform(item);
+        data.unitMember = unitMember;
+        setUnitMember(data);
+        setLoad(false);
+        navigate.navigate("MemberManageIndivi");
+      });
+    } catch (error) {
+      setLoad(false);
+    }
   };
+
+  console.log('homeList:', LANGTEXT)
 
   return (
     <View style={[Styles.w100, Styles.p10]}>
@@ -55,7 +63,7 @@ const HomeList = ({ homeList }) => {
                 { bottom: 3 },
               ]}
             >
-              {item.projectName}
+              {LANGTEXT === "TH" ? item.projectName : item.project.nameEng}
             </Text>
             <Text
               style={[
@@ -75,7 +83,7 @@ const HomeList = ({ homeList }) => {
         </TouchableOpacity>
       ))}
       <Modal isVisible={load} style={Styles.al_center}>
-          <Modal_loading />
+        <Modal_loading />
       </Modal>
     </View>
   );

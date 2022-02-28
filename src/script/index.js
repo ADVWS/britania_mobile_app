@@ -171,11 +171,11 @@ const isEmptyObject = (obj) => {
     }
 }
 
-const setTypeInform = (obj) => {
+const setTypeInform = (obj, LANG) => {
     const [caseType, setCaseType] = useRecoilState(Global.caseType)
-    console.log('setType===>', caseType)
+    const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
     var index = caseType.map(function (e) { return e.id; }).indexOf(obj);
-    return caseType[index].nameThai
+    return (LANGTEXT === 'TH' ? caseType[index].nameThai : LANG[`type_${caseType[index].seq}`])
 }
 
 const uploadImage = (token, file, cb) => {

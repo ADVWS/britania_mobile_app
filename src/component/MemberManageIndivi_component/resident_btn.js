@@ -65,7 +65,7 @@ const ResidentBtn = ({ item }) => {
                   Styles.f_22,
                   Styles.mainFont_x,
                   Styles.spacing5,
-                  Styles.mt10,
+                  Styles.mt20,
                 ]}
               >
                 {LANG.membermanageindivi_text_07}
@@ -175,21 +175,17 @@ const ResidentBtn = ({ item }) => {
                 )}
               </View>
 
-              <View style={[Styles.w100, Styles.mt10]}>
+              <View style={[Styles.w100]}>
                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                   {LANG.membermanageindivi_text_06}
                 </Text>
-                <Text
-                  style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
-                >
+                <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}>
                   {item.name}
                 </Text>
                 <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
                   {LANG.membermanageindivi_text_08}
                 </Text>
-                <Text
-                  style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}
-                >
+                <Text style={[Styles.f_22, Styles.mainFont_x, { color: "#8f8f8f" }]}>
                   {item.email}
                 </Text>
               </View>

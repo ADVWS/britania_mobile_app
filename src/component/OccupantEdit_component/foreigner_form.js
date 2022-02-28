@@ -17,6 +17,7 @@ import Modal_alert from "../../component/modal_alert";
 export default function foreigner_form({ item }) {
   const [member, setMember] = React.useState(item)
   const [chosenDate, setChosenDate] = React.useState(new Date(member.expiredDate));
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const [date, setDate] = React.useState(
     moment(member.expiredDate).format("DD-MM-YYYY")
   );
@@ -90,7 +91,7 @@ export default function foreigner_form({ item }) {
             Styles.black_gray_text,
           ]}
         >
-          ชื่อ-นามสกุล
+          {LANG.occupantedit_text_06}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -115,7 +116,7 @@ export default function foreigner_form({ item }) {
             Styles.black_gray_text,
           ]}
         >
-          หมายเลขหนังสือเดินทาง
+          {LANG.occupantedit_text_12}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -140,7 +141,7 @@ export default function foreigner_form({ item }) {
             Styles.black_gray_text,
           ]}
         >
-          เบอร์โทรศัพท์
+          {LANG.occupantedit_text_08}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -165,7 +166,7 @@ export default function foreigner_form({ item }) {
             Styles.black_gray_text,
           ]}
         >
-          อีเมล์
+            {LANG.occupantedit_text_09}
         </Text>
         <View style={Styles.al_center}>
           <TextInput
@@ -190,7 +191,7 @@ export default function foreigner_form({ item }) {
             Styles.black_gray_text,
           ]}
         >
-          วันที่สิทธิ์หมดอายุ
+          {LANG.occupantedit_text_13}
         </Text>
         <View style={Styles.al_center}>
           {Platform.OS !== 'ios' ? (
@@ -251,7 +252,7 @@ export default function foreigner_form({ item }) {
                 { marginLeft: "1%" },
               ]}
             >
-              บันทึก
+              {LANG.occupantedit_text_10}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -277,7 +278,7 @@ export default function foreigner_form({ item }) {
                 { marginLeft: "1%" },
               ]}
             >
-              ยกเลิก
+                {LANG.occupantedit_text_11 }
             </Text>
           </TouchableOpacity>
         </View>
