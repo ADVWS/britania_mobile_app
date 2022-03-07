@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "britania_app",
+    "name": "Britania Connect",
     "slug": "britania_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/image/Britania-connect-assets/01_app_icon/512x512_rounded.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-03.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#f9f9f9"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

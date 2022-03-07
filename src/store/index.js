@@ -7,7 +7,7 @@ const setLocalStorege = async (key, data, cb) => {
     );
     var res = {
       result: true,
-      detail: "Success, Storege Profile."
+      detail: "Storege Success ."
     }
     cb(res)
   } catch (error) {

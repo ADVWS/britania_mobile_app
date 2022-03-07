@@ -11,6 +11,7 @@ import { useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
 import LANG from "../LANG";
 import Store from "../store";
+import TokenNotification from "../script/TokenNotification";
 
 export default function Splash() {
   const userProfile = useSetRecoilState(Global.userProfile)
@@ -26,20 +27,43 @@ export default function Splash() {
         if(res.data.me){
           userProfile(res.data)
           userType(1)
+          var dataNotify = {
+            id: res.data.me.id,
+            token: res.token
+          }
+          setNotify(dataNotify, res.goto)
         } else {
           userProfile(res.data)
           userType(2)
+          setLanguage(res.goto)
         }
       }
-      Store.getLocalStorege(Key.LANG, (data)=>{
-        setLANGTEXT(data.detail)
-        var myLANG = LANG.settingLanguage(data.detail)
-        console.log('check lang', data)
-        setLANG(myLANG)
-        setTimeout(() => {
-          navigate.navigate(res.goto)
-        }, 3000);
+     
+    })
+  }
+
+  function setNotify(dataNotify, goto) {
+    Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
+      dataNotify.NOTIFYTOKEN = NOTIFYTOKEN
+      TokenNotification.userUpdateTokenNotification(dataNotify,(res)=>{
+        if(res.userUpdateTokenNotification){
+          setLanguage(goto)
+        } else {
+          setLanguage(goto)
+        }
       })
+    })
+  }
+
+  function setLanguage(goto) {
+    Store.getLocalStorege(Key.LANG, (data)=>{
+      setLANGTEXT(data.detail)
+      var myLANG = LANG.settingLanguage(data.detail)
+      console.log('check lang', data)
+      setLANG(myLANG)
+      setTimeout(() => {
+        navigate.navigate(goto)
+      }, 3000);
     })
   }
 

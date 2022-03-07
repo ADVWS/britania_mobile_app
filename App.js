@@ -11,13 +11,24 @@ import AllNavigator from "./src/navigator";
 import * as Font from "expo-font";
 import * as Permissions from 'expo-permissions'
 import * as Notifications from 'expo-notifications'
+import Store from "./src/store";
+import Keys from "./src/KEYS.json"
 
 export default function App() {
   console.disableYellowBox = true;
   const [loaded, setLoaded] = useState(false);
 
   React.useEffect(()=>{
-    registerForPushNotification().then(token=>console.log(token)).catch(err => console.log(err))
+    registerForPushNotification()
+      .then(token=>{
+        console.log(token)
+        Store.setLocalStorege(Keys.NOTIFY, token,(res)=>{
+          console.log(res)
+        })
+      })
+      .catch(
+        err => console.log(err)
+      )
   }, [])
 
   async function registerForPushNotification(){

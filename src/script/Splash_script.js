@@ -112,7 +112,8 @@ const getUser = async (project, token, cb) => {
         var response = {
             detail: "Verify token success .",
             data: result,
-            goto: 'TabFooter'
+            goto: 'TabFooter',
+            token: token
         }
         cb(response)
     } else {
