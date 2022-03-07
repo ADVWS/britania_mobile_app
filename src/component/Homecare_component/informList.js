@@ -30,17 +30,20 @@ const InformList = () => {
     })
     const gotoSelectTypeInform = () => {
         Script.homecareGetCategory(Key.TOKEN, typeInform, (res) => {
-            console.log(res)
-            caseType(res)
-            newInform({
-                unitOwnerId: "",
-                owner: "",
-                phoneOwner: "",
-                checkInDate: "",
-                checkInRangeTime: "",
-            })
-            caseList([])
-            navigate.navigate('SelectTypeInform')
+            if(res.length > 0){
+                caseType(res)
+                newInform({
+                    unitOwnerId: "",
+                    owner: "",
+                    phoneOwner: "",
+                    checkInDate: "",
+                    checkInRangeTime: "",
+                })
+                caseList([])
+                navigate.navigate('SelectTypeInform')
+            } else {
+                return
+            }
         })
     }
     return (

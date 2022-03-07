@@ -9,7 +9,7 @@ import {
     KeyboardAvoidingView
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { FontAwesome } from '@expo/vector-icons';
 
 import * as Global from "../globalState"
@@ -18,13 +18,20 @@ import { Styles } from "../styles";
 
 import MainHeader from "../component/mainHeader";
 import Vote from "../component/Satisfaction_component/vote";
+import Key from "../KEYS.json"
+import Script from "../script/Satisfaction_script"
+import mainScript from "../script";
 
 const Satisfaction = ({ route }) => {
     console.log(route.params.mechanic)
     const [question, setQuestion] = React.useState(route.params.QUES)
     const [LANG, setLANG] = useRecoilState(Global.Language)
     const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
+    const [detail, setDetail] = useRecoilState(Global.dataInformDetail)
+    const dataInformDetail = useSetRecoilState(Global.dataInformDetail)
     const [rate, setRate] = React.useState({})
+    const [comment, setComment] = React.useState('')
+    const [mainDetail, setMainDetail] = React.useState(route.params.informDetail)
     const sendRate = (rate) => {
         console.log('RATE', rate)
         setRate(rate)
@@ -36,6 +43,25 @@ const Satisfaction = ({ route }) => {
             return (<Image source={require('../../assets/image/Britania-connect-assets/default-img-circle.png')} style={[Styles.circle, { height: 100, width: 100 }]} />)
         }
     }
+
+    const voteCase = () => {
+        var mainId = mainDetail.id
+        var detailId = route.params.thisCase.id 
+        Script.homecareCreateCsat(Key.TOKEN, mainId, detailId, rate, comment, (res)=>{
+            var reload = mainScript.recoilTranform(detail)
+            reload.details.map((item)=>{
+                if(item.id === route.params.thisCase.id){
+                    item.isRate = true
+                }
+            })
+            dataInformDetail(reload)
+            console.log('homecareCreateCsat:::', res)
+            var paramNav = 'SUCCESS'
+            navigate.navigate('InformOrder', {paramNav})
+        })
+    }
+
+    console.log(detail)
 
     return (
         <KeyboardAvoidingView 
@@ -69,10 +95,13 @@ const Satisfaction = ({ route }) => {
                         <Text style={[Styles.f_22, Styles.mainFont_x]}>
                             {LANG.satisfaction_text_05}
                         </Text>
-                        <TextInput style={[Styles.w100, Styles.p15, Styles.br_5, { borderWidth: 0.5, borderColor: "#DDD" }]} />
-                        {route.params.mechanic ?
+                        <TextInput 
+                            style={[Styles.w100, Styles.p15, Styles.br_5, { borderWidth: 0.5, borderColor: "#DDD" }]} 
+                            onChangeText={setComment}
+                        />
+                        {/* {!route.params.mechanic ?
                             (<TouchableOpacity
-                                onPress={() => navigate.navigate('Homecare')}
+                                onPress={() => voteCase()}
                                 style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor]}>
                                 <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
                                     {LANG.occupantadd_text_09}
@@ -86,7 +115,14 @@ const Satisfaction = ({ route }) => {
                                     {LANG.occupantadd_text_09}
                                 </Text>
                             </TouchableOpacity>)
-                        }
+                        } */}
+                        <TouchableOpacity
+                                onPress={() => voteCase()}
+                                style={[Styles.w100, Styles.p15, Styles.br_5, Styles.mt20, Styles.mb20, Styles.mainColor]}>
+                                <Text style={[Styles.f_24, Styles.white_text, Styles.mainFont, Styles.text_center]}>
+                                    {LANG.occupantadd_text_09}
+                                </Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </View>

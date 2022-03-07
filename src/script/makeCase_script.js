@@ -15,7 +15,9 @@ export const homecareCreateCase = async (key, detailTemp, data, unitOwnerId, cb)
                     phoneOwner: "${data.phoneOwner}"
                     checkInDate: "${data.checkInDate}"
                     checkInRangeTime: "${data.checkInRangeTime}"
-                    details: ${detailTemp}
+                    details: [
+                        ${detailTemp}
+                    ]
                 }
             ) {
                 id
@@ -72,6 +74,7 @@ export const homecareCreateCase = async (key, detailTemp, data, unitOwnerId, cb)
             }
         }`;
         console.log('MY BODY', CASE)
+        //return
         setHomecareCreateCase(CASE, token, unitOwnerId, cb)
     })
 }

@@ -17,7 +17,7 @@ import MainHeader from "../component/mainHeader";
 import moment from "moment";
 import Modal_confirm_2 from "../component/modal_confirm_2";
 import Modal_alert from "../component/modal_alert";
-
+//transparent
 const InformCalendar = ({ route }) => {
   const informStatus = [
     "Pending",
@@ -143,8 +143,9 @@ const InformCalendar = ({ route }) => {
           }
           detailTemp += "]";
         }
+        detailTemp += "\n}\n";
       });
-      detailTemp += "}";
+      console.log(detailTemp)
       dataset.details = JSON.stringify(dataset.details);
       Script.homecareCreateCase(
         Key.TOKEN,
@@ -210,8 +211,8 @@ const InformCalendar = ({ route }) => {
                     <MaterialIcons name="arrow-forward-ios" size={18} />
                   }
                   weekdays={["S", "M", "T", "W", "T", "F", "S"]}
-                  todayBackgroundColor="#bb6a70"
-                  todayTextStyle={{ color: "#000" }}
+                  todayBackgroundColor="#e0a6aa"
+                  todayTextStyle={{ color: "#FFF" }}
                   selectedDayStyle={{ backgroundColor: "#bb6a70" }}
                   selectedDayTextColor="#FFF"
                   textStyle={[Styles.mainFont_x, Styles.f_20]}

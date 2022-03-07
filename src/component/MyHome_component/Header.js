@@ -44,12 +44,12 @@ const Header = () => {
     }
     return (
         <View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20, Styles.mainColor2,Styles.mb5]}>
-            {project ?
-                <View style={[Styles.w20]}/> :
-                <TouchableOpacity style={[Styles.w20, Styles.al_start, Styles.jc_center, Styles.p5, {top: 30}]} onPress={()=> navigate.navigate("TabFooter")}>
-                    <MaterialIcons name="arrow-back-ios" size={25} style={Styles.black_gray_text} />
-                </TouchableOpacity>
-            }
+            
+                <View style={[Styles.w20]}/>
+                {/* <TouchableOpacity style={[Styles.w20, Styles.al_start, Styles.jc_center, Styles.p5, {top: 30}]} onPress={()=> navigate.navigate("TabFooter")}>
+                <MaterialIcons name="arrow-back-ios" size={25} style={Styles.black_gray_text} />
+            </TouchableOpacity> */}
+        
             <View style={[Styles.w60, Styles.al_center, Styles.jc_end, { bottom: 5 }]}>
                 <Image
                     source={require("../../../assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-15.png")}

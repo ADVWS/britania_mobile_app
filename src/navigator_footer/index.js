@@ -24,6 +24,7 @@ const AllTabBottom = () => {
         }
     }
     function getScreenList(TYPE) {
+        console.log(project)
         switch (TYPE) {
             case 1:
                 return (
@@ -45,8 +46,9 @@ const AllTabBottom = () => {
                             }} />
                         <Tab.Screen
                             name="HomeDetail"
-                            component={project ? MyHomeScreen : MyProjectFirst}
+                            //component={project ? MyHomeScreen : MyProjectFirst}
                             //component={project ? MyProjectFirst : MyHomeScreen}
+                            component={MyHomeScreen}
                             options={{
                                 tabBarLabel: LANG.home_text_04,
                                 tabBarLabelStyle: { fontSize: 18, fontFamily: "Helvethaica_x" },

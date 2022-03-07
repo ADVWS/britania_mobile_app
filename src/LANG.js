@@ -24,7 +24,7 @@ const TH = {
   inputotp_text_02: "OTP ได้ส่งไปยังอีเมล",
   inputotp_text_03: "รหัสอ้างอิง",
   inputotp_text_04: "รหัส OTP 6 หลัก",
-  inputotp_text_05: "ยังไม่ได้รับรหัส OTP ส่งอีกครั้ง",
+  inputotp_text_05: "ยังไม่ได้รับรหัส OTP",
   inputotp_text_06: "ส่งอีกครั้ง",
   inputotp_text_07: "เข้าสู่ระบบ",
   inputotp_text_08: "ในอีก",

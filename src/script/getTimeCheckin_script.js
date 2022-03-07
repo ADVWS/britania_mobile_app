@@ -18,7 +18,7 @@ export const homecareGetCheckInRangeTimeOptions = async (key, cb) => {
 const getHomecareGetCheckInRangeTimeOptions = async (TIME, token, cb) => {
     const result = await API.request(TIME, token);
     console.log(result)
-    cb(result.homecareGetCheckInRangeTimeOptions)
+    cb(result)
 }
 
 export default {

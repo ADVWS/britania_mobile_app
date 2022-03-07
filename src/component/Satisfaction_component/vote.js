@@ -36,6 +36,9 @@ export default class Vote extends React.Component {
             }
             this.state.vote[`vote${index + 1}`] = Number(item.defaultScore)
         })
+        const {sendRate} = this.props;
+        this.sendRate = sendRate;
+        this.sendRate(this.state.vote);
         this.setState({open: true})
     }
     

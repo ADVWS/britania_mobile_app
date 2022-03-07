@@ -33,7 +33,7 @@ export default function InformOrder({ route }) {
                 <ScrollView style={[Styles.w100]}>            
                      <InformTopic data={informDetail}/>
                     {informDetail.details.map((item, index)=>(
-                        <OrderList data={item} index={index + 1} route={route.params.paramNav}/>
+                        <OrderList data={item} index={index + 1} route={route.params.paramNav} informDetail={informDetail}/>
                     ))}
                 </ScrollView>
             </View>

@@ -22,6 +22,9 @@ const HomeList = ({ homeList }) => {
   const selectProject = (item) => {
     try {
       setLoad(true);
+      setTimeout(() => {
+        setLoad(false);
+      }, 4000);
       console.log(item);
       Script.unitMemberAll(item, KEYS.TOKEN, (unitMember) => {
         var data = mainScript.recoilTranform(item);

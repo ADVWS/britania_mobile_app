@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import Modal from "react-native-modal";
 
 import * as Global from "../globalState";
 import { Feather } from "@expo/vector-icons";
@@ -18,6 +19,7 @@ import MainHeader from "../component/mainHeader";
 import InformOrderList from "../component/InformContact_component/informOrderList";
 import mainScript from "../script";
 import getTime from "../script/getTimeCheckin_script";
+import Modal_alert from "../component/modal_alert";
 
 const InformContact = ({ route }) => {
   const _setNewInform = useSetRecoilState(Global.newInform);
@@ -36,6 +38,8 @@ const InformContact = ({ route }) => {
   const [mobileno, setMobileno] = React.useState("");
   const [alMobileno, setAlmobileno] = React.useState(false);
   const [alMobilenoColor, setAlmobilenoColor] = React.useState("#DDD");
+  const [textAlert, setTextAlert] = React.useState("");
+  const [alert, setAlert] = React.useState(false);
 
   console.log(newInform);
 
@@ -76,9 +80,14 @@ const InformContact = ({ route }) => {
     _newInform.details = caseList;
     getTime.homecareGetCheckInRangeTimeOptions(Key.TOKEN, (res) => {
       console.log("time", res);
-      _setNewInform(_newInform);
-      timecheck(res);
-      navigate.navigate("InformCalendar");
+      if (res.homecareGetCheckInRangeTimeOptions) {
+        _setNewInform(_newInform);
+        timecheck(res.homecareGetCheckInRangeTimeOptions);
+        navigate.navigate("InformCalendar");
+      } else {
+        setTextAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+          setAlert(true)
+      }
     });
   }
 
@@ -90,6 +99,9 @@ const InformContact = ({ route }) => {
       navigate.navigate("SelectTypeInform");
     }
   }
+  
+  const closeModalAlert = () => setAlert(false)
+
 
   return (
     <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
@@ -249,6 +261,9 @@ const InformContact = ({ route }) => {
           </View>
         </ScrollView>
       </View>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
     </View>
   );
 };

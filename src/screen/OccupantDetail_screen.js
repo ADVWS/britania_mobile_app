@@ -183,51 +183,55 @@ const OccupantDetail = ({ route }) => {
                 {setBtnMember(member.memberStatus)}
               </View>
             </View>
-            <View style={[Styles.p15, Styles.mainColor2]}>
-              <Text
-                style={[
-                  Styles.mainFont,
-                  Styles.mainColor_text3,
-                  Styles.f_26,
-                  Styles.mt10,
-                ]}
-              >
-                {LANG.occupantdetail_text_08}
-              </Text>
-              <Text
-                style={[
-                  Styles.mainFont,
-                  Styles.f_22,
-                  Styles.mt5,
-                  { color: "#9f9f9f" },
-                ]}
-              >
-                {LANG.occupantdetail_text_09}
-              </Text>
-              <View
-                style={[
-                  Styles.w100,
-                  Styles.FFF,
-                  Styles.p20,
-                  Styles.br_5,
-                  Styles.boxWithShadow,
-                  Styles.row,
-                  Styles.mt10,
-                ]}
-              >
-                <View style={[Styles.w70, Styles.jc_center]}>
-                  <Text style={[Styles.f_24, Styles.mainFont_x]}>{LANG.occupantdetail_text_10}</Text>
-                </View>
-                <View style={[Styles.w30, Styles.al_end]}>
-                  <Switch
-                    trackColor={{ false: "#767577", true: "#cc8e93" }}
-                    thumbColor={switchInform ? "#bb6a70" : "#f4f3f4"}
-                    onValueChange={informSwitch}
-                    value={switchInform}
-                  />
+            {member.memberStatus === "active" && (
+              <View style={[Styles.p15, Styles.mainColor2]}>
+                <Text
+                  style={[
+                    Styles.mainFont,
+                    Styles.mainColor_text3,
+                    Styles.f_26,
+                    Styles.mt10,
+                  ]}
+                >
+                  {LANG.occupantdetail_text_08}
+                </Text>
+                <Text
+                  style={[
+                    Styles.mainFont,
+                    Styles.f_22,
+                    Styles.mt5,
+                    { color: "#9f9f9f" },
+                  ]}
+                >
+                  {LANG.occupantdetail_text_09}
+                </Text>
+                <View
+                  style={[
+                    Styles.w100,
+                    Styles.FFF,
+                    Styles.p20,
+                    Styles.br_5,
+                    Styles.boxWithShadow,
+                    Styles.row,
+                    Styles.mt10,
+                  ]}
+                >
+                  <View style={[Styles.w70, Styles.jc_center]}>
+                    <Text style={[Styles.f_24, Styles.mainFont_x]}>
+                      {LANG.occupantdetail_text_10}
+                    </Text>
+                  </View>
+                  <View style={[Styles.w30, Styles.al_end]}>
+                    <Switch
+                      trackColor={{ false: "#767577", true: "#cc8e93" }}
+                      thumbColor={switchInform ? "#bb6a70" : "#f4f3f4"}
+                      onValueChange={informSwitch}
+                      value={switchInform}
+                    />
+                  </View>
                 </View>
               </View>
-            </View>
+            )}
           </View>
         </ScrollView>
       </View>

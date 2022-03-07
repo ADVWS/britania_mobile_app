@@ -15,7 +15,7 @@ import mainScript from "../../script";
 import { useRecoilState } from "recoil";
 import * as Global from "../../globalState"
 
-const OrderList = ({ data, index, route }) => {
+const OrderList = ({ data, index, route, informDetail }) => {
     const [LANG, setLANG] = useRecoilState(Global.Language)
     const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
     console.log('data', data)
@@ -40,7 +40,8 @@ const OrderList = ({ data, index, route }) => {
         Script.homecareAllCsatQuestion(Key.TOKEN, (res)=>{
             var mechanic = param
             var QUES = res
-            navigate.navigate('Satisfaction', { paramNav, mechanic, QUES})
+            var thisCase = data
+            navigate.navigate('Satisfaction', { paramNav, mechanic, QUES, informDetail, thisCase})
         })
     }
 
@@ -63,7 +64,7 @@ const OrderList = ({ data, index, route }) => {
                             {LANG.homecare_text_12}
                         </Text>
                         <Text style={[Styles.f_20, Styles.mainFont, { color: "#8f8f8f" }]}>
-                            {data.category !== null ? mainScript.setTypeInform(data.category.id) : '-'}
+                            {data.category !== null ? mainScript.setTypeInform(data.category.id, LANG) : '-'}
                         </Text>
                     </View>
                     <View style={[Styles.w50, Styles.al_start]}>

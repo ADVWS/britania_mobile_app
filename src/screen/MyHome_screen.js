@@ -51,6 +51,9 @@ const MyHome = () => {
         setLoading(true)
         var inform = []
         var history = []
+        setTimeout(() => {
+            setLoading(false);
+        }, 4000);
         Script.homecareAllCase(unitOwner.id, key.TOKEN, typeInform, (res) => {
             console.log(res)
             if (res.case.homecareAllCase && res.case.homecareAllCase !== null) {

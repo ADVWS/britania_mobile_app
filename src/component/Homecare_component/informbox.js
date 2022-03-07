@@ -22,7 +22,9 @@ const InformBox = ({data}) => {
     const [LANG, setLANG] = useRecoilState(Global.Language)
 
     function viewDetailOrder() {
+        console.log('data:::=>', data.id)
         Script.homecareGetCaseById(data.id, key.TOKEN, (res)=>{
+            console.log('res.homecareGetCaseById:::=>', res.homecareGetCaseById)
             if(res.homecareGetCaseById && res.homecareGetCaseById !== null){
                 gobalData(res.homecareGetCaseById)
                 var paramNav = 'UNSUCCESS'

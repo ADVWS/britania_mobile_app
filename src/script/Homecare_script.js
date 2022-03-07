@@ -22,14 +22,18 @@ const getHomecareGetCategory = async (Category, token, typeInform, cb) => {
     if(result.homecareGetCategory){
         result.homecareGetCategory.map((item)=>{
             typeInform.map((map)=>{
-                if(item.seq === map.seq){
-                    item.image = map.image
-                    typeset.push(item)
+                if(item.seq !== 12) {
+                    if(item.seq === map.seq){
+                        item.image = map.image
+                        typeset.push(item)
+                    }
                 }
             })
         })
+        cb(typeset)
+    } else {
+        cb(typeset)
     }
-    cb(typeset)
 }
 
 
