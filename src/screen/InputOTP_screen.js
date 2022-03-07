@@ -23,6 +23,7 @@ import Script from "../script/lnputOTP_script";
 import { sendOTP } from "../script/OTP_script";
 import Store from "../store";
 import Key from "../KEYS.json"
+import TokenNotification from "../script/TokenNotification";
 
 export default function InputOTP({ route }) {
   var timer = 60
@@ -84,13 +85,7 @@ export default function InputOTP({ route }) {
         var data = JSON.stringify(res)
         Store.setLocalStorege(Key.PROFILE, data, (_res) => {
           setTimeout(() => {
-            setTimeout(() => {
-              navigation.reset(({
-                index: 0,
-                routes: [{ name: 'TabFooter' }],
-              }))
-              //navigate.navigate('TabFooter')
-            }, 200);
+            setNotify(res, token)
           }, 500);
         })
       } else {
@@ -99,6 +94,24 @@ export default function InputOTP({ route }) {
           setAlert(true)
         }, 500);
       }
+    })
+  }
+
+  function setNotify(data, token){
+    Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
+      var dataNotify = {
+        id: data.me.id,
+        token: token,
+        NOTIFYTOKEN: NOTIFYTOKEN
+      }
+      TokenNotification.userUpdateTokenNotification(dataNotify,(res)=>{
+        setTimeout(() => {
+          navigation.reset(({
+            index: 0,
+            routes: [{ name: 'TabFooter' }],
+          }))
+        }, 200);
+      })
     })
   }
 

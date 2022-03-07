@@ -13,9 +13,9 @@ import Modal_alert  from "../../component/modal_alert";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
 
-export default function thai_form({item}) {
+const thai_form = (item) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  const [member, setMember] = React.useState(item)
+  const [member, setMember] = React.useState(item.item)
   const [name, setName] = React.useState(member.name)
   const [idcard, setIdcard] = React.useState(member.idcard)
   const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
@@ -51,14 +51,7 @@ export default function thai_form({item}) {
       nationType: "thai",
       unitMemberId: member.unitMemberId,
     }
-    Script.memberUpdateProfile_thai(edit, KEYS.TOKEN, member.unitid,(res)=>{
-      if(typeof res === 'object'){
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res
-        setUnitMember(data)
-        navigate.navigate("MemberManageIndivi")
-      }
-    })
+    item.saveDataEdit(edit)
   }
 
   const closeModalAlert = () => setAlert(false)
@@ -225,3 +218,5 @@ export default function thai_form({item}) {
     </KeyboardAvoidingView>
   );
 }
+
+export default thai_form

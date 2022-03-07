@@ -60,9 +60,7 @@ export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
 }
 
 export const updateMember = async (EDIT, token, unitid, cb) => {
-    console.log(EDIT)
     const result = await API.request(EDIT, token);
-    console.log('RESULT OTP===>', result)
     updateUnit(token, unitid, cb)
     //cb(result)
 }

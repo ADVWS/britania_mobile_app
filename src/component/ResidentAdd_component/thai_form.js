@@ -3,22 +3,17 @@ import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "r
 
 import { Styles } from "../../styles";
 import * as Global from "../../globalState";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
-import mainScript from "../../script";
-import Script from "../../script/ResidentAdd_script";
-import KEYS from "../../KEYS.json";
 import Modal from "react-native-modal";
 import Modal_alert from "../../component/modal_alert";
 
-export default function thai_form({ unit }) {
+export default function thai_form({ unit, addMember }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [name, setName] = React.useState("");
   const [idcard, setIdcard] = React.useState("");
   const [mobileNo, setMobileNo] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
-  const setUnitMember = useSetRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
 
@@ -51,19 +46,7 @@ export default function thai_form({ unit }) {
       mobileNo: mobileNo,
       email: email,
     };
-    Script.memberAddProflie_thai(add, KEYS.TOKEN, unit.id, (res) => {
-      console.log(res);
-      if (typeof res === "object") {
-        var data = mainScript.recoilTranform(unitMember);
-        data.unitMember = res.unitUpdate;
-        var otp = res.otp;
-        otp.mobileNo = mobileNo;
-        otp.name = name;
-        otp.unitId = unit.unitId;
-        setUnitMember(data);
-        navigate.navigate("ResidentAddOTP", otp);
-      }
-    });
+    addMember(add)
   };
 
   const closeModalAlert = () => setAlert(false);
@@ -196,7 +179,7 @@ export default function thai_form({ unit }) {
             Styles.p15,
             Styles.jc_center,
           ]}
-          onPress={() => navigate.navigate("OccupantDetail", member)}
+          onPress={() => navigate.navigate("MemberManageIndivi")}
         >
           <Text
             style={[

@@ -19,7 +19,7 @@ import Key from "../../KEYS.json"
 export default class Vote extends React.Component {
 
     state = {
-        vote: { vote1: 0, vote2: 0, vote3: 0, vote4: 0, vote5: 0 },
+        vote: { vote1: 0, vote2: 0, vote3: 0, vote4: 0},
         star: { 
             vote1: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' },
             vote2: { color1: '#DDD', color2: '#DDD', color3: '#DDD', color4: '#DDD', color5: '#DDD' },

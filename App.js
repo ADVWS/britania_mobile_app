@@ -22,14 +22,20 @@ export default function App() {
     registerForPushNotification()
       .then(token=>{
         console.log(token)
-        Store.setLocalStorege(Keys.NOTIFY, token,(res)=>{
-          console.log(res)
+        Store.getLocalStorege(Keys.NOTIFY, (res)=>{
+          if(!res.result){
+            storekNotifyToken()
+          }
         })
       })
       .catch(
         err => console.log(err)
       )
   }, [])
+
+  function storekNotifyToken() {
+    Store.setLocalStorege(Keys.NOTIFY, token,(res)=>{})
+  }
 
   async function registerForPushNotification(){
     const {status} = await Permissions.getAsync(Permissions.NOTIFICATIONS);

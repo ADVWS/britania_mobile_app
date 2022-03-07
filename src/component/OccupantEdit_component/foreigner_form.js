@@ -14,8 +14,8 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import { Styles } from "../../styles";
 import Modal_alert from "../../component/modal_alert";
 
-export default function foreigner_form({ item }) {
-  const [member, setMember] = React.useState(item)
+export default function foreigner_form(item) {
+  const [member, setMember] = React.useState(item.item)
   const [chosenDate, setChosenDate] = React.useState(new Date(member.expiredDate));
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [date, setDate] = React.useState(
@@ -49,7 +49,7 @@ export default function foreigner_form({ item }) {
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {
-      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setTextAlert(LANG.alert_text_01);
       setAlert(true);
       return;
     }
@@ -63,14 +63,7 @@ export default function foreigner_form({ item }) {
       unitMemberId: member.unitMemberId,
       expiredDate: rawDate
     }
-    Script.memberUpdateProfile_foreign(edit, KEYS.TOKEN, member.unitid, (res) => {
-      if (typeof res === 'object') {
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res
-        setUnitMember(data)
-        navigate.navigate("MemberManageIndivi")
-      }
-    })
+    item.saveDataEdit(edit)
   }
   const onChangeIosPicker = (event, selectedDate) => { setChosenDate(selectedDate) };
   const onSelectIosPicker = () => {
@@ -287,7 +280,7 @@ export default function foreigner_form({ item }) {
         backdropOpacity={0.3}
         isVisible={iosDatepicker}
         onBackdropPress={() => setIosDatepicker(false)}
-        style={Styles.al_center, Styles.jc_end}>
+        style={[Styles.al_center, Styles.jc_end]}>
         <View style={[Styles.boxWithShadow, { width: '120%', right: '10%', top: 20 }]}>
           <View style={[Styles.row, Styles.w100, { backgroundColor: '#F7F7F7' }]}>
             <View style={[Styles.w50]}>

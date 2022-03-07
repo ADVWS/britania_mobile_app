@@ -14,14 +14,11 @@ import { Styles } from "../../styles";
 import * as Global from "../../globalState";
 import moment from "moment";
 
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
-import mainScript from "../../script";
-import Script from "../../script/OccupantAdd_script";
-import KEYS from "../../KEYS.json";
 import Modal_alert from "../../component/modal_alert";
 
-export default function thai_form(unit) {
+export default function thai_form({unit, addMember}) {
   console.log("user", unit);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [chosenDate, setChosenDate] = React.useState(new Date());
@@ -30,13 +27,10 @@ export default function thai_form(unit) {
   const [idcard, setIdcard] = React.useState("");
   const [mobileNo, setMobileNo] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
-  const setUnitMember = useSetRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
 
   const [iosDatepicker, setIosDatepicker] = React.useState(false);
-
   const addData = () => {
     var checker = [];
     if (name === "") {
@@ -60,7 +54,7 @@ export default function thai_form(unit) {
       return;
     }
     var add = {
-      unitId: unit.unit.unitId,
+      unitId: unit.unitId,
       ownerType: "tenant",
       nationType: "thai",
       passport: null,
@@ -70,19 +64,7 @@ export default function thai_form(unit) {
       email: email,
       expiredDate: rawDate,
     };
-    Script.memberAddProflie_thai(add, KEYS.TOKEN, unit.unit.id, (res) => {
-      console.log(res);
-      if (typeof res === "object") {
-        var data = mainScript.recoilTranform(unitMember);
-        data.unitMember = res.unitUpdate;
-        var otp = res.otp;
-        otp.mobileNo = mobileNo;
-        otp.name = name;
-        otp.unitId = unit.unit.unitId;
-        setUnitMember(data);
-        navigate.navigate("OccupantAddOTP", otp);
-      }
-    });
+    addMember(add)
   };
 
   const onChangeIosPicker = (event, selectedDate) => {

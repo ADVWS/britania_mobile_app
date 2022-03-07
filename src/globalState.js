@@ -51,6 +51,11 @@ export const project = atom({
   default: false
 })
 
+export const holiday = atom({
+  key: "holiday",
+  default: []
+})
+
 export const dataMyHome = atom({
   key: "dataMyHome",
   default: {

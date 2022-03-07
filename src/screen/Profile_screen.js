@@ -16,6 +16,7 @@ import MainHeader from "../component/mainHeader";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../globalState";
 import Key from "../KEYS.json"
+import Store from "../store";
 
 //transparent f1645e
 
@@ -41,6 +42,7 @@ export default function Profile_screen() {
   };
 
   const uploadImage = (img) => {
+    console.log('IMAGE', img)
     setulImage(img)
   }
 
@@ -57,19 +59,64 @@ export default function Profile_screen() {
     }
     return
   }
+  
+  function addMember(add) {
+    if (uploadImage !== "") {
+      var formdata = new FormData();
+      var Type = uploadImage.substring(uploadImage.lastIndexOf(".") + 1);
+      var Data = {
+        uri: uploadImage,
+        name: `upload_image`,
+        type: `image/${Type}`,
+      };
+      formdata.append("file", Data);
+      formdata.append("target", "profile");
+      Store.getLocalStorege(KEYS.TOKEN, (tk) => {
+        const token = tk.detail.token;
+        mainScript.uploadImage(token, formdata, (res) => {
+          console.log("IMAGE", res);
+          addData(add);
+        });
+      });
+    } else {
+      addData(add);
+    }
+  }
 
   const updateUser = (inputName, inputMobile) => {
+    if (ulImage !== "") {
+      var formdata = new FormData();
+      var Type = ulImage.substring(ulImage.lastIndexOf(".") + 1);
+      var Data = {
+        uri: ulImage,
+        name: `upload_image`,
+        type: `image/${Type}`,
+      };
+      formdata.append("file", Data);
+      formdata.append("target", "profile");
+      Store.getLocalStorege(Key.TOKEN, (tk) => {
+        const token = tk.detail.token;
+        mainScript.uploadImage(token, formdata, (res) => {
+          console.log("IMAGE", res);
+          updateUser2(inputName, inputMobile, res);
+        });
+      });
+    } else {
+      updateUser2(inputName, inputMobile, '')
+    }
+  };
+
+  const updateUser2 = (inputName, inputMobile, image) => {
     var updatedata = {
       mobileNo: inputMobile,
       name: inputName,
     }
-    console.log(updatedata)
-    Script.userUpdateProfile(updatedata, ulImage, Key.TOKEN, (res) => {
+    Script.userUpdateProfile(updatedata, image, Key.TOKEN, (res) => {
       if (typeof res === "object") {
         updateGlobal(res.userUpdateProfile);
       }
     });
-  };
+  }
 
   const updateGlobal = (data) => {
     var user = mainScript.recoilTranform(userProfile);

@@ -11,10 +11,10 @@ import * as ImagePicker from "expo-image-picker";
 
 import { Styles } from "../../styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import mainScript from '../../script'
+import mainScript from "../../script";
 import * as Global from "../../globalState";
 import Store from "../../store";
-import Key from "../../KEYS.json"
+import Key from "../../KEYS.json";
 
 export default class ProfilePicCom extends React.Component {
   state = {
@@ -28,29 +28,34 @@ export default class ProfilePicCom extends React.Component {
       aspect: [4, 3],
       quality: 1,
     });
-    console.log(result);
     if (!result.cancelled) {
-      var formdata = new FormData();
-      var Type = result.uri.substring(result.uri.lastIndexOf(".") + 1)
-      var Data={
-        uri: result.uri,
-        name: `upload_image`,
-        type: `image/${Type}` 
-       };      
-      formdata.append('file', Data)
-      formdata.append('target', 'profile')
-      Store.getLocalStorege(Key.TOKEN, (tk)=>{
-        const token = tk.detail.token
-        mainScript.uploadImage(token, formdata,(res)=>{
-          console.log('Upload image', res)
-          this.setState({
-            image: { uri: result.uri },
-          });
-          const {uploadImage} = this.props;
-          this.uploadImage = uploadImage;
-          this.uploadImage(res);
-        })
-      })
+      // var formdata = new FormData();
+      // var Type = result.uri.substring(result.uri.lastIndexOf(".") + 1)
+      // var Data={
+      //   uri: result.uri,
+      //   name: `upload_image`,
+      //   type: `image/${Type}`
+      //  };
+      // formdata.append('file', Data)
+      // formdata.append('target', 'profile')
+      // Store.getLocalStorege(Key.TOKEN, (tk)=>{
+      //   const token = tk.detail.token
+      //   mainScript.uploadImage(token, formdata,(res)=>{
+      //     console.log('Upload image', res)
+      //     this.setState({
+      //       image: { uri: result.uri },
+      //     });
+      //     const {uploadImage} = this.props;
+      //     this.uploadImage = uploadImage;
+      //     this.uploadImage(res);
+      //   })
+      // })
+      this.setState({
+        image: { uri: result.uri },
+      });
+      const { uploadImage } = this.props;
+      this.uploadImage = uploadImage;
+      this.uploadImage(result.uri);
     }
   };
 
@@ -75,7 +80,7 @@ export default class ProfilePicCom extends React.Component {
                     top: 106,
                     left: 106,
                   },
-                  Styles.circle,           
+                  Styles.circle,
                 ]}
               />
               <TouchableOpacity onPress={() => this._InputImage()}>

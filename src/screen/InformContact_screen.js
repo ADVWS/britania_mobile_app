@@ -18,13 +18,16 @@ import Key from "../KEYS.json";
 import MainHeader from "../component/mainHeader";
 import InformOrderList from "../component/InformContact_component/informOrderList";
 import mainScript from "../script";
+import Holiday from "../script/makeCase_script";
 import getTime from "../script/getTimeCheckin_script";
 import Modal_alert from "../component/modal_alert";
+import moment from "moment";
 
 const InformContact = ({ route }) => {
   const _setNewInform = useSetRecoilState(Global.newInform);
   const timecheck = useSetRecoilState(Global.checkInTime);
   const setCaseLists = useSetRecoilState(Global.caseList);
+  const holiday = useSetRecoilState(Global.holiday);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [newInform, setListNewInform] = useRecoilState(Global.newInform);
   const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner);
@@ -83,13 +86,33 @@ const InformContact = ({ route }) => {
       if (res.homecareGetCheckInRangeTimeOptions) {
         _setNewInform(_newInform);
         timecheck(res.homecareGetCheckInRangeTimeOptions);
-        navigate.navigate("InformCalendar");
+        checkHoliday()
       } else {
         setTextAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
           setAlert(true)
       }
     });
   }
+
+  function checkHoliday() {
+    var startdate = moment().format("YYYY-01-01")
+    var enddate = moment().add(1, 'Y').format("YYYY-12-31")
+    var holidaySet = []
+    console.log(startdate, enddate)
+    Holiday.homecareGetCalendarHoliday(startdate, enddate, Key.TOKEN, (res)=>{
+      if(res.homecareGetCalendarHoliday){
+        res.homecareGetCalendarHoliday.map((item)=>{
+          holidaySet.push(moment(item.date))
+        })
+        holiday(holidaySet)
+        console.log('Holiday:::', holidaySet)
+        navigate.navigate("InformCalendar");
+      } else {
+        setTextAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+          setAlert(true)
+      }
+    })
+}
 
   function deleteItem(item) {
     var newItem = mainScript.recoilTranform(caseList);

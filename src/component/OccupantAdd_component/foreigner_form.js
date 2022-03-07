@@ -9,13 +9,10 @@ import * as Global from "../../globalState";
 import moment from "moment";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
-import mainScript from "../../script";
-import Script from "../../script/OccupantAdd_script";
-import KEYS from "../../KEYS.json"
 import Modal_alert from "../../component/modal_alert";
 
 
-export default function foreigner_form({ unit }) {
+export default function foreigner_form({ unit, addMember }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [chosenDate, setChosenDate] = React.useState(new Date());
   const [rawDate, setRawDate] = React.useState('');
@@ -23,10 +20,10 @@ export default function foreigner_form({ unit }) {
   const [passport, setPassport] = React.useState('')
   const [mobileNo, setMobileNo] = React.useState('')
   const [email, setEmail] = React.useState('')
-  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
-  const setUnitMember = useSetRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
+
+  console.log('foreigner_form', unit.unitId)
 
   const [iosDatepicker, setIosDatepicker] = React.useState(false)
 
@@ -63,18 +60,7 @@ export default function foreigner_form({ unit }) {
       email: email,
       expiredDate: rawDate
     }
-    Script.memberAddProflie_foreign(add, KEYS.TOKEN, unit.id, (res) => {
-      if (typeof res === 'object') {
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res.unitUpdate
-        var otp = res.otp
-        otp.mobileNo = mobileNo
-        otp.name = name
-        otp.unitId = unit.unit.unitId
-        setUnitMember(data)
-        navigate.navigate("OccupantAddOTP", otp)
-      }
-    })
+    addMember(add)
   };
   const onChangeIosPicker = (event, selectedDate) => { setChosenDate(selectedDate) };
   const onSelectIosPicker = () => {

@@ -1,6 +1,5 @@
 import * as React from "react";
-import { View, ImageBackground, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, Image } from "react-native";
 
 import * as navigate from '../navigator/RootNavigation';
 

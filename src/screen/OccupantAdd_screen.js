@@ -12,25 +12,101 @@ import ThaiForm from "../component/OccupantAdd_component/thai_form";
 import ForeignForm from "../component/OccupantAdd_component/foreigner_form";
 import * as Global from "../globalState";
 import { useSetRecoilState, useRecoilState } from "recoil";
+import KEYS from "../KEYS.json";
+import Script from "../script/OccupantAdd_script";
+import mainScript from "../script";
+import Store from "../store";
 
 export default function OccupantAdd({route}) {
-  console.log('item', route.params)
   const [unit, setUnit] = React.useState(route.params)
   const [LANG, setLANG] = useRecoilState(Global.Language);
-
-
   const [type, setType] = React.useState("thai");
+  const [uploadImage, setUploadImage] = React.useState("");
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const setUnitMember = useSetRecoilState(Global.unitMember);
 
   function isSelectType(TYPE) {
     setType(TYPE);
   }
 
+  function uploadImg(img) {
+    console.log(img)
+    setUploadImage(img);
+  }
+
+  console.log('item', unitMember)
+
+
+  function addMember(add) {
+    if (uploadImage !== "") {
+      var formdata = new FormData();
+      var Type = uploadImage.substring(uploadImage.lastIndexOf(".") + 1);
+      var Data = {
+        uri: uploadImage,
+        name: `upload_image`,
+        type: `image/${Type}`,
+      };
+      formdata.append("file", Data);
+      formdata.append("target", "profile");
+      Store.getLocalStorege(KEYS.TOKEN, (tk) => {
+        const token = tk.detail.token;
+        mainScript.uploadImage(token, formdata, (res) => {
+          console.log("IMAGE", res);
+          addData(add);
+        });
+      });
+    } else {
+      addData(add);
+    }
+  }
+
+  function addData(add) {
+    if (add.nationType === "thai") {
+      Script.memberAddProflie_thai(
+        add,
+        KEYS.TOKEN,
+        unit.id,
+        (res) => {
+          if (typeof res === "object") {
+            var data = mainScript.recoilTranform(unitMember);
+            data.unitMember = res.unitUpdate;
+            var otp = res.otp;
+            otp.mobileNo = add.mobileNo;
+            otp.name = add.name;
+            otp.unitId = unit.unitId;
+            setUnitMember(data);
+            navigate.navigate("OccupantAddOTP", otp);
+          }
+        }
+      );
+    } else {
+      Script.memberAddProflie_foreign(
+        add,
+        KEYS.TOKEN,
+        unit.id,
+        (res) => {
+          if (typeof res === "object") {
+            var data = mainScript.recoilTranform(unitMember);
+            data.unitMember = res.unitUpdate;
+            var otp = res.otp;
+            otp.mobileNo = add.mobileNo;
+            otp.name = add.name;
+            otp.unitId = unit.unitId;
+            setUnitMember(data);
+            navigate.navigate("OccupantAddOTP", otp);
+          }
+        }
+      );
+    }
+  }
+
+
   const setImage = (img) => {
     console.log(img)
     if (img) {
-        return (<ProfilePicCom picture={{uri: img}} />)
+        return (<ProfilePicCom picture={{uri: img}} uploadImage={uploadImg}/>)
     } else {
-        return (<ProfilePicCom picture={require('../../assets/image/Britania-connect-assets/default-img-circle.png')}/>)
+        return (<ProfilePicCom picture={require('../../assets/image/Britania-connect-assets/default-img-circle.png')} uploadImage={uploadImg}/>)
     }
   }
 
@@ -51,8 +127,8 @@ export default function OccupantAdd({route}) {
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
-        {type === "thai" && <ThaiForm unit={unit}/>}
-        {type === "foreign" && <ForeignForm unit={unit}/>}
+        {type === "thai" && <ThaiForm unit={unit} addMember={addMember}/>}
+        {type === "foreign" && <ForeignForm unit={unit} addMember={addMember}/>}
       </ScrollView>
     </View>
   );

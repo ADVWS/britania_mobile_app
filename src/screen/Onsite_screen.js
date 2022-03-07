@@ -78,26 +78,11 @@ const Onsite = ({ route }) => {
                             </View>
                             <View style={[Styles.w100, Styles.p15, Styles.FFF, Styles.mt10, { height: '100%' }]}>
                                 <View style={[Styles.w80]}>
-                                    <View style={[Styles.w100, Styles.row]}>
-                                        <View style={[Styles.w70]}>
-                                            <Text style={[Styles.mainFont, Styles.mt5, { fontSize: 22 }]}>
-                                                {LANG.homecare_text_27_1}{' '}
-                                            </Text>
-                                        </View>
-                                        <View style={[Styles.circle, Styles.al_center, Styles.jc_center, { backgroundColor: "#fcf4d4" }]}>
-                                            <Text style={[Styles.mainFont_x, Styles.mt5, { color: "#f4910d", marginLeft: 10, marginRight: 10, fontSize: 22 }]}>
-                                                {LANG.homecare_text_28}
-                                            </Text>
-                                        </View>
-                                    </View>
+                                    <Text style={[Styles.mainFont, Styles.mt5, { fontSize: 22 }]}>
+                                        {LANG.homecare_text_27_1}
+                                    </Text>
                                     <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 22 }]}>
                                         12/06/62 10.00-11.00 น.
-                                    </Text>
-                                    <Text style={[Styles.mainFont, Styles.mt10, { fontSize: 22 }]}>
-                                        {LANG.homecare_text_29}
-                                    </Text>
-                                    <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        ปรับบานเลื่อน/บานฝืด
                                     </Text>
                                     <Text style={[Styles.mainFont, Styles.mt10, { fontSize: 22 }]}>
                                         {LANG.homecare_text_30}

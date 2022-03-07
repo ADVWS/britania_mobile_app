@@ -15,15 +15,12 @@ import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 import moment from "moment";
 import * as Global from "../../globalState";
-import mainScript from "../../script";
-import Script from "../../script/OccupantEdit_script";
-import KEYS from "../../KEYS.json";
 import Modal_alert from "../../component/modal_alert";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-const thai_form = ({ item }) => {
-  const [member, setMember] = React.useState(item);
+const thai_form = (item) => {
+  const [member, setMember] = React.useState(item.item);
   const [date, setDate] = React.useState(
     moment(member.expiredDate).format("DD-MM-YYYY")
   );
@@ -37,8 +34,6 @@ const thai_form = ({ item }) => {
   const [idcard, setIdcard] = React.useState(member.idcard);
   const [mobileNo, setMobileNo] = React.useState(member.mobileNo);
   const [email, setEmail] = React.useState(member.email);
-  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
-  const setUnitMember = useSetRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
   const [iosDatepicker, setIosDatepicker] = React.useState(false);
@@ -58,7 +53,7 @@ const thai_form = ({ item }) => {
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {
-      setTextAlert("กรุณาระบุข้อมูลให้ครบถ้วน");
+      setTextAlert(LANG.alert_text_01);
       setAlert(true);
       return;
     }
@@ -71,14 +66,8 @@ const thai_form = ({ item }) => {
       unitMemberId: member.unitMemberId,
       expiredDate: rawDate,
     };
-    Script.memberUpdateProfile_thai(edit, KEYS.TOKEN, member.unitid, (res) => {
-      if (typeof res === "object") {
-        var data = mainScript.recoilTranform(unitMember);
-        data.unitMember = res;
-        setUnitMember(data);
-        navigate.navigate("MemberManageIndivi");
-      }
-    });
+    item.saveDataEdit(edit)
+
   };
 
   const onChangeIosPicker = (event, selectedDate) => {
