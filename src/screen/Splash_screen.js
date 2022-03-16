@@ -22,6 +22,7 @@ export default function Splash() {
 
   function runApp() {
     Script.checkToken(Key.TOKEN, (res) => {
+      console.log(res)
       if (res.data) {
         if(res.data.me){
           userProfile(res.data)
@@ -36,8 +37,9 @@ export default function Splash() {
           userType(2)
           setLanguage(res.goto)
         }
+      } else {
+        setLanguage(res.goto)
       }
-     
     })
   }
 
@@ -56,14 +58,27 @@ export default function Splash() {
 
   function setLanguage(goto) {
     Store.getLocalStorege(Key.LANG, (data)=>{
-      setLANGTEXT(data.detail)
-      var myLANG = LANG.settingLanguage(data.detail)
-      console.log('check lang', data)
-      setLANG(myLANG)
-      setTimeout(() => {
-        navigate.navigate(goto)
-      }, 3000);
+      if(data.result){
+        setLANGTEXT(data.detail)
+        var myLANG = LANG.settingLanguage(data.detail)
+        console.log('check lang', data)
+        setLANG(myLANG)
+        setTimeout(() => {
+          navigate.navigate(goto)
+        }, 3000);
+      } else {
+        setLangStart(goto)
+      }
     })
+  }
+
+  function setLangStart(goto){
+    setLANGTEXT('TH')
+    var myLANG = LANG.settingLanguage('TH')
+    setLANG(myLANG)
+    setTimeout(() => {
+      navigate.navigate(goto)
+    }, 3000);
   }
 
   return (

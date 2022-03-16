@@ -57,6 +57,17 @@ export const homecareAllCase = async (unitOwnerId, key, typeInform, cb) => {
                             lineId
                             workPhone
                         }
+                        files {
+                            id
+                            mainId
+                            detailId
+                            fileId
+                            fileCurName
+                            filePrevName
+                            fileExtension
+                            status
+                            homecareImageSrc
+                          }
                     }
                 }
             }

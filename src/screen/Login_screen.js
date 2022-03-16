@@ -13,6 +13,7 @@ import Modal_changeLang from "../component/Login_component/modal_changeLanguage"
 import isLANG from "../LANG";
 import Store from "../store";
 import Key from "../KEYS.json"
+import VER from "../../app.json"
 
 export default function Login({ route }) {
   const [changeLang, setChangeLang] = React.useState(false);
@@ -129,7 +130,7 @@ export default function Login({ route }) {
       <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mainColor_text, { top: '-2%' }]}>
         {LANG.login_text_05} <Text style={[Styles.mainFont]}>{LANG.login_text_06}</Text>
       </Text>
-      <Text style={[Styles.f_24, Styles.mt10, Styles.mainFont_x, { top: '-2%' }]}>{LANG.login_text_07} 1.0.0</Text>
+      <Text style={[Styles.f_24, Styles.mt10, Styles.mainFont_x, { top: '-2%' }]}>{LANG.login_text_07} {VER.expo.version}</Text>
       <Modal isVisible={changeLang} style={Styles.al_center} onBackdropPress={()=> setChangeLang(false)}>
             <Modal_changeLang selectLang={selectLang} />
       </Modal>

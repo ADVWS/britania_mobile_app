@@ -18,7 +18,7 @@ export const Language = atom({
 
 export const LANGTEXT = atom({
   key: "LANGTEXT",
-  default: '',
+  default: 'TH',
 });
 
 export const unitMember = atom({

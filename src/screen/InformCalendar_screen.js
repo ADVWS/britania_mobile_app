@@ -17,6 +17,10 @@ import MainHeader from "../component/mainHeader";
 import moment from "moment";
 import Modal_confirm_2 from "../component/modal_confirm_2";
 import Modal_alert from "../component/modal_alert";
+import Store from "../store";
+
+import Modal_loading from "../component/modal_loading";
+import setImage from "../script/setImage";
 
 //transparent
 const InformCalendar = ({ route }) => {
@@ -30,48 +34,46 @@ const InformCalendar = ({ route }) => {
     "Unapproved",
   ];
   const historyStatus = ["Finish", "Close"];
+
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT);
-
-  const [minDate, setMindate] = React.useState(moment().startOf("day"));
-
-  const [selectDate, setSelectDate] = React.useState(moment());
-  const [confirmBox, setConfirmBox] = React.useState(false);
   const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner);
-
   const [time, setTime] = useRecoilState(Global.checkInTime);
   const [HD, setHD] = useRecoilState(Global.holiday);
   const [newInform, setNewInform] = useRecoilState(Global.newInform);
+  const [caseList, setCaseList] = useRecoilState(Global.caseList);
 
+  const setListInform = useSetRecoilState(Global.dataListInform);
+  const setlistHistory = useSetRecoilState(Global.dataListHistory);
+  const setInform = useSetRecoilState(Global.newInform)
+
+  const [minDate, setMindate] = React.useState(moment().startOf("day"));
+  const [selectDate, setSelectDate] = React.useState(moment());
+  const [confirmBox, setConfirmBox] = React.useState(false);
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-
-
   const [defaultTime, setDefaultTime] = React.useState({
     name: time[0].name,
     value: time[0].value,
   });
-
-  const setListInform = useSetRecoilState(Global.dataListInform);
-  const setlistHistory = useSetRecoilState(Global.dataListHistory);
-
-  const addMyHome = useSetRecoilState(Global.dataMyHome);
-  const addMyProject = useSetRecoilState(Global.dataMyproject);
+  const [load, setLoad] = React.useState(false);
 
   const informSet = newInform;
+  var indexCase = 0
+  var indexPic = 0
+  var storeCase = []
+  var storeImage = []
 
   const closeModalAlert = () => setAlert(false);
-
-  console.log(moment().add(1, 'D'), moment().add(2, 'D'), moment().add(3, 'D'), moment().add(7, 'D'))
 
   React.useEffect(() => {
     if (route.params) {
       setDefaultTime(route.params.InformTime);
     }
   }, []);
+
+  console.log(newInform)
+  
   function settimeInform() {
-    console.log("set ", route.params);
     if (route.params) {
       if(route.params.defaultTime){
         return route.params.defaultTime.name;
@@ -86,26 +88,25 @@ const InformCalendar = ({ route }) => {
   function onDateChange(date) {
     setSelectDate(date);
   }
+  function confirmData(){
+    setLoad(true)
+    setTimeout(() => {
+      setLoad(false);
+    }, 30000);
+    var isCaseList = mainScript.recoilTranform(caseList)
+    setImage.setLengthImage(isCaseList, (res)=>{
+      // var _newInform = mainScript.recoilTranform(newInform)
+      // _newInform.details = res
+      // setInform(_newInform) 
+      // console.log('setLengthImage :', _newInform)
+      // setTimeout(() => {
+      //   setData(res)
+      // }, 500);
+      setData(res)
+    })
+  }
 
-  // checkHoliday()
-
-  // function checkHoliday() {
-  //     var startdate = moment().format("YYYY-01-01")
-  //     var enddate = moment().add(1, 'Y').format("YYYY-12-31")
-  //     var holidaySet = []
-  //     console.log(startdate, enddate)
-  //     Script.homecareGetCalendarHoliday(startdate, enddate, Key.TOKEN, (res)=>{
-  //       if(res.homecareGetCalendarHoliday){
-  //         res.homecareGetCalendarHoliday.map((item)=>{
-  //           holidaySet.push(moment(item.date))
-  //         })
-  //         console.log('Holiday:::', holidaySet)
-  //         setOpen(true)
-  //       } 
-  //     })
-  // }
-
-  function confirmData() {
+  function setData(files) {
     if (route.params) {
       var selectTime = route.params.value;
     } else {
@@ -114,12 +115,15 @@ const InformCalendar = ({ route }) => {
     if (selectDate !== "") {
       var inform = [];
       var history = [];
-      var dataset = mainScript.recoilTranform(informSet);
-      dataset = mainScript.recoilTranform(newInform);
+      //var dataset = mainScript.recoilTranform(informSet);
+      var dataset = mainScript.recoilTranform(newInform);
       dataset.unitOwnerId = unitOwner.id;
       dataset.checkInRangeTime = String(selectTime);
       dataset.checkInDate = moment(selectDate).format("YYYY-MM-DD HH:mm:ss");
+      dataset.details = files
       var detailTemp = "";
+      console.log('POSTDATA', dataset)
+
       dataset.details.map((item) => {
         detailTemp += `{
                         categoryId: "${item.categoryId}"
@@ -141,7 +145,6 @@ const InformCalendar = ({ route }) => {
         }
         detailTemp += "\n}\n";
       });
-      console.log(detailTemp)
       dataset.details = JSON.stringify(dataset.details);
       Script.homecareCreateCase(
         Key.TOKEN,
@@ -163,8 +166,10 @@ const InformCalendar = ({ route }) => {
             });
             setListInform(inform);
             setlistHistory(history);
-            setConfirmBox(true);
-            //navigate.navigate('Homecare')
+            setLoad(false)
+            setTimeout(() => {
+              setConfirmBox(true);
+            }, 1000);
           }
         }
       );
@@ -296,6 +301,9 @@ const InformCalendar = ({ route }) => {
       </Modal>
       <Modal isVisible={alert} style={Styles.al_center}>
         <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+      <Modal isVisible={load} style={Styles.al_center}>
+        <Modal_loading />
       </Modal>
     </>
   );

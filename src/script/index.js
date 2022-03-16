@@ -8,6 +8,7 @@ import { Styles } from "../styles";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 import * as Global from "../globalState"
+import API from "../graphQL";
 
 export function statusTranform(key) {
     switch (key) {
@@ -183,8 +184,10 @@ const uploadImage = (token, file, cb) => {
     fetch(url, {
         method: 'POST',
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
+            //Accept: 'application/json',
+            //'Content-Type': 'application/json',
+            Accept: 'multipart/form-data',
+            'Content-Type' : 'multipart/form-data',
             Authorization: 'Bearer 2b1QVM4xIxZ0JcKoPjJfWtOnfhcqwD4T',
             'x-token': token
         },
@@ -197,10 +200,43 @@ const uploadImage = (token, file, cb) => {
             return cb(data);
         })
         .catch(err => {
+            console.log(err);
             cb(false);
-            console.error(err);
         });
 }
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
+
+async function refreshToken (token, cb) {
+    const RETOKEN = `
+    query {
+        token(
+            refreshToken: "${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmZTI2ZTY2LTM1OTItNDExMi04NDU3LTNmOTM0MDJjZjZlNSIsInNlY3VyaXR5Q291bnQiOjAsImlhdCI6MTY0NjgxNzMyNywiZXhwIjoxNjUyMDAxMzI3fQ.w9w_4P2SH2BU9o6Zc4QuHzEVh0YgCpt6dAfUTn0stUE'}",
+        ){
+            token
+            refreshToken
+        }
+    }
+    `;
+    try {
+        const result = await API.request(RETOKEN);
+        console.log(result)
+        cb(result)
+    } catch (error) {
+        cb('error')
+    }
+}
+
+
 
 export default {
     statusTranform,
@@ -211,5 +247,7 @@ export default {
     recoilTranform,
     isEmptyObject,
     setTypeInform,
-    uploadImage
+    uploadImage,
+    makeid,
+    refreshToken
 }

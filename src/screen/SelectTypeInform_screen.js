@@ -61,7 +61,7 @@ const SelectTypeInform = () => {
                                 <Image source={item.image} style={{ height: 30, width: 30 }} />
                             </View>
                             <View style={[Styles.w80, Styles.jc_center]}>
-                                <Text style={[Styles.f_22, Styles.mainFont_x, Styles.pl10]}>
+                                <Text style={[Styles.f_22, Styles.mainFont_x, Styles.pl10, {color: '#000'}]}>
                                     {LANGTEXT === 'TH' ? item.nameThai : LANG[`type_${item.seq}`]}
                                 </Text>
                             </View>

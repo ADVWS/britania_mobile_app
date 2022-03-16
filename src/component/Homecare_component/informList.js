@@ -28,6 +28,8 @@ const InformList = () => {
     React.useEffect(() => {
         setDataInform(listInform)
     })
+    console.log('data:::=>', listInform)
+
     const gotoSelectTypeInform = () => {
         Script.homecareGetCategory(Key.TOKEN, typeInform, (res) => {
             if(res.length > 0){

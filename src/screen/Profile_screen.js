@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Platform, ScrollView, TouchableOpacity } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -96,8 +96,8 @@ export default function Profile_screen() {
       formdata.append("target", "profile");
       Store.getLocalStorege(Key.TOKEN, (tk) => {
         const token = tk.detail.token;
+        console.log(formdata)
         mainScript.uploadImage(token, formdata, (res) => {
-          console.log("IMAGE", res);
           updateUser2(inputName, inputMobile, res);
         });
       });

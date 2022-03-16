@@ -14,6 +14,7 @@ import * as Global from "../globalState"
 import { Styles } from "../styles";
 
 import MainHeader from "../component/mainHeader";
+import moment from "moment";
 
 const Onsite = ({ route }) => {
     const { height, width } = Dimensions.get('window');
@@ -23,9 +24,9 @@ const Onsite = ({ route }) => {
         width: (width > height) ? height : width
     };
     const [homecareName, setHomecareName] = React.useState(route.params.mechanic)
+    const [userCase, setUserCase] = React.useState(route.params._CASE)
     const [LANG, setLANG] = useRecoilState(Global.Language)
 
-    console.log(actualDimensions)
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View
@@ -82,24 +83,32 @@ const Onsite = ({ route }) => {
                                         {LANG.homecare_text_27_1}
                                     </Text>
                                     <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        12/06/62 10.00-11.00 น.
+                                        {userCase.isDateWork !== null ? moment(userCase.isDateWork).format("DD/MM/YYYY HH:mm") : '-'} น.
                                     </Text>
                                     <Text style={[Styles.mainFont, Styles.mt10, { fontSize: 22 }]}>
                                         {LANG.homecare_text_30}
                                     </Text>
                                     <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        ตรวจแล้วพบว่าบานเลื่อนตกราง และฝืด
+                                        {userCase.remark ? homecareName.remark : '-'}
                                     </Text>
                                     <Text style={[Styles.mainFont, Styles.mt10, { fontSize: 22 }]}>
                                         {LANG.homecare_text_16}
                                     </Text>
                                     <ScrollView style={[Styles.w100, Styles.mt10]} horizontal={true}>
-                                        {/* {data.image.map((item) => ( */}
-                                        <Image
-                                            source={{ uri: 'https://www.thanomaluminium.com/wp-content/uploads/2017/03/089.jpg' }}
-                                            style={[Styles.br_5, { width: 120, height: 120, marginRight: 10 }]}
-                                        />
-                                        {/* ))} */}
+                                        {userCase.image ?
+                                            <>
+                                            {userCase.image.map((item) => (
+                                                <Image
+                                                    source={{ uri: item.image }}
+                                                    style={[Styles.br_5, { width: 120, height: 120, marginRight: 10 }]}
+                                                />
+                                            ))}
+                                            </> : 
+                                            <Image
+                                                source={require('../../assets/image/image_not_found.png')}
+                                                style={[Styles.br_5, { width: 120, height: 120, marginRight: 10, opacity: 0.5 }]}
+                                            />
+                                        }
                                     </ScrollView>
                                 </View>
                             </View>

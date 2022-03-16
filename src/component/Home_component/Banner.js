@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, Linking, TouchableOpacity } from "react-native";
+import { Image, Linking, TouchableOpacity, View, Platform } from "react-native";
 import Carousel from 'react-native-snap-carousel';
 import { Styles } from "../../styles";
 
@@ -13,10 +13,12 @@ export default class Banner extends React.Component {
                     Styles.boxWithShadow,
                     Styles.transparent,
                     {
-                        width: '100%',
+                        width: Platform.OS === 'android' ? '90%' : '100%',
                         height: '100%',
+                        marginRight: Platform.OS ==='android'? '5%' : '0%',
+                        marginLeft: Platform.OS ==='android'? '5%' : '0%',
                         borderRadius: 5,
-                        padding: 10,
+                        //padding: 10,
                     }]}>
                 <Image source={{uri: item.image}} style={{
                     width: '100%',
@@ -28,7 +30,7 @@ export default class Banner extends React.Component {
     };
     render() {
         return (
-            <>
+            <View style={{alignItems: 'center'}}>
                 <Carousel
                     ref={c => {
                         this._carousel = c;
@@ -41,7 +43,7 @@ export default class Banner extends React.Component {
                     firstItem={0}
                     inactiveSlideOpacity={1}
                 />
-            </>
+            </View>
         );
     }
 }

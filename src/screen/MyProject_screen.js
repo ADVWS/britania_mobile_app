@@ -72,7 +72,7 @@ const MyProject = () => {
                     Styles.mainColor2,
                 ]}>
                 <MainHeader name={'โครงการของฉัน'} backto={'Homecare'}  />
-                {userProfile.me.unitsOwner.map((items) => (
+                {userProfile.me.unitsAllowHomecare.map((items) => (
                     <TouchableOpacity
                         onPress={() => setDataSelect(items)}
                         style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>

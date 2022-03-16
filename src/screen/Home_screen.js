@@ -4,6 +4,7 @@ import {
     Text,
     Animated,
     ScrollView,
+    Platform,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -58,7 +59,7 @@ export default function Home() {
                             {userProfile.me &&
                                 <Text style={[Styles.mainFont_x_db, Styles.f_24, Styles.black_gray_text]}>
                                     {LANG.home_text_01}{' '}
-                                    <Text style={[Styles.f_24, Styles.mainFont_x]}>
+                                    <Text style={[Styles.f_24, Platform.OS === 'ios' ? Styles.mainFont_x : null]}>
                                         {userProfile.me.name}
                                     </Text>
                                 </Text>

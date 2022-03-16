@@ -26,14 +26,16 @@ const OrderList = ({ data, index, route, informDetail }) => {
         navigate.navigate('Responsible', {paramNav, mechanic})
     }
 
-    function gotoOnsite(param) {
+    function gotoOnsite(param, _case) {
         var mechanic = param
-        navigate.navigate('Onsite', {paramNav, mechanic})
+        var _CASE = _case
+        navigate.navigate('Onsite', {paramNav, mechanic, _CASE})
     }
 
-    function gotoRepiairList(param) {
+    function gotoRepiairList(param, _case) {
         var mechanic = param
-        navigate.navigate('RepiairList', {paramNav, mechanic})
+        var _CASE = _case
+        navigate.navigate('RepiairList', {paramNav, mechanic, _CASE})
     }
 
     function gotoSatisfaction(param) {
@@ -86,11 +88,11 @@ const OrderList = ({ data, index, route, informDetail }) => {
                     {LANG.homecare_text_16}
                 </Text>
                 <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
-                    {data.image ? (
+                    {data.files.length > 0  ? (
                             <>
-                                {data.image.map((item) => (
+                                {data.files.map((item) => (
                                     <Image
-                                        source={{ uri: item }}
+                                        source={{ uri: item.homecareImageSrc }}
                                         style={[Styles.br_5, { width: 120, height: 120, marginRight: 10 }]}
                                     />
                                 ))}
@@ -119,7 +121,7 @@ const OrderList = ({ data, index, route, informDetail }) => {
                 }
                 {data.status !== 'Pending' && data.status !== 'Assign' &&
                     <TouchableOpacity
-                        onPress={() => gotoOnsite(data.homecareName)}
+                        onPress={() => gotoOnsite(data.homecareName, data)}
                         style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, { backgroundColor: '#ffecec' }]}>
                         <View style={[Styles.w80]}>
                             <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>
@@ -131,9 +133,9 @@ const OrderList = ({ data, index, route, informDetail }) => {
                         </View>
                     </TouchableOpacity>
                 }
-                {data.status !== 'Pending' && data.status !== 'Assign' && data.status !== 'Checking' && data.status !== "Hold-Customer" &&
+                {data.status !== 'Pending' && data.status !== 'Assign' && data.status !== 'Checking' &&
                     <TouchableOpacity
-                        onPress={() => gotoRepiairList(data.homecareName)}
+                        onPress={() => gotoRepiairList(data.homecareName, data)}
                         style={[Styles.w100, Styles.p20, Styles.row, Styles.br_5, Styles.mt10, Styles.mb10, { backgroundColor: '#ffecec' }]}>
                         <View style={[Styles.w80]}>
                             <Text style={[Styles.f_22, Styles.mainColor_text, Styles.mainFont, Styles.mt5]}>

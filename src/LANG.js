@@ -9,7 +9,7 @@ const TH = {
   login_text_07: "เวอร์ชั่น",
   login_text_08: "เลือกภาษา",
   login_text_09: "ภาษาไทย",
-  signin_text_01: "เข้าสู่่ระบบ",
+  signin_text_01: "เข้าสู่ระบบ",
   signin_text_02: "เลขประจำตัวประชาชน / หมายเลขหนังสือเดินทาง",
   signin_text_03: "ถัดไป",
   otp_text_01: "เลือกวิธีรับ OTP",

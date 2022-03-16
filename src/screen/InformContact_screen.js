@@ -21,6 +21,7 @@ import mainScript from "../script";
 import Holiday from "../script/makeCase_script";
 import getTime from "../script/getTimeCheckin_script";
 import Modal_alert from "../component/modal_alert";
+import Modal_loading from "../component/modal_loading";
 import moment from "moment";
 
 const InformContact = ({ route }) => {
@@ -32,7 +33,7 @@ const InformContact = ({ route }) => {
   const [newInform, setListNewInform] = useRecoilState(Global.newInform);
   const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner);
   const [caseList, setCaseList] = useRecoilState(Global.caseList);
-  const [address, setAddress] = React.useState("");
+  
   const [alAddress, setAladdress] = React.useState(false);
   const [alAddressColor, setAladdressColor] = React.useState("#DDD");
   const [fullname, setFullname] = React.useState("");
@@ -43,22 +44,25 @@ const InformContact = ({ route }) => {
   const [alMobilenoColor, setAlmobilenoColor] = React.useState("#DDD");
   const [textAlert, setTextAlert] = React.useState("");
   const [alert, setAlert] = React.useState(false);
+  const [load, setLoad] = React.useState(false);
 
   console.log(newInform);
 
   React.useEffect(() => {
-    //setAddress(newInform.address)
     setFullname(newInform.owner);
     setMobileno(newInform.phoneOwner);
   }, []);
 
   function Addmore(req) {
-    console.log(caseList);
     navigate.navigate("SelectTypeInform");
   }
 
   function gotoinformCalendar() {
     console.log("hi");
+    setLoad(true)
+    setTimeout(() => {
+      setLoad(false)
+    }, 10000);
     setAlfullname(false);
     setAlfullnameColor("#DDD");
     setAlmobileno(false);
@@ -88,8 +92,11 @@ const InformContact = ({ route }) => {
         timecheck(res.homecareGetCheckInRangeTimeOptions);
         checkHoliday()
       } else {
-        setTextAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+        setLoad(false)
+        setTimeout(() => {
+          setTextAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
           setAlert(true)
+        }, 1000);
       }
     });
   }
@@ -100,6 +107,7 @@ const InformContact = ({ route }) => {
     var holidaySet = []
     console.log(startdate, enddate)
     Holiday.homecareGetCalendarHoliday(startdate, enddate, Key.TOKEN, (res)=>{
+      setLoad(false)
       if(res.homecareGetCalendarHoliday){
         res.homecareGetCalendarHoliday.map((item)=>{
           holidaySet.push(moment(item.date))
@@ -108,8 +116,11 @@ const InformContact = ({ route }) => {
         console.log('Holiday:::', holidaySet)
         navigate.navigate("InformCalendar");
       } else {
-        setTextAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+        setLoad(false)
+        setTimeout(() => {
+          setTextAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
           setAlert(true)
+        }, 1000);
       }
     })
 }
@@ -286,6 +297,9 @@ const InformContact = ({ route }) => {
       </View>
       <Modal isVisible={alert} style={Styles.al_center}>
         <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+      <Modal isVisible={load} style={Styles.al_center}>
+        <Modal_loading />
       </Modal>
     </View>
   );

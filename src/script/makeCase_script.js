@@ -74,7 +74,6 @@ export const homecareCreateCase = async (key, detailTemp, data, unitOwnerId, cb)
             }
         }`;
         console.log('MY BODY', CASE)
-        //return
         setHomecareCreateCase(CASE, token, unitOwnerId, cb)
     })
 }

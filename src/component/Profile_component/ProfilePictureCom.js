@@ -62,7 +62,7 @@ export default class ProfilePicCom extends React.Component {
   render() {
     return (
       <View style={[Styles.al_center]}>
-        <View style={[Styles.mt10]}>
+        <TouchableOpacity onPress={() => this._InputImage()} style={[Styles.mt10]}>
           <ImageBackground
             source={this.state.image}
             imageStyle={Styles.circle}
@@ -93,7 +93,7 @@ export default class ProfilePicCom extends React.Component {
               </TouchableOpacity>
             </View>
           </ImageBackground>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

@@ -57,6 +57,17 @@ export const homecareGetCaseById = async (caseid, key, cb) => {
                             lineId
                             workPhone
                         }
+                        files {
+                            id
+                            mainId
+                            detailId
+                            fileId
+                            fileCurName
+                            filePrevName
+                            fileExtension
+                            status
+                            homecareImageSrc
+                        }
                     }
                 }
             }
@@ -67,6 +78,7 @@ export const homecareGetCaseById = async (caseid, key, cb) => {
 
 export const getHomecareGetCaseById = async (CASE, token, cb) => {
     const result = await API.request(CASE, token);
+    console.log(result)
     cb(result)
 }
 

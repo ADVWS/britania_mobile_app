@@ -7,11 +7,10 @@ import {
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
+  ImageBackground,
 } from "react-native";
 import * as navigate from "../navigator/RootNavigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { Feather } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import mainScript from "../script";
 import Key from "../KEYS.json";
@@ -21,30 +20,26 @@ import Modal_loading from "../component/modal_loading";
 import { Styles } from "../styles";
 import Modal from "react-native-modal";
 import MainHeader from "../component/mainHeader";
+import { FontAwesome } from "@expo/vector-icons";
+import moment from "moment";
 
 const InformAdd = ({ route }) => {
-  console.log(route.params);
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  const [gallery, setGallery] = React.useState([]);
   const [caseList, setCaseList] = useRecoilState(Global.caseList);
   const _setCaseList = useSetRecoilState(Global.caseList);
 
-  const gobalData = useSetRecoilState(Global.informSet);
+  const [gallery, setGallery] = React.useState([]);
   const [isCase, setIsCase] = React.useState(route.params);
   const [imageAdd, setImageAdd] = React.useState([]);
   const [display, setDisplay] = React.useState(false);
   const [detail, setDetail] = React.useState("");
-
   const [alDetail, setAlDetail] = React.useState(false);
   const [alBoxDetail, setAlBoxDetail] = React.useState("#DDD");
-  const [alImage, setAlImage] = React.useState(false);
-
   const [load, setLoad] = React.useState(false);
 
   var indexPic = 0;
   var storeImage = [];
 
-  console.log(caseList);
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -53,51 +48,31 @@ const InformAdd = ({ route }) => {
       aspect: [4, 3],
       quality: 1,
     });
-    var imageset = imageAdd;
-    setDisplay(false);
-    imageset.push(result.uri);
-    setImageAdd(imageset);
-    var galleryArray = gallery;
-    galleryArray.push(result.uri);
-    if (imageAdd.length > 0) {
-      setDisplay(true);
-    } else {
+    if(!result.cancelled){
+      var imageset = imageAdd;
       setDisplay(false);
+      var imageId = mainScript.makeid(6)
+      imageset.push({img: result.uri, id: imageId});
+      setImageAdd(imageset);
+      // var galleryArray = gallery;
+      // galleryArray.push({img: result.uri, id: imageId});
+      if (imageAdd.length >= 0) {
+        setDisplay(true);
+      } else {
+        setDisplay(false);
+      }
     }
-    // console.log(result);
-    // var formdata = new FormData();
-    // var Type = result.uri.substring(result.uri.lastIndexOf(".") + 1)
-    // var Data = {
-    //     uri: result.uri,
-    //     name: `upload_image`,
-    //     type: `image/${Type}`
-    // };
-    // formdata.append('file', Data)
-    // formdata.append('target', 'profile')
-    // Store.getLocalStorege(Key.TOKEN, (tk) => {
-    //     const token = tk.detail.token
-    //     mainScript.uploadImage(token, formdata, (res) => {
-    //         var galleryArray = gallery
-    //         galleryArray.push(res)
-    //         console.log('galleryArray:::', galleryArray)
-    //         setDisplay(false)
-    //         if (!result.cancelled) {
-    //             imageset.push(result.uri)
-    //             setImageAdd(imageset);
-    //             if (imageAdd.length > 0) {
-    //                 setDisplay(true)
-    //             } else {
-    //                 setDisplay(false)
-    //             }
-    //         }
-    //     })
-    // })
   };
 
+  console.log(imageAdd)
+
   function gotoInformContact() {
+    
     setAlDetail(false);
-    setAlImage(false);
-    setLoad(true)
+    setLoad(true);
+    setTimeout(() => {
+      setLoad(false);
+    }, 4000);
     setAlBoxDetail("#DDD");
     var checker = [];
     if (detail === "") {
@@ -106,59 +81,41 @@ const InformAdd = ({ route }) => {
       setAlBoxDetail("red");
     }
     if (checker.indexOf(false) !== -1) {
+      setLoad(false);
       return;
     }
     setIsCase(mainScript.recoilTranform(isCase));
+    var selectImage = []
+    if(imageAdd.length > 0){
+      imageAdd.map((img)=>{selectImage.push(img.img)})
+    }
     isCase.description = detail;
+    isCase.id = mainScript.makeid(6);
+    isCase.imgUri = selectImage;
+    isCase.file = [];
     storeImage = [];
-    TranformImage(gallery, (img) => {
-      if (gallery.length === 0) {
-        isCase.file = [];
-      } else {
-        isCase.file = img;
-      }
-      storeImage = [];
-      var newCase = [isCase];
-      if (caseList.length > 0) {
-        var setNewcase = mainScript.recoilTranform(caseList);
-        setNewcase.push(isCase);
-        _setCaseList(setNewcase);
-      } else {
-        _setCaseList(newCase);
-      }
-      setLoad(false)
-      navigate.navigate("InformContact", isCase);
-    });
+    console.log(isCase);
+    indexPic = 0;
+    navigate.navigate("InformContact", isCase);
+    var newCase = [isCase];
+    if (caseList.length > 0) {
+      var setNewcase = mainScript.recoilTranform(caseList);
+      setNewcase.push(isCase);
+      _setCaseList(setNewcase);
+    } else {
+      _setCaseList(newCase);
+    }
+    setLoad(false);
+    navigate.navigate("InformContact", isCase);
   }
 
-  function TranformImage(pic, cb) {
-    if(gallery.length === 0) {
-        cb([])
-        return
+  function deleteImage(id){
+    var remove = imageAdd.filter(function(img) { return img.id != id; }); 
+    //setGallery(remove)
+    setImageAdd(remove)
+    if(imageAdd.length === 0){
+      setDisplay(false)
     }
-    var formdata = new FormData();
-    var Type = pic[indexPic].substring(pic[indexPic].lastIndexOf(".") + 1);
-    var Data = {
-      uri: pic[indexPic],
-      name: `upload_image`,
-      type: `image/${Type}`,
-    };
-    formdata.append("file", Data);
-    formdata.append("target", "profile");
-    Store.getLocalStorege(Key.TOKEN, (tk) => {
-      const token = tk.detail.token;
-      mainScript.uploadImage(token, formdata, (res) => {
-        console.log(indexPic, res);
-        if (indexPic + 1 > pic.length) {
-          indexPic = 0;
-          cb(storeImage);
-        } else {
-          storeImage.push(res);
-          indexPic++;
-          TranformImage(pic, cb);
-        }
-      });
-    });
   }
 
   return (
@@ -215,21 +172,36 @@ const InformAdd = ({ route }) => {
                   horizontal={true}
                 >
                   {imageAdd.map((item) => (
-                    <Image
-                      source={{ uri: item }}
+                    <ImageBackground
+                      source={{ uri: item.img }}
+                      imageStyle={Styles.br_5}
                       style={[
-                        Styles.br_5,
-                        { width: 120, height: 120, marginRight: 10 },
+                        {
+                          width: 120,
+                          height: 120,
+                          marginRight: 10,
+                          alignItems: "flex-end",
+                          padding: 5,
+                        },
                       ]}
-                    />
+                    >
+                      <TouchableOpacity
+                        onPress={()=>{deleteImage(item.id)}}
+                        style={[
+                          Styles.FFF,
+                          Styles.al_center,
+                          Styles.jc_center,
+                          Styles.circle,
+                          Styles.mainColor_bb6,
+                          { width: 25, height: 25 },
+                        ]}
+                      >
+                        <FontAwesome name="close" size={22} color="#FFF" />
+                      </TouchableOpacity>
+                    </ImageBackground>
                   ))}
                 </ScrollView>
               )}
-              {/* {alImage &&
-                                <Text style={[Styles.f_20, Styles.mainFont, Styles.mt5, { color: 'red' }]}>
-                                    กรุณาระบุ "รูปภาพ"
-                                </Text>
-                            } */}
               <Text style={[Styles.f_24, Styles.mainFont, Styles.mt20]}>
                 {LANG.informadd_text_05}
               </Text>
@@ -241,7 +213,12 @@ const InformAdd = ({ route }) => {
                   Styles.p15,
                   Styles.br_5,
                   Styles.mt10,
-                  { borderColor: alBoxDetail, borderWidth: 1.5, height: 130 },
+                  {
+                    borderColor: alBoxDetail,
+                    borderWidth: 1.5,
+                    height: 130,
+                    textAlignVertical: "top",
+                  },
                 ]}
                 multiline={true}
                 numberOfLines={6}
