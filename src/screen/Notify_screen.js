@@ -58,14 +58,14 @@ const Notify = ({ route }) => {
   }
 
   return (
-    <View style={[Styles.flex, Styles.al_center ,Styles.FFF]}>
+    <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
       <LinearGradient
         colors={["#f9f9f9", "#f9f9f9", "#f9f9f9"]}
         style={[Styles.al_center, Styles.w100, Styles.h100]}
       >
         <MainHeader name={LANG.notify_text_01} backto={backto} />
         <ScrollView style={[Styles.w100, Styles.p15]}>
-          <View style={[Styles.row, Styles.w100]}>
+          <View style={[Styles.row, Styles.w80, Styles.mr5]}>
             <TouchableOpacity
               onPress={() => changeTabs("all")}
               style={[

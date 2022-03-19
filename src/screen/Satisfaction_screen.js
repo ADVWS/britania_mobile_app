@@ -38,7 +38,7 @@ const Satisfaction = ({ route }) => {
     setRate(rate);
   };
   const setImage = (image) => {
-    if (image.image) {
+    if (image && image.image) {
       return (
         <Image
           source={{ uri: route.params.mechanic.image }}
@@ -55,7 +55,7 @@ const Satisfaction = ({ route }) => {
     }
   };
 
-  const closeModalAlert = () => setAlert(false)
+  const closeModalAlert = () => setAlert(false);
 
   const voteCase = () => {
     var mainId = mainDetail.id;
@@ -67,22 +67,28 @@ const Satisfaction = ({ route }) => {
       }
     }
     if (!checker) {
-        Script.homecareCreateCsat(Key.TOKEN, mainId, detailId, rate, comment, (res)=>{
-            var reload = mainScript.recoilTranform(detail)
-            reload.details.map((item)=>{
-                if(item.id === route.params.thisCase.id){
-                    item.isRate = true,
-                    item.status = "Close"
-                }
-            })
-            dataInformDetail(reload)
-            console.log('homecareCreateCsat:::', res)
-            var paramNav = 'SUCCESS'
-            navigate.navigate('InformOrder', {paramNav})
-        })
+      Script.homecareCreateCsat(
+        Key.TOKEN,
+        mainId,
+        detailId,
+        rate,
+        comment,
+        (res) => {
+          var reload = mainScript.recoilTranform(detail);
+          reload.details.map((item) => {
+            if (item.id === route.params.thisCase.id) {
+              (item.isRate = true), (item.status = "Close");
+            }
+          });
+          dataInformDetail(reload);
+          console.log("homecareCreateCsat:::", res);
+          var paramNav = "SUCCESS";
+          navigate.navigate("InformOrder", { paramNav });
+        }
+      );
     } else {
-        setTextAlert(LANG.satisfaction_text_06)
-        setAlert(true)
+      setTextAlert(LANG.satisfaction_text_06);
+      setAlert(true);
     }
   };
 
