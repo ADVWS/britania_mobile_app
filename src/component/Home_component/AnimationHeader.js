@@ -38,6 +38,7 @@ const AnimatedHeader = ({ animatedValue }) => {
         Store.getLocalStorege(Key.TOKEN, (tk) => {
             const token = tk.detail.token
             Script.notificationCountUnread(token, (res) => {
+                console.log('notificationCountUnread', res)
                 setCounter(res)
             })
         })
