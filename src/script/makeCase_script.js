@@ -80,7 +80,6 @@ export const homecareCreateCase = async (key, detailTemp, data, unitOwnerId, cb)
 
 const setHomecareCreateCase = async (CASE, token, unitOwnerId, cb) => {
     const result = await API.request(CASE, token);
-    console.log('NEW CASE===>', result)
     if(result.homecareCreateCase && result.homecareCreateCase !== null){
         homecareAllCase(unitOwnerId, token, cb)
     }
