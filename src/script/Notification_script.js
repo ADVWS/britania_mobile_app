@@ -1,4 +1,5 @@
 import API from "../graphQL";
+import store from "../store";
 
 export const notification = async (token, cb) => {
   const LOGIN = `
@@ -9,6 +10,7 @@ export const notification = async (token, cb) => {
             description,
             type,
             notificationDate,
+            readDate
         }
     }`;
   const result = await API.request(LOGIN, token);
@@ -45,7 +47,34 @@ export const notificationCountUnread = async (token, cb) => {
   cb(result.notificationCountUnread);
 };
 
+export const notificationRead = async (id, key, cb) => {
+  store.getLocalStorege(key, async (res) => {
+    const token = res.detail.token;
+    var UPDATE = `
+    mutation
+    {
+      notificationReadMessage(
+        notificationId: "${id}"
+      )
+      {
+        id
+        title
+        description
+        type
+        notificationDate
+        readDate
+      }
+    }
+  `;
+
+    const result = await API.request(UPDATE, token);
+
+    cb(result);
+  });
+};
+
 export default {
   notification,
   notificationCountUnread,
+  notificationRead,
 };
