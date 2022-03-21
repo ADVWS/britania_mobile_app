@@ -3,14 +3,30 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 
 import { Styles } from "../../styles";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import moment from "moment";
 
 const Fixnotify = (notify) => {
   return (
     <View style={[Styles.mt20, Styles.w100]}>
-      <Text style={[Styles.mainColor_text3, Styles.mainFont, Styles.f_22, Styles.text_right]}>อ่านทั้งหมด (0)</Text>
+      <Text
+        style={[
+          Styles.mainColor_text3,
+          Styles.mainFont,
+          Styles.f_22,
+          Styles.text_right,
+        ]}
+      >
+        อ่านทั้งหมด (
+        {
+          notify.notify.filter((item) => {
+            return item.type == "activity";
+          }).length
+        }
+        )
+      </Text>
       {notify.notify != undefined
         ? notify.notify.map((item) =>
-            item.type == activity ? (
+            item.type == "activity" ? (
               <View
                 style={[
                   Styles.w100,
@@ -46,7 +62,7 @@ const Fixnotify = (notify) => {
                   <Text
                     style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}
                   >
-                    {item.notificationDate}
+                    {moment(item.notificationDate).format("DD MMMM YYYY HH:mm")}
                   </Text>
                 </View>
               </View>

@@ -11,7 +11,7 @@ import { useRecoilState } from "recoil";
 import * as Global from "../globalState";
 import Script from "../script/Notification_script";
 import Store from "../store";
-import Key from "../KEYS.json"
+import Key from "../KEYS.json";
 
 const Notify = ({ route }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
@@ -35,11 +35,16 @@ const Notify = ({ route }) => {
 
   React.useEffect(() => {
     Store.getLocalStorege(Key.TOKEN, (tk) => {
-      const token = tk.detail.token
-      Script.notification(token,(res) => {
+      const token = tk.detail.token;
+      Script.notification(token, (res) => {
+        console.log("KEY==>");
+        console.log(Key.TOKEN);
+        console.log(tk);
+        console.log("RES NOTI==>");
+        console.log(res);
         setNotify(res.notification);
       });
-    })
+    });
   });
 
   function changeTabs(req) {
@@ -61,6 +66,9 @@ const Notify = ({ route }) => {
       setFix(select);
     }
   }
+
+  console.log("NOTIFICATION==>");
+  console.log(notify);
 
   return (
     <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
