@@ -10,15 +10,12 @@ export default function TermOfService() {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   console.log("Term of Service Entry Flag");
   return (
-    <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
-      <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
-        <MainHeader name={LANG.account_text_05} backto={"Account"} />
-        <WebView
-          source={{ uri: "https://www.google.com" }}
-          style={[Styles.w100, Styles.h100]}
-        />
-        {/* <Text>เป็นที่ Web View</Text> */}
-      </View>
-    </View>
+    <>
+      <MainHeader name={LANG.account_text_05} backto={"Account"} />
+      <WebView
+        source={{ uri: "https://www.britania.co.th/privacy-policy/" }}
+        style={[Styles.w100, Styles.h100]}
+      />
+    </>
   );
 }

@@ -102,20 +102,20 @@ function checkToken(key, token, cb) {
 const saveNewToken = async (key, token, cb) => {
   console.log('SUCCESS', token)
   var value = JSON.stringify(token)
-  try {
+  //try {
     await AsyncStorage.setItem(key, value);
     var res = {
       result: true,
       detail: JSON.parse(token)
     }
     cb(res)
-  } catch (error) {
-    var res = {
-      result: false,
-      detail: "Error, New Storege fail."
-    }
-    cb(res)
-  }
+  //} catch (error) {
+    // var res = {
+    //   result: false,
+    //   detail: "Error, New Storege fail."
+    // }
+    // cb(res)
+  //}
 }
 
 export default {
