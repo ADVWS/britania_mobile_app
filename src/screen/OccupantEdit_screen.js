@@ -3,6 +3,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 
 import * as navigate from "../navigator/RootNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
+import Modal from 'react-native-modal'
 
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
@@ -10,6 +11,8 @@ import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import Radio from "../component/OccupantEdit_component/radio_resadd";
 import ThaiForm from "../component/OccupantEdit_component/thai_form";
 import ForeignForm from "../component/OccupantEdit_component/foreigner_form";
+import Modal_alert from "../component/modal_alert";
+import Modal_loading from "../component/modal_loading";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
 import KEYS from "../KEYS.json";
@@ -25,6 +28,9 @@ const OccupantEdit = ({ route }) => {
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [uploadImage, setUploadImage] = React.useState("");
   const setUnitMember = useSetRecoilState(Global.unitMember);
+  const [alert, setAlert] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
 
   function isSelectType(TYPE) {
     setType(TYPE);
@@ -35,6 +41,10 @@ const OccupantEdit = ({ route }) => {
   }
 
   function saveEdit(edit) {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000);
     if (uploadImage !== "") {
       var formdata = new FormData();
       var Type = uploadImage.substring(uploadImage.lastIndexOf(".") + 1);
@@ -48,7 +58,8 @@ const OccupantEdit = ({ route }) => {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          console.log("IMAGE", res);
+          console.log("IMAGE", res); 
+          edit.files = res      
           editData(edit);
         });
       });
@@ -65,10 +76,17 @@ const OccupantEdit = ({ route }) => {
         member.unitid,
         (res) => {
           if (typeof res === "object") {
+            setLoading(false)
             var data = mainScript.recoilTranform(unitMember);
             data.unitMember = res;
             setUnitMember(data);
             navigate.navigate("MemberManageIndivi");
+          } else {
+            setTextAlert(res)
+            setLoading(false)
+            setTimeout(() => {
+              setAlert(true)
+            }, 500);
           }
         }
       );
@@ -79,10 +97,17 @@ const OccupantEdit = ({ route }) => {
         member.unitid,
         (res) => {
           if (typeof res === "object") {
+            setLoading(false)
             var data = mainScript.recoilTranform(unitMember);
             data.unitMember = res;
             setUnitMember(data);
             navigate.navigate("MemberManageIndivi");
+          } else {
+            setTextAlert(res)
+            setLoading(false)
+            setTimeout(() => {
+              setAlert(true)
+            }, 500);
           }
         }
       );
@@ -101,6 +126,8 @@ const OccupantEdit = ({ route }) => {
       );
     }
   };
+
+  const closeModalAlert = () => setAlert(false);
 
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
@@ -124,6 +151,12 @@ const OccupantEdit = ({ route }) => {
         {type === "thai" && <ThaiForm item={member} saveDataEdit={saveEdit}/>}
         {type === "foreign" && <ForeignForm item={member} saveDataEdit={saveEdit}/>}
       </ScrollView>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+      <Modal isVisible={loading} style={Styles.al_center}>
+        <Modal_loading />
+      </Modal>
     </View>
   );
 };

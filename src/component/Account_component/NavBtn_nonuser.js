@@ -38,70 +38,8 @@ const NavBtn = ({ optiono }) => {
     }
   };
   return (
-    <View style={[Styles.boxWithShadow2, Styles.mt20]}>
+    <View style={[Styles.boxWithShadow2]}>
         <>
-          <TouchableOpacity
-            onPress={() => navigate.navigate("Profile")}
-            style={[
-              Styles.boxWithShadow,
-              Styles.w100,
-              Styles.p12,
-              Styles.FFF,
-              Styles.br_5,
-              Styles.mt10,
-              Styles.row,
-            ]}
-          >
-            <View style={[Styles.w90]}>
-              <Text
-                style={[
-                  Styles.f_20,
-                  Styles.mainFont,
-                  Styles.mt10,
-                  Styles.text_left,
-                  Styles.black_gray_text,
-                  { bottom: 3 },
-                ]}
-              >
-                {LANG.account_text_02}
-              </Text>
-            </View>
-            <View style={[Styles.jc_center, Styles.al_end]}>
-              <MaterialIcons name="arrow-forward-ios" size={15} />
-            </View>
-          </TouchableOpacity>
-          {userProfile.me.unitsOwner && userProfile.me.unitsOwner !== null && (
-            <TouchableOpacity
-              onPress={() => navigate.navigate("MemberManage")}
-              style={[
-                Styles.boxWithShadow,
-                Styles.w100,
-                Styles.p12,
-                Styles.FFF,
-                Styles.br_5,
-                Styles.mt10,
-                Styles.row,
-              ]}
-            >
-              <View style={[Styles.w90]}>
-                <Text
-                  style={[
-                    Styles.f_20,
-                    Styles.mainFont,
-                    Styles.mt10,
-                    Styles.text_left,
-                    Styles.black_gray_text,
-                    { bottom: 3 },
-                  ]}
-                >
-                  {LANG.account_text_03}
-                </Text>
-              </View>
-              <View style={[Styles.jc_center, Styles.al_end]}>
-                <MaterialIcons name="arrow-forward-ios" size={15} />
-              </View>
-            </TouchableOpacity>
-          )}
           <TouchableOpacity
             onPress={() => navigate.navigate("Language")}
             style={[
@@ -110,7 +48,7 @@ const NavBtn = ({ optiono }) => {
               Styles.p12,
               Styles.FFF,
               Styles.br_5,
-              Styles.mt10,
+              //Styles.mt10,
               Styles.row,
             ]}
           >

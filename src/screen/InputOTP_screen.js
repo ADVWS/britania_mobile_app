@@ -64,7 +64,7 @@ export default function InputOTP({ route }) {
       if (typeof res === 'object') {
         var data = JSON.stringify(res.login)
         Store.setLocalStorege(Key.TOKEN, data, (call) => {
-          setProfile(res.login.token)
+          setProfileUser(res.login.token)
         })
       } else {
         setLoading(false)
@@ -76,7 +76,7 @@ export default function InputOTP({ route }) {
     })
   }
 
-  function setProfile(token) {
+  function setProfileUser(token) {
     Script.setProfile(token, (res) => {
       setLoading(false)
       if (typeof res === 'object') {

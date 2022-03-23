@@ -12,6 +12,7 @@ import {
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
+import Modal from "react-native-modal";
 import MainHeader from "../component/mainHeader";
 import * as navigate from "../navigator/RootNavigation";
 import * as Global from "../globalState";
@@ -21,6 +22,7 @@ import ResentOTP from "../script/ResidentAdd_script";
 import KEYS from "../KEYS.json"
 import { useSetRecoilState, useRecoilState } from "recoil";
 import Store from "../store";
+import Modal_alert from "../component/modal_alert";
 
 export default function OccupantAddOTP({route}) {
   var timer = 60
@@ -43,17 +45,22 @@ export default function OccupantAddOTP({route}) {
   const setUnitMember = useSetRecoilState(Global.unitMember);
   const [countDown, setCountDown] = React.useState(false);
   const [displayTime, setDisplayTime] = React.useState(timer);
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
   var setOTPTimer;
 
   const sendOTP = () => {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
+    console.log('OTPdata==>', OTPdata)
     Script.memberConfirmOtp(otp, OTPdata, KEYS.TOKEN, (res) => {
-      console.log(res)
       if(typeof res === 'object'){
         var data = mainScript.recoilTranform(unitMember)
         data.unitMember = res
         setUnitMember(data)
         navigate.navigate("MemberManageIndivi")
+      } else {
+        setTextAlert(res);
+        setAlert(true);
       }
     })
   }
@@ -66,13 +73,16 @@ export default function OccupantAddOTP({route}) {
         OTPdata.mobileNo,
         unitMember.unitId,
         (res) => {
-          console.log("callback", res);
-          var otp = OTPdata;
-          otp.refNo = res.refNo;
-          setOTPdata(otp)
-          setCountDown(true)
-          setOTPTimer = setInterval(OTPTimer, 1000);
-          console.log(otp)
+          if(res.memberResendOtp) {
+            var otp = OTPdata;
+            otp.refNo = res.memberResendOtp.refNo;
+            setOTPdata(otp)
+            setCountDown(true)
+            setOTPTimer = setInterval(OTPTimer, 1000);
+          } else {
+            setTextAlert(res);
+            setAlert(true);
+          }
         }
       );
     });
@@ -80,13 +90,14 @@ export default function OccupantAddOTP({route}) {
 
   function OTPTimer() {
     timer--;
-    console.log(timer)
     setDisplayTime(timer)
     if (timer == 0) {
       setCountDown(false)
       clearInterval(setOTPTimer);
     }
   }
+
+  const closeModalAlert = () => setAlert(false);
 
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
@@ -360,6 +371,9 @@ export default function OccupantAddOTP({route}) {
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
     </View>
   );
 }

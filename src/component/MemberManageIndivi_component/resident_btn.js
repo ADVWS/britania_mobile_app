@@ -9,7 +9,6 @@ import OTP_btn from "../../component/ResidentDetail_component/OTP_btn";
 import * as Global from "../../globalState";
 
 const ResidentBtn = ({ item }) => {
-  console.log("INBOUND", item);
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
   const params = item;
   const [LANG, setLANG] = useRecoilState(Global.Language);
@@ -17,8 +16,10 @@ const ResidentBtn = ({ item }) => {
   function gotoResidentDetail(member) {
     navigate.navigate("ResidentDetail", member);
   }
+  console.log(unitMember.unitMember.resident)
   const setImage = (img) => {
-    if (img) {
+    console.log('IMAGE==>', img)
+    if (img !== null) {
       return (
         <Image
           source={{ uri: img }}
@@ -59,7 +60,7 @@ const ResidentBtn = ({ item }) => {
         >
           <View style={[Styles.row]}>
             <View style={[Styles.w40]}>
-              {setImage(item.Image)}
+              {setImage(item.profileImage)}
               <Text
                 style={[
                   Styles.f_22,

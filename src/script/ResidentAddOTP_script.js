@@ -10,7 +10,7 @@ export const memberConfirmOtp = async (otp, data, key, cb) => {
                     unitId: "BTN02208",
                     otp: "${otp}",
                     refNo: "${data.refNo}",
-                    sendTo: "${data.sendTo}"
+                    sendTo: "${data.mobileNo}"
                 ){
                 id
                 unitMemberId
@@ -37,8 +37,9 @@ export const sendOTP = async (OTP, token, data, cb) => {
     console.log('RESULT OTP===>', result)
     if(typeof result === "object"){
         updateUnit(token, data, cb)
+    } else {
+        cb(result)
     }
-    //cb(result)
 }
 
 export const updateUnit = async (token, data, cb) => {
@@ -55,7 +56,8 @@ export const updateUnit = async (token, data, cb) => {
             idcard,
             passport,
             expiredDate,
-            allowHomecare
+            allowHomecare,
+            profileImage
         }
     }`
     const result = await API.request(UNIT, token);

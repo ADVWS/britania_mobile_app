@@ -17,7 +17,8 @@ export const unitMemberAll = async (unit, key, cb) => {
                 idcard,
                 passport,
                 expiredDate,
-                allowHomecare
+                allowHomecare,
+                profileImage
             }
         }`
         setData(UNIT, token, unit, cb)

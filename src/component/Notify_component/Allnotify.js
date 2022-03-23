@@ -2,33 +2,61 @@ import * as React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 
 import { Styles } from "../../styles";
-import { SimpleLineIcons } from "@expo/vector-icons";
+import { SimpleLineIcons, FontAwesome } from "@expo/vector-icons";
 import moment from "moment";
+import mainScript from "../../script";
 import Script from "../../script/Notification_script";
 import Key from "../../KEYS.json";
-
-const setRead = (id) => {
-  console.log("READ ==> ID: " + id);
-  Script.notificationRead(id, Key.TOKEN, (res) => {
-    console.log("READ RESPONSE ==>");
-    console.log(res);
-  });
-};
-
-const setReadAll = (arr) => {
-  let unread = arr.filter((item) => {
-    return item.readDate == null || !item.readDate;
-  });
-
-  // let unread = arr;
-
-  for (let i = 0; i < unread.length; i++) {
-    setRead(unread[i].id);
-  }
-};
+import { useRecoilState, useSetRecoilState } from "recoil";
+import * as Global from "../../globalState";
 
 const Allnotify = (notify) => {
-  console.log(notify);
+  const notifySet = useSetRecoilState(Global.dataNotify);
+  const [dataNotify, setDataNotify] = useRecoilState(Global.dataNotify);
+  var read = 0;
+  const setRead = (id) => {
+    Script.notificationRead(id, Key.TOKEN, (res) => {
+      var updateNotify = mainScript.recoilTranform(dataNotify);
+      updateNotify.map((item) => {
+        if (res.notificationReadMessage) {
+          if (item.id === res.notificationReadMessage.id) {
+            item.readDate = res.notificationReadMessage.readDate;
+          }
+        }
+      });
+      notifySet(updateNotify);
+    });
+  };
+
+  const setReadAll = (arr) => {
+    let unread = arr.filter((item) => {
+      return item.readDate == null || !item.readDate;
+    });
+    if (unread.length > 0) {
+      readAll(unread);
+    }
+  };
+  const readAll = (unread) => {
+    var data = unread[read];
+    if (read < unread.length) {
+      Script.notificationRead(data.id, Key.TOKEN, (res) => {
+        var updateNotify = mainScript.recoilTranform(dataNotify);
+        updateNotify.map((item) => {
+          if (res.notificationReadMessage) {
+            if (item.id === res.notificationReadMessage.id) {
+              item.readDate = res.notificationReadMessage.readDate;
+            }
+          }
+        });
+        notifySet(updateNotify);
+        read++;
+        readAll(unread);
+      });
+    } else {
+      read = 0;
+    }
+  };
+
   return (
     <View style={[Styles.mt20, Styles.w100]}>
       <TouchableOpacity onPress={() => setReadAll(notify.notify)}>
@@ -38,6 +66,7 @@ const Allnotify = (notify) => {
             Styles.mainFont,
             Styles.f_22,
             Styles.text_right,
+            Styles.mb10,
           ]}
         >
           อ่านทั้งหมด (
@@ -52,7 +81,7 @@ const Allnotify = (notify) => {
 
       {notify.notify != undefined
         ? notify.notify.map((item) =>
-            item.readDate == null || !item.readDate ? (
+            item.readDate === null || !item.readDate ? (
               <TouchableOpacity
                 onPress={() => setRead(item.id)}
                 style={[
@@ -66,14 +95,15 @@ const Allnotify = (notify) => {
                 ]}
               >
                 <View style={[Styles.w20, Styles.al_center, Styles.jc_center]}>
-                  <View
-                    style={[
-                      { backgroundColor: "#ffdfdf" },
-                      Styles.p10,
-                      Styles.circle,
-                    ]}
-                  >
-                    <SimpleLineIcons name="tag" size={27} color="#bb6a70" />
+                  <View style={[Styles.p10, Styles.circle]}>
+                    {item.type === "activity" ? (
+                      <Image
+                        source={require("../../../assets/image/empty_case.png")}
+                        style={{ height: 32, width: 32, tintColor: "#555" }}
+                      />
+                    ) : (
+                      <SimpleLineIcons name="tag" size={27} color="#555" />
+                    )}
                   </View>
                 </View>
                 <View style={[Styles.w80, Styles.p10]}>
@@ -86,14 +116,22 @@ const Allnotify = (notify) => {
                   >
                     {item.title}
                   </Text>
+                  {item.description !== "" ? (
+                    <Text
+                      style={[
+                        Styles.f_20,
+                        Styles.mainFont,
+                        { color: "#c0bfc0" },
+                      ]}
+                    >
+                      {item.description}
+                    </Text>
+                  ) : null}
                   <Text
-                    style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}
+                    style={[Styles.f_20, Styles.mainFont, { color: "#c0bfc0" }]}
                   >
-                    {item.description}
-                  </Text>
-                  <Text
-                    style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}
-                  >
+                    <FontAwesome name="circle" size={12} color="#bb6a70" />
+                    {"  "}
                     {moment(item.notificationDate).format("DD MMMM YYYY HH:mm")}
                   </Text>
                 </View>
@@ -102,23 +140,25 @@ const Allnotify = (notify) => {
               <View
                 style={[
                   Styles.w100,
-                  Styles.DDD,
+                  //Styles.DDD,
                   Styles.p15,
                   Styles.br_5,
                   Styles.boxWithShadow,
                   Styles.row,
                   Styles.mb10,
+                  { backgroundColor: "#ecebec" },
                 ]}
               >
                 <View style={[Styles.w20, Styles.al_center, Styles.jc_center]}>
-                  <View
-                    style={[
-                      { backgroundColor: "#DDDDDD" },
-                      Styles.p10,
-                      Styles.circle,
-                    ]}
-                  >
-                    <SimpleLineIcons name="tag" size={27} color="#555555" />
+                  <View style={[Styles.p10, Styles.circle]}>
+                    {item.type === "activity" ? (
+                      <Image
+                        source={require("../../../assets/image/empty_case.png")}
+                        style={{ height: 32, width: 32, tintColor: "#555" }}
+                      />
+                    ) : (
+                      <SimpleLineIcons name="tag" size={27} color="#555" />
+                    )}
                   </View>
                 </View>
                 <View style={[Styles.w80, Styles.p10]}>
@@ -131,13 +171,19 @@ const Allnotify = (notify) => {
                   >
                     {item.title}
                   </Text>
+                  {item.description !== "" ? (
+                    <Text
+                      style={[
+                        Styles.f_20,
+                        Styles.mainFont,
+                        { color: "#c0bfc0" },
+                      ]}
+                    >
+                      {item.description}
+                    </Text>
+                  ) : null}
                   <Text
-                    style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}
-                  >
-                    {item.description}
-                  </Text>
-                  <Text
-                    style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}
+                    style={[Styles.f_20, Styles.mainFont, { color: "#c0bfc0" }]}
                   >
                     {moment(item.notificationDate).format("DD MMMM YYYY HH:mm")}
                   </Text>
@@ -146,87 +192,6 @@ const Allnotify = (notify) => {
             )
           )
         : null}
-
-      {/* <View
-        style={[
-          Styles.w100,
-          Styles.FFF,
-          Styles.p15,
-          Styles.br_5,
-          Styles.boxWithShadow,
-          Styles.row,
-          Styles.mb10,
-        ]}
-      >
-        <View style={[Styles.w20, Styles.al_center, Styles.jc_center]}>
-          <View
-            style={[{ backgroundColor: "#ffdfdf" }, Styles.p10, Styles.circle]}
-          >
-            <SimpleLineIcons name="tag" size={27} color="#f1645e" />
-          </View>
-        </View>
-        <View style={[Styles.w80, Styles.p10]}>
-          <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>
-            บริทาเนีย ให้เหนือกว่าใคร กับโปรอยู่ฟรีสูงสุด 2 ปี
-          </Text>
-          <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
-            13 ม.ค. 2562 13:23
-          </Text>
-        </View>
-      </View>
-      <View
-        style={[
-          Styles.w100,
-          Styles.FFF,
-          Styles.p15,
-          Styles.br_5,
-          Styles.boxWithShadow,
-          Styles.row,
-          Styles.mb10,
-        ]}
-      >
-        <View style={[Styles.w20, Styles.al_center, Styles.jc_center]}>
-          <View
-            style={[{ backgroundColor: "#ffdfdf" }, Styles.p10, Styles.circle]}
-          >
-            <SimpleLineIcons name="tag" size={27} color="#f1645e" />
-          </View>
-        </View>
-        <View style={[Styles.w80, Styles.p10]}>
-          <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>
-            บริทาเนีย ให้เหนือกว่าใคร กับโปรอยู่ฟรีสูงสุด 2 ปี
-          </Text>
-          <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
-            12 ม.ค. 2562 13:23
-          </Text>
-        </View>
-      </View>
-      <View
-        style={[
-          Styles.w100,
-          Styles.FFF,
-          Styles.p15,
-          Styles.br_5,
-          Styles.boxWithShadow,
-          Styles.row,
-          Styles.mb10,
-        ]}
-      >
-        <View style={[Styles.w20, Styles.al_center, Styles.jc_center]}>
-          <View style={[Styles.DDD, Styles.p10, Styles.circle]}>
-            <SimpleLineIcons name="wrench" size={27} color="#9f9f9f" />
-          </View>
-        </View>
-        <View style={[Styles.w80, Styles.p10]}>
-          <Text style={[Styles.f_20, Styles.mainFont, Styles.black_gray_text]}>
-            เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบหน้างาน วันที่ 12 ม.ค. 2562
-            10.00-11.00 น.
-          </Text>
-          <Text style={[Styles.f_20, Styles.mainFont, Styles.gray_text]}>
-            12 ม.ค. 2562 13:23
-          </Text>
-        </View>
-      </View> */}
     </View>
   );
 };

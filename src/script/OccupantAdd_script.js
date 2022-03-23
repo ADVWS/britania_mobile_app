@@ -6,26 +6,55 @@ export const memberAddProflie_thai = async (add, key, unitid, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
         console.log(token)
-        const ADD = `
-            mutation {
-                memberAddProflie(input: {
-                    unitId : "${add.unitId}",
-                    ownerType: ${add.ownerType},
-                    nationType: ${add.nationType},
-                    name: "${add.name}",
-                    mobileNo: "${add.mobileNo}",
-                    email: "${add.email}",
-                    idcard: "${add.idcard}",
-                    passport: null,
-                    expiredDate: "${new Date(add.expiredDate)}"
-                }){
-                    id
-                    type
-                    sendTo
-                    refNo
+        if(add.files){
+            var ADD = `
+                mutation {
+                    memberAddProflie(input: {
+                        unitId : "${add.unitId}",
+                        ownerType: ${add.ownerType},
+                        nationType: ${add.nationType},
+                        name: "${add.name}",
+                        mobileNo: "${add.mobileNo}",
+                        email: "${add.email}",
+                        idcard: "${add.idcard}",
+                        passport: null,
+                        expiredDate: "${new Date(add.expiredDate)}",
+                        memberImage: {
+                            fileId: "${add.files.fileId}"
+                            fileCurName: "${add.files.fileCurName}"
+                            filePrevName: "${add.files.filePrevName}"
+                            fileExtension: "${add.files.fileExtension}"
+                        }
+                    }){
+                        id
+                        type
+                        sendTo
+                        refNo
+                    }
                 }
-            }
-        `;
+            `;
+        } else {
+            var ADD = `
+                mutation {
+                    memberAddProflie(input: {
+                        unitId : "${add.unitId}",
+                        ownerType: ${add.ownerType},
+                        nationType: ${add.nationType},
+                        name: "${add.name}",
+                        mobileNo: "${add.mobileNo}",
+                        email: "${add.email}",
+                        idcard: "${add.idcard}",
+                        passport: null,
+                        expiredDate: "${new Date(add.expiredDate)}"
+                    }){
+                        id
+                        type
+                        sendTo
+                        refNo
+                    }
+                }
+            `;
+        }
         updateMember(ADD, token, unitid, cb)
     })
 }
@@ -33,26 +62,55 @@ export const memberAddProflie_thai = async (add, key, unitid, cb) => {
 export const memberAddProflie_foreign = async (add, key, unitid, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
-        const ADD = `
-            mutation {
-                memberAddProflie(input: {
-                    unitId : "${add.unitId}",
-                    ownerType: ${add.ownerType},
-                    nationType: ${add.nationType},
-                    name: "${add.name}",
-                    mobileNo: "${add.mobileNo}",
-                    email: "${add.email}",
-                    idcard: null,
-                    passport: "${add.idcard}",
-                    expiredDate: "${new Date(add.expiredDate)}"
-                }){
-                    id
-                    type
-                    sendTo
-                    refNo
+        if(add.files){
+            var ADD = `
+                mutation {
+                    memberAddProflie(input: {
+                        unitId : "${add.unitId}",
+                        ownerType: ${add.ownerType},
+                        nationType: ${add.nationType},
+                        name: "${add.name}",
+                        mobileNo: "${add.mobileNo}",
+                        email: "${add.email}",
+                        idcard: null,
+                        passport: "${add.idcard}",
+                        expiredDate: "${new Date(add.expiredDate)}",
+                        memberImage: {
+                            fileId: "${add.files.fileId}"
+                            fileCurName: "${add.files.fileCurName}"
+                            filePrevName: "${add.files.filePrevName}"
+                            fileExtension: "${add.files.fileExtension}"
+                        }
+                    }){
+                        id
+                        type
+                        sendTo
+                        refNo
+                    }
                 }
-            }
-        `;
+            `;
+        } else {
+            var ADD = `
+                mutation {
+                    memberAddProflie(input: {
+                        unitId : "${add.unitId}",
+                        ownerType: ${add.ownerType},
+                        nationType: ${add.nationType},
+                        name: "${add.name}",
+                        mobileNo: "${add.mobileNo}",
+                        email: "${add.email}",
+                        idcard: null,
+                        passport: "${add.idcard}",
+                        expiredDate: "${new Date(add.expiredDate)}"
+                    }){
+                        id
+                        type
+                        sendTo
+                        refNo
+                    }
+                }
+            `;
+        }
         updateMember(ADD, token, unitid, cb)
     })
 }
@@ -84,7 +142,8 @@ export const updateUnit = async (token, unitid, otp, cb) => {
             idcard,
             passport,
             expiredDate,
-            allowHomecare
+            allowHomecare,
+            profileImage
         }
     }`
     const result = await API.request(UNIT, token);

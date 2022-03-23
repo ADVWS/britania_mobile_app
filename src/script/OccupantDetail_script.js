@@ -39,7 +39,8 @@ export const updateUnit = async (token, unitid, cb) => {
             idcard,
             passport,
             expiredDate,
-            allowHomecare
+            allowHomecare,
+            profileImage
         }
     }`
     const result = await API.request(UNIT, token);
@@ -82,8 +83,10 @@ export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
             }
         }
     `;
+    console.log(OTP)
     const result = await API.request(OTP, token);
-    cb(result.memberResendOtp)
+    console.log(result)
+    cb(result)
 }
 
 

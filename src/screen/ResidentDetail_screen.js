@@ -36,7 +36,7 @@ const ResidentDetail = ({ route }) => {
   }
 
   const setImage = (img) => {
-    if (img) {
+    if (img !== null) {
       return (<Image
         source={{ uri: img }}
         style={[
@@ -86,7 +86,7 @@ const ResidentDetail = ({ route }) => {
             >
               <View style={[Styles.row]}>
                 <View style={[Styles.w40]}>
-                  {setImage(member.image)}
+                  {setImage(member.profileImage)}
                   <Text
                     style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}
                   >

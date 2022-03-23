@@ -11,15 +11,17 @@ import {
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
 import { Styles } from "../styles";
+import Modal from "react-native-modal";
 import MainHeader from "../component/mainHeader";
 import * as navigate from "../navigator/RootNavigation";
 import * as Global from "../globalState";
 import mainScript from "../script";
-import Script from "../script/OccupantAddOTP_script";
+import Script from "../script/ResidentAddOTP_script";
 import ResentOTP from "../script/ResidentAdd_script";
 import KEYS from "../KEYS.json";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import Store from "../store";
+import Modal_alert from "../component/modal_alert";
 
 export default function ResidentAddOTP({ route }) {
   var timer = 60
@@ -42,6 +44,8 @@ export default function ResidentAddOTP({ route }) {
   const setUnitMember = useSetRecoilState(Global.unitMember);
   const [countDown, setCountDown] = React.useState(false);
   const [displayTime, setDisplayTime] = React.useState(timer);
+  const [alert, setAlert] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
   var setOTPTimer;
 
   console.log('OTPdata', OTPdata)
@@ -55,13 +59,16 @@ export default function ResidentAddOTP({ route }) {
       String(unit5) +
       String(unit6);
     Script.memberConfirmOtp(otp, OTPdata, KEYS.TOKEN, (res) => {
-      console.log(res);
+      console.log('memberConfirmOtp', res);
       if (typeof res === "object") {
         clearInterval(setOTPTimer);
         var data = mainScript.recoilTranform(unitMember);
         data.unitMember = res;
         setUnitMember(data);
         navigate.navigate("MemberManageIndivi");
+      } else {
+        setTextAlert(res);
+        setAlert(true);
       }
     });
   };
@@ -74,13 +81,18 @@ export default function ResidentAddOTP({ route }) {
         OTPdata.mobileNo,
         unitMember.unitId,
         (res) => {
-          console.log("callback", res);
-          var otp = OTPdata;
-          otp.refNo = res.refNo;
-          setOTPdata(otp)
-          setCountDown(true)
-          setOTPTimer = setInterval(OTPTimer, 1000);
-          console.log(otp)
+          if(res.memberResendOtp) {
+            console.log("callback", res);
+            var otp = OTPdata;
+            otp.refNo = res.memberResendOtp.refNo;
+            setOTPdata(otp)
+            setCountDown(true)
+            setOTPTimer = setInterval(OTPTimer, 1000);
+            console.log(otp)
+          } else {
+            setTextAlert(res);
+            setAlert(true);
+          }
         }
       );
     });
@@ -95,6 +107,8 @@ export default function ResidentAddOTP({ route }) {
       clearInterval(setOTPTimer);
     }
   }
+
+  const closeModalAlert = () => setAlert(false);
 
   return (
     <>
@@ -372,6 +386,9 @@ export default function ResidentAddOTP({ route }) {
           </View>
         </TouchableWithoutFeedback>
       </View>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
     </>
   );
 }

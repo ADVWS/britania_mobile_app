@@ -13,16 +13,13 @@ import OTP_btn from "../OccupantDetail_component/OTP_btn";
 export default function OccupantBtn({ item }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
-  const [dataListOccupant, setDataListOccupant] = React.useState(
-    unitMember.unitMember.tenant
-  );
   const params = item;
   function gotoOccupantDetail(member) {
     navigate.navigate("OccupantDetail", member);
   }
 
   const setImage = (img) => {
-    if (img) {
+    if (img !== null) {
       return (
         <Image
           source={{ uri: img }}
@@ -45,8 +42,6 @@ export default function OccupantBtn({ item }) {
     }
   };
 
-  console.log("DEV", unitMember.unitMember.tenant);
-
   return (
     <View>
       {unitMember.unitMember.tenant.map((item) => (
@@ -65,7 +60,7 @@ export default function OccupantBtn({ item }) {
         >
           <View style={[Styles.row]}>
             <View style={[Styles.w40]}>
-              {setImage(item.image)}
+              {setImage(item.profileImage)}
               <Text
                 style={[
                   Styles.f_22,

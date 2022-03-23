@@ -3,6 +3,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 
 import * as navigate from "../navigator/RootNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
+import Modal from 'react-native-modal'
 
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
@@ -10,6 +11,8 @@ import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import Radio from "../component/ResidentEdit_component/radio_resadd";
 import ThaiForm from "../component/ResidentEdit_component/thai_form";
 import ForeignForm from "../component/ResidentEdit_component/foreigner_form";
+import Modal_alert from "../component/modal_alert";
+import Modal_loading from "../component/modal_loading";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
 import KEYS from "../KEYS.json";
@@ -25,6 +28,9 @@ const ResidentEdit = ({ route }) => {
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [uploadImage, setUploadImage] = React.useState("");
   const setUnitMember = useSetRecoilState(Global.unitMember);
+  const [alert, setAlert] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [texAlert, setTextAlert] = React.useState("");
 
   function isSelectType(TYPE) {
     setType(TYPE);
@@ -35,6 +41,10 @@ const ResidentEdit = ({ route }) => {
   }
 
   function saveEdit(edit) {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000);
     console.log("saveEdit", edit);
     if (uploadImage !== "") {
       var formdata = new FormData();
@@ -50,6 +60,7 @@ const ResidentEdit = ({ route }) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
           console.log("IMAGE", res);
+          edit.files = res
           editData(edit);
         });
       });
@@ -66,10 +77,17 @@ const ResidentEdit = ({ route }) => {
         member.unitid,
         (res) => {
           if (typeof res === "object") {
+            setLoading(false)
             var data = mainScript.recoilTranform(unitMember);
             data.unitMember = res;
             setUnitMember(data);
             navigate.navigate("MemberManageIndivi");
+          } else {
+            setTextAlert(res)
+            setLoading(false)
+            setTimeout(() => {
+              setAlert(true)
+            }, 500);
           }
         }
       );
@@ -80,10 +98,17 @@ const ResidentEdit = ({ route }) => {
         member.unitid,
         (res) => {
           if (typeof res === "object") {
+            setLoading(false)
             var data = mainScript.recoilTranform(unitMember);
             data.unitMember = res;
             setUnitMember(data);
             navigate.navigate("MemberManageIndivi");
+          } else {
+            setTextAlert(res)
+            setLoading(false)
+            setTimeout(() => {
+              setAlert(true)
+            }, 500);
           }
         }
       );
@@ -91,8 +116,7 @@ const ResidentEdit = ({ route }) => {
   }
 
   const setImage = (img) => {
-    console.log(img);
-    if (img) {
+    if (img !== null) {
       return <ProfilePicCom picture={{ uri: img }} uploadImage={uploadImg} />;
     } else {
       return (
@@ -104,6 +128,8 @@ const ResidentEdit = ({ route }) => {
     }
   };
 
+  const closeModalAlert = () => setAlert(false);
+
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
       <MainHeader name={LANG.residentedit_text_01} backto={"ResidentDetail"} />
@@ -112,7 +138,7 @@ const ResidentEdit = ({ route }) => {
         scrollEventThrottle={16}
         style={[Styles.w100, Styles.h75]}
       >
-        <View style={Styles.al_center}>{setImage(member.image)}</View>
+        <View style={Styles.al_center}>{setImage(member.profileImage)}</View>
         <View style={Styles.ml5}>
           <Text style={[Styles.mainFont, Styles.f_22, Styles.black_gray_text]}>
             {LANG.residentedit_text_03}
@@ -128,6 +154,12 @@ const ResidentEdit = ({ route }) => {
           <ForeignForm item={member} saveDataEdit={saveEdit} />
         )}
       </ScrollView>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+      <Modal isVisible={loading} style={Styles.al_center}>
+        <Modal_loading />
+      </Modal>
     </View>
   );
 };

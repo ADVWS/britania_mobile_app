@@ -4,28 +4,59 @@ import Store from "../store"
 export const memberUpdateProfile_thai = async (edit, key, unitid, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
-        const EDIT = `
-            mutation {
-                memberUpdateProfile(input: {
-                    name : "${edit.name}",
-                    mobileNo: "${edit.mobileNo}",
-                    unitMemberId: "${edit.unitMemberId}",
-                    nationType: ${edit.nationType},
-                    email: "${edit.email}",
-                    idcard: "${edit.idcard}",
-                    expiredDate: "${edit.expiredDate}",
-                }){
-                    name
-                    mobileNo
-                    email
-                    nationType
-                    idcard
-                    passport
-                    expiredDate
-                    unitMemberId
+        if(edit.files){
+            var EDIT = `
+                mutation {
+                    memberUpdateProfile(input: {
+                        name : "${edit.name}",
+                        mobileNo: "${edit.mobileNo}",
+                        unitMemberId: "${edit.unitMemberId}",
+                        nationType: ${edit.nationType},
+                        email: "${edit.email}",
+                        idcard: "${edit.idcard}",
+                        expiredDate: "${edit.expiredDate}",
+                        memberImage: {
+                            fileId: "${edit.files.fileId}"
+                            fileCurName: "${edit.files.fileCurName}"
+                            filePrevName: "${edit.files.filePrevName}"
+                            fileExtension: "${edit.files.fileExtension}"
+                        }
+                    }){
+                        name
+                        mobileNo
+                        email
+                        nationType
+                        idcard
+                        passport
+                        expiredDate
+                        unitMemberId
+                    }
                 }
-            }
-        `;
+            `;
+        } else {
+            var EDIT = `
+                mutation {
+                    memberUpdateProfile(input: {
+                        name : "${edit.name}",
+                        mobileNo: "${edit.mobileNo}",
+                        unitMemberId: "${edit.unitMemberId}",
+                        nationType: ${edit.nationType},
+                        email: "${edit.email}",
+                        idcard: "${edit.idcard}",
+                        expiredDate: "${edit.expiredDate}",
+                    }){
+                        name
+                        mobileNo
+                        email
+                        nationType
+                        idcard
+                        passport
+                        expiredDate
+                        unitMemberId
+                    }
+                }
+            `;
+        }
         updateMember(EDIT, token, unitid, cb)
     })
 }
@@ -33,28 +64,59 @@ export const memberUpdateProfile_thai = async (edit, key, unitid, cb) => {
 export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
-        const EDIT = `
-        mutation {
-            memberUpdateProfile(input: {
-                name : "${edit.name}",
-                mobileNo: "${edit.mobileNo}",
-                unitMemberId: "${edit.unitMemberId}",
-                nationType: ${edit.nationType},
-                email: "${edit.email}",
-                idcard: "${edit.idcard}",
-                passport: "${edit.passport}",
-                expiredDate: "${edit.expiredDate}",
-            }){
-                name
-                mobileNo
-                email
-                nationType
-                idcard
-                passport
-                expiredDate
-            }
+        if(edit.files){
+            var EDIT = `
+                mutation {
+                    memberUpdateProfile(input: {
+                        name : "${edit.name}",
+                        mobileNo: "${edit.mobileNo}",
+                        unitMemberId: "${edit.unitMemberId}",
+                        nationType: ${edit.nationType},
+                        email: "${edit.email}",
+                        idcard: "${edit.idcard}",
+                        passport: "${edit.passport}",
+                        expiredDate: "${edit.expiredDate}",
+                        memberImage: {
+                            fileId: "${edit.files.fileId}"
+                            fileCurName: "${edit.files.fileCurName}"
+                            filePrevName: "${edit.files.filePrevName}"
+                            fileExtension: "${edit.files.fileExtension}"
+                        }
+                    }){
+                        name
+                        mobileNo
+                        email
+                        nationType
+                        idcard
+                        passport
+                        expiredDate
+                    }
+                }
+            `;
+        } else {
+            var EDIT = `
+                mutation {
+                    memberUpdateProfile(input: {
+                        name : "${edit.name}",
+                        mobileNo: "${edit.mobileNo}",
+                        unitMemberId: "${edit.unitMemberId}",
+                        nationType: ${edit.nationType},
+                        email: "${edit.email}",
+                        idcard: "${edit.idcard}",
+                        passport: "${edit.passport}",
+                        expiredDate: "${edit.expiredDate}",
+                    }){
+                        name
+                        mobileNo
+                        email
+                        nationType
+                        idcard
+                        passport
+                        expiredDate
+                    }
+                }
+            `;
         }
-    `;
         updateMember(EDIT, token, unitid, cb)
     })
 }
@@ -81,7 +143,8 @@ export const updateUnit = async (token, unitid, cb) => {
             idcard,
             passport,
             expiredDate,
-            allowHomecare
+            allowHomecare,
+            profileImage
         }
     }`
     const result = await API.request(UNIT, token);

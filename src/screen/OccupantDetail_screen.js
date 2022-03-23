@@ -16,7 +16,6 @@ import * as Global from "../globalState";
 import Modal_confirm from "../component/modal_confirm";
 
 const OccupantDetail = ({ route }) => {
-  // const callback = useRecoilState(Global.callbackAccount);alert
   const [switchInform, setSwitchInform] = React.useState(
     route.params.allowHomecare
   );
@@ -25,7 +24,7 @@ const OccupantDetail = ({ route }) => {
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-
+  console.log(unitMember)
   const informSwitch = (val) => {
     console.log(val);
     var edit = {
@@ -35,8 +34,11 @@ const OccupantDetail = ({ route }) => {
     Script.memberUpdateAllowHomecare(edit, KEYS.TOKEN, member.unitid, (res) => {
       console.log("RESPONE==>", res);
       var newMember = mainScript.recoilTranform(member);
+      var updatedata = mainScript.recoilTranform(unitMember);
+      updatedata.unitMember = res
       newMember.allowHomecare = val;
       setMember(newMember);
+      setUnitMember(updatedata)
       setSwitchInform(val);
     });
   };
@@ -50,7 +52,7 @@ const OccupantDetail = ({ route }) => {
   };
 
   const setImage = (img) => {
-    if (img) {
+    if (img !== null) {
       return (
         <Image
           source={{ uri: img }}
@@ -115,7 +117,7 @@ const OccupantDetail = ({ route }) => {
               >
                 <View style={[Styles.row]}>
                   <View style={[Styles.w40]}>
-                    {setImage(member.image)}
+                    {setImage(member.profileImage)}
                     <Text
                       style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}
                     >

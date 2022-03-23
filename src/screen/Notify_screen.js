@@ -7,7 +7,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Allnotify from "../component/Notify_component/Allnotify";
 import Newsnotify from "../component/Notify_component/Newsnotify";
 import Fixnotify from "../component/Notify_component/FixNotify";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../globalState";
 import Script from "../script/Notification_script";
 import Store from "../store";
@@ -15,7 +15,9 @@ import Key from "../KEYS.json";
 
 const Notify = ({ route }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  const [notify, setNotify] = React.useState([]);
+  //const [notify, setNotify] = React.useState([]);
+  const [dataNotify, setDataNotify] = useRecoilState(Global.dataNotify);
+  const notifySet = useSetRecoilState(Global.dataNotify)
   const backto = route.params.screen;
   const [all, setAll] = React.useState({
     open: true,
@@ -37,15 +39,11 @@ const Notify = ({ route }) => {
     Store.getLocalStorege(Key.TOKEN, (tk) => {
       const token = tk.detail.token;
       Script.notification(token, (res) => {
-        console.log("KEY==>");
-        console.log(Key.TOKEN);
-        console.log(tk);
-        console.log("RES NOTI==>");
-        console.log(res);
-        setNotify(res.notification);
+        //setNotify(res.notification);
+        notifySet(res.notification)
       });
     });
-  });
+  }, []);
 
   function changeTabs(req) {
     var select = { open: true, color: "#bb6a70", text: "#FFF" };
@@ -66,9 +64,6 @@ const Notify = ({ route }) => {
       setFix(select);
     }
   }
-
-  console.log("NOTIFICATION==>");
-  console.log(notify);
 
   return (
     <View style={[Styles.flex, Styles.al_center, Styles.FFF]}>
@@ -116,7 +111,7 @@ const Notify = ({ route }) => {
             <TouchableOpacity
               onPress={() => changeTabs("fix")}
               style={[
-                { alignItems: "center", backgroundColor: fix.color },
+                { width: "25%", alignItems: "center", backgroundColor: fix.color },
                 Styles.p5,
                 Styles.circle,
               ]}
@@ -126,9 +121,9 @@ const Notify = ({ route }) => {
               </Text>
             </TouchableOpacity>
           </View>
-          {all.open && <Allnotify notify={notify} />}
-          {news.open && <Newsnotify notify={notify} />}
-          {fix.open && <Fixnotify notify={notify} />}
+          {all.open && <Allnotify notify={dataNotify} />}
+          {news.open && <Newsnotify notify={dataNotify} />}
+          {fix.open && <Fixnotify notify={dataNotify} />}
         </ScrollView>
       </LinearGradient>
     </View>

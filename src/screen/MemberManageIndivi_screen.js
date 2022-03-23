@@ -14,7 +14,7 @@ export default function MemberManageIndivi_screen() {
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
   const resident = unitMember.unitMember.resident;
   const occupant = unitMember.unitMember.tenant;
-  console.log("unitMember==xx>", unitMember);
+  //console.log("unitMember==xx>", unitMember);
   //gobalData(item);
   const scrollref = React.createRef();
 

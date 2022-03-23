@@ -76,8 +76,7 @@ const AccountHeader = ({}) => {
   }
 
   return (
-    <View style={[Styles.w100, Styles.h15, Styles.row, Styles.p20]}>
-      <View style={[]} />
+    <View style={[Styles.w100, Styles.h20, Styles.row, Styles.p20, userType !== 1 ? Styles.mt50 : null]}>
       <View
         style={[Styles.w80, Styles.text_left, Styles.jc_end, { bottom: 5 }]}
       >
@@ -85,10 +84,10 @@ const AccountHeader = ({}) => {
           style={[
             Styles.mainFont_x,
             Styles.mainColor_5555,
-            { fontSize: 32, top: 5 },
+            Styles.BB6_text,
+            { fontSize: 34, top: 5 },
           ]}
         >
-          {" "}
           {LANG.account_text_01}
         </Text>
       </View>

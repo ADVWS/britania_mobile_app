@@ -117,6 +117,8 @@ export default function thai_form({unit, addMember}) {
         </Text>
         <View style={Styles.al_center}>
           <TextInput
+            maxLength={13}
+            keyboardType={"number-pad"}
             style={[
               Styles.w90,
               Styles.mt10,
@@ -141,6 +143,8 @@ export default function thai_form({unit, addMember}) {
         </Text>
         <View style={Styles.al_center}>
           <TextInput
+           maxLength={10}
+           keyboardType={"number-pad"}
             style={[
               Styles.w90,
               Styles.mt5,

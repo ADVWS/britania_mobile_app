@@ -77,6 +77,7 @@ const removeLocalStorege = async (key, cb) => {
 }
 
 function checkToken(key, token, cb) {
+  console.log(token)
   var mytoken = JSON.parse(token)
   var decode = jwtDecode(mytoken.token)
   if(moment().unix() > decode.exp){
@@ -90,7 +91,6 @@ function checkToken(key, token, cb) {
       }
     })
   } else {
-    console.log('status ready')
     var callback = {
       result: true,
       detail: mytoken
@@ -104,18 +104,25 @@ const saveNewToken = async (key, token, cb) => {
   var value = JSON.stringify(token)
   //try {
     await AsyncStorage.setItem(key, value);
-    var res = {
-      result: true,
-      detail: JSON.parse(token)
+    if(typeof token === 'object'){
+      var res = {
+        result: true,
+        detail: token
+      }
+    } else {
+      var res = {
+        result: true,
+        detail: JSON.parse(token)
+      }
     }
     cb(res)
-  //} catch (error) {
-    // var res = {
-    //   result: false,
-    //   detail: "Error, New Storege fail."
-    // }
-    // cb(res)
-  //}
+  // } catch (error) {
+  //   var res = {
+  //     result: false,
+  //     detail: "Error, New Storege fail."
+  //   }
+  //   cb(res)
+  // }
 }
 
 export default {
