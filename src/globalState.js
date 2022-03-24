@@ -75,6 +75,10 @@ export const dataNotify = atom({
   key: "dataNotify",
   default: [],
 });
+export const ownerType = atom({
+  key: "ownerType",
+  default: "none",
+});
 
 export const informType = atom({
   key: "informType",

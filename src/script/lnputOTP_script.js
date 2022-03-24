@@ -24,7 +24,7 @@ export const login = async (profile, otp, cb) => {
 }
 
 const setProfile = async (token, cb) => {
-    var project = `{
+    const project = `{
         me {
             id
             name

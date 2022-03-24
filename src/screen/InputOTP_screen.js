@@ -31,6 +31,7 @@ export default function InputOTP({ route }) {
   const [refNo, setRefNo] = React.useState(optData.OTP.refNo);
   const userProfile = useSetRecoilState(Global.userProfile)
   const userType = useSetRecoilState(Global.userType)
+  const ownerType = useSetRecoilState(Global.ownerType)
   const [LANG, setLANG] = useRecoilState(Global.Language)
   const [LANGSELECT, setLANGSELECT] = useRecoilState(Global.LANGTEXT)
   const [unit1, setUnit1] = React.useState("");
@@ -80,6 +81,13 @@ export default function InputOTP({ route }) {
     Script.setProfile(token, (res) => {
       setLoading(false)
       if (typeof res === 'object') {
+        if(res.me.unitsOwner){
+          if(res.me.unitsOwner === null){
+            ownerType('none')
+          } else {
+            ownerType('owner')
+          }
+        }
         userType(1)
         userProfile(res)
         var data = JSON.stringify(res)

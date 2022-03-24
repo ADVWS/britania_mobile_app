@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import { Styles } from "../../styles";
-import { SimpleLineIcons, FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import moment from "moment";
 import Script from "../../script/Notification_script";
 import mainScript from "../../script";
@@ -84,7 +84,7 @@ const Fixnotify = (notify) => {
         </Text>
       </TouchableOpacity>
 
-      {notify.notify != undefined
+      {notify.notify != undefined && notify.notify.length > 0
         ? notify.notify.map((item) =>
             item.type == "activity" ? (
               item.readDate === null || !item.readDate ? (
@@ -212,7 +212,12 @@ const Fixnotify = (notify) => {
               )
             ) : null
           )
-        : null}
+        : (
+          <View style={[Styles.w100, Styles.h100, Styles.al_center, Styles.jc_center, {marginTop: '10%'}]}>
+            <MaterialIcons name="notifications" size={90} color="#c0bfc0" />
+            <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, {color:"#c0bfc0"}]}>ไม่พบการแจ้งเตือน</Text>
+          </View>
+        )}
     </View>
   );
 };

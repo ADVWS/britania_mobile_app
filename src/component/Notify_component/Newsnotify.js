@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 import { Styles } from "../../styles";
-import { SimpleLineIcons, FontAwesome } from "@expo/vector-icons";
+import { SimpleLineIcons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import moment from "moment";
 import mainScript from "../../script";
 import Script from "../../script/Notification_script";
@@ -81,7 +81,7 @@ const Newsnotify = (notify) => {
         </Text>
       </TouchableOpacity>
 
-      {notify.notify != undefined
+      {notify.notify != undefined && notify.notify.length > 0
         ? notify.notify.map((item) =>
             item.type == "news" ? (
               item.readDate === null || !item.readDate ? (
@@ -202,7 +202,12 @@ const Newsnotify = (notify) => {
               )
             ) : null
           )
-        : null}
+        : (
+          <View style={[Styles.w100, Styles.h100, Styles.al_center, Styles.jc_center, {marginTop: '10%'}]}>
+            <MaterialIcons name="notifications" size={90} color="#c0bfc0" />
+            <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, {color:"#c0bfc0"}]}>ไม่พบการแจ้งเตือน</Text>
+          </View>
+        )}
     </View>
   );
 };

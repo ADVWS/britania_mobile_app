@@ -51,7 +51,7 @@ const AnimatedHeader = ({ animatedValue }) => {
     if (userType !== 1) {
       return (
         <TouchableOpacity
-          disabled={true}
+          //disabled={true}
           onPress={() => navigate.navigate("Notify", { screen })}
           style={{ top: 3 }}
         >

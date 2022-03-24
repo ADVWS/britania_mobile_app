@@ -40,6 +40,7 @@ const Notify = ({ route }) => {
       const token = tk.detail.token;
       Script.notification(token, (res) => {
         //setNotify(res.notification);
+        console.log(res)
         notifySet(res.notification)
       });
     });

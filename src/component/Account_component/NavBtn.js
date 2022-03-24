@@ -23,6 +23,7 @@ const NavBtn = ({ optiono }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [userType, setUserType] = useRecoilState(Global.userType);
   const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile);
+  const [ownerType, setownerType] = useRecoilState(Global.ownerType)
   console.log("NavBtn User Profile");
   console.log(userProfile);
   const logout = (req) => {
@@ -70,7 +71,7 @@ const NavBtn = ({ optiono }) => {
               <MaterialIcons name="arrow-forward-ios" size={15} />
             </View>
           </TouchableOpacity>
-          {userProfile.me.unitsOwner && userProfile.me.unitsOwner !== null && (
+          {ownerType === "owner" && (
             <TouchableOpacity
               onPress={() => navigate.navigate("MemberManage")}
               style={[
