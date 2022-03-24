@@ -85,7 +85,11 @@ export default function InputOTP({ route }) {
           if(res.me.unitsOwner === null){
             ownerType('none')
           } else {
-            ownerType('owner')
+            if(res.me.unitsOwner.length > 0){
+              ownerType('owner')
+            } else {
+              ownerType('none')
+            }
           }
         }
         userType(1)
