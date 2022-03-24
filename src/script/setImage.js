@@ -1,4 +1,4 @@
-import Script from ".";
+import Script from "../script";
 import Key from "../KEYS.json";
 import Store from "../store";
 var count = 0;

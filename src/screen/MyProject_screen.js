@@ -26,9 +26,11 @@ const MyProject = () => {
     const setlistHistory = useSetRecoilState(Global.dataListHistory)
 
     const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile)
+    const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
     const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner)
     const setUnitOwner = useSetRecoilState(Global.unitOwner)
     const [typeInform, setTypeInform] = useRecoilState(Global.informType)
+    const [LANG, setLANG] = useRecoilState(Global.Language)
     const setCaseType = useSetRecoilState(Global.caseType)
 
 
@@ -71,17 +73,17 @@ const MyProject = () => {
                     Styles.h100,
                     Styles.mainColor2,
                 ]}>
-                <MainHeader name={'โครงการของฉัน'} backto={'Homecare'}  />
+                <MainHeader name={LANG.homecare_text_41} backto={'Homecare'}  />
                 {userProfile.me.unitsAllowHomecare.map((items) => (
                     <TouchableOpacity
                         onPress={() => setDataSelect(items)}
                         style={[Styles.w100, Styles.p15, Styles.FFF, { borderBottomWidth: 0.5, borderColor: "#DDD" }]}>
                         <View style={[Styles.w100]}>
                             <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
-                                {items.projectName}
+                                {LANGTEXT === 'TH' ? items.project.name : items.project.nameEng}
                             </Text>
                             <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, {color: "#8f8f8f"}]}>
-                                บ้านเลขที่ {items.houseNumber}
+                                {LANG.homecare_text_02} {items.houseNumber}
                             </Text>
                         </View>
                     </TouchableOpacity>

@@ -27,9 +27,10 @@ function Homecare() {
     const [listInform, setListInform] = useRecoilState(Global.dataListInform)
     const [listHistory, setlistHistory] = useRecoilState(Global.dataListHistory)
     const [LANG, setLANG] = useRecoilState(Global.Language)
+    const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
     const [project, _setProject] = useRecoilState(Global.project)
     const [selected, setSelected] = React.useState('INFORM')
-    console.log('==>',moment())
+    console.log('==>',LANGTEXT)
     function selectMenu(SELECT) {
         switch (SELECT) {
             case 'INFORM':
@@ -59,7 +60,7 @@ function Homecare() {
                         style={[Styles.w100, Styles.p15, Styles.mainColorF9, Styles.row]}>
                         <View style={[Styles.w80]}>
                             <Text style={[Styles.f_24, Styles.black_gray_text, Styles.mainFont, Styles.mt5]}>
-                                {unitOwner.projectName}
+                                {LANGTEXT == 'TH' ? unitOwner.project.name : unitOwner.project.nameEng}
                             </Text>
                             <Text style={[Styles.f_22, Styles.mainFont_x, Styles.mt5, { color: '#A8A6A6' }]}>
                                 {LANG.homecare_text_02} {unitOwner.houseNumber}

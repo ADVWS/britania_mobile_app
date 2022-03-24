@@ -206,6 +206,7 @@ const NavBtn = ({ optiono }) => {
               Styles.br_5,
               Styles.mt10,
               Styles.row,
+              {marginBottom: '30%'}
             ]}
           >
             <View style={[Styles.w90]}>

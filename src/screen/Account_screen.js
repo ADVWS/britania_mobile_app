@@ -61,7 +61,7 @@ export default function Account() {
               )}
             </View>
           </View>
-          <View>{userType === 1 ? <NavBtn /> : <NovBtn_noneuser />}</View>
+          {userType === 1 ? <NavBtn /> : <NovBtn_noneuser />}
         </View>
       </ScrollView>
       <Text

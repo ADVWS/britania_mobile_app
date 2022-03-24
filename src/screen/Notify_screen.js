@@ -112,12 +112,12 @@ const Notify = ({ route }) => {
             <TouchableOpacity
               onPress={() => changeTabs("fix")}
               style={[
-                { width: "25%", alignItems: "center", backgroundColor: fix.color },
-                Styles.p5,
+                { width: LANG.notify_text_04.length > 10 ? "70%" : "25%", alignItems: "center", backgroundColor: fix.color },
+                LANG.notify_text_04.length > 10 ? {padding: 7} : Styles.p5,
                 Styles.circle,
               ]}
             >
-              <Text style={[Styles.mainFont, Styles.f_22, { color: fix.text }]}>
+              <Text style={[Styles.mainFont, LANG.notify_text_04.length > 10 ? Styles.f_18 : Styles.f_22, { color: fix.text }]}>
                 {LANG.notify_text_04}
               </Text>
             </TouchableOpacity>

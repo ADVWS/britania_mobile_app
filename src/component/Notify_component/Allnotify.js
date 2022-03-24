@@ -10,7 +10,9 @@ import Key from "../../KEYS.json";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
 
+
 const Allnotify = (notify) => {
+  const [LANG, setLANG] = useRecoilState(Global.Language);
   const notifySet = useSetRecoilState(Global.dataNotify);
   const [dataNotify, setDataNotify] = useRecoilState(Global.dataNotify);
   var read = 0;
@@ -192,9 +194,9 @@ const Allnotify = (notify) => {
             )
           )
         : (
-        <View style={[Styles.w100, Styles.h100, Styles.al_center, Styles.jc_center, {marginTop: '10%'}]}>
-          <MaterialIcons name="notifications" size={90} color="#c0bfc0" />
-          <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, {color:"#c0bfc0"}]}>ไม่พบการแจ้งเตือน</Text>
+        <View style={[Styles.w100, Styles.h100, Styles.al_center, Styles.jc_center, {marginTop: '5%'}]}>
+          <MaterialIcons name="notifications" size={90} color="#c0bfc0"/>
+          <Text style={[Styles.f_24, Styles.mainFont_x, Styles.mt10, {color:"#c0bfc0", marginBottom: '20%'}]}>{LANG.notify_text_06}</Text>
         </View>
         )}
     </View>

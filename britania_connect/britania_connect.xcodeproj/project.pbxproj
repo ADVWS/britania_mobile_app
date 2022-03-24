@@ -1,0 +1,698 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FBA83A9F27EC62FA00A3BC65 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83A9E27EC62FA00A3BC65 /* Tests_iOS.swift */; };
+		FBA83AA127EC62FA00A3BC65 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83AA027EC62FA00A3BC65 /* Tests_iOSLaunchTests.swift */; };
+		FBA83AAB27EC62FB00A3BC65 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83AAA27EC62FB00A3BC65 /* Tests_macOS.swift */; };
+		FBA83AAD27EC62FB00A3BC65 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83AAC27EC62FB00A3BC65 /* Tests_macOSLaunchTests.swift */; };
+		FBA83AAE27EC62FB00A3BC65 /* britania_connectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83A8627EC62F800A3BC65 /* britania_connectApp.swift */; };
+		FBA83AAF27EC62FB00A3BC65 /* britania_connectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83A8627EC62F800A3BC65 /* britania_connectApp.swift */; };
+		FBA83AB027EC62FB00A3BC65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83A8727EC62F800A3BC65 /* ContentView.swift */; };
+		FBA83AB127EC62FB00A3BC65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83A8727EC62F800A3BC65 /* ContentView.swift */; };
+		FBA83AB227EC62FB00A3BC65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBA83A8827EC62FA00A3BC65 /* Assets.xcassets */; };
+		FBA83AB327EC62FB00A3BC65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBA83A8827EC62FA00A3BC65 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FBA83A9B27EC62FA00A3BC65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBA83A8127EC62F800A3BC65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBA83A8C27EC62FA00A3BC65;
+			remoteInfo = "britania_connect (iOS)";
+		};
+		FBA83AA727EC62FB00A3BC65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBA83A8127EC62F800A3BC65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBA83A9227EC62FA00A3BC65;
+			remoteInfo = "britania_connect (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FBA83A8627EC62F800A3BC65 /* britania_connectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = britania_connectApp.swift; sourceTree = "<group>"; };
+		FBA83A8727EC62F800A3BC65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FBA83A8827EC62FA00A3BC65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FBA83A8D27EC62FA00A3BC65 /* britania_connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = britania_connect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA83A9327EC62FA00A3BC65 /* britania_connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = britania_connect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA83A9527EC62FA00A3BC65 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		FBA83A9A27EC62FA00A3BC65 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA83A9E27EC62FA00A3BC65 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		FBA83AA027EC62FA00A3BC65 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
+		FBA83AA627EC62FB00A3BC65 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA83AAA27EC62FB00A3BC65 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		FBA83AAC27EC62FB00A3BC65 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FBA83A8A27EC62FA00A3BC65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83A9027EC62FA00A3BC65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83A9727EC62FA00A3BC65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83AA327EC62FB00A3BC65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FBA83A8027EC62F800A3BC65 = {
+			isa = PBXGroup;
+			children = (
+				FBA83A8527EC62F800A3BC65 /* Shared */,
+				FBA83A9427EC62FA00A3BC65 /* macOS */,
+				FBA83A9D27EC62FA00A3BC65 /* Tests iOS */,
+				FBA83AA927EC62FB00A3BC65 /* Tests macOS */,
+				FBA83A8E27EC62FA00A3BC65 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FBA83A8527EC62F800A3BC65 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FBA83A8627EC62F800A3BC65 /* britania_connectApp.swift */,
+				FBA83A8727EC62F800A3BC65 /* ContentView.swift */,
+				FBA83A8827EC62FA00A3BC65 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		FBA83A8E27EC62FA00A3BC65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBA83A8D27EC62FA00A3BC65 /* britania_connect.app */,
+				FBA83A9327EC62FA00A3BC65 /* britania_connect.app */,
+				FBA83A9A27EC62FA00A3BC65 /* Tests iOS.xctest */,
+				FBA83AA627EC62FB00A3BC65 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBA83A9427EC62FA00A3BC65 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				FBA83A9527EC62FA00A3BC65 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		FBA83A9D27EC62FA00A3BC65 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				FBA83A9E27EC62FA00A3BC65 /* Tests_iOS.swift */,
+				FBA83AA027EC62FA00A3BC65 /* Tests_iOSLaunchTests.swift */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		FBA83AA927EC62FB00A3BC65 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				FBA83AAA27EC62FB00A3BC65 /* Tests_macOS.swift */,
+				FBA83AAC27EC62FB00A3BC65 /* Tests_macOSLaunchTests.swift */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FBA83A8C27EC62FA00A3BC65 /* britania_connect (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBA83AB627EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "britania_connect (iOS)" */;
+			buildPhases = (
+				FBA83A8927EC62FA00A3BC65 /* Sources */,
+				FBA83A8A27EC62FA00A3BC65 /* Frameworks */,
+				FBA83A8B27EC62FA00A3BC65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "britania_connect (iOS)";
+			productName = "britania_connect (iOS)";
+			productReference = FBA83A8D27EC62FA00A3BC65 /* britania_connect.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBA83A9227EC62FA00A3BC65 /* britania_connect (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBA83AB927EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "britania_connect (macOS)" */;
+			buildPhases = (
+				FBA83A8F27EC62FA00A3BC65 /* Sources */,
+				FBA83A9027EC62FA00A3BC65 /* Frameworks */,
+				FBA83A9127EC62FA00A3BC65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "britania_connect (macOS)";
+			productName = "britania_connect (macOS)";
+			productReference = FBA83A9327EC62FA00A3BC65 /* britania_connect.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBA83A9927EC62FA00A3BC65 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBA83ABC27EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				FBA83A9627EC62FA00A3BC65 /* Sources */,
+				FBA83A9727EC62FA00A3BC65 /* Frameworks */,
+				FBA83A9827EC62FA00A3BC65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBA83A9C27EC62FA00A3BC65 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = FBA83A9A27EC62FA00A3BC65 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		FBA83AA527EC62FB00A3BC65 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBA83ABF27EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				FBA83AA227EC62FB00A3BC65 /* Sources */,
+				FBA83AA327EC62FB00A3BC65 /* Frameworks */,
+				FBA83AA427EC62FB00A3BC65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBA83AA827EC62FB00A3BC65 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = FBA83AA627EC62FB00A3BC65 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBA83A8127EC62F800A3BC65 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					FBA83A8C27EC62FA00A3BC65 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					FBA83A9227EC62FA00A3BC65 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					FBA83A9927EC62FA00A3BC65 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = FBA83A8C27EC62FA00A3BC65;
+					};
+					FBA83AA527EC62FB00A3BC65 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = FBA83A9227EC62FA00A3BC65;
+					};
+				};
+			};
+			buildConfigurationList = FBA83A8427EC62F800A3BC65 /* Build configuration list for PBXProject "britania_connect" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FBA83A8027EC62F800A3BC65;
+			productRefGroup = FBA83A8E27EC62FA00A3BC65 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FBA83A8C27EC62FA00A3BC65 /* britania_connect (iOS) */,
+				FBA83A9227EC62FA00A3BC65 /* britania_connect (macOS) */,
+				FBA83A9927EC62FA00A3BC65 /* Tests iOS */,
+				FBA83AA527EC62FB00A3BC65 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FBA83A8B27EC62FA00A3BC65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBA83AB227EC62FB00A3BC65 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83A9127EC62FA00A3BC65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBA83AB327EC62FB00A3BC65 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83A9827EC62FA00A3BC65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83AA427EC62FB00A3BC65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FBA83A8927EC62FA00A3BC65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBA83AB027EC62FB00A3BC65 /* ContentView.swift in Sources */,
+				FBA83AAE27EC62FB00A3BC65 /* britania_connectApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83A8F27EC62FA00A3BC65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBA83AB127EC62FB00A3BC65 /* ContentView.swift in Sources */,
+				FBA83AAF27EC62FB00A3BC65 /* britania_connectApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83A9627EC62FA00A3BC65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBA83AA127EC62FA00A3BC65 /* Tests_iOSLaunchTests.swift in Sources */,
+				FBA83A9F27EC62FA00A3BC65 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBA83AA227EC62FB00A3BC65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBA83AAD27EC62FB00A3BC65 /* Tests_macOSLaunchTests.swift in Sources */,
+				FBA83AAB27EC62FB00A3BC65 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBA83A9C27EC62FA00A3BC65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBA83A8C27EC62FA00A3BC65 /* britania_connect (iOS) */;
+			targetProxy = FBA83A9B27EC62FA00A3BC65 /* PBXContainerItemProxy */;
+		};
+		FBA83AA827EC62FB00A3BC65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBA83A9227EC62FA00A3BC65 /* britania_connect (macOS) */;
+			targetProxy = FBA83AA727EC62FB00A3BC65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FBA83AB427EC62FB00A3BC65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FBA83AB527EC62FB00A3BC65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		FBA83AB727EC62FB00A3BC65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VZ6XD628M6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.britania-connect";
+				PRODUCT_NAME = britania_connect;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBA83AB827EC62FB00A3BC65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VZ6XD628M6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.britania-connect";
+				PRODUCT_NAME = britania_connect;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBA83ABA27EC62FB00A3BC65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.britania-connect";
+				PRODUCT_NAME = britania_connect;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FBA83ABB27EC62FB00A3BC65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.britania-connect";
+				PRODUCT_NAME = britania_connect;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		FBA83ABD27EC62FB00A3BC65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "britania_connect (iOS)";
+			};
+			name = Debug;
+		};
+		FBA83ABE27EC62FB00A3BC65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "britania_connect (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBA83AC027EC62FB00A3BC65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "britania_connect (macOS)";
+			};
+			name = Debug;
+		};
+		FBA83AC127EC62FB00A3BC65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADVWS.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "britania_connect (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FBA83A8427EC62F800A3BC65 /* Build configuration list for PBXProject "britania_connect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBA83AB427EC62FB00A3BC65 /* Debug */,
+				FBA83AB527EC62FB00A3BC65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBA83AB627EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "britania_connect (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBA83AB727EC62FB00A3BC65 /* Debug */,
+				FBA83AB827EC62FB00A3BC65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBA83AB927EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "britania_connect (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBA83ABA27EC62FB00A3BC65 /* Debug */,
+				FBA83ABB27EC62FB00A3BC65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBA83ABC27EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBA83ABD27EC62FB00A3BC65 /* Debug */,
+				FBA83ABE27EC62FB00A3BC65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBA83ABF27EC62FB00A3BC65 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBA83AC027EC62FB00A3BC65 /* Debug */,
+				FBA83AC127EC62FB00A3BC65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FBA83A8127EC62F800A3BC65 /* Project object */;
+}

@@ -9,6 +9,7 @@ import Script from "../script/Profile_script";
 import * as navigate from "../navigator/RootNavigation";
 import Modal from "react-native-modal";
 import Modal_alert  from "../component/modal_alert";
+import Modal_loading from "../component/modal_loading"
 
 import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
 import ProfileForm from "../component/Profile_component/ProfileForm";
@@ -30,6 +31,8 @@ export default function Profile_screen() {
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState('');
   const updateUserProfile = useSetRecoilState(Global.userProfile);
+  const [loading, setLoading] = React.useState(false);
+
   const setImage = () => {
     var image = "";
     if (userProfile.me.profileImage) {
@@ -84,6 +87,10 @@ export default function Profile_screen() {
   }
 
   const updateUser = (inputName, inputMobile) => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 4000);
     if (ulImage !== "") {
       var formdata = new FormData();
       var Type = ulImage.substring(ulImage.lastIndexOf(".") + 1);
@@ -113,7 +120,14 @@ export default function Profile_screen() {
     }
     Script.userUpdateProfile(updatedata, image, Key.TOKEN, (res) => {
       if (typeof res === "object") {
+        setLoading(false)
         updateGlobal(res.userUpdateProfile);
+      } else {
+        setLoading(false)
+        setTextAlert(res)
+        setTimeout(() => {
+          setAlert(true)
+        }, 500);
       }
     });
   }
@@ -128,6 +142,8 @@ export default function Profile_screen() {
     updateUserProfile(user);
     navigate.navigate("Account")
   };
+
+  const closeModalAlert = () => setAlert(false)
 
   return (
     <LinearGradient
@@ -175,6 +191,12 @@ export default function Profile_screen() {
           </View>
         </ScrollView>
       </View>
+      <Modal isVisible={loading} style={Styles.al_center}>
+          <Modal_loading />
+      </Modal>
+      <Modal isVisible={alert} style={Styles.al_center}>
+          <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
     </LinearGradient>
   );
 }

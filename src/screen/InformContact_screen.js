@@ -223,6 +223,8 @@ const InformContact = ({ route }) => {
                 Styles.mainColor_FFFF,
                 { borderColor: alMobilenoColor, borderWidth: 1.5 },
               ]}
+              keyboardType={"number-pad"}
+              maxLength={10}
               onChangeText={(val) => {
                 setMobileno(val);
               }}
