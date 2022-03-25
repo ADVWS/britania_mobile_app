@@ -4,7 +4,7 @@
     "slug": "britania_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/image/Britania-connect-assets/01_app_icon/512x512_rounded.png",
+    "icon": "./assets/icon1.png",
     "splash": {
       "image": "./assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-03.png",
       "resizeMode": "contain",
@@ -26,7 +26,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon1.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.yourcompany.yourappname",

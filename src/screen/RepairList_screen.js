@@ -89,7 +89,7 @@ const RepiairList = ({ route }) => {
                                         </View>
                                     </View>
                                     <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        {route.params.paramNav == "UNSUCCESS" ? (userCase.isDateWork !== null ? moment(userCase.isDateWork).format("DD/MM/YYYY HH:mm") : '-') : (userCase.isDateFinish !== null ? moment(userCase.isDateFinish).format("DD/MM/YYYY HH:mm") : '-')} น.
+                                        {route.params.paramNav == "UNSUCCESS" ? (userCase.isDateWork !== null ? moment(userCase.isDateWork).format("DD/MM/YYYY HH:mm") + ' น.' : '-') : (userCase.isDateFinish !== null ? moment(userCase.isDateFinish).format("DD/MM/YYYY HH:mm") + ' น.' : '-')}
                                     </Text>
                                     <Text style={[Styles.mainFont, Styles.mt10, { fontSize: 22 }]}>
                                         {LANG.homecare_text_30}

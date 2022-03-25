@@ -19,6 +19,9 @@ const InformBox = ({ data }) => {
 
   function viewDetailOrder() {
     setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000);
     Script.homecareGetCaseById(data.id, key.TOKEN, (res) => {
       console.log("res.homecareGetCaseById:::=>", res.homecareGetCaseById);
       if (res.homecareGetCaseById && res.homecareGetCaseById !== null) {

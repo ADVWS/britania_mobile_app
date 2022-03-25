@@ -101,6 +101,8 @@ const thai_form = (item) => {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
+          maxLength={13}
+          keyboardType={"number-pad"}
           style={[
             Styles.w90,
             Styles.mt10,
@@ -128,6 +130,8 @@ const thai_form = (item) => {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
+          maxLength={10}
+          keyboardType={"number-pad"}
           style={[
             Styles.w90,
             Styles.mt5,

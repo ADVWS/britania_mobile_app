@@ -83,7 +83,7 @@ const Onsite = ({ route }) => {
                                         {LANG.homecare_text_27_1}
                                     </Text>
                                     <Text style={[Styles.mainFont, { color: "#8f8f8f", fontSize: 22 }]}>
-                                        {userCase.isDateWork !== null ? moment(userCase.isDateWork).format("DD/MM/YYYY HH:mm") : '-'} น.
+                                        {userCase.isDateWork !== null ? moment(userCase.isDateWork).format("DD/MM/YYYY HH:mm") + ' น.' : '-'}
                                     </Text>
                                     <Text style={[Styles.mainFont, Styles.mt10, { fontSize: 22 }]}>
                                         {LANG.homecare_text_30}

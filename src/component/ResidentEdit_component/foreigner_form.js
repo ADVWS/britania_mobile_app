@@ -122,6 +122,8 @@ const foreigner_form = (item) => {
       </Text>
       <View style={Styles.al_center}>
         <TextInput
+          maxLength={10}
+          keyboardType={"number-pad"}
           style={[
             Styles.w90,
             Styles.mt5,
