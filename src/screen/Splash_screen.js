@@ -17,6 +17,7 @@ export default function Splash() {
   const userType = useSetRecoilState(Global.userType)
   const setLANG = useSetRecoilState(Global.Language)
   const setLANGTEXT = useSetRecoilState(Global.LANGTEXT)
+  const ownerType = useSetRecoilState(Global.ownerType)
 
   runApp()
 
@@ -27,6 +28,17 @@ export default function Splash() {
         if(res.data.me){
           userProfile(res.data)
           userType(1)
+          if(res.data.me.unitsOwner){
+            if(res.data.me.unitsOwner === null){
+              ownerType('none')
+            } else {
+              if(res.data.me.unitsOwner.length > 0){
+                ownerType('owner')
+              } else {
+                ownerType('none')
+              }
+            }
+          }
           var dataNotify = {
             id: res.data.me.id,
             token: res.token
