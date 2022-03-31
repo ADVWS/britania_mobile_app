@@ -15,6 +15,8 @@ import key from "../KEYS.json";
 import Modal_loading from "../component/modal_loading";
 import Modal_alert from "../component/modal_alert";
 import store from "../store";
+import Modal_expHome from "../component/modal_expHome";
+import moment from "moment";
 
 const MyHome = () => {
   const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile);
@@ -24,6 +26,7 @@ const MyHome = () => {
   const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT);
   const [loading, setLoading] = React.useState(false);
   const [alert, setAlert] = React.useState(false);
+  const [expAlert, setExpAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
   const setCaseType = useSetRecoilState(Global.caseType);
   const setUnitOwner = useSetRecoilState(Global.unitOwner);
@@ -55,6 +58,10 @@ const MyHome = () => {
   console.log('unitOwner:::', unitOwner);
 
   function goToHomecare() {
+    if(moment(unitOwner.expiredDate).unix() < moment().unix()){
+      setExpAlert(true);
+      return
+    }
     setLoading(true);
     var inform = [];
     var history = [];
@@ -91,7 +98,7 @@ const MyHome = () => {
   }
 
   const closeModalAlert = () => setAlert(false);
-
+  const closeModalAlertExp =() => setExpAlert(false);
   return (
     <View style={[Styles.flex, Styles.al_center, Styles.mainColor2]}>
       <View style={[Styles.al_center, Styles.w100, Styles.h100]}>
@@ -232,6 +239,9 @@ const MyHome = () => {
       </Modal>
       <Modal isVisible={alert} style={Styles.al_center}>
         <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+      <Modal isVisible={expAlert} style={Styles.al_center}>
+        <Modal_expHome LANG={LANG} closeModalAlert={closeModalAlertExp} />
       </Modal>
     </View>
   );

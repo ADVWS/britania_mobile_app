@@ -126,7 +126,7 @@ const AllTabBottom = () => {
               name="Account"
               component={AccountScreen}
               options={{
-                tabBarLabel: LANG.home_text_04,
+                tabBarLabel: LANG.home_text_05,
                 tabBarLabelStyle: { fontSize: 13 },
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons

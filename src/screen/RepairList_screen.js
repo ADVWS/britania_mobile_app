@@ -81,7 +81,7 @@ const RepiairList = ({ route }) => {
                                             </Text>
                                         </View>
                                         <View style={[Styles.w50, Styles.al_end, Styles.mt10]}>
-                                            <View style={[Styles.circle, Styles.al_center, Styles.jc_center, { backgroundColor: "#dbecfc" }]}>
+                                            <View style={[Styles.circle, Styles.al_center, Styles.jc_center]}>
                                                 <Text style={[Styles.mainFont_x, Styles.mt5, { color: "#267bbf", marginLeft: 10, marginRight: 10, fontSize: 20 }]}>
                                                     {Script.statusTranform(userCase.status)}
                                                 </Text>

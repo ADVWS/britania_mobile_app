@@ -147,7 +147,7 @@ const OrderList = ({ data, index, route, informDetail }) => {
                         </View>
                     </TouchableOpacity>
                 }
-                {route === "SUCCESS" &&
+                {route === "SUCCESS" && data.isRate !== true &&
                     <TouchableOpacity
                         onPress={() => gotoSatisfaction(data.homecareName)}
                         style={[Styles.w100, Styles.p15, Styles.mainColor, Styles.br_5, Styles.al_center, { marginBottom: 20 }]}>

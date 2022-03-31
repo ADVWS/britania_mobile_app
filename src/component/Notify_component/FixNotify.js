@@ -72,7 +72,7 @@ const Fixnotify = (notify) => {
             Styles.mb10,
           ]}
         >
-          อ่านทั้งหมด (
+          {LANG.notify_text_05} (
           {
             notify.notify.filter((item) => {
               return (

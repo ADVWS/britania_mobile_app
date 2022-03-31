@@ -24,6 +24,7 @@ const NavBtn = ({ optiono }) => {
   const [userType, setUserType] = useRecoilState(Global.userType);
   const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile);
   const [ownerType, setownerType] = useRecoilState(Global.ownerType)
+  const LogoutownerType = useSetRecoilState(Global.ownerType)
   console.log("NavBtn User Profile");
   console.log(userProfile);
   const logout = (req) => {
@@ -32,6 +33,7 @@ const NavBtn = ({ optiono }) => {
     } else {
       Store.removeLocalStorege(Key.PROFILE, (res) => {
         Store.removeLocalStorege(Key.TOKEN, (_res) => {
+          LogoutownerType('none')
           setConfirm(false);
           navigate.navigate("Login");
         });
