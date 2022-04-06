@@ -38,6 +38,7 @@ export const checkToken = async (key, cb) => {
                         userId
                         allowHomecare
                         memberStatus
+                        insuranceExpiryDate
                         ownerType
                              expiredDate
                           memberStatus
@@ -74,6 +75,7 @@ export const checkToken = async (key, cb) => {
                       expiredDate
                       allowHomecare
                       memberStatus
+                      insuranceExpiryDate
                     }
                     profileImage
                     }

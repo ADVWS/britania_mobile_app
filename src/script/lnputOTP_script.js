@@ -44,6 +44,7 @@ const setProfile = async (token, cb) => {
                 userId
                 allowHomecare
                 memberStatus
+                unitsAllowHomecare
                 ownerType
                      expiredDate
                   memberStatus
@@ -80,6 +81,7 @@ const setProfile = async (token, cb) => {
               expiredDate
               allowHomecare
               memberStatus
+              unitsAllowHomecare
             }
             profileImage
             }

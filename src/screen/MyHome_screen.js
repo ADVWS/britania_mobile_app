@@ -58,7 +58,7 @@ const MyHome = () => {
   console.log('unitOwner:::', unitOwner);
 
   function goToHomecare() {
-    if(moment(unitOwner.expiredDate).unix() < moment().unix()){
+    if(moment(unitOwner.insuranceExpiryDate).unix() < moment().unix()){
       setExpAlert(true);
       return
     }
