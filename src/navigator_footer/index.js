@@ -111,13 +111,13 @@ const AllTabBottom = () => {
               component={HomeScreen}
               options={{
                 tabBarLabel: LANG.home_text_03,
-                tabBarLabelStyle: { fontSize: 13 },
+                tabBarLabelStyle: { fontSize: 18, fontFamily: "Helvethaica_x" },
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="home"
                     color={color}
                     size={25}
-                    style={{ marginTop: 10 }}
+                    style={{ marginTop: 5 }}
                   />
                 ),
               }}
@@ -127,13 +127,13 @@ const AllTabBottom = () => {
               component={AccountScreen}
               options={{
                 tabBarLabel: LANG.home_text_05,
-                tabBarLabelStyle: { fontSize: 13 },
+                tabBarLabelStyle: { fontSize: 18, fontFamily: "Helvethaica_x" },
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="account"
                     color={color}
                     size={25}
-                    style={{ marginTop: 10 }}
+                    style={{ marginTop: 5 }}
                   />
                 ),
               }}
@@ -155,13 +155,13 @@ const AllTabBottom = () => {
               component={HomeScreen}
               options={{
                 tabBarLabel: LANG.home_text_03,
-                tabBarLabelStyle: { fontSize: 13 },
+                tabBarLabelStyle: { fontSize: 18, fontFamily: "Helvethaica_x" },
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="home"
                     color={color}
                     size={25}
-                    style={{ marginTop: 10 }}
+                    style={{ marginTop: 5 }}
                   />
                 ),
               }}
@@ -171,13 +171,13 @@ const AllTabBottom = () => {
               component={MyHomeScreen}
               options={{
                 tabBarLabel: LANG.home_text_04,
-                tabBarLabelStyle: { fontSize: 13 },
+                tabBarLabelStyle: { fontSize: 18, fontFamily: "Helvethaica_x" },
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="home-city"
                     color={color}
                     size={25}
-                    style={{ marginTop: 10 }}
+                    style={{ marginTop: 5 }}
                   />
                 ),
               }}
@@ -187,13 +187,13 @@ const AllTabBottom = () => {
               component={AccountScreen}
               options={{
                 tabBarLabel: LANG.home_text_05,
-                tabBarLabelStyle: { fontSize: 13 },
+                tabBarLabelStyle: { fontSize: 18, fontFamily: "Helvethaica_x" },
                 tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
                     name="account"
                     color={color}
                     size={25}
-                    style={{ marginTop: 10 }}
+                    style={{ marginTop: 5 }}
                   />
                 ),
               }}

@@ -38,7 +38,10 @@ export default function Account() {
 
   return (
     <>
-      <ScrollView colors={["#f9f9f9"]} style={[Styles.flex, Styles.p10, Styles.h90]}>
+      <ScrollView
+        colors={["#f9f9f9"]}
+        style={[Styles.flex, Styles.p10, Styles.h90]}
+      >
         <View style={[Styles.flex, Styles.al_center, Styles.w100, Styles.h100]}>
           <AccountHeader />
           <View style={[Styles.w100, Styles.p15]}>
@@ -63,19 +66,21 @@ export default function Account() {
           </View>
           {userType === 1 ? <NavBtn /> : <NovBtn_noneuser />}
         </View>
+        {/* ใส่กันบัค ถ้าบัคแก้ตรงนี้ */}
+        <Text> </Text>
       </ScrollView>
       <Text
-          style={[
-            Styles.mainFont_x,
-            Styles.mb10,
-            Styles.f_24,
-            Styles.text_center,
-            { bottom: 0, backgroundColor: "transparent" },
-            Styles.w100,
-          ]}
-        >
-          {LANG.account_text_08} {VER.expo.version}
-        </Text>
+        style={[
+          Styles.mainFont_x,
+          Styles.mb10,
+          Styles.f_24,
+          Styles.text_center,
+          { bottom: 0, backgroundColor: "transparent" },
+          Styles.w100,
+        ]}
+      >
+        {LANG.account_text_08} {VER.expo.version}
+      </Text>
     </>
   );
 }

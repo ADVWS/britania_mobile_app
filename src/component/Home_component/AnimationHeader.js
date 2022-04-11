@@ -112,7 +112,7 @@ const AnimatedHeader = ({ animatedValue }) => {
         <Animated.Image
           source={require("../../../assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-15.png")}
           // style={[Styles.w70, { tintColor: imageSet, height: '32%' }]}
-          style={[Styles.w100, { height: "35%" }]}
+          style={[Styles.w100, { height: "40%" }]}
         />
       </View>
       <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
