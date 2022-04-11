@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-} from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../globalState";
 import { Styles } from "../styles";
@@ -16,61 +11,80 @@ import Status from "../component/ResidentDetail_component/status";
 import * as navigate from "../navigator/RootNavigation";
 import Script from "../script/OccupantDetail_script";
 import mainScript from "../script";
-import KEYS from "../KEYS.json"
-import Modal_confirm from "../component/modal_confirm"
+import KEYS from "../KEYS.json";
+import Modal_confirm from "../component/modal_confirm";
 
 const ResidentDetail = ({ route }) => {
-  const [alert, setAlert] = React.useState(false)
-  const [member, setMember] = React.useState(route.params)
+  const [alert, setAlert] = React.useState(false);
+  const [member, setMember] = React.useState(route.params);
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const setUnitMember = useSetRecoilState(Global.unitMember);
 
-  const openConfirm = () => setAlert(true)
+  const openConfirm = () => setAlert(true);
   const setBtnMember = (status) => {
-    if (status === 'active') {
-      return (<Edit_btn member={member} openConfirm={openConfirm}/>)
+    if (status === "active") {
+      return <Edit_btn member={member} openConfirm={openConfirm} />;
     } else {
-      return (<OTP_btn member={member} />)
+      return (
+        <>
+          <Edit_btn member={member} openConfirm={openConfirm} />
+          <OTP_btn member={member} />
+        </>
+      );
     }
-  }
+  };
 
   const setImage = (img) => {
     if (img !== null) {
-      return (<Image
-        source={{ uri: img }}
-        style={[
-          { width: 100, height: 100, resizeMode: "cover" },
-          Styles.circle,
-        ]} />)
+      return (
+        <Image
+          source={{ uri: img }}
+          style={[
+            { width: 100, height: 100, resizeMode: "cover" },
+            Styles.circle,
+          ]}
+        />
+      );
     } else {
-      return (<Image
-        source={require('../../assets/image/Britania-connect-assets/default-img-circle.png')}
-        style={[
-          { width: 100, height: 100, resizeMode: "cover" },
-          Styles.circle,
-        ]} />)
+      return (
+        <Image
+          source={require("../../assets/image/Britania-connect-assets/default-img-circle.png")}
+          style={[
+            { width: 100, height: 100, resizeMode: "cover" },
+            Styles.circle,
+          ]}
+        />
+      );
     }
-  }
+  };
 
   const confirm = (req) => {
     if (req === "CANCEL") {
       setAlert(false);
     } else {
-      Script.memberDeleteProfile(member.unitMemberId, KEYS.TOKEN, member.unitid,(res)=>{
-        var data = mainScript.recoilTranform(unitMember)
-        data.unitMember = res
-        setUnitMember(data)
-        setAlert(false);
-        navigate.navigate("MemberManageIndivi")
-      })
+      Script.memberDeleteProfile(
+        member.unitMemberId,
+        KEYS.TOKEN,
+        member.unitid,
+        (res) => {
+          var data = mainScript.recoilTranform(unitMember);
+          data.unitMember = res;
+          setUnitMember(data);
+          setAlert(false);
+          navigate.navigate("MemberManageIndivi");
+        }
+      );
     }
-  }
+  };
 
   return (
     <View style={[Styles.flex, Styles.al_center]}>
       <View style={[Styles.al_center, Styles.w100, Styles.h100]}>
-        <MainHeader name={LANG.residentdetail_text_01} backto={"MemberManageIndivi"} />
+        <MainHeader
+          name={LANG.residentdetail_text_01}
+          backto={"MemberManageIndivi"}
+        />
         <ScrollView style={[Styles.w100, Styles.p15, Styles.FFF]}>
           <View>
             <View
@@ -107,7 +121,9 @@ const ResidentDetail = ({ route }) => {
                     <View style={Styles.w10}></View>
                   </View>
                   <View style={[Styles.w100, { marginTop: 7 }]}>
-                    <Text style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}>
+                    <Text
+                      style={[Styles.f_22, Styles.mainFont_x, Styles.spacing5]}
+                    >
                       {LANG.residentdetail_text_03}
                     </Text>
                     <Text
@@ -142,7 +158,10 @@ const ResidentDetail = ({ route }) => {
         </ScrollView>
       </View>
       <Modal isVisible={alert} style={Styles.al_center}>
-        <Modal_confirm text={`${LANG.residentdetail_text_09} ${member.name}`} confirmFunction={confirm}/>
+        <Modal_confirm
+          text={`${LANG.residentdetail_text_09} ${member.name}`}
+          confirmFunction={confirm}
+        />
       </Modal>
     </View>
   );

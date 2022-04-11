@@ -24,7 +24,7 @@ const OccupantDetail = ({ route }) => {
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-  console.log(unitMember)
+  console.log(unitMember);
   const informSwitch = (val) => {
     console.log(val);
     var edit = {
@@ -35,10 +35,10 @@ const OccupantDetail = ({ route }) => {
       console.log("RESPONE==>", res);
       var newMember = mainScript.recoilTranform(member);
       var updatedata = mainScript.recoilTranform(unitMember);
-      updatedata.unitMember = res
+      updatedata.unitMember = res;
       newMember.allowHomecare = val;
       setMember(newMember);
-      setUnitMember(updatedata)
+      setUnitMember(updatedata);
       setSwitchInform(val);
     });
   };
@@ -47,7 +47,12 @@ const OccupantDetail = ({ route }) => {
     if (status === "active") {
       return <Edit_btn member={member} openConfirm={openConfirm} />;
     } else {
-      return <OTP_btn member={member} />;
+      return (
+        <>
+          <Edit_btn member={member} openConfirm={openConfirm} />
+          <OTP_btn member={member} />
+        </>
+      );
     }
   };
 
