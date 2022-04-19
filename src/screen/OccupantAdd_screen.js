@@ -37,11 +37,10 @@ export default function OccupantAdd({ route }) {
   }
 
   function uploadImg(img) {
-    console.log(img);
     setUploadImage(img);
   }
 
-  console.log("item", unitMember);
+  console.log("item====>", unit);
 
   function addMember(add) {
     setLoading(true);
@@ -61,7 +60,6 @@ export default function OccupantAdd({ route }) {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          console.log("IMAGE", res);
           add.files = res;
           addData(add);
         });
@@ -73,7 +71,7 @@ export default function OccupantAdd({ route }) {
 
   function addData(add) {
     if (add.nationType === "thai") {
-      Script.memberAddProflie_thai(add, KEYS.TOKEN, unit.id, (res) => {
+      Script.memberAddProflie_thai(add, KEYS.TOKEN, unit.unitId, (res) => {
         if (typeof res === "object") {
           setLoading(false);
           var data = mainScript.recoilTranform(unitMember);
@@ -93,7 +91,7 @@ export default function OccupantAdd({ route }) {
         }
       });
     } else {
-      Script.memberAddProflie_foreign(add, KEYS.TOKEN, unit.id, (res) => {
+      Script.memberAddProflie_foreign(add, KEYS.TOKEN, unit.unitId, (res) => {
         if (typeof res === "object") {
           setLoading(false);
           var data = mainScript.recoilTranform(unitMember);
@@ -116,7 +114,6 @@ export default function OccupantAdd({ route }) {
   }
 
   const setImage = (img) => {
-    console.log(img);
     if (img) {
       return <ProfilePicCom picture={{ uri: img }} uploadImage={uploadImg} />;
     } else {

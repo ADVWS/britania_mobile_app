@@ -219,7 +219,8 @@ export default function InputOTP({ route }) {
               <TextInput
                 ref={unit1ref}
                 value={unit1}
-                maxLength={1}
+                maxLength={2}
+                defaultValue={unit1}
                 keyboardType="numeric"
                 style={Styles.otpbox}
                 onChangeText={(val) => {

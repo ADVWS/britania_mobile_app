@@ -29,8 +29,6 @@ export default function foreigner_form({ unit, addMember }) {
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
 
-  console.log("foreigner_form", unit.unitId);
-
   const [iosDatepicker, setIosDatepicker] = React.useState(false);
 
   const addData = () => {

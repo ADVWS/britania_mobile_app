@@ -38,9 +38,9 @@ export default function ResidentAdd({ route }) {
   }
 
   function uploadImg(img) {
-    console.log(img)
     setUploadImage(img);
   }
+  console.log('====>',unit.unitId)
 
   function addMember(add) {
     setLoading(true)
@@ -60,7 +60,6 @@ export default function ResidentAdd({ route }) {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          console.log("IMAGE", res);
           add.files = res
           addData(add);
         });
@@ -75,7 +74,7 @@ export default function ResidentAdd({ route }) {
       Script.memberAddProflie_thai(
         add,
         KEYS.TOKEN,
-        unit.unitid,
+        unit.unitId,
         (res) => {
           if (typeof res === "object") {
             setLoading(false)
@@ -100,7 +99,7 @@ export default function ResidentAdd({ route }) {
       Script.memberAddProflie_foreign(
         add,
         KEYS.TOKEN,
-        unit.unitid,
+        unit.unitId,
         (res) => {
           if (typeof res === "object") {
             var data = mainScript.recoilTranform(unitMember);

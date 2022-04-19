@@ -26,6 +26,7 @@ export const updateMember = async (EDIT, token, unitid, cb) => {
 }
 
 export const updateUnit = async (token, unitid, cb) => {
+    console.log(unitid)
     const UNIT = `query {
     unitMemberAll(unitId: "${unitid}") {
             id,

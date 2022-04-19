@@ -17,6 +17,7 @@ import Store from "../../store";
 import Key from "../../KEYS.json";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
+import USERLOGOUT from "../../script/logout_script"
 
 const NavBtn = ({ optiono }) => {
   const [confirm, setConfirm] = React.useState(false);
@@ -31,13 +32,11 @@ const NavBtn = ({ optiono }) => {
     if (req === "CANCEL") {
       setConfirm(false);
     } else {
-      Store.removeLocalStorege(Key.PROFILE, (res) => {
-        Store.removeLocalStorege(Key.TOKEN, (_res) => {
-          LogoutownerType('none')
-          setConfirm(false);
-          navigate.navigate("Login");
-        });
-      });
+      USERLOGOUT.USERLOGOUT((res)=>{
+        LogoutownerType('none')
+        setConfirm(false);
+        navigate.navigate("Login");
+      })
     }
   };
   return (

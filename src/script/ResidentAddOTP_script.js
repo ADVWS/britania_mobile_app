@@ -7,7 +7,7 @@ export const memberConfirmOtp = async (otp, data, key, cb) => {
         const OTP = `
             mutation {
                 memberConfirmOtp(
-                    unitId: "BTN02208",
+                    unitId: "${data.unitId}",
                     otp: "${otp}",
                     refNo: "${data.refNo}",
                     sendTo: "${data.mobileNo}"
@@ -32,9 +32,8 @@ export const memberConfirmOtp = async (otp, data, key, cb) => {
 }
 
 export const sendOTP = async (OTP, token, data, cb) => {
-    console.log(OTP)
     const result = await API.request(OTP, token);
-    console.log('RESULT OTP===>', result)
+    console.log(':::::=====>', result)
     if(typeof result === "object"){
         updateUnit(token, data, cb)
     } else {

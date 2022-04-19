@@ -19,7 +19,6 @@ import * as navigate from "../../navigator/RootNavigation";
 import Modal_alert from "../../component/modal_alert";
 
 export default function thai_form({unit, addMember}) {
-  console.log("user", unit);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [chosenDate, setChosenDate] = React.useState(new Date());
   const [rawDate, setRawDate] = React.useState("");

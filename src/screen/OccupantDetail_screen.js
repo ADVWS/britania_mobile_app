@@ -81,13 +81,14 @@ const OccupantDetail = ({ route }) => {
   };
 
   const confirm = (req) => {
+    console.log('::::::::',unitMember)
     if (req === "CANCEL") {
       setAlert(false);
     } else {
       Script.memberDeleteProfile(
         member.unitMemberId,
         KEYS.TOKEN,
-        member.unitid,
+        unitMember.unitId,
         (res) => {
           var data = mainScript.recoilTranform(unitMember);
           data.unitMember = res;
