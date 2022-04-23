@@ -45,14 +45,14 @@ const InformAdd = ({ route }) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      //aspect: [4, 3],
       quality: 1,
     });
-    if(!result.cancelled){
+    if (!result.cancelled) {
       var imageset = imageAdd;
       setDisplay(false);
-      var imageId = mainScript.makeid(6)
-      imageset.push({img: result.uri, id: imageId});
+      var imageId = mainScript.makeid(6);
+      imageset.push({ img: result.uri, id: imageId });
       setImageAdd(imageset);
       // var galleryArray = gallery;
       // galleryArray.push({img: result.uri, id: imageId});
@@ -64,10 +64,9 @@ const InformAdd = ({ route }) => {
     }
   };
 
-  console.log(imageAdd)
+  console.log(imageAdd);
 
   function gotoInformContact() {
-    
     setAlDetail(false);
     setLoad(true);
     setTimeout(() => {
@@ -85,9 +84,11 @@ const InformAdd = ({ route }) => {
       return;
     }
     setIsCase(mainScript.recoilTranform(isCase));
-    var selectImage = []
-    if(imageAdd.length > 0){
-      imageAdd.map((img)=>{selectImage.push(img.img)})
+    var selectImage = [];
+    if (imageAdd.length > 0) {
+      imageAdd.map((img) => {
+        selectImage.push(img.img);
+      });
     }
     isCase.description = detail;
     isCase.id = mainScript.makeid(6);
@@ -98,6 +99,7 @@ const InformAdd = ({ route }) => {
     indexPic = 0;
     navigate.navigate("InformContact", isCase);
     var newCase = [isCase];
+
     if (caseList.length > 0) {
       var setNewcase = mainScript.recoilTranform(caseList);
       setNewcase.push(isCase);
@@ -109,12 +111,14 @@ const InformAdd = ({ route }) => {
     navigate.navigate("InformContact", isCase);
   }
 
-  function deleteImage(id){
-    var remove = imageAdd.filter(function(img) { return img.id != id; }); 
+  function deleteImage(id) {
+    var remove = imageAdd.filter(function (img) {
+      return img.id != id;
+    });
     //setGallery(remove)
-    setImageAdd(remove)
-    if(imageAdd.length === 0){
-      setDisplay(false)
+    setImageAdd(remove);
+    if (imageAdd.length === 0) {
+      setDisplay(false);
     }
   }
 
@@ -186,7 +190,9 @@ const InformAdd = ({ route }) => {
                       ]}
                     >
                       <TouchableOpacity
-                        onPress={()=>{deleteImage(item.id)}}
+                        onPress={() => {
+                          deleteImage(item.id);
+                        }}
                         style={[
                           Styles.FFF,
                           Styles.al_center,

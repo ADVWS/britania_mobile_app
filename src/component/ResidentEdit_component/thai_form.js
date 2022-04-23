@@ -1,47 +1,53 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput,
+} from "react-native";
 
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
 import moment from "moment";
-import mainScript from "../../script"
+import mainScript from "../../script";
 import * as Global from "../../globalState";
-import KEYS from "../../KEYS.json"
-import Script from "../../script/ResidentEdit_script"
+import KEYS from "../../KEYS.json";
+import Script from "../../script/ResidentEdit_script";
 import Modal from "react-native-modal";
-import Modal_alert  from "../../component/modal_alert";
+import Modal_alert from "../../component/modal_alert";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 const thai_form = (item) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  const [member, setMember] = React.useState(item.item)
-  const [name, setName] = React.useState(member.name)
-  const [idcard, setIdcard] = React.useState(member.idcard)
-  const [mobileNo, setMobileNo] = React.useState(member.mobileNo)
-  const [email, setEmail] = React.useState(member.email)
+  const [member, setMember] = React.useState(item.item);
+  const [name, setName] = React.useState(member.name);
+  const [idcard, setIdcard] = React.useState(member.idcard);
+  const [mobileNo, setMobileNo] = React.useState(member.mobileNo);
+  const [email, setEmail] = React.useState(member.email);
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
-  const [texAlert, setTextAlert] = React.useState('');
+  const [texAlert, setTextAlert] = React.useState("");
   const setUnitMember = useSetRecoilState(Global.unitMember);
   const saveEdit = () => {
-    var checker = []
-    if(name === ''){
-      checker.push(false)
+    var checker = [];
+    if (name === "") {
+      checker.push(false);
     }
-    if(idcard === ''){
-      checker.push(false)
+    if (idcard === "") {
+      checker.push(false);
     }
-    if(mobileNo === ''){
-      checker.push(false)
+    if (mobileNo === "") {
+      checker.push(false);
     }
-    if(email === ''){
-      checker.push(false)
+    if (email === "") {
+      checker.push(false);
     }
-    if(checker.indexOf(false) !== -1){
-      setTextAlert(LANG.alert_text_01)
-      setAlert(true)
-      return
+    if (checker.indexOf(false) !== -1) {
+      setTextAlert(LANG.alert_text_01);
+      setAlert(true);
+      return;
     }
     var edit = {
       name: name,
@@ -50,16 +56,15 @@ const thai_form = (item) => {
       email: email,
       nationType: "thai",
       unitMemberId: member.unitMemberId,
-    }
-    item.saveDataEdit(edit)
-  }
+    };
+    console.log("Edition Happened");
+    item.saveDataEdit(edit);
+  };
 
-  const closeModalAlert = () => setAlert(false)
+  const closeModalAlert = () => setAlert(false);
 
   return (
-    <KeyboardAvoidingView
-      behavior="padding" 
-      style={{ marginBottom: 30 }}>
+    <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
       <Text
         style={[
           Styles.ml5,
@@ -79,11 +84,11 @@ const thai_form = (item) => {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={name}
-          onChangeText={(val)=>{
-            setName(val)
+          onChangeText={(val) => {
+            setName(val);
           }}
         />
       </View>
@@ -94,7 +99,6 @@ const thai_form = (item) => {
           Styles.mainFont,
           Styles.f_22,
           Styles.black_gray_text,
-          
         ]}
       >
         {LANG.residentedit_text_07}
@@ -109,11 +113,11 @@ const thai_form = (item) => {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={idcard}
-          onChangeText={(val)=>{
-            setIdcard(val)
+          onChangeText={(val) => {
+            setIdcard(val);
           }}
         />
       </View>
@@ -138,11 +142,11 @@ const thai_form = (item) => {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={mobileNo}
-          onChangeText={(val)=>{
-            setMobileNo(val)
+          onChangeText={(val) => {
+            setMobileNo(val);
           }}
         />
       </View>
@@ -165,11 +169,11 @@ const thai_form = (item) => {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           value={email}
-          onChangeText={(val)=>{
-            setEmail(val)
+          onChangeText={(val) => {
+            setEmail(val);
           }}
         />
       </View>
@@ -217,10 +221,10 @@ const thai_form = (item) => {
         </TouchableOpacity>
       </View>
       <Modal isVisible={alert} style={Styles.al_center}>
-          <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
       </Modal>
     </KeyboardAvoidingView>
   );
-}
+};
 
-export default thai_form
+export default thai_form;

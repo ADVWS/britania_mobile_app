@@ -16,7 +16,7 @@ import * as Global from "../../globalState";
 import Store from "../../store";
 import Key from "../../KEYS.json";
 
-export default class ProfilePicCom extends React.Component {
+export default class ProfilePictureComnocrop extends React.Component {
   state = {
     image: this.props.picture,
   };
@@ -25,7 +25,7 @@ export default class ProfilePicCom extends React.Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [1, 1],
+      //aspect: [1, 1],
       quality: 1,
     });
     if (!result.cancelled) {
