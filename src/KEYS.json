@@ -1,0 +1,6 @@
+{
+    "PROFILE" : "@Profile:key",
+    "TOKEN" : "@Token:key",
+    "LANG" : "@Token:lang",
+    "NOTIFY" : "@Token:notify"
+}
