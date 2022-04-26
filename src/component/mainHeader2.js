@@ -7,45 +7,32 @@ import { useNavigation } from '@react-navigation/native';
 import { Styles } from "../styles";
 import Script from "../script";
 
-export default class mainHeader extends React.Component {
-  state = {
-    header_name: "",
-    back_btn: "",
-  };
+export default function mainHeader2(route) {
 
-  componentDidMount() {
-    if (this.props.name) {
-      this.setState({ header_name: this.props.name });
-    }
-    if (this.props.backto) {
-      this.setState({ back_btn: this.props.backto });
-    } else {
-      this.setState({ back_btn: "TabFooter" });
-    }
+  console.log('=====>',route)
+
+  const [header_name, setheader_name] = React.useState(route.name);
+  const [back_btn, setback_btn] = React.useState(route.backto);
+  const navigation = useNavigation();
+
+  // componentDidMount() {
+  //   if (this.props.name) {
+  //     this.setState({ header_name: this.props.name });
+  //   }
+  //   if (this.props.backto) {
+  //     this.setState({ back_btn: this.props.backto });
+  //   } else {
+  //     this.setState({ back_btn: "TabFooter" });
+  //   }
+  // }
+
+  const setData = () => {
+    navigation.reset(({
+      index: 0,
+      routes: [{ name: back_btn }],
+    }))
   }
 
-  setData() {
-    if (this.props.callbackEdit) {
-      var callbackEdit = this.props.callbackEdit;
-      navigate.navigate(this.state.back_btn, callbackEdit);
-      return;
-    }
-    var paramNav = "";
-    var informSet;
-    var defaultTime;
-    if (this.props.param) {
-      paramNav = this.props.param;
-    }
-    if (this.props.informSet) {
-      informSet = this.props.informSet;
-    }
-    if (this.props.defaultTime) {
-      defaultTime = this.props.defaultTime
-    }
-    navigate.navigate(this.state.back_btn, { paramNav, informSet, defaultTime });
-  }
-
-  render() {
     return (
       <View
         style={[
@@ -60,7 +47,7 @@ export default class mainHeader extends React.Component {
         ]}
       >
         <View style={[Styles.w10, Styles.al_start, Styles.jc_end, Styles.p5 ]}>
-          <TouchableOpacity onPress={() => this.setData()}>
+          <TouchableOpacity onPress={() => setData()}>
             <MaterialIcons name="arrow-back" size={32} color="#bb6a70" />
           </TouchableOpacity>
         </View>
@@ -78,10 +65,9 @@ export default class mainHeader extends React.Component {
               { top: 2 },
             ]}
           >
-            {this.state.header_name}
+            {header_name}
           </Text>
         </View>
       </View>
     );
-  }
 }

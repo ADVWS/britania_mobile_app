@@ -55,7 +55,7 @@ const MyHome = () => {
       }
     }
   }
-  console.log('unitOwner:::', unitOwner);
+  console.log('unitOwner:::', moment(unitOwner.insuranceExpiryDate).unix());
 
   function goToHomecare() {
     if(moment(unitOwner.insuranceExpiryDate).unix() < moment().unix()){

@@ -10,6 +10,7 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import * as Global from "../globalState"
 import API from "../graphQL";
 
+
 export function statusTranform(key) {
     switch (key) {
         case 'Pending':
@@ -249,5 +250,5 @@ export default {
     setTypeInform,
     uploadImage,
     makeid,
-    refreshToken
+    refreshToken,
 }

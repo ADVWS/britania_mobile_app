@@ -31,7 +31,7 @@ const InformOrderList = ({ item, deleteItem }) => {
                             {mainScript.setTypeInform(item.categoryId, LANG)}
                         </Text>
                     </View>
-                    <TouchableOpacity style={[Styles.w50, Styles.al_end]} onPress={()=>deleteItem(item.description)}>
+                    <TouchableOpacity style={[Styles.w50, Styles.al_end]} onPress={()=>deleteItem(item.id)}>
                         <Feather name="trash" size={20} style={[Styles.mainColor_text]} />
                     </TouchableOpacity>
                 </View>

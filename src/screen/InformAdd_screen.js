@@ -23,6 +23,7 @@ import MainHeader from "../component/mainHeader";
 import { FontAwesome } from "@expo/vector-icons";
 import moment from "moment";
 
+
 const InformAdd = ({ route }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [caseList, setCaseList] = useRecoilState(Global.caseList);
@@ -36,15 +37,17 @@ const InformAdd = ({ route }) => {
   const [alDetail, setAlDetail] = React.useState(false);
   const [alBoxDetail, setAlBoxDetail] = React.useState("#DDD");
   const [load, setLoad] = React.useState(false);
+  const inputRef = React.createRef();
 
   var indexPic = 0;
   var storeImage = [];
+
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
+      allowsEditing: false,
       //aspect: [4, 3],
       quality: 1,
     });
@@ -97,6 +100,7 @@ const InformAdd = ({ route }) => {
     storeImage = [];
     console.log(isCase);
     indexPic = 0;
+    console.log(1)
     navigate.navigate("InformContact", isCase);
     var newCase = [isCase];
 
@@ -108,6 +112,9 @@ const InformAdd = ({ route }) => {
       _setCaseList(newCase);
     }
     setLoad(false);
+    setDetail('');
+    setImageAdd([]);
+    setDisplay(false);
     navigate.navigate("InformContact", isCase);
   }
 
@@ -213,6 +220,7 @@ const InformAdd = ({ route }) => {
               </Text>
               <TextInput
                 value={detail}
+                ref={inputRef}
                 style={[
                   Styles.w100,
                   Styles.mainColor_FFFF,

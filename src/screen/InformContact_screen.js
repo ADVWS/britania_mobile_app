@@ -127,7 +127,7 @@ const InformContact = ({ route }) => {
 
   function deleteItem(item) {
     var newItem = mainScript.recoilTranform(caseList);
-    newItem = newItem.filter((data) => data.description != item);
+    newItem = newItem.filter((data) => data.id != item);
     setCaseLists(newItem);
     if (newItem.length <= 0) {
       navigate.navigate("SelectTypeInform");
