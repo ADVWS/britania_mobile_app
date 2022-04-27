@@ -9,22 +9,10 @@ import Script from "../script";
 
 export default function mainHeader2(route) {
 
-  console.log('=====>',route)
-
   const [header_name, setheader_name] = React.useState(route.name);
   const [back_btn, setback_btn] = React.useState(route.backto);
   const navigation = useNavigation();
 
-  // componentDidMount() {
-  //   if (this.props.name) {
-  //     this.setState({ header_name: this.props.name });
-  //   }
-  //   if (this.props.backto) {
-  //     this.setState({ back_btn: this.props.backto });
-  //   } else {
-  //     this.setState({ back_btn: "TabFooter" });
-  //   }
-  // }
 
   const setData = () => {
     navigation.reset(({

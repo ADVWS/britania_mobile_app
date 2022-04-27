@@ -40,7 +40,6 @@ export default function ResidentAdd({ route }) {
   function uploadImg(img) {
     setUploadImage(img);
   }
-  console.log('====>',unit.unitId)
 
   function addMember(add) {
     setLoading(true)

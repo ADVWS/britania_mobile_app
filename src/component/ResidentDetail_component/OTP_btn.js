@@ -13,7 +13,6 @@ import Modal_alert from "../modal_alert";
 
 const OTP_btn = ({ member }) => {
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
-  console.log("OTP===>", member);
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
   const vertfyOTP = (mem) => {
@@ -25,7 +24,6 @@ const OTP_btn = ({ member }) => {
         unitMember.unitId,
         (res) => {
           if (res.memberResendOtp) {
-            console.log("callback", res);
             var otp = res.memberResendOtp;
             otp.mobileNo = mem.mobileNo;
             otp.name = mem.name;

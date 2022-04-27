@@ -55,7 +55,6 @@ const MyHome = () => {
       }
     }
   }
-  console.log('unitOwner:::', moment(unitOwner.insuranceExpiryDate).unix());
 
   function goToHomecare() {
     if(moment(unitOwner.insuranceExpiryDate).unix() < moment().unix()){
@@ -69,7 +68,6 @@ const MyHome = () => {
       setLoading(false);
     }, 4000);
     Script.homecareAllCase(unitOwner.id, key.TOKEN, typeInform, (res) => {
-      console.log(res);
       if (res.case.homecareAllCase && res.case.homecareAllCase !== null) {
         res.case.homecareAllCase.map((item) => {
           if (informStatus.indexOf(item.status) !== -1) {

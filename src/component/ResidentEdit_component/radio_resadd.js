@@ -29,8 +29,6 @@ export default class radio_resadd extends React.Component {
   }
 
   selectType = (type) => {
-    console.log("INSIDE TYPE")
-    console.log(type)
     if (type === "thai") {
       this.setState({
         thai: true,
@@ -53,8 +51,6 @@ export default class radio_resadd extends React.Component {
   };
 
   render() {
-
-    console.log(this.props)
     return (
       <View style={[Styles.al_start, Styles.w100, Styles.row, Styles.mt20]}>
         <View style={[Styles.w50, Styles.al_start, Styles.row]}>

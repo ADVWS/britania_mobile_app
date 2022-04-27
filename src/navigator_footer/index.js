@@ -18,11 +18,6 @@ const AllTabBottom = () => {
   const [project, _setProject] = useRecoilState(Global.project);
   const setProject = useSetRecoilState(Global.project);
 
-  console.log("Available Options");
-  console.log(userType);
-  console.log(userProfile);
-  console.log(project);
-
   if (userProfile.me) {
     if (userProfile.me.unitsAllowHomecare) {
       if (userProfile.me.unitsAllowHomecare.length <= 1) {
@@ -32,7 +27,6 @@ const AllTabBottom = () => {
   }
 
   function getScreenList(TYPE) {
-    console.log(project);
     switch (TYPE) {
       case 1:
         return (

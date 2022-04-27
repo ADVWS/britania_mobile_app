@@ -18,7 +18,6 @@ import * as Global from "../../globalState"
 const OrderList = ({ data, index, route, informDetail }) => {
     const [LANG, setLANG] = useRecoilState(Global.Language)
     const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
-    console.log('data', data)
     var paramNav = route
 
     function gotoResponsible(param) {

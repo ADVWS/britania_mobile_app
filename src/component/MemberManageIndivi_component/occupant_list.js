@@ -14,7 +14,6 @@ const image = require("../../../assets/image/Britania-connect-assets/member-empt
 export default function OccupantList({ occupant, item }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
-  console.log("occupant list===>", unitMember.unitMember.tenant);
 
   return (
     <View style={[Styles.w100, Styles.p15]}>

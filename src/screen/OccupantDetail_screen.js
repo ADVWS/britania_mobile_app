@@ -24,15 +24,12 @@ const OccupantDetail = ({ route }) => {
   const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const setUnitMember = useSetRecoilState(Global.unitMember);
-  console.log(unitMember);
   const informSwitch = (val) => {
-    console.log(val);
     var edit = {
       unitMemberId: member.unitMemberId,
       allowHomecare: val,
     };
     Script.memberUpdateAllowHomecare(edit, KEYS.TOKEN, member.unitid, (res) => {
-      console.log("RESPONE==>", res);
       var newMember = mainScript.recoilTranform(member);
       var updatedata = mainScript.recoilTranform(unitMember);
       updatedata.unitMember = res;
@@ -81,7 +78,6 @@ const OccupantDetail = ({ route }) => {
   };
 
   const confirm = (req) => {
-    console.log('::::::::',unitMember)
     if (req === "CANCEL") {
       setAlert(false);
     } else {

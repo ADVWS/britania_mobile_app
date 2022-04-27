@@ -22,9 +22,7 @@ export default function Splash() {
   runApp()
 
   function runApp() {
-    console.log('start App')
     Script.checkToken(Key.TOKEN, (res) => {
-      console.log('res', res)
       if (res.data) {
         if(res.data.me){
           userProfile(res.data)
@@ -74,7 +72,6 @@ export default function Splash() {
       if(data.result){
         setLANGTEXT(data.detail)
         var myLANG = LANG.settingLanguage(data.detail)
-        console.log('check lang', data)
         setLANG(myLANG)
         setTimeout(() => {
           navigate.navigate(goto)

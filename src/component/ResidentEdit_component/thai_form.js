@@ -57,7 +57,6 @@ const thai_form = (item) => {
       nationType: "thai",
       unitMemberId: member.unitMemberId,
     };
-    console.log("Edition Happened");
     item.saveDataEdit(edit);
   };
 

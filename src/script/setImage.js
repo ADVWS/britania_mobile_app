@@ -48,7 +48,6 @@ function uploadImage(image, frist, cb) {
     Store.getLocalStorege(Key.TOKEN, (tk) => {
       const token = tk.detail.token;
       Script.uploadImage(token, formdata, (res) => {
-        console.log("uploadImage===>", count+1, res);
         if (count + 1 > image.length) {
           count = 0;
           cb(storeImage);

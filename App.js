@@ -21,7 +21,6 @@ export default function App() {
   React.useEffect(()=>{
     registerForPushNotification()
       .then(token=>{
-        console.log(token)
         Store.getLocalStorege(Keys.NOTIFY, (res)=>{
           if(!res.result){
             storekNotifyToken()
@@ -46,7 +45,6 @@ export default function App() {
       alert('fail to get the push token');
       return
     }
-    console.log(status)
     token = (await Notifications.getExpoPushTokenAsync()).data;
     return token
   }

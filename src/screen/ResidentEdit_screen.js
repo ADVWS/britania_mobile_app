@@ -45,7 +45,6 @@ const ResidentEdit = ({ route }) => {
     setTimeout(() => {
       setLoading(false)
     }, 5000);
-    console.log("saveEdit", edit);
     if (uploadImage !== "") {
       var formdata = new FormData();
       var Type = uploadImage.substring(uploadImage.lastIndexOf(".") + 1);
@@ -59,7 +58,6 @@ const ResidentEdit = ({ route }) => {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          console.log("IMAGE", res);
           edit.files = res
           editData(edit);
         });

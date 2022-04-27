@@ -24,12 +24,9 @@ const InformTime = () => {
         value: time[0].value
     })
     function selectInformTime(InformTime) {
-        console.log('InformTime', InformTime)
         navigate.navigate('InformCalendar', InformTime)
     }
     var paramNav
-
-    console.log(time[0])
 
     return (
         <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>

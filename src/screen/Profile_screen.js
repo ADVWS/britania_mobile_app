@@ -45,12 +45,10 @@ export default function Profile_screen() {
   };
 
   const uploadImage = (img) => {
-    console.log('IMAGE', img)
     setulImage(img)
   }
 
   const editProfile = (name, mobileNo, email) => {
-    console.log(mobileNo)
     if(name){
       setName(name)
     }
@@ -77,7 +75,6 @@ export default function Profile_screen() {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          console.log("IMAGE", res);
           addData(add);
         });
       });
@@ -103,7 +100,6 @@ export default function Profile_screen() {
       formdata.append("target", "profile");
       Store.getLocalStorege(Key.TOKEN, (tk) => {
         const token = tk.detail.token;
-        console.log(formdata)
         mainScript.uploadImage(token, formdata, (res) => {
           updateUser2(inputName, inputMobile, res);
         });

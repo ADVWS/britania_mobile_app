@@ -22,7 +22,6 @@ export const userUpdateTokenNotification = async (data, cb) => {
     `;
   try {
     const result = await API.request(NOTIFY, data.token);
-    console.log("NOTIFY:::", result);
     cb(result);
   } catch (error) {
     cb("error");

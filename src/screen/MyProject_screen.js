@@ -35,14 +35,12 @@ const MyProject = () => {
 
 
 
-    console.log(userProfile)
 
     function setDataSelect(obj) {
         setUnitOwner(obj)
         var inform = []
         var history = []
         Script.homecareAllCase(unitOwner.id, Key.TOKEN, typeInform, (res)=>{
-            console.log(res)
             if(res.case.homecareAllCase && res.case.homecareAllCase !== null){
                 res.case.homecareAllCase.map((item)=>{
                     if(informStatus.indexOf(item.status) !== -1){

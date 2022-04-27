@@ -18,15 +18,12 @@ export const memberUpdateAllowHomecare = async (edit, key, unitid, cb) => {
 
 
 export const updateMember = async (EDIT, token, unitid, cb) => {
-    console.log(EDIT)
     const result = await API.request(EDIT, token);
-    console.log('RESULT UPDATE===>', result)
     updateUnit(token, unitid, cb)
     //cb(result)
 }
 
 export const updateUnit = async (token, unitid, cb) => {
-    console.log(unitid)
     const UNIT = `query {
     unitMemberAll(unitId: "${unitid}") {
             id,
@@ -84,9 +81,7 @@ export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
             }
         }
     `;
-    console.log(OTP)
     const result = await API.request(OTP, token);
-    console.log(result)
     cb(result)
 }
 

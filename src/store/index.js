@@ -77,16 +77,13 @@ const removeLocalStorege = async (key, cb) => {
 }
 
 function checkToken(key, token, cb) {
-  console.log(token)
   var mytoken = JSON.parse(token)
   var decode = jwtDecode(mytoken.token)
   if(moment().unix() > decode.exp){
     Script.refreshToken(token.refreshToken, (res)=>{
-      console.log('resilt', res)
       if(typeof res === 'object'){
         mytoken.token = res.token.token
         mytoken.refreshToken = res.token.refreshToken
-        console.log(mytoken)
         saveNewToken(key, mytoken, cb)
       }
     })
@@ -100,7 +97,6 @@ function checkToken(key, token, cb) {
  }
 
 const saveNewToken = async (key, token, cb) => {
-  console.log('SUCCESS', token)
   var value = JSON.stringify(token)
   //try {
     await AsyncStorage.setItem(key, value);

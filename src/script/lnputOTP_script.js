@@ -19,7 +19,6 @@ export const login = async (profile, otp, cb) => {
         }
     `;
     const result = await API.request(LOGIN);
-    console.log('RESULT OTP===>', result)
     cb(result)
 }
 
@@ -87,7 +86,6 @@ const setProfile = async (token, cb) => {
             }
         }`;
     const result = await API.request(project, token);
-    console.log('RESULT---===>', result)
     cb(result)
 }
 

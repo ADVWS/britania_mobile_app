@@ -21,7 +21,6 @@ const RepiairList = ({ route }) => {
     const [homecareName, setHomecareName] = React.useState(route.params.mechanic)
     const [userCase, setUserCase] = React.useState(route.params._CASE)
     const [LANG, setLANG] = useRecoilState(Global.Language)
-    console.log(route.params.paramNav)
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View

@@ -22,7 +22,6 @@ const SelectTypeInform = () => {
     const [LANG, setLANG] = useRecoilState(Global.Language)
     const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
 
-    console.log(LANGTEXT)
 
     function gotoInformAdd(param, name) {
         var details = {

@@ -58,7 +58,6 @@ const OccupantEdit = ({ route }) => {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          console.log("IMAGE", res); 
           edit.files = res      
           editData(edit);
         });

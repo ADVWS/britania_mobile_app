@@ -1,7 +1,6 @@
 import API from '../graphQL'
 
 export const sendOTP = async (mobile, email, Type, cb) => {
-    console.log(Type)
     if (Type === 'MOBILE' || Type === 'mobile') {
         var OTP = `
             mutation {
@@ -25,9 +24,7 @@ export const sendOTP = async (mobile, email, Type, cb) => {
             }
         `;
     }
-    console.log('BODY===>', OTP)
     const result = await API.request(OTP);
-    console.log('RESULT===>', result)
     cb(result)
 }
 

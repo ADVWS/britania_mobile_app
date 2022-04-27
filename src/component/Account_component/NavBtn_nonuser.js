@@ -24,8 +24,6 @@ const NavBtn = ({ optiono }) => {
   const [userType, setUserType] = useRecoilState(Global.userType);
   const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile);
   const LogoutownerType = useSetRecoilState(Global.ownerType)
-  console.log("NavBtn User Profile");
-  console.log(userProfile);
   const logout = (req) => {
     if (req === "CANCEL") {
       setConfirm(false);

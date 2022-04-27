@@ -160,7 +160,6 @@ export default function InputOTP({ route }) {
 
   function OTPTimer() {
     timer--;
-    console.log(timer)
     setDisplayTime(timer)
     if (timer == 0) {
       setCountDown(false)
@@ -225,7 +224,6 @@ export default function InputOTP({ route }) {
                 style={Styles.otpbox}
                 onChangeText={(val) => {
                   setUnit1(val);
-                  console.log("set::", val);
                   if (val !== "") {
                     unit2ref.current.focus();
                   }

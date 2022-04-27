@@ -25,8 +25,6 @@ export default function Debug_screen() {
     const todoList = useRecoilState(Global.todoListState);
     const setTodoList = useSetRecoilState(Global.todoListState);
 
-    console.log(todoList)
-
     return (
         <View>
             <Text>text</Text>

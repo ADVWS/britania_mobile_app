@@ -23,7 +23,6 @@ const InformBox = ({ data }) => {
       setLoading(false)
     }, 5000);
     Script.homecareGetCaseById(data.id, key.TOKEN, (res) => {
-      console.log("res.homecareGetCaseById:::=>", res.homecareGetCaseById);
       if (res.homecareGetCaseById && res.homecareGetCaseById !== null) {
         gobalData(res.homecareGetCaseById);
         var paramNav = "UNSUCCESS";

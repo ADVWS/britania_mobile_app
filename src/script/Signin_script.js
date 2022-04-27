@@ -12,7 +12,6 @@ export const getProfileOtp = async (id, cb) => {
     `;
     try {
         const result = await API.request(OTP);
-        console.log('OTP', result)
         cb(result)
     } catch (error) {
         cb('error')

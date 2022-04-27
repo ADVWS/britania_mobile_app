@@ -46,7 +46,6 @@ export default function Signin() {
     }
     setLoading(true);
     Script.getProfileOtp(userid, (res) => {
-      console.log("RESULT", res);
       setLoading(false);
       if (typeof res === "object") {
         navigate.navigate("OTP", res);

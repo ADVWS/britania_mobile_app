@@ -30,7 +30,6 @@ function Homecare() {
     const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
     const [project, _setProject] = useRecoilState(Global.project)
     const [selected, setSelected] = React.useState('INFORM')
-    console.log('==>',LANGTEXT)
     function selectMenu(SELECT) {
         switch (SELECT) {
             case 'INFORM':

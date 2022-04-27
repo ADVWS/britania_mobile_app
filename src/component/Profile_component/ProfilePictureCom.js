@@ -29,27 +29,6 @@ export default class ProfilePicCom extends React.Component {
       quality: 1,
     });
     if (!result.cancelled) {
-      // var formdata = new FormData();
-      // var Type = result.uri.substring(result.uri.lastIndexOf(".") + 1)
-      // var Data={
-      //   uri: result.uri,
-      //   name: `upload_image`,
-      //   type: `image/${Type}`
-      //  };
-      // formdata.append('file', Data)
-      // formdata.append('target', 'profile')
-      // Store.getLocalStorege(Key.TOKEN, (tk)=>{
-      //   const token = tk.detail.token
-      //   mainScript.uploadImage(token, formdata,(res)=>{
-      //     console.log('Upload image', res)
-      //     this.setState({
-      //       image: { uri: result.uri },
-      //     });
-      //     const {uploadImage} = this.props;
-      //     this.uploadImage = uploadImage;
-      //     this.uploadImage(res);
-      //   })
-      // })
       this.setState({
         image: { uri: result.uri },
       });

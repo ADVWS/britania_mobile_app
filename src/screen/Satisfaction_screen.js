@@ -34,7 +34,6 @@ const Satisfaction = ({ route }) => {
   const [alert, setAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
   const sendRate = (rate) => {
-    console.log("RATE", rate);
     setRate(rate);
   };
   const setImage = (image) => {
@@ -81,7 +80,6 @@ const Satisfaction = ({ route }) => {
             }
           });
           dataInformDetail(reload);
-          console.log("homecareCreateCsat:::", res);
           var paramNav = "SUCCESS";
           navigate.navigate("InformOrder", { paramNav });
         }

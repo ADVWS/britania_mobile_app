@@ -46,7 +46,6 @@ const InformContact = ({ route }) => {
   const [alert, setAlert] = React.useState(false);
   const [load, setLoad] = React.useState(false);
 
-  console.log(newInform);
 
   React.useEffect(() => {
     setFullname(newInform.owner);
@@ -58,7 +57,6 @@ const InformContact = ({ route }) => {
   }
 
   function gotoinformCalendar() {
-    console.log("hi");
     setLoad(true)
     setTimeout(() => {
       setLoad(false)
@@ -86,7 +84,6 @@ const InformContact = ({ route }) => {
     _newInform.phoneOwner = mobileno;
     _newInform.details = caseList;
     getTime.homecareGetCheckInRangeTimeOptions(Key.TOKEN, (res) => {
-      console.log("time", res);
       if (res.homecareGetCheckInRangeTimeOptions) {
         _setNewInform(_newInform);
         timecheck(res.homecareGetCheckInRangeTimeOptions);
@@ -105,7 +102,6 @@ const InformContact = ({ route }) => {
     var startdate = moment().format("YYYY-01-01")
     var enddate = moment().add(1, 'Y').format("YYYY-12-31")
     var holidaySet = []
-    console.log(startdate, enddate)
     Holiday.homecareGetCalendarHoliday(startdate, enddate, Key.TOKEN, (res)=>{
       setLoad(false)
       if(res.homecareGetCalendarHoliday){
@@ -113,7 +109,6 @@ const InformContact = ({ route }) => {
           holidaySet.push(moment(item.date))
         })
         holiday(holidaySet)
-        console.log('Holiday:::', holidaySet)
         navigate.navigate("InformCalendar");
       } else {
         setLoad(false)

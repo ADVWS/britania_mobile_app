@@ -5,7 +5,6 @@ import Store from "../store"
 export const memberAddProflie_thai = async (add, key, unitid, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
-        console.log(token)
         if(add.files){
             var ADD = `
                 mutation {
@@ -116,9 +115,7 @@ export const memberAddProflie_foreign = async (add, key, unitid, cb) => {
 }
 
 export const updateMember = async (ADD, token, unitid, cb) => {
-    console.log(ADD)
     const result = await API.request(ADD, token);
-    console.log('RESULT ADD===>', result)
     if(typeof result === 'object'){
         var otp = result.memberAddProflie
         updateUnit(token, unitid, otp, cb)

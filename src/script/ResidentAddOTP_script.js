@@ -33,7 +33,6 @@ export const memberConfirmOtp = async (otp, data, key, cb) => {
 
 export const sendOTP = async (OTP, token, data, cb) => {
     const result = await API.request(OTP, token);
-    console.log(':::::=====>', result)
     if(typeof result === "object"){
         updateUnit(token, data, cb)
     } else {

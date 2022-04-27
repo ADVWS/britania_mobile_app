@@ -33,13 +33,10 @@ const AnimatedHeader = ({ animatedValue }) => {
     inputRange: [0, 50],
     outputRange: ["rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 1)"],
   });
-  //console.log(imageSet)
   const setCountNotify = () => {
-    console.log("SetNotify Called");
     Store.getLocalStorege(Key.TOKEN, (tk) => {
       const token = tk.detail.token;
       Script.notificationCountUnread(token, (res) => {
-        console.log("notificationCountUnread==>", res);
         setCounter(res);
       });
     });

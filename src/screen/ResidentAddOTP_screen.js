@@ -48,7 +48,6 @@ export default function ResidentAddOTP({ route }) {
   const [texAlert, setTextAlert] = React.useState("");
   var setOTPTimer;
 
-  console.log('OTPdata', OTPdata)
 
   const sendOTP = () => {
     var otp =
@@ -59,7 +58,6 @@ export default function ResidentAddOTP({ route }) {
       String(unit5) +
       String(unit6);
     Script.memberConfirmOtp(otp, OTPdata, KEYS.TOKEN, (res) => {
-      console.log('memberConfirmOtp', res);
       if (typeof res === "object") {
         clearInterval(setOTPTimer);
         var data = mainScript.recoilTranform(unitMember);
@@ -82,13 +80,11 @@ export default function ResidentAddOTP({ route }) {
         unitMember.unitId,
         (res) => {
           if(res.memberResendOtp) {
-            console.log("callback", res);
             var otp = OTPdata;
             otp.refNo = res.memberResendOtp.refNo;
             setOTPdata(otp)
             setCountDown(true)
             setOTPTimer = setInterval(OTPTimer, 1000);
-            console.log(otp)
           } else {
             setTextAlert(res);
             setAlert(true);
@@ -100,7 +96,6 @@ export default function ResidentAddOTP({ route }) {
 
   function OTPTimer() {
     timer--;
-    console.log(timer)
     setDisplayTime(timer)
     if (timer == 0) {
       setCountDown(false)
@@ -168,7 +163,6 @@ export default function ResidentAddOTP({ route }) {
                   style={Styles.otpbox}
                   onChangeText={(val) => {
                     setUnit1(val);
-                    console.log("set::", val);
                     if (val !== "") {
                       unit2ref.current.focus();
                     }

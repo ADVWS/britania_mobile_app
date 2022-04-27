@@ -36,7 +36,6 @@ const LanguageSetting_Screen = () => {
       myLANG = isLANG.settingLanguage(select)
       settingLANG(myLANG)
       Store.setLocalStorege(Key.LANG, select, (res)=>{
-        console.log('save', res)
         setReload(true)
       })
     } else {

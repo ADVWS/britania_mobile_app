@@ -78,7 +78,6 @@ export const homecareGetCaseById = async (caseid, key, cb) => {
 
 export const getHomecareGetCaseById = async (CASE, token, cb) => {
     const result = await API.request(CASE, token);
-    console.log(result)
     cb(result)
 }
 

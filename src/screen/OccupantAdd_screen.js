@@ -40,7 +40,6 @@ export default function OccupantAdd({ route }) {
     setUploadImage(img);
   }
 
-  console.log("item====>", unit);
 
   function addMember(add) {
     setLoading(true);

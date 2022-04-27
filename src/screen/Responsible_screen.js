@@ -16,7 +16,6 @@ import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
 
 const Responsible = ({ route }) => {
-    console.log('data:::', route)
     const [homecareName, setHomecareName] = React.useState(route.params.mechanic)
     const [LANG, setLANG] = useRecoilState(Global.Language)
     return (

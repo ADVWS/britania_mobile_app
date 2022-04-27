@@ -4,10 +4,8 @@ import API from '../graphQL'
 import Store from "../store"
 export const checkToken = async (key, cb) => {
     Store.getLocalStorege(key, (res) => {
-        console.log('TOKEN:::', res)
         if (res.result) {
             if (res.detail.type) {
-                console.log('Non Member')
                 var response = {
                     detail: 'Non Member',
                     goto: 'TabFooter'
@@ -90,7 +88,6 @@ export const checkToken = async (key, cb) => {
             }
         } else {
             if (res.detail.type) {
-                console.log('Non Member')
                 var response = {
                     detail: 'Non Member',
                     goto: 'TabFooter'
@@ -109,7 +106,6 @@ export const checkToken = async (key, cb) => {
 
 const getUser = async (project, token, cb) => {
     const result = await API.request(project, token);
-    console.log('RESULT===>', result)
     if (typeof result === 'object') {
         var response = {
             detail: "Verify token success .",

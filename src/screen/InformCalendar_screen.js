@@ -70,8 +70,6 @@ const InformCalendar = ({ route }) => {
       setDefaultTime(route.params.InformTime);
     }
   }, []);
-
-  console.log(newInform)
   
   function settimeInform() {
     if (route.params) {
@@ -95,13 +93,6 @@ const InformCalendar = ({ route }) => {
     }, 30000);
     var isCaseList = mainScript.recoilTranform(caseList)
     setImage.setLengthImage(isCaseList, (res)=>{
-      // var _newInform = mainScript.recoilTranform(newInform)
-      // _newInform.details = res
-      // setInform(_newInform) 
-      // console.log('setLengthImage :', _newInform)
-      // setTimeout(() => {
-      //   setData(res)
-      // }, 500);
       setData(res)
     })
   }
@@ -122,7 +113,6 @@ const InformCalendar = ({ route }) => {
       dataset.checkInDate = moment(selectDate).format("YYYY-MM-DD HH:mm:ss");
       dataset.details = files
       var detailTemp = "";
-      console.log('POSTDATA', dataset)
 
       dataset.details.map((item) => {
         detailTemp += `{

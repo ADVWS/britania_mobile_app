@@ -16,9 +16,7 @@ const ResidentBtn = ({ item }) => {
   function gotoResidentDetail(member) {
     navigate.navigate("ResidentDetail", member);
   }
-  console.log(unitMember.unitMember.resident)
   const setImage = (img) => {
-    console.log('IMAGE==>', img)
     if (img !== null) {
       return (
         <Image

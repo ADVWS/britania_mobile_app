@@ -67,8 +67,6 @@ const InformAdd = ({ route }) => {
     }
   };
 
-  console.log(imageAdd);
-
   function gotoInformContact() {
     setAlDetail(false);
     setLoad(true);
@@ -98,9 +96,7 @@ const InformAdd = ({ route }) => {
     isCase.imgUri = selectImage;
     isCase.file = [];
     storeImage = [];
-    console.log(isCase);
     indexPic = 0;
-    console.log(1)
     navigate.navigate("InformContact", isCase);
     var newCase = [isCase];
 

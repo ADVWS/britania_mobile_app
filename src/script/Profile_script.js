@@ -4,7 +4,6 @@ import Store from "../store"
 export const userUpdateProfile = async (updatedata, image, key, cb) => {
     Store.getLocalStorege(key, (res) => {
         const token = res.detail.token
-        console.log('POST GRAPHQL::::', image)
         if(image === ''){
             var UPDATE = `mutation {
                 userUpdateProfile(

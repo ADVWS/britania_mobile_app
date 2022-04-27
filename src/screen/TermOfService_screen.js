@@ -8,7 +8,6 @@ import { Styles } from "../styles";
 
 export default function TermOfService() {
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  console.log("Term of Service Entry Flag");
   return (
     <>
       <MainHeader name={LANG.account_text_05} backto={"Account"} />

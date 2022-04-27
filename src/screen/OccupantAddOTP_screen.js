@@ -51,7 +51,6 @@ export default function OccupantAddOTP({route}) {
 
   const sendOTP = () => {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
-    console.log('OTPdata==>', OTPdata)
     Script.memberConfirmOtp(otp, OTPdata, KEYS.TOKEN, (res) => {
       if(typeof res === 'object'){
         var data = mainScript.recoilTranform(unitMember)
@@ -150,7 +149,6 @@ export default function OccupantAddOTP({route}) {
                 style={Styles.otpbox}
                 onChangeText={(val) => {
                   setUnit1(val);
-                  console.log("set::", val);
                   if (val !== "") {
                     unit2ref.current.focus();
                   }

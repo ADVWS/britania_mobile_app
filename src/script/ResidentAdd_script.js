@@ -173,13 +173,11 @@ export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
         `;
         //updateMemberResendOTP(OTP, token, unitid, cb)
         const result = await API.request(OTP, token);
-        console.log('OTP', result)
         cb(result)
 }
 
 export const updateMemberResendOTP = async (OTP, token, cb) => {
     const result = await API.request(OTP, token);
-    console.log('OTP', result)
     cb(result.memberResendOtp)
 }
 

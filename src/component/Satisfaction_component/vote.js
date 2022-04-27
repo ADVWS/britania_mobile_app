@@ -46,7 +46,6 @@ export default class Vote extends React.Component {
         var votecolor;
         var count = 0
         votecolor = this.state.star[topic]
-        console.log(votecolor)
         if (unit > this.state.vote[topic]) {
             for (let i = 0; i < unit; i++) {
                 votecolor[`color${i + 1}`] = '#fcbc04'

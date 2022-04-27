@@ -25,19 +25,16 @@ export default function Login({ route }) {
   const navigation = useNavigation();
 
   function selectLang(_selectLang) {
-    console.log(_selectLang)
     var myLANG = isLANG.settingLanguage(_selectLang)
     settingLANG(myLANG)
     setChangeLang(false);
     Store.setLocalStorege(Key.LANG, _selectLang, (res) => {
-      console.log(res)
     })
   }
 
   function nonMember() {
     var nonMember = { type: 'non Member' }
     var data = JSON.stringify(nonMember)
-    console.log(data)
     Store.setLocalStorege(Key.TOKEN, data, (call) => {
       userType(2)
       setUserProfile({})

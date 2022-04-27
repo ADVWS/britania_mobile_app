@@ -101,7 +101,6 @@ export function statusTranform(key) {
 export function callfunction(key, param, cb) {
     switch (key) {
         case 'mapDataMycare':
-            console.log('mapDataMycare')
             mapDataMycare(param, cb)
             break;
         default:
@@ -110,7 +109,6 @@ export function callfunction(key, param, cb) {
 }
 
 const mapDataMycare = (param, cb) => {
-    console.log('start')
     const setListInform = useSetRecoilState(Global.dataListInform)
     const setlistHistory = useSetRecoilState(Global.dataListHistory)
     var inform = []
@@ -201,7 +199,6 @@ const uploadImage = (token, file, cb) => {
             return cb(data);
         })
         .catch(err => {
-            console.log(err);
             cb(false);
         });
 }
@@ -230,7 +227,6 @@ async function refreshToken (token, cb) {
     `;
     try {
         const result = await API.request(RETOKEN);
-        console.log(result)
         cb(result)
     } catch (error) {
         cb('error')

@@ -23,7 +23,6 @@ const OTP_btn = ({ member }) => {
         member.mobileNo,
         unitMember.unitId,
         (res) => {
-          console.log("callback", res);
           if (res.memberResendOtp) {
             var otp = res.memberResendOtp;
             otp.mobileNo = mem.mobileNo;
