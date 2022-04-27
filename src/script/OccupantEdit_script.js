@@ -124,7 +124,6 @@ export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
 export const updateMember = async (EDIT, token, unitid, cb) => {
     const result = await API.request(EDIT, token);
     updateUnit(token, unitid, cb)
-    //cb(result)
 }
 
 export const updateUnit = async (token, unitid, cb) => {

@@ -19,7 +19,6 @@ import * as Global from "../globalState";
 import Key from "../KEYS.json"
 import Store from "../store";
 
-//transparent f1645e
 
 export default function Profile_screen() {
   const [userProfile, setUserProfile] = useRecoilState(Global.userProfile);
@@ -37,7 +36,6 @@ export default function Profile_screen() {
     var image = "";
     if (userProfile.me.profileImage) {
       image = { uri: userProfile.me.profileImage };
-      //setulImage(userProfile.me.profileImage)
     } else {
       image = require("../../assets/image/Britania-connect-assets/default-img-circle.png");
     }

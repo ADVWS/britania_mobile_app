@@ -15,7 +15,6 @@ import Key from "../KEYS.json";
 
 const Notify = ({ route }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  //const [notify, setNotify] = React.useState([]);
   const [dataNotify, setDataNotify] = useRecoilState(Global.dataNotify);
   const notifySet = useSetRecoilState(Global.dataNotify)
   const backto = route.params.screen;
@@ -39,7 +38,6 @@ const Notify = ({ route }) => {
     Store.getLocalStorege(Key.TOKEN, (tk) => {
       const token = tk.detail.token;
       Script.notification(token, (res) => {
-        //setNotify(res.notification);
         notifySet(res.notification)
       });
     });

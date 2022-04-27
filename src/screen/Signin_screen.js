@@ -9,7 +9,6 @@ import {
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 
-// import * as navigate from "../navigator/RootNavigation";
 import * as navigate from "../navigator/RootNavigation";
 import { useRecoilState } from "recoil";
 import * as Global from '../globalState'
@@ -102,7 +101,6 @@ export default function Signin() {
                 maxLength={13}
                 onChange={() => isClearBtn()}
                 onChangeText={(text) => setUserid(text)}
-                //keyboardType="numeric"
                 style={[
                   Styles.w80,
                   Styles.p15,

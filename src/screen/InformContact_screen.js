@@ -159,9 +159,6 @@ const InformContact = ({ route }) => {
                   backgroundColor: "#ebebeb",
                 },
               ]}
-              // onChangeText={(val) => {
-              //     setAddress(val)
-              // }}
             />
             {alAddress && (
               <Text

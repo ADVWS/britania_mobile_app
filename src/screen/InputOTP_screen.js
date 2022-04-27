@@ -57,8 +57,6 @@ export default function InputOTP({ route }) {
     var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
     setLoading(false)
     userType(1)
-    //navigate.navigate("TabFooter")
-    //return
     setLoading(true)
     clearInterval(setOTPTimer);
     Script.login(optData, otp, (res) => {

@@ -38,7 +38,6 @@ export const sendOTP = async (OTP, token, data, cb) => {
     } else {
         cb(result)
     }
-    //cb(result)
 }
 
 export const updateUnit = async (token, data, cb) => {

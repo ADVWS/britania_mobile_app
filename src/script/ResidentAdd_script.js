@@ -118,7 +118,6 @@ export const updateMember = async (ADD, token, unitid, cb) => {
     } else {
         cb(result)
     }
-    //cb(result)
 }
 
 export const updateUnit = async (token, unitid, otp, cb) => {
@@ -171,7 +170,6 @@ export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
                 }
             }
         `;
-        //updateMemberResendOTP(OTP, token, unitid, cb)
         const result = await API.request(OTP, token);
         cb(result)
 }

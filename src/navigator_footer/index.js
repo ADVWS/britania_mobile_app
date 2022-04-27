@@ -56,8 +56,6 @@ const AllTabBottom = () => {
             />
             <Tab.Screen
               name="HomeDetail"
-              //component={project ? MyHomeScreen : MyProjectFirst}
-              //component={project ? MyProjectFirst : MyHomeScreen}
               component={MyHomeScreen}
               options={{
                 tabBarLabel: LANG.home_text_04,

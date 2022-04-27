@@ -183,8 +183,6 @@ const uploadImage = (token, file, cb) => {
     fetch(url, {
         method: 'POST',
         headers: {
-            //Accept: 'application/json',
-            //'Content-Type': 'application/json',
             Accept: 'multipart/form-data',
             'Content-Type' : 'multipart/form-data',
             Authorization: 'Bearer 2b1QVM4xIxZ0JcKoPjJfWtOnfhcqwD4T',

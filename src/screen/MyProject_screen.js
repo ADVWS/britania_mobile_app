@@ -59,7 +59,6 @@ const MyProject = () => {
                 navigate.navigate('Homecare')
             }
         })
-        //navigate.navigate('Homecare')
     }
 
     return (

@@ -79,7 +79,6 @@ export const homecareAllCase = async (unitOwnerId, key, typeInform, cb) => {
 export const getHomecareAllCase = async (ALLCASE, token, typeInform, cb) => {
     const result = await API.request(ALLCASE, token);
     homecareGetCategory(token, result, typeInform, cb)
-    //cb(result)
 }
 
 export const homecareGetCategory = async (token, allcase, typeInform, cb) => {

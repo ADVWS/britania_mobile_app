@@ -122,7 +122,6 @@ export const updateMember = async (ADD, token, unitid, cb) => {
     } else {
         cb(result)
     }
-    //cb(result)
 }
 
 export const updateUnit = async (token, unitid, otp, cb) => {

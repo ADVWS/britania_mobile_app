@@ -82,7 +82,6 @@ const setHomecareCreateCase = async (CASE, token, unitOwnerId, cb) => {
     if(result.homecareCreateCase && result.homecareCreateCase !== null){
         homecareAllCase(unitOwnerId, token, cb)
     }
-    //cb(result.homecareGetCheckInRangeTimeOptions)
 }
 
 export const homecareAllCase = async (unitOwnerId, token, cb) => {

@@ -98,7 +98,6 @@ function checkToken(key, token, cb) {
 
 const saveNewToken = async (key, token, cb) => {
   var value = JSON.stringify(token)
-  //try {
     await AsyncStorage.setItem(key, value);
     if(typeof token === 'object'){
       var res = {
@@ -112,13 +111,6 @@ const saveNewToken = async (key, token, cb) => {
       }
     }
     cb(res)
-  // } catch (error) {
-  //   var res = {
-  //     result: false,
-  //     detail: "Error, New Storege fail."
-  //   }
-  //   cb(res)
-  // }
 }
 
 export default {

@@ -43,7 +43,6 @@ export default function Login({ route }) {
           index: 0,
           routes: [{ name: 'TabFooter' }],
         }))
-        //navigate.navigate('TabFooter')
       }, 200);
     })
   }

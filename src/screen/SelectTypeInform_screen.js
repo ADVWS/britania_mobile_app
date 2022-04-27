@@ -28,13 +28,6 @@ const SelectTypeInform = () => {
             categoryId: param,
             description: ""
         }
-        // if(caseList.length <= 0){
-        //     _caseList(details)
-        // } else {
-        //     details = mainScript.recoilTranform(caseList)
-        //     details.concat(details)
-        //     _caseList(details)
-        // }
         navigate.navigate('InformAdd', details)
     }
 
