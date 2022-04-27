@@ -1,9 +1,10 @@
 import API from '../graphQL'
 
-export const login = async (profile, otp, cb) => {
+export const login = async (profile, otp, notify,cb) => {
     const LOGIN = `
         mutation {
             login(
+                pushToken: "${notify}",
                 id: "${profile.getProfileOtp.id}",
                 otp: "${otp}",
                 refNo: "${profile.OTP.refNo}",

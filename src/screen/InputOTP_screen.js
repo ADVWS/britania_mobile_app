@@ -59,19 +59,22 @@ export default function InputOTP({ route }) {
     userType(1)
     setLoading(true)
     clearInterval(setOTPTimer);
-    Script.login(optData, otp, (res) => {
-      if (typeof res === 'object') {
-        var data = JSON.stringify(res.login)
-        Store.setLocalStorege(Key.TOKEN, data, (call) => {
-          setProfileUser(res.login.token)
-        })
-      } else {
-        setLoading(false)
-        setTimeout(() => {
-          setTextAlert(res)
-          setAlert(true)
-        }, 500);
-      }
+    Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
+      Script.login(optData, otp, NOTIFYTOKEN, (res) => {
+        console.log(res)
+        if (typeof res === 'object') {
+          var data = JSON.stringify(res.login)
+          Store.setLocalStorege(Key.TOKEN, data, (call) => {
+            setProfileUser(res.login.token)
+          })
+        } else {
+          setLoading(false)
+          setTimeout(() => {
+            setTextAlert(res)
+            setAlert(true)
+          }, 500);
+        }
+      })
     })
   }
 
@@ -95,8 +98,11 @@ export default function InputOTP({ route }) {
         var data = JSON.stringify(res)
         Store.setLocalStorege(Key.PROFILE, data, (_res) => {
           setTimeout(() => {
-            setNotify(res, token)
-          }, 500);
+            navigation.reset(({
+              index: 0,
+              routes: [{ name: 'TabFooter' }],
+            }))
+          }, 200);
         })
       } else {
         setTimeout(() => {
@@ -107,23 +113,23 @@ export default function InputOTP({ route }) {
     })
   }
 
-  function setNotify(data, token){
-    Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
-      var dataNotify = {
-        id: data.me.id,
-        token: token,
-        NOTIFYTOKEN: NOTIFYTOKEN
-      }
-      TokenNotification.userUpdateTokenNotification(dataNotify,(res)=>{
-        setTimeout(() => {
-          navigation.reset(({
-            index: 0,
-            routes: [{ name: 'TabFooter' }],
-          }))
-        }, 200);
-      })
-    })
-  }
+  // function setNotify(data, token){
+  //   Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
+  //     var dataNotify = {
+  //       id: data.me.id,
+  //       token: token,
+  //       NOTIFYTOKEN: NOTIFYTOKEN
+  //     }
+  //     TokenNotification.userUpdateTokenNotification(dataNotify,(res)=>{
+  //       setTimeout(() => {
+  //         navigation.reset(({
+  //           index: 0,
+  //           routes: [{ name: 'TabFooter' }],
+  //         }))
+  //       }, 200);
+  //     })
+  //   })
+  // }
 
   async function resendOtp() {
     var valueMobile
