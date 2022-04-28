@@ -2,11 +2,12 @@ import * as React from "react";
 import { Image, View, Text, TouchableOpacity, Linking } from "react-native";
 import { Styles } from "../../styles";
 
-const Feeds = ({ feeds }) => {
+const AdsFeeds = ({ feeds }) => {
   return (
     <View style={[Styles.w100]}>
-      {feeds.map((item) => (
+      {feeds.map((item, index) => (
         <TouchableOpacity
+          key={index.toString()}
           activeOpacity={0.8}
           onPress={() => {
             Linking.openURL(item.link);
@@ -46,4 +47,4 @@ const Feeds = ({ feeds }) => {
   );
 };
 
-export default Feeds;
+export default AdsFeeds;

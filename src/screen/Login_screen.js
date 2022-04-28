@@ -59,7 +59,7 @@ export default function Login({ route }) {
         </View>
         <Image
           source={require("../../assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-15.png")}
-          style={[Styles.w80, { height: '5%' }]}
+          style={[{ height: 50, width: 210 }]}
         />
         <View style={[Styles.w100, Styles.al_start, Styles.mt35per]}>
           <Text style={[Styles.f_22, Styles.mainFont, Styles.mainColor_text]}>

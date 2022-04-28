@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwtDecode from 'jwt-decode'
 import moment from "moment";
 import Script from "../script";
