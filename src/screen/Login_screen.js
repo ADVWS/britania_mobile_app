@@ -21,7 +21,9 @@ export default function Login({ route }) {
   const userType = useSetRecoilState(Global.userType)
   const settingLANG = useSetRecoilState(Global.Language)
   const setUserProfile = useSetRecoilState(Global.userProfile)
-
+  const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner);
+  const setUnitOwner = useSetRecoilState(Global.unitOwner);
+  console.log('===>',unitOwner)
   const navigation = useNavigation();
 
   function selectLang(_selectLang) {
@@ -66,7 +68,7 @@ export default function Login({ route }) {
             {LANG.login_text_01}
           </Text>
           <TouchableOpacity
-            onPress={() => navigate.navigate("Signin")}
+            onPress={() => {navigate.navigate("Signin")}}
             style={[
               Styles.w100,
               Styles.p15,

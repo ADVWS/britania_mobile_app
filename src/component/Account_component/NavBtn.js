@@ -26,6 +26,8 @@ const NavBtn = ({ optiono }) => {
   const [userProfile, setUserProfile_] = useRecoilState(Global.userProfile);
   const [ownerType, setownerType] = useRecoilState(Global.ownerType)
   const LogoutownerType = useSetRecoilState(Global.ownerType)
+  const setUnitOwner = useSetRecoilState(Global.unitOwner);
+
   const logout = (req) => {
     if (req === "CANCEL") {
       setConfirm(false);
@@ -33,6 +35,7 @@ const NavBtn = ({ optiono }) => {
       USERLOGOUT.USERLOGOUT((res)=>{
         LogoutownerType('none')
         setConfirm(false);
+        setUnitOwner({})
         navigate.navigate("Login");
       })
     }

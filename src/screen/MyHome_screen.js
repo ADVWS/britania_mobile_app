@@ -44,13 +44,19 @@ const MyHome = () => {
     "Inprocess",
   ];
   const historyStatus = ["Finish", "Close"];
-  startApp();
+
+  React.useEffect(() => {
+    startApp();
+  }, []);
+
+  //startApp();
   function startApp() {
     if (mainScript.isEmptyObject(unitOwner) === null) {
       if (
         userProfile.me.unitsAllowHomecare &&
         userProfile.me.unitsAllowHomecare !== null
       ) {
+        console.log('SET')
         setUnitOwner(userProfile.me.unitsAllowHomecare[0]);
       }
     }

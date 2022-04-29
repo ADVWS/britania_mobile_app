@@ -2,7 +2,7 @@
   "expo": {
     "name": "Britania-Connect",
     "slug": "Britania-Connect",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon1.png",
     "splash": {
@@ -22,7 +22,7 @@
       },
       "supportsTablet": true,
       "bundleIdentifier": "com.advws.britaniaconnect",
-      "buildNumber": "3"
+      "buildNumber": "1.0.3"
     },
     "android": {
       "adaptiveIcon": {
