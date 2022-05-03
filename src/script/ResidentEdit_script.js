@@ -1,11 +1,12 @@
-import API from '../graphQL'
-import Store from "../store"
+import { Alert } from "react-native";
+import API from "../graphQL";
+import Store from "../store";
 
 export const memberUpdateProfile_thai = async (edit, key, unitid, cb) => {
-    Store.getLocalStorege(key, (res) => {
-        const token = res.detail.token
-        if(edit.files){
-            var EDIT = `
+  Store.getLocalStorege(key, (res) => {
+    const token = res.detail.token;
+    if (edit.files) {
+      var EDIT = `
                 mutation {
                     memberUpdateProfile(input: {
                         name : "${edit.name}",
@@ -33,8 +34,8 @@ export const memberUpdateProfile_thai = async (edit, key, unitid, cb) => {
                     }
                 }
             `;
-        } else {
-            var EDIT = `
+    } else {
+      var EDIT = `
                 mutation {
                     memberUpdateProfile(input: {
                         name : "${edit.name}",
@@ -56,16 +57,16 @@ export const memberUpdateProfile_thai = async (edit, key, unitid, cb) => {
                     }
                 }
             `;
-        }
-        updateMember(EDIT, token, unitid, cb)
-    })
-}
+    }
+    updateMember(EDIT, token, unitid, cb);
+  });
+};
 
 export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
-    Store.getLocalStorege(key, (res) => {
-        const token = res.detail.token
-        if(edit.files){
-            var EDIT = `
+  Store.getLocalStorege(key, (res) => {
+    const token = res.detail.token;
+    if (edit.files) {
+      var EDIT = `
                 mutation {
                     memberUpdateProfile(input: {
                         name : "${edit.name}",
@@ -75,7 +76,6 @@ export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
                         email: "${edit.email}",
                         idcard: "${edit.idcard}",
                         passport: "${edit.passport}",
-                        expiredDate: "${edit.expiredDate}",
                         memberImage: {
                             fileId: "${edit.files.fileId}"
                             fileCurName: "${edit.files.fileCurName}"
@@ -93,8 +93,8 @@ export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
                     }
                 }
             `;
-        } else {
-            var EDIT = `
+    } else {
+      var EDIT = `
                 mutation {
                     memberUpdateProfile(input: {
                         name : "${edit.name}",
@@ -104,7 +104,6 @@ export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
                         email: "${edit.email}",
                         idcard: "${edit.idcard}",
                         passport: "${edit.passport}",
-                        expiredDate: "${edit.expiredDate}",
                     }){
                         name
                         mobileNo
@@ -116,18 +115,18 @@ export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
                     }
                 }
             `;
-        }
-        updateMember(EDIT, token, unitid, cb)
-    })
-}
+    }
+    updateMember(EDIT, token, unitid, cb);
+  });
+};
 
 export const updateMember = async (EDIT, token, unitid, cb) => {
-    const result = await API.request(EDIT, token);
-    updateUnit(token, unitid, cb)
-}
+  const result = await API.request(EDIT, token);
+  updateUnit(token, unitid, cb);
+};
 
 export const updateUnit = async (token, unitid, cb) => {
-    const UNIT = `query {
+  const UNIT = `query {
     unitMemberAll(unitId: "${unitid}") {
             id,
             unitMemberId,
@@ -143,26 +142,33 @@ export const updateUnit = async (token, unitid, cb) => {
             allowHomecare,
             profileImage
         }
-    }`
-    const result = await API.request(UNIT, token);
-    const unitMember = result
-    unitMember.unitMemberAll = result.unitMemberAll
-    unitMember.tenant = []
-    unitMember.resident = []
+    }`;
+  console.log("===>", UNIT);
+  //alert(UNIT)
+  const result = await API.request(UNIT, token);
+  if (result.unitMemberAll) {
+    const unitMember = result;
+    unitMember.unitMemberAll = result.unitMemberAll;
+    unitMember.tenant = [];
+    unitMember.resident = [];
     for (let i = 0; i < unitMember.unitMemberAll.length; i++) {
-        if (unitMember.unitMemberAll[i].ownerType === 'tenant') {
-            unitMember.unitMemberAll[i].unitid = unitid
-            unitMember.tenant.push(unitMember.unitMemberAll[i])
-        } else {
-            unitMember.unitMemberAll[i].unitid = unitid
-            unitMember.resident.push(unitMember.unitMemberAll[i])
-        }
+      if (unitMember.unitMemberAll[i].ownerType === "tenant") {
+        unitMember.unitMemberAll[i].unitid = unitid;
+        unitMember.tenant.push(unitMember.unitMemberAll[i]);
+      } else {
+        unitMember.unitMemberAll[i].unitid = unitid;
+        unitMember.resident.push(unitMember.unitMemberAll[i]);
+      }
     }
-    cb(unitMember)
-}
+    console.log('===:', unitMember)
 
+    cb(unitMember);
+  } else {
+    alert(result)
+  }
+};
 
 export default {
-    memberUpdateProfile_thai,
-    memberUpdateProfile_foreign
-}
+  memberUpdateProfile_thai,
+  memberUpdateProfile_foreign,
+};

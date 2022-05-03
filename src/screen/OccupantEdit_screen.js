@@ -72,7 +72,7 @@ const OccupantEdit = ({ route }) => {
       Script.memberUpdateProfile_thai(
         edit,
         KEYS.TOKEN,
-        member.unitid,
+        unitMember.unitId,
         (res) => {
           if (typeof res === "object") {
             setLoading(false)
@@ -93,7 +93,7 @@ const OccupantEdit = ({ route }) => {
       Script.memberUpdateProfile_foreign(
         edit,
         KEYS.TOKEN,
-        member.unitid,
+        unitMember.unitId,
         (res) => {
           if (typeof res === "object") {
             setLoading(false)
@@ -114,6 +114,7 @@ const OccupantEdit = ({ route }) => {
   }
 
   const setImage = (img) => {
+    console.log(img)
     if (img) {
       return <ProfilePicCom picture={{ uri: img }} uploadImage={uploadImg} />;
     } else {
@@ -136,7 +137,7 @@ const OccupantEdit = ({ route }) => {
         scrollEventThrottle={16}
         style={[Styles.w100, Styles.h75]}
       >
-        <View style={Styles.al_center}>{setImage(member.image)}</View>
+        <View style={Styles.al_center}>{setImage(member.profileImage)}</View>
         <View style={Styles.ml5}>
           <Text style={[Styles.mainFont, Styles.f_22, Styles.black_gray_text]}>
             {LANG.occupantedit_text_03}

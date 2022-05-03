@@ -24,7 +24,7 @@ export default class ProfilePictureComnocrop extends React.Component {
   _InputImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
+      allowsEditing: false,
       //aspect: [1, 1],
       quality: 1,
     });

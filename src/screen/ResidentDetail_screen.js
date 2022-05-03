@@ -22,6 +22,7 @@ const ResidentDetail = ({ route }) => {
   const setUnitMember = useSetRecoilState(Global.unitMember);
 
   const openConfirm = () => setAlert(true);
+  console.log(/^[0-9]+$/.test('0968803071'))
   const setBtnMember = (status) => {
     if (status === "active") {
       return <Edit_btn member={member} openConfirm={openConfirm} />;
@@ -58,7 +59,6 @@ const ResidentDetail = ({ route }) => {
       );
     }
   };
-
   const confirm = (req) => {
     if (req === "CANCEL") {
       setAlert(false);
@@ -66,8 +66,9 @@ const ResidentDetail = ({ route }) => {
       Script.memberDeleteProfile(
         member.unitMemberId,
         KEYS.TOKEN,
-        member.unitid,
+        unitMember.unitId,
         (res) => {
+          console.log(res)
           var data = mainScript.recoilTranform(unitMember);
           data.unitMember = res;
           setUnitMember(data);

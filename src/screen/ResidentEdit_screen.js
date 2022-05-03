@@ -41,6 +41,7 @@ const ResidentEdit = ({ route }) => {
   }
 
   function saveEdit(edit) {
+    return
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
@@ -72,7 +73,7 @@ const ResidentEdit = ({ route }) => {
       Script.memberUpdateProfile_thai(
         edit,
         KEYS.TOKEN,
-        member.unitid,
+        unitMember.unitId,
         (res) => {
           if (typeof res === "object") {
             setLoading(false)
@@ -93,7 +94,7 @@ const ResidentEdit = ({ route }) => {
       Script.memberUpdateProfile_foreign(
         edit,
         KEYS.TOKEN,
-        member.unitid,
+        unitMember.unitId,
         (res) => {
           if (typeof res === "object") {
             setLoading(false)

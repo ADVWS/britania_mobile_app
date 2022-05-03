@@ -23,17 +23,17 @@ import MainHeader from "../component/mainHeader";
 import { FontAwesome } from "@expo/vector-icons";
 import moment from "moment";
 
-
 const InformAdd = ({ route }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [caseList, setCaseList] = useRecoilState(Global.caseList);
   const _setCaseList = useSetRecoilState(Global.caseList);
+  const [iscaseEdit, setiscaseEdit] = useRecoilState(Global.caseEdit);
 
   const [gallery, setGallery] = React.useState([]);
-  const [isCase, setIsCase] = React.useState(route.params);
-  const [imageAdd, setImageAdd] = React.useState([]);
-  const [display, setDisplay] = React.useState(false);
-  const [detail, setDetail] = React.useState("");
+  const [isCase, setIsCase] = React.useState(iscaseEdit.id!==""?iscaseEdit:route.params);
+  const [imageAdd, setImageAdd] = React.useState(iscaseEdit.imgSet.length > 0?iscaseEdit.imgSet:[]);
+  const [display, setDisplay] = React.useState(iscaseEdit.imgSet.length > 0?true:false);
+  const [detail, setDetail] = React.useState(iscaseEdit.description!==""?iscaseEdit.description:"");
   const [alDetail, setAlDetail] = React.useState(false);
   const [alBoxDetail, setAlBoxDetail] = React.useState("#DDD");
   const [load, setLoad] = React.useState(false);
@@ -50,7 +50,7 @@ const InformAdd = ({ route }) => {
       quality: 1,
     });
     if (!result.cancelled) {
-      var imageset = imageAdd;
+      var imageset = mainScript.recoilTranform(imageAdd);
       setDisplay(false);
       var imageId = mainScript.makeid(6);
       imageset.push({ img: result.uri, id: imageId });
@@ -87,27 +87,45 @@ const InformAdd = ({ route }) => {
         selectImage.push(img.img);
       });
     }
-    isCase.description = detail;
-    isCase.id = mainScript.makeid(6);
-    isCase.imgUri = selectImage;
-    isCase.file = [];
-    storeImage = [];
-    indexPic = 0;
-    navigate.navigate("InformContact", isCase);
-    var newCase = [isCase];
-
-    if (caseList.length > 0) {
-      var setNewcase = mainScript.recoilTranform(caseList);
-      setNewcase.push(isCase);
-      _setCaseList(setNewcase);
+    if (iscaseEdit.id !== "") {
+      var isEdit = mainScript.recoilTranform(iscaseEdit)
+      setIsCase(isEdit)
+      var editcase = []
+      var editCaseList = mainScript.recoilTranform(caseList)
+      editCaseList.map((item)=>{
+        if(item.id === iscaseEdit.id){
+          item.description = detail
+          item.imgUri = selectImage
+          item.imgSet = imageAdd
+          editcase.push(item)
+        } else {
+          editcase.push(item)
+        }
+      })
+      _setCaseList(editcase)
+      setLoad(false);
+      navigate.navigate("InformContact", isCase);
     } else {
-      _setCaseList(newCase);
+      isCase.description = detail;
+      isCase.id = mainScript.makeid(6);
+      isCase.imgUri = selectImage;
+      isCase.file = [];
+      isCase.imgSet = imageAdd
+      storeImage = [];
+      indexPic = 0;
+      //navigate.navigate("InformContact", isCase);
+      var newCase = [isCase];
+
+      if (caseList.length > 0) {
+        var setNewcase = mainScript.recoilTranform(caseList);
+        setNewcase.push(isCase);
+        _setCaseList(setNewcase);
+      } else {
+        _setCaseList(newCase);
+      }
+      setLoad(false);
+      navigate.navigate("InformContact", isCase);
     }
-    setLoad(false);
-    setDetail('');
-    setImageAdd([]);
-    setDisplay(false);
-    navigate.navigate("InformContact", isCase);
   }
 
   function deleteImage(id) {

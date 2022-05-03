@@ -17,6 +17,8 @@ import moment from "moment";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
 import Modal_alert from "../../component/modal_alert";
+import Script from '../../script'
+
 
 export default function foreigner_form({ unit, addMember }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
@@ -46,6 +48,21 @@ export default function foreigner_form({ unit, addMember }) {
       checker.push(false);
     }
     if (rawDate === "") {
+      checker.push(false);
+    }
+    if (/^[0-9]+$/.test(mobileNo) === false) {
+      checker.push(false);
+    }
+    if (/^[0-9]+$/.test(idcard) === false) {
+      checker.push(false);
+    }
+    if (mobileNo.length < 10) {
+      checker.push(false);
+    }
+    if (idcard.length < 13) {
+      checker.push(false);
+    }
+    if(!Script.chkDigitPid(idcard)){
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {

@@ -33,6 +33,12 @@ export default class mainHeader extends React.Component {
     var paramNav = "";
     var informSet;
     var defaultTime;
+    if(this.props.param === "CASEEDIT"){
+      const {caseEdit} = this.props;
+      this.caseEdit = caseEdit;
+      this.caseEdit();
+      return
+    }
     if (this.props.param) {
       paramNav = this.props.param;
     }

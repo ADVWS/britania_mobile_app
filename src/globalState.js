@@ -18,7 +18,7 @@ export const Language = atom({
 
 export const LANGTEXT = atom({
   key: "LANGTEXT",
-  default: 'TH',
+  default: "TH",
 });
 
 export const unitMember = atom({
@@ -33,28 +33,28 @@ export const unitOwner = atom({
 
 export const caseType = atom({
   key: "caseType",
-  default: []
-})
+  default: [],
+});
 
 export const caseList = atom({
   key: "caseList",
-  default: []
-})
+  default: [],
+});
 
 export const checkInTime = atom({
   key: "checkInTime",
-  default: []
-})
+  default: [],
+});
 
 export const project = atom({
   key: "project",
-  default: false
-})
+  default: false,
+});
 
 export const holiday = atom({
   key: "holiday",
-  default: []
-})
+  default: [],
+});
 
 export const dataListInform = atom({
   key: "dataListInform",
@@ -83,17 +83,17 @@ export const ownerType = atom({
 export const informType = atom({
   key: "informType",
   default: [
-    { image: images.electricity, seq: 1},
+    { image: images.electricity, seq: 1 },
     { image: images.pipe, seq: 2 },
     { image: images.door, seq: 3 },
-    { image: images.floor, seq: 4},
+    { image: images.floor, seq: 4 },
     { image: images.ceiling, seq: 5 },
     { image: images.wc, seq: 6 },
     { image: images.layout, seq: 7 },
     { image: images.wall, seq: 8 },
     { image: images.color, seq: 9 },
     { image: images.furniture, seq: 10 },
-    { image: images.roof, seq: 11},
+    { image: images.roof, seq: 11 },
     { image: images.public, seq: 12 },
     { image: images.other, seq: 13 },
   ],
@@ -132,4 +132,16 @@ export const newInform = atom({
 export const callbackEdit = atom({
   key: "callbackEdit",
   default: "",
+});
+
+export const caseEdit = atom({
+  key: "caseEdit",
+  default: {
+    categoryId: "",
+    description: "",
+    file: [],
+    id: "",
+    imgSet: [],
+    imgUri: [],
+  },
 });

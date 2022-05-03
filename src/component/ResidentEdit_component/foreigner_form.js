@@ -12,6 +12,8 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import * as Global from "../../globalState";
 import Modal from "react-native-modal";
 import Modal_alert from "../../component/modal_alert";
+import Script from "../../script"
+
 
 const foreigner_form = (item) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
@@ -34,6 +36,12 @@ const foreigner_form = (item) => {
       checker.push(false);
     }
     if (email === "") {
+      checker.push(false);
+    }
+    if (/^[0-9]+$/.test(mobileNo) === false) {
+      checker.push(false);
+    }
+    if (mobileNo.length < 10) {
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {

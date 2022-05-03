@@ -29,10 +29,12 @@ const InformContact = ({ route }) => {
   const timecheck = useSetRecoilState(Global.checkInTime);
   const setCaseLists = useSetRecoilState(Global.caseList);
   const holiday = useSetRecoilState(Global.holiday);
+
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [newInform, setListNewInform] = useRecoilState(Global.newInform);
   const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner);
   const [caseList, setCaseList] = useRecoilState(Global.caseList);
+  const setCaseEdit = useSetRecoilState(Global.caseEdit);
   
   const [alAddress, setAladdress] = React.useState(false);
   const [alAddressColor, setAladdressColor] = React.useState("#DDD");
@@ -53,6 +55,14 @@ const InformContact = ({ route }) => {
   }, []);
 
   function Addmore(req) {
+    setCaseEdit({
+      categoryId: "",
+      description: "",
+      file: [],
+      id: "",
+      imgSet: [],
+      imgUri: [],
+    })
     navigate.navigate("SelectTypeInform");
   }
 
@@ -77,6 +87,7 @@ const InformContact = ({ route }) => {
       setAlmobilenoColor("red");
     }
     if (checker.indexOf(false) !== -1) {
+      setLoad(false)
       return;
     }
     var _newInform = mainScript.recoilTranform(newInform);
@@ -128,6 +139,11 @@ const InformContact = ({ route }) => {
       navigate.navigate("SelectTypeInform");
     }
   }
+
+  function onCaseEdit() {
+    setCaseEdit(caseList[caseList.length - 1])
+    navigate.navigate("InformAdd");
+  }
   
   const closeModalAlert = () => setAlert(false)
 
@@ -138,7 +154,8 @@ const InformContact = ({ route }) => {
         <MainHeader
           name={LANG.informcontact_text_01}
           backto={"InformAdd"}
-          param={route.params}
+          param={'CASEEDIT'}
+          caseEdit={onCaseEdit}
         />
         <ScrollView style={[Styles.w100, Styles.flex]}>
           <View style={[Styles.w100, Styles.p15, Styles.mainColorF9]}>

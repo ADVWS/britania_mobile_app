@@ -1,5 +1,11 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput,
+} from "react-native";
 
 import { Styles } from "../../styles";
 import * as Global from "../../globalState";
@@ -7,6 +13,7 @@ import { useRecoilState } from "recoil";
 import * as navigate from "../../navigator/RootNavigation";
 import Modal from "react-native-modal";
 import Modal_alert from "../../component/modal_alert";
+import Script from "../../script";
 
 export default function thai_form({ unit, addMember }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
@@ -31,6 +38,21 @@ export default function thai_form({ unit, addMember }) {
     if (email === "") {
       checker.push(false);
     }
+    if (/^[0-9]+$/.test(mobileNo) === false) {
+      checker.push(false);
+    }
+    if (/^[0-9]+$/.test(idcard) === false) {
+      checker.push(false);
+    }
+    if (mobileNo.length < 10) {
+      checker.push(false);
+    }
+    if (idcard.length < 13) {
+      checker.push(false);
+    }
+    if(!Script.chkDigitPid(idcard)){
+      checker.push(false);
+    }
     if (checker.indexOf(false) !== -1) {
       setTextAlert(LANG.alert_text_01);
       setAlert(true);
@@ -46,15 +68,13 @@ export default function thai_form({ unit, addMember }) {
       mobileNo: mobileNo,
       email: email,
     };
-    addMember(add)
+    addMember(add);
   };
 
   const closeModalAlert = () => setAlert(false);
 
   return (
-    <KeyboardAvoidingView
-      behavior="padding"
-      style={{ marginBottom: 30 }}>
+    <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
       <Text
         style={[
           Styles.ml5,
@@ -74,7 +94,7 @@ export default function thai_form({ unit, addMember }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           onChangeText={setName}
         />
@@ -100,7 +120,7 @@ export default function thai_form({ unit, addMember }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           onChangeText={setIdcard}
         />
@@ -126,7 +146,7 @@ export default function thai_form({ unit, addMember }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           onChangeText={setMobileNo}
         />
@@ -150,7 +170,7 @@ export default function thai_form({ unit, addMember }) {
             Styles.textfieldbox,
             Styles.f_20,
             Styles.mainFont_x,
-            Styles.border_btn2
+            Styles.border_btn2,
           ]}
           onChangeText={setEmail}
         />

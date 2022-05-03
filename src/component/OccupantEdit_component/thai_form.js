@@ -16,6 +16,7 @@ import * as navigate from "../../navigator/RootNavigation";
 import moment from "moment";
 import * as Global from "../../globalState";
 import Modal_alert from "../../component/modal_alert";
+import Script from "../../script";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 
@@ -50,6 +51,21 @@ const thai_form = (item) => {
       checker.push(false);
     }
     if (email === "") {
+      checker.push(false);
+    }
+    if (/^[0-9]+$/.test(mobileNo) === false) {
+      checker.push(false);
+    }
+    if (/^[0-9]+$/.test(idcard) === false) {
+      checker.push(false);
+    }
+    if (mobileNo.length < 10) {
+      checker.push(false);
+    }
+    if (idcard.length < 13) {
+      checker.push(false);
+    }
+    if(!Script.chkDigitPid(idcard)){
       checker.push(false);
     }
     if (checker.indexOf(false) !== -1) {

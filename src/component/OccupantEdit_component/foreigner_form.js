@@ -48,6 +48,12 @@ export default function foreigner_form(item) {
     if (email === "") {
       checker.push(false);
     }
+    if (/^[0-9]+$/.test(mobileNo) === false) {
+      checker.push(false);
+    }
+    if (mobileNo.length < 10) {
+      checker.push(false);
+    }
     if (checker.indexOf(false) !== -1) {
       setTextAlert(LANG.alert_text_01);
       setAlert(true);

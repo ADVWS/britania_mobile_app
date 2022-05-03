@@ -17,10 +17,14 @@ import mainScript from "../script";
 
 import MainHeader from "../component/mainHeader";
 
-const SelectTypeInform = () => {
+const SelectTypeInform = ({route}) => {
+    const [iscaseEdit, setiscaseEdit] = useRecoilState(Global.caseEdit);
     const [caseType, setCaseType] = useRecoilState(Global.caseType)
     const [LANG, setLANG] = useRecoilState(Global.Language)
     const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT)
+    const [caseList, setCaseList] = useRecoilState(Global.caseList);
+    const _setCaseList = useSetRecoilState(Global.caseList)
+    const _setiscaseEdit = useSetRecoilState(Global.caseEdit);
 
 
     function gotoInformAdd(param, name) {
@@ -28,7 +32,20 @@ const SelectTypeInform = () => {
             categoryId: param,
             description: ""
         }
-        navigate.navigate('InformAdd', details)
+        if(iscaseEdit.id !== ""){
+            var editcase = mainScript.recoilTranform(caseList)
+            var routeParam = {}
+            editcase.map((item)=>{
+                if(item.id === iscaseEdit.id){
+                    item.categoryId = param
+                    _setiscaseEdit(item)
+                }
+            })
+            _setCaseList(editcase)
+            navigate.navigate('InformAdd')
+        } else {
+            navigate.navigate('InformAdd', details)
+        }
     }
 
     return (

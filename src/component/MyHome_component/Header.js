@@ -96,7 +96,7 @@ const Header = () => {
       >
         <Image
           source={require("../../../assets/image/britania_new_theme/BRITANIA_CONNECT_LOGO-15.png")}
-          style={[Styles.w100, { height: "35%" }]}
+          style={[Styles.w100, { height: 45, width: 190, top: 5 }]}
         />
       </View>
       <View style={[Styles.w20, Styles.al_end, Styles.jc_end, Styles.p5]}>
