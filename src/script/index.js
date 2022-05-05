@@ -213,10 +213,11 @@ function makeid(length) {
 
 
 async function refreshToken (token, cb) {
+    console.log('refreshToken::',token)
     const RETOKEN = `
     query {
         token(
-            refreshToken: "${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmZTI2ZTY2LTM1OTItNDExMi04NDU3LTNmOTM0MDJjZjZlNSIsInNlY3VyaXR5Q291bnQiOjAsImlhdCI6MTY0NjgxNzMyNywiZXhwIjoxNjUyMDAxMzI3fQ.w9w_4P2SH2BU9o6Zc4QuHzEVh0YgCpt6dAfUTn0stUE'}",
+            refreshToken: "${token}",
         ){
             token
             refreshToken

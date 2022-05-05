@@ -6,6 +6,8 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  ImageBackground,
+  PixelRatio,
 } from "react-native";
 import { Styles } from "../../styles";
 import * as navigate from "../../navigator/RootNavigation";
@@ -16,8 +18,6 @@ import mainScript from "../../script";
 import { useRecoilState } from "recoil";
 import * as Global from "../../globalState";
 import Modal from "react-native-modal";
-import ImageZoom from "react-native-image-pan-zoom";
-import { FontAwesome } from "@expo/vector-icons";
 
 const OrderList = ({ data, index, route, informDetail }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
@@ -58,6 +58,32 @@ const OrderList = ({ data, index, route, informDetail }) => {
       });
     });
   }
+
+  const RemoteImage = ({ uri, desiredWidth }) => {
+    const [desiredHeight, setDesiredHeight] = React.useState(0);
+
+    Image.getSize(uri, (width, height) => {
+      setDesiredHeight((desiredWidth / width) * height);
+    });
+
+    return desiredHeight > 926 ? (
+      <Image
+        source={require("../../../assets/image_over.png")}
+        style={{
+          width: 420,
+          height: 400,
+        }}
+      />
+    ) : (
+      <Image
+        source={{ uri }}
+        style={{
+          width: desiredWidth,
+          height: desiredHeight,
+        }}
+      />
+    );
+  };
 
   function zoomImage(img) {
     setZoom(true);
@@ -265,35 +291,15 @@ const OrderList = ({ data, index, route, informDetail }) => {
           </TouchableOpacity>
         )}
       </View>
-      <Modal isVisible={zoom} style={[Styles.al_center]}>
-        <ImageZoom
-          cropWidth={Dimensions.get("window").width}
-          cropHeight={Dimensions.get("window").height}
-          imageWidth={300}
-          imageHeight={800}
-          style={{ marginTop: 400, right: 15 }}
-        >
-           <View style={[{width: '110%'}, Styles.al_center]}>
-           <Image
-            source={{ uri: izoom }}
-            style={{ width: "105%", height: "65%", borderRadius: 10}}
-          />
-          </View>
-        </ImageZoom>
-        <TouchableOpacity
-              onPress={() => {setZoom(false)}}
-              style={[
-                Styles.FFF,
-                Styles.al_center,
-                Styles.jc_center,
-                Styles.circle,
-                Styles.absolute,
-                Styles.mainColor_bb6,
-                { width: 50, height: 50, top: 40, right: 0 },
-              ]}
-            >
-              <FontAwesome name="close" size={40} color="#FFF" />
-            </TouchableOpacity>
+      <Modal
+        onBackdropPress={()=>setZoom(false) }
+        isVisible={zoom}
+        style={[Styles.al_center, Styles.jc_center]}
+      >
+        <RemoteImage
+          uri={izoom}
+          desiredWidth={Dimensions.get("window").width - 60}
+        />
       </Modal>
     </>
   );

@@ -23,18 +23,16 @@ export default function App() {
   React.useEffect(() => {
     registerForPushNotification()
       .then((token) => {
-        console.log("===>", token);
         Store.getLocalStorege(Keys.NOTIFY, (res) => {
-          console.log(res);
           if (!res.result) {
-            storekNotifyToken();
+            storekNotifyToken(token);
           }
         });
       })
       .catch((err) => console.log(err));
   }, []);
 
-  function storekNotifyToken() {
+  function storekNotifyToken(token) {
     Store.setLocalStorege(Keys.NOTIFY, token, (res) => {});
   }
 

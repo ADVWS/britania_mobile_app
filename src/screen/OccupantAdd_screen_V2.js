@@ -12,56 +12,52 @@ import {
 import * as navigate from "../navigator/RootNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
-import moment from "moment";
 import DatePicker from "react-native-datepicker";
 import DateTimePicker from "@react-native-community/datetimepicker";
+
+import moment from "moment";
 
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
 import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
-import Radio from "../component/OccupantEdit_component/radio_resadd";
-import ThaiForm from "../component/OccupantEdit_component/thai_form";
-import ForeignForm from "../component/OccupantEdit_component/foreigner_form";
+import Radio from "../component/ResidentAdd_component/radio_resadd";
+import ThaiForm from "../component/OccupantAdd_component/thai_form";
+import ForeignForm from "../component/OccupantAdd_component/foreigner_form";
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
 
-import { useRecoilState, useSetRecoilState } from "recoil";
-import KEYS from "../KEYS.json";
 import * as Global from "../globalState";
-import Script from "../script/OccupantEdit_script";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import KEYS from "../KEYS.json";
+import Script from "../script/OccupantAdd_script";
 import mainScript from "../script";
 import Store from "../store";
 
-const OccupantEdit = ({ route }) => {
-  const [member, setMember] = React.useState(route.params);
-  const [type, setType] = React.useState(member.nationType);
+export default function OccupantAdd({ route }) {
+  const [unit, setUnit] = React.useState(route.params);
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const [type, setType] = React.useState("thai");
   const [uploadImage, setUploadImage] = React.useState("");
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
 
+  const [chosenDate, setChosenDate] = React.useState(new Date());
   const [date, setDate] = React.useState(
-    moment(member.expiredDate).format("DD-MM-YYYY")
+    moment().format("DD-MM-YYYY")
   );
-  const [chosenDate, setChosenDate] = React.useState(
-    new Date(member.expiredDate)
-  );
-  const [rawDate, setRawDate] = React.useState(member.expiredDate);
-  const [name, setName] = React.useState(member.name);
-  const [idcard, setIdcard] = React.useState(member.idcard);
-  const [mobileNo, setMobileNo] = React.useState(member.mobileNo);
-  const [email, setEmail] = React.useState(member.email);
-  const [passport, setPassport] = React.useState(member.passport)
+  const [rawDate, setRawDate] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [idcard, setIdcard] = React.useState("");
+  const [mobileNo, setMobileNo] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [passport, setPassport] = React.useState("");
 
   const [iosDatepicker, setIosDatepicker] = React.useState(false);
 
-  console.log(member)
-
   function isSelectType(TYPE) {
-    console.log(TYPE)
     setType(TYPE);
   }
 
@@ -69,7 +65,7 @@ const OccupantEdit = ({ route }) => {
     setUploadImage(img);
   }
 
-  function checkData() {
+  const checkAdd = () => {
     var checker = [];
     if (name === "") {
       checker.push(false);
@@ -97,8 +93,8 @@ const OccupantEdit = ({ route }) => {
         checker.push(false);
       }
     } else {
-      if(passport === ""){
-         checker.push(false);
+      if (passport === "") {
+        checker.push(false);
       }
     }
     if (mobileNo.length < 10) {
@@ -109,33 +105,27 @@ const OccupantEdit = ({ route }) => {
       setAlert(true);
       return;
     }
-    var edit = {
+    var add = {
+      unitId: unit.unitId,
+      ownerType: "tenant",
+      nationType: type,
       name: name,
       mobileNo: mobileNo,
       email: email,
-      nationType: type,
-      unitMemberId: member.unitMemberId,
       expiredDate: rawDate,
     };
     if (type == "thai") {
-      edit.idcard = idcard
-      if(passport !== null){
-        edit.passport = passport
-      } else {
-        edit.passport = null
-      }
+      add.idcard = idcard;
+      add.passport = "";
     } else {
-      edit.passport = passport
-      if(idcard !== null){
-        edit.idcard = idcard
-      } else {
-        edit.idcard = null
-      }
+      add.passport = passport;
+      add.idcard = "";
     }
-    saveEdit(edit);
-  }
+    console.log(add)
+    addMember(add);
+  };
 
-  function saveEdit(edit) {
+  function addMember(add) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -153,40 +143,38 @@ const OccupantEdit = ({ route }) => {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          edit.files = res;
-          editData(edit);
+          add.files = res;
+          addData(add);
         });
       });
     } else {
-      editData(edit);
+      addData(add);
     }
   }
 
-  function editData(edit) {
-    Script.memberUpdateProfile(
-      edit,
-      KEYS.TOKEN,
-      unitMember.unitId,
-      (res) => {
-        if (typeof res === "object") {
-          setLoading(false);
-          var data = mainScript.recoilTranform(unitMember);
-          data.unitMember = res;
-          setUnitMember(data);
-          navigate.navigate("MemberManageIndivi");
-        } else {
-          setTextAlert(res);
-          setLoading(false);
-          setTimeout(() => {
-            setAlert(true);
-          }, 500);
-        }
+  function addData(add) {
+    Script.memberAddProflie(add, KEYS.TOKEN, unit.unitId, (res) => {
+      if (typeof res === "object") {
+        setLoading(false);
+        var data = mainScript.recoilTranform(unitMember);
+        data.unitMember = res.unitUpdate;
+        var otp = res.otp;
+        otp.mobileNo = add.mobileNo;
+        otp.name = add.name;
+        otp.unitId = unit.unitId;
+        setUnitMember(data);
+        navigate.navigate("OccupantAddOTP", otp);
+      } else {
+        setTextAlert(res);
+        setLoading(false);
+        setTimeout(() => {
+          setAlert(true);
+        }, 500);
       }
-    );
+    });
   }
 
   const setImage = (img) => {
-    console.log(img);
     if (img) {
       return <ProfilePicCom picture={{ uri: img }} uploadImage={uploadImg} />;
     } else {
@@ -210,26 +198,23 @@ const OccupantEdit = ({ route }) => {
   const closeModalAlert = () => setAlert(false);
 
   return (
-    <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={LANG.occupantedit_text_01} backto={"OccupantDetail"} />
+    <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.mainColor2]}>
+      <MainHeader
+        name={LANG.occupantadd_text_01}
+        backto={"MemberManageIndivi"}
+      />
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
         style={[Styles.w100, Styles.h75]}
       >
-        <View style={Styles.al_center}>{setImage(member.profileImage)}</View>
+        <View style={Styles.al_center}>{setImage()}</View>
         <View style={Styles.ml5}>
-          <Text style={[Styles.mainFont, Styles.f_22, Styles.black_gray_text]}>
-            {LANG.occupantedit_text_03}
+          <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>
+            {LANG.occupantadd_text_02}
           </Text>
-          <Radio
-            isSelectType={isSelectType}
-            type={member.nationType}
-            LANG={LANG}
-          />
+          <Radio isSelectType={isSelectType} />
         </View>
-        {/* {type === "thai" && <ThaiForm item={member} saveDataEdit={saveEdit}/>}
-        {type === "foreign" && <ForeignForm item={member} saveDataEdit={saveEdit}/>} */}
         <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
           <Text
             style={[
@@ -240,7 +225,7 @@ const OccupantEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {LANG.occupantedit_text_06}
+            {LANG.occupantadd_text_05}
           </Text>
           <View style={Styles.al_center}>
             <TextInput
@@ -250,9 +235,8 @@ const OccupantEdit = ({ route }) => {
                 Styles.textfieldbox,
                 Styles.f_20,
                 Styles.mainFont_x,
-                { borderWidth: 2, borderColor: "#DDD" },
+                Styles.border_btn2,
               ]}
-              value={name}
               onChangeText={setName}
             />
           </View>
@@ -265,48 +249,35 @@ const OccupantEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {type === "thai"
-              ? LANG.occupantedit_text_07
-              : LANG.occupantedit_text_12}
+            {type === "thai" ? LANG.occupantadd_text_06 : LANG.occupantadd_text_11}
           </Text>
           <View style={Styles.al_center}>
-            {type === "thai" ? (
-              <TextInput
-                maxLength={13}
-                keyboardType={"number-pad"}
-                style={[
-                  Styles.w90,
-                  Styles.mt10,
-                  Styles.textfieldbox,
-                  Styles.f_20,
-                  Styles.mainFont_x,
-                  Styles.border_btn2,
-                ]}
-                value={idcard}
-                onChangeText={(val) => {
-                  setIdcard(val);
-                }}
-              />
-            ) : (
-              <TextInput
-                style={[
-                  Styles.w90,
-                  Styles.mt10,
-                  Styles.textfieldbox,
-                  Styles.f_20,
-                  Styles.mainFont_x,
-                  Styles.border_btn2,
-                ]}
-                value={
-                  passport !== "null"
-                    ? passport !== null
-                      ? passport
-                      : null
-                    : "-"
-                }
-                onChangeText={setPassport}
-              />
-            )}
+            {type === "thai" ?
+            <TextInput
+              maxLength={13}
+              keyboardType={"number-pad"}
+              style={[
+                Styles.w90,
+                Styles.mt10,
+                Styles.textfieldbox,
+                Styles.f_20,
+                Styles.mainFont_x,
+                Styles.border_btn2,
+              ]}
+              onChangeText={setIdcard}
+            /> :
+            <TextInput
+              style={[
+                Styles.w90,
+                Styles.mt5,
+                Styles.textfieldbox,
+                Styles.f_20,
+                Styles.mainFont_x,
+                Styles.border_btn2,
+              ]}
+              onChangeText={setPassport}
+            />
+            }
           </View>
           <Text
             style={[
@@ -317,7 +288,7 @@ const OccupantEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {LANG.occupantedit_text_08}
+            {LANG.occupantadd_text_07}
           </Text>
           <View style={Styles.al_center}>
             <TextInput
@@ -329,9 +300,8 @@ const OccupantEdit = ({ route }) => {
                 Styles.textfieldbox,
                 Styles.f_20,
                 Styles.mainFont_x,
-                { borderWidth: 2, borderColor: "#DDD" },
+                Styles.border_btn2,
               ]}
-              value={mobileNo}
               onChangeText={setMobileNo}
             />
           </View>
@@ -344,7 +314,7 @@ const OccupantEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {LANG.occupantedit_text_09}
+            {LANG.occupantadd_text_08}
           </Text>
           <View style={Styles.al_center}>
             <TextInput
@@ -354,9 +324,8 @@ const OccupantEdit = ({ route }) => {
                 Styles.textfieldbox,
                 Styles.f_20,
                 Styles.mainFont_x,
-                { borderWidth: 2, borderColor: "#DDD" },
+                Styles.border_btn2,
               ]}
-              value={email}
               onChangeText={setEmail}
             />
           </View>
@@ -369,7 +338,7 @@ const OccupantEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {LANG.occupantedit_text_13}
+            {LANG.occupantadd_text_12}
           </Text>
           <View style={Styles.al_center}>
             {Platform.OS !== "ios" ? (
@@ -401,6 +370,7 @@ const OccupantEdit = ({ route }) => {
                   setDate(datein);
                   var newDate = datein.split("-");
                   newDate = `${newDate[2]}-${newDate[1]}-${newDate[0]}`;
+                  console.log(newDate)
                   setRawDate(newDate);
                 }}
               />
@@ -427,7 +397,7 @@ const OccupantEdit = ({ route }) => {
           <View style={Styles.al_center}>
             <TouchableOpacity
               style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-              onPress={() => checkData()}
+              onPress={() => checkAdd()}
             >
               <Text
                 style={[
@@ -437,7 +407,7 @@ const OccupantEdit = ({ route }) => {
                   { marginLeft: "1%" },
                 ]}
               >
-                {LANG.occupantedit_text_10}
+                {LANG.occupantadd_text_09}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -457,18 +427,24 @@ const OccupantEdit = ({ route }) => {
               <Text
                 style={[
                   Styles.text_center,
-                  Styles.mainColor_text,
+                  Styles.mainColor_text3,
                   Styles.f_24,
                   Styles.mainFont,
                   { marginLeft: "1%" },
                 ]}
               >
-                {LANG.occupantedit_text_11}
+                {LANG.occupantadd_text_10}
               </Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
+      <Modal isVisible={alert} style={Styles.al_center}>
+        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
+      </Modal>
+      <Modal isVisible={loading} style={Styles.al_center}>
+        <Modal_loading />
+      </Modal>
       <Modal
         backdropOpacity={0.3}
         isVisible={iosDatepicker}
@@ -524,14 +500,6 @@ const OccupantEdit = ({ route }) => {
           </View>
         </View>
       </Modal>
-      <Modal isVisible={alert} style={Styles.al_center}>
-        <Modal_alert textAlert={texAlert} closeModalAlert={closeModalAlert} />
-      </Modal>
-      <Modal isVisible={loading} style={Styles.al_center}>
-        <Modal_loading />
-      </Modal>
     </View>
   );
-};
-
-export default OccupantEdit;
+}

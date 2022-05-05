@@ -1,13 +1,5 @@
 import * as React from "react";
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  TextInput,
-} from "react-native";
+import { View, Text, Image, ScrollView, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
 
 import * as navigate from "../navigator/RootNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -16,35 +8,37 @@ import Modal from "react-native-modal";
 import { Styles } from "../styles";
 import MainHeader from "../component/mainHeader";
 import ProfilePicCom from "../component/Profile_component/ProfilePictureCom";
-import Radio from "../component/ResidentEdit_component/radio_resadd";
-import ThaiForm from "../component/ResidentEdit_component/thai_form";
-import ForeignForm from "../component/ResidentEdit_component/foreigner_form";
+import Radio from "../component/ResidentAdd_component/radio_resadd";
+import ThaiForm from "../component/ResidentAdd_component/thai_form";
+import ForeignForm from "../component/ResidentAdd_component/foreigner_form";
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
 
-import { useRecoilState, useSetRecoilState } from "recoil";
-import KEYS from "../KEYS.json";
 import * as Global from "../globalState";
-import Script from "../script/ResidentEdit_script";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import KEYS from "../KEYS.json";
+import Script from "../script/ResidentAdd_script";
 import mainScript from "../script";
 import Store from "../store";
 
-const ResidentEdit = ({ route }) => {
-  const [member, setMember] = React.useState(route.params);
-  const [type, setType] = React.useState(member.nationType);
+export default function ResidentAdd({ route }) {
   const [LANG, setLANG] = useRecoilState(Global.Language);
-  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
+  const [unit, setUnit] = React.useState(route.params);
   const [uploadImage, setUploadImage] = React.useState("");
+  const [unitMember, setUnitMembers] = useRecoilState(Global.unitMember);
   const setUnitMember = useSetRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
 
-  const [name, setName] = React.useState(member.name);
-  const [idcard, setIdcard] = React.useState(member.idcard);
-  const [mobileNo, setMobileNo] = React.useState(member.mobileNo);
-  const [email, setEmail] = React.useState(member.email);
-  const [passport, setPassport] = React.useState(member.passport);
+  const [type, setType] = React.useState("thai");
+
+  const [name, setName] = React.useState("");
+  const [idcard, setIdcard] = React.useState("");
+  const [mobileNo, setMobileNo] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [passport, setPassport] = React.useState("");
+
 
   function isSelectType(TYPE) {
     setType(TYPE);
@@ -54,7 +48,7 @@ const ResidentEdit = ({ route }) => {
     setUploadImage(img);
   }
 
-  function checkData() {
+  function checkAdd() {
     var checker = [];
     if (name === "") {
       checker.push(false);
@@ -94,32 +88,25 @@ const ResidentEdit = ({ route }) => {
       setAlert(true);
       return;
     }
-    var edit = {
+    var add = {
+      unitId: unit.unitId,
+      ownerType: "coowner",
+      nationType: type,
       name: name,
       mobileNo: mobileNo,
       email: email,
-      nationType: type,
-      unitMemberId: member.unitMemberId,
     };
     if (type == "thai") {
-      edit.idcard = idcard
-      if(passport !== null){
-        edit.passport = passport
-      } else {
-        edit.passport = null
-      }
+      add.idcard = idcard
+      add.passport = ""
     } else {
-      edit.passport = passport
-      if(idcard !== null){
-        edit.idcard = idcard
-      } else {
-        edit.idcard = null
-      }
+      add.passport = passport
+      add.idcard = ""
     }
-    saveEdit(edit);
+    addMember(add);
   }
 
-  function saveEdit(edit) {
+  function addMember(add) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -137,40 +124,39 @@ const ResidentEdit = ({ route }) => {
       Store.getLocalStorege(KEYS.TOKEN, (tk) => {
         const token = tk.detail.token;
         mainScript.uploadImage(token, formdata, (res) => {
-          edit.files = res;
-          editData(edit);
+          add.files = res;
+          addData(add);
         });
       });
     } else {
-      editData(edit);
+      addData(add);
     }
   }
 
-  function editData(edit) {
-    Script.memberUpdateProfile(
-      edit,
-      KEYS.TOKEN,
-      unitMember.unitId,
-      (res) => {
-        if (typeof res === "object") {
-          setLoading(false);
-          var data = mainScript.recoilTranform(unitMember);
-          data.unitMember = res;
-          setUnitMember(data);
-          navigate.navigate("MemberManageIndivi");
-        } else {
-          setTextAlert(res);
-          setLoading(false);
-          setTimeout(() => {
-            setAlert(true);
-          }, 500);
-        }
+  function addData(add) {
+    Script.memberAddProflie(add, KEYS.TOKEN, unit.unitId, (res) => {
+      if (typeof res === "object") {
+        setLoading(false);
+        var data = mainScript.recoilTranform(unitMember);
+        data.unitMember = res.unitUpdate;
+        var otp = res.otp;
+        otp.mobileNo = add.mobileNo;
+        otp.name = add.name;
+        otp.unitId = unit.unitId;
+        setUnitMember(data);
+        navigate.navigate("ResidentAddOTP", otp);
+      } else {
+        setTextAlert(res);
+        setLoading(false);
+        setTimeout(() => {
+          setAlert(true);
+        }, 500);
       }
-    );
+    });
   }
 
   const setImage = (img) => {
-    if (img !== null) {
+    if (img) {
       return <ProfilePicCom picture={{ uri: img }} uploadImage={uploadImg} />;
     } else {
       return (
@@ -186,22 +172,21 @@ const ResidentEdit = ({ route }) => {
 
   return (
     <View style={[Styles.flex, Styles.w100, Styles.h100, Styles.FFF]}>
-      <MainHeader name={LANG.residentedit_text_01} backto={"ResidentDetail"} />
+      <MainHeader
+        name={LANG.residentadd_text_01}
+        backto={"MemberManageIndivi"}
+      />
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
         style={[Styles.w100, Styles.h75]}
       >
-        <View style={Styles.al_center}>{setImage(member.profileImage)}</View>
+        <View style={Styles.al_center}>{setImage()}</View>
         <View style={Styles.ml5}>
-          <Text style={[Styles.mainFont, Styles.f_22, Styles.black_gray_text]}>
-            {LANG.residentedit_text_03}
+          <Text style={[Styles.mainFont, Styles.f_24, Styles.black_gray_text]}>
+            {LANG.residentadd_text_02}
           </Text>
-          <Radio
-            isSelectType={isSelectType}
-            type={member.nationType}
-            LANG={LANG}
-          />
+          <Radio isSelectType={isSelectType} />
         </View>
         <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
           <Text
@@ -213,7 +198,7 @@ const ResidentEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {LANG.residentedit_text_06}
+            {LANG.residentadd_text_05}
           </Text>
           <View style={Styles.al_center}>
             <TextInput
@@ -225,10 +210,7 @@ const ResidentEdit = ({ route }) => {
                 Styles.mainFont_x,
                 Styles.border_btn2,
               ]}
-              value={name}
-              onChangeText={(val) => {
-                setName(val);
-              }}
+              onChangeText={setName}
             />
           </View>
           <Text
@@ -240,12 +222,10 @@ const ResidentEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {type === "thai"
-              ? LANG.residentedit_text_07
-              : LANG.residentedit_text_12}
+            {type === 'thai' ? LANG.residentadd_text_06 : LANG.residentadd_text_11}
           </Text>
           <View style={Styles.al_center}>
-            {type === "thai" ? (
+            {type === 'thai' ? 
               <TextInput
                 maxLength={13}
                 keyboardType={"number-pad"}
@@ -257,12 +237,8 @@ const ResidentEdit = ({ route }) => {
                   Styles.mainFont_x,
                   Styles.border_btn2,
                 ]}
-                value={idcard}
-                onChangeText={(val) => {
-                  setIdcard(val);
-                }}
-              />
-            ) : (
+                onChangeText={setIdcard}
+              /> :
               <TextInput
                 style={[
                   Styles.w90,
@@ -270,18 +246,11 @@ const ResidentEdit = ({ route }) => {
                   Styles.textfieldbox,
                   Styles.f_20,
                   Styles.mainFont_x,
-                  Styles.border_btn2,
+                  Styles.border_btn2
                 ]}
-                value={
-                  passport !== "null"
-                    ? passport !== null
-                      ? passport
-                      : null
-                    : "-"
-                }
                 onChangeText={setPassport}
               />
-            )}
+            }
           </View>
           <Text
             style={[
@@ -292,7 +261,7 @@ const ResidentEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {LANG.residentedit_text_08}
+            {LANG.residentadd_text_07}
           </Text>
           <View style={Styles.al_center}>
             <TextInput
@@ -306,10 +275,7 @@ const ResidentEdit = ({ route }) => {
                 Styles.mainFont_x,
                 Styles.border_btn2,
               ]}
-              value={mobileNo}
-              onChangeText={(val) => {
-                setMobileNo(val);
-              }}
+              onChangeText={setMobileNo}
             />
           </View>
           <Text
@@ -321,7 +287,7 @@ const ResidentEdit = ({ route }) => {
               Styles.black_gray_text,
             ]}
           >
-            {LANG.residentedit_text_09}
+            {LANG.residentadd_text_08}
           </Text>
           <View style={Styles.al_center}>
             <TextInput
@@ -333,16 +299,13 @@ const ResidentEdit = ({ route }) => {
                 Styles.mainFont_x,
                 Styles.border_btn2,
               ]}
-              value={email}
-              onChangeText={(val) => {
-                setEmail(val);
-              }}
+              onChangeText={setEmail}
             />
           </View>
           <View style={Styles.al_center}>
             <TouchableOpacity
               style={[Styles.w90, Styles.row, Styles.mt20, Styles.confirm_btn]}
-              onPress={() => checkData()}
+              onPress={() => checkAdd()}
             >
               <Text
                 style={[
@@ -352,7 +315,7 @@ const ResidentEdit = ({ route }) => {
                   { marginLeft: "1%" },
                 ]}
               >
-                {LANG.residentedit_text_13}
+                {LANG.residentadd_text_09}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -367,7 +330,7 @@ const ResidentEdit = ({ route }) => {
                 Styles.p15,
                 Styles.jc_center,
               ]}
-              onPress={() => navigate.navigate("ResidentDetail", member)}
+              onPress={() => navigate.navigate("MemberManageIndivi")}
             >
               <Text
                 style={[
@@ -378,10 +341,16 @@ const ResidentEdit = ({ route }) => {
                   { marginLeft: "1%" },
                 ]}
               >
-                {LANG.residentedit_text_11}
+                {LANG.residentadd_text_10}
               </Text>
             </TouchableOpacity>
           </View>
+          <Modal isVisible={alert} style={Styles.al_center}>
+            <Modal_alert
+              textAlert={texAlert}
+              closeModalAlert={closeModalAlert}
+            />
+          </Modal>
         </KeyboardAvoidingView>
       </ScrollView>
       <Modal isVisible={alert} style={Styles.al_center}>
@@ -392,6 +361,4 @@ const ResidentEdit = ({ route }) => {
       </Modal>
     </View>
   );
-};
-
-export default ResidentEdit;
+}

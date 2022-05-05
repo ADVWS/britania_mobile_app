@@ -120,6 +120,64 @@ export const memberUpdateProfile_foreign = async (edit, key, unitid, cb) => {
   });
 };
 
+export const memberUpdateProfile = async (edit, key, unitid, cb) => {
+  Store.getLocalStorege(key, (res) => {
+      const token = res.detail.token
+      if(edit.files){
+          var _EDIT_ = `
+              mutation {
+                  memberUpdateProfile(input: {
+                      name : "${edit.name}",
+                      mobileNo: "${edit.mobileNo}",
+                      unitMemberId: "${edit.unitMemberId}",
+                      nationType: ${edit.nationType},
+                      email: "${edit.email}",
+                      idcard: "${edit.idcard}",
+                      passport: "${edit.passport}",
+                      memberImage: {
+                          fileId: "${edit.files.fileId}"
+                          fileCurName: "${edit.files.fileCurName}"
+                          filePrevName: "${edit.files.filePrevName}"
+                          fileExtension: "${edit.files.fileExtension}"
+                      }
+                  }){
+                      name
+                      mobileNo
+                      email
+                      nationType
+                      idcard
+                      passport
+                      expiredDate
+                  }
+              }
+          `;
+      } else {
+          var _EDIT_ = `
+          mutation {
+              memberUpdateProfile(input: {
+                  name : "${edit.name}",
+                  mobileNo: "${edit.mobileNo}",
+                  unitMemberId: "${edit.unitMemberId}",
+                  nationType: ${edit.nationType},
+                  email: "${edit.email}",
+                  idcard: "${edit.idcard}",
+                  passport: "${edit.passport}",
+              }){
+                  name
+                  mobileNo
+                  email
+                  nationType
+                  idcard
+                  passport
+                  expiredDate
+              }
+          }
+      `;
+      }
+      updateMember(_EDIT_, token, unitid, cb)
+  })
+}
+
 export const updateMember = async (EDIT, token, unitid, cb) => {
   const result = await API.request(EDIT, token);
   updateUnit(token, unitid, cb);
@@ -171,4 +229,5 @@ export const updateUnit = async (token, unitid, cb) => {
 export default {
   memberUpdateProfile_thai,
   memberUpdateProfile_foreign,
+  memberUpdateProfile,
 };

@@ -114,6 +114,62 @@ export const memberAddProflie_foreign = async (add, key, unitid, cb) => {
     })
 }
 
+export const memberAddProflie = async (add, key, unitid, cb) => {
+    Store.getLocalStorege(key, (res) => {
+        const token = res.detail.token
+        if(add.files){
+            var _ADD_ = `
+                mutation {
+                    memberAddProflie(input: {
+                        unitId : "${add.unitId}",
+                        ownerType: ${add.ownerType},
+                        nationType: ${add.nationType},
+                        name: "${add.name}",
+                        mobileNo: "${add.mobileNo}",
+                        email: "${add.email}",
+                        idcard: "${add.idcard}",
+                        passport: "${add.passport}",
+                        expiredDate: "${new Date(add.expiredDate)}",
+                        memberImage: {
+                            fileId: "${add.files.fileId}"
+                            fileCurName: "${add.files.fileCurName}"
+                            filePrevName: "${add.files.filePrevName}"
+                            fileExtension: "${add.files.fileExtension}"
+                        }
+                    }){
+                        id
+                        type
+                        sendTo
+                        refNo
+                    }
+                }
+            `;
+        } else {
+            var _ADD_ = `
+                mutation {
+                    memberAddProflie(input: {
+                        unitId : "${add.unitId}",
+                        ownerType: ${add.ownerType},
+                        nationType: ${add.nationType},
+                        name: "${add.name}",
+                        mobileNo: "${add.mobileNo}",
+                        email: "${add.email}",
+                        idcard: "${add.idcard}",
+                        passport: "${add.passport}",
+                        expiredDate: "${new Date(add.expiredDate)}"
+                    }){
+                        id
+                        type
+                        sendTo
+                        refNo
+                    }
+                }
+            `;
+        }
+        updateMember(_ADD_, token, unitid, cb)
+    })
+}
+
 export const updateMember = async (ADD, token, unitid, cb) => {
     const result = await API.request(ADD, token);
     if(typeof result === 'object'){
@@ -166,5 +222,6 @@ export const updateUnit = async (token, unitid, otp, cb) => {
 
 export default {
     memberAddProflie_thai,
-    memberAddProflie_foreign
+    memberAddProflie_foreign,
+    memberAddProflie
 }

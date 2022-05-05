@@ -38,6 +38,7 @@ const InformAdd = ({ route }) => {
   const [alBoxDetail, setAlBoxDetail] = React.useState("#DDD");
   const [load, setLoad] = React.useState(false);
   const inputRef = React.createRef();
+  
 
   var indexPic = 0;
   var storeImage = [];
@@ -45,10 +46,12 @@ const InformAdd = ({ route }) => {
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: false,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 7],
       quality: 1,
     });
+    console.log(result)
     if (!result.cancelled) {
       var imageset = mainScript.recoilTranform(imageAdd);
       setDisplay(false);

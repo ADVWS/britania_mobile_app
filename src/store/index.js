@@ -80,7 +80,7 @@ function checkToken(key, token, cb) {
   var mytoken = JSON.parse(token)
   var decode = jwtDecode(mytoken.token)
   if(moment().unix() > decode.exp){
-    Script.refreshToken(token.refreshToken, (res)=>{
+    Script.refreshToken(mytoken.refreshToken, (res)=>{
       if(typeof res === 'object'){
         mytoken.token = res.token.token
         mytoken.refreshToken = res.token.refreshToken
