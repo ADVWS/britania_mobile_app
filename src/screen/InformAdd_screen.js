@@ -23,7 +23,6 @@ import MainHeader from "../component/mainHeader";
 import { FontAwesome } from "@expo/vector-icons";
 import moment from "moment";
 
-
 const InformAdd = ({ route }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [caseList, setCaseList] = useRecoilState(Global.caseList);
@@ -42,12 +41,11 @@ const InformAdd = ({ route }) => {
   var indexPic = 0;
   var storeImage = [];
 
-
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: false,
+      allowsEditing: true,
       //aspect: [4, 3],
       quality: 1,
     });
@@ -100,7 +98,7 @@ const InformAdd = ({ route }) => {
     storeImage = [];
     console.log(isCase);
     indexPic = 0;
-    console.log(1)
+    console.log(1);
     navigate.navigate("InformContact", isCase);
     var newCase = [isCase];
 
@@ -112,7 +110,7 @@ const InformAdd = ({ route }) => {
       _setCaseList(newCase);
     }
     setLoad(false);
-    setDetail('');
+    setDetail("");
     setImageAdd([]);
     setDisplay(false);
     navigate.navigate("InformContact", isCase);
