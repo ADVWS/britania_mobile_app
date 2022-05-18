@@ -15,6 +15,7 @@ const OTP_btn = ({ member }) => {
   const [unitMember, setUnitMember] = useRecoilState(Global.unitMember);
   const [alert, setAlert] = React.useState(false);
   const [texAlert, setTextAlert] = React.useState("");
+  console.log('OTP_BTN:', member)
   const vertfyOTP = (mem) => {
     Store.getLocalStorege(KEYS.TOKEN, (res) => {
       const token = res.detail.token;
@@ -22,6 +23,7 @@ const OTP_btn = ({ member }) => {
         token,
         member.mobileNo,
         unitMember.unitId,
+        member.unitMemberId,
         (res) => {
           if (res.memberResendOtp) {
             var otp = res.memberResendOtp;

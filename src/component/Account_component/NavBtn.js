@@ -33,6 +33,7 @@ const NavBtn = ({ optiono }) => {
       setConfirm(false);
     } else {
       USERLOGOUT.USERLOGOUT((res)=>{
+        console.log(res)
         LogoutownerType('none')
         setConfirm(false);
         setUnitOwner({})

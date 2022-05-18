@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, LogBox, Platform } from "react-native";
+import { StyleSheet, Text, View, LogBox, Platform, Alert } from "react-native";
 import {
   RecoilRoot,
   atom,
@@ -7,6 +7,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
+import Constants from "expo-constants";
 import AllNavigator from "./src/navigator";
 import * as Font from "expo-font";
 import * as Permissions from "expo-permissions";
@@ -21,15 +22,27 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
 
   React.useEffect(() => {
-    registerForPushNotification()
-      .then((token) => {
-        Store.getLocalStorege(Keys.NOTIFY, (res) => {
-          if (!res.result) {
-            storekNotifyToken(token);
-          }
-        });
-      })
-      .catch((err) => console.log(err));
+    registerForPushNotificationsAsync().then((token) => {
+      Store.getLocalStorege(Keys.NOTIFY, (res) => {
+        if (!res.result) {
+          storekNotifyToken(token);
+        }
+      });
+    }).catch((err) => console.log(err));
+    // registerForPushNotification()
+    //   .then((token) => {
+    //     console.log('TOKEN::::', token)
+    //     // if(Platform.OS === "android"){
+    //     //   Alert.alert(token)
+    //     // }
+    //     Store.getLocalStorege(Keys.NOTIFY, (res) => {
+    //       if (!res.result) {
+    //         storekNotifyToken(token);
+    //       }
+    //     });
+    //   })
+    //   //.catch((err) => Alert.alert(JSON.stringify(err)));
+    //   .catch((err) => console.log(err));
   }, []);
 
   function storekNotifyToken(token) {
@@ -49,20 +62,25 @@ export default function App() {
   //   return token
   // }
 
-  registerForPushNotification = async () => {
-    const { status: existingStatus } =
-      await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
+  async function registerForPushNotificationsAsync() {
+    let token;
+
+    if (Constants.isDevice) {
+      const { status: existingStatus } =
+        await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+
+      if (finalStatus !== "granted") {
+        Alert.alert("Failed to get push token for push notification!");
+        return;
+      }
+
+      token = (await Notifications.getDevicePushTokenAsync()).data;
     }
-    if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!");
-      return null;
-    }
-    const token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log('TOKEN', token);
 
     if (Platform.OS === "android") {
       Notifications.setNotificationChannelAsync("default", {
@@ -72,8 +90,9 @@ export default function App() {
         lightColor: "#FF231F7C",
       });
     }
+
     return token;
-  };
+  }
 
   _loadFontsAsync = async () => {
     let isLoaded = await Font.loadAsync({

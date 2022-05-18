@@ -60,7 +60,8 @@ export default function InputOTP({ route }) {
     setLoading(true)
     clearInterval(setOTPTimer);
     Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
-      Script.login(optData, otp, NOTIFYTOKEN, (res) => {
+      console.log('NOTIFYTOKEN::::', NOTIFYTOKEN)
+      Script.login(optData, otp, NOTIFYTOKEN.detail, (res) => {
         console.log(res)
         if (typeof res === 'object') {
           var data = JSON.stringify(res.login)

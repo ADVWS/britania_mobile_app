@@ -22,6 +22,7 @@ const OTP_btn = ({ member }) => {
         token,
         member.mobileNo,
         unitMember.unitId,
+        member.unitMemberId,
         (res) => {
           if (res.memberResendOtp) {
             var otp = res.memberResendOtp;

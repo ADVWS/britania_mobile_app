@@ -1,5 +1,13 @@
 import * as React from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity, KeyboardAvoidingView, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput,
+} from "react-native";
 
 import * as navigate from "../navigator/RootNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -39,7 +47,6 @@ export default function ResidentAdd({ route }) {
   const [email, setEmail] = React.useState("");
   const [passport, setPassport] = React.useState("");
 
-
   function isSelectType(TYPE) {
     setType(TYPE);
   }
@@ -62,7 +69,7 @@ export default function ResidentAdd({ route }) {
     if (/^[0-9]+$/.test(mobileNo) === false) {
       checker.push(false);
     }
-    if(type === 'thai'){
+    if (type === "thai") {
       if (idcard === "") {
         checker.push(false);
       }
@@ -76,8 +83,8 @@ export default function ResidentAdd({ route }) {
         checker.push(false);
       }
     } else {
-      if(passport === ""){
-         checker.push(false);
+      if (passport === "") {
+        checker.push(false);
       }
     }
     if (mobileNo.length < 10) {
@@ -97,11 +104,11 @@ export default function ResidentAdd({ route }) {
       email: email,
     };
     if (type == "thai") {
-      add.idcard = idcard
-      add.passport = ""
+      add.idcard = idcard;
+      add.passport = "";
     } else {
-      add.passport = passport
-      add.idcard = ""
+      add.passport = passport;
+      add.idcard = "";
     }
     addMember(add);
   }
@@ -222,10 +229,12 @@ export default function ResidentAdd({ route }) {
               Styles.black_gray_text,
             ]}
           >
-            {type === 'thai' ? LANG.residentadd_text_06 : LANG.residentadd_text_11}
+            {type === "thai"
+              ? LANG.residentadd_text_06
+              : LANG.residentadd_text_11}
           </Text>
           <View style={Styles.al_center}>
-            {type === 'thai' ? 
+            {type === "thai" && (
               <TextInput
                 maxLength={13}
                 keyboardType={"number-pad"}
@@ -238,7 +247,9 @@ export default function ResidentAdd({ route }) {
                   Styles.border_btn2,
                 ]}
                 onChangeText={setIdcard}
-              /> :
+              />
+            )}
+            {type === "foreign" && (
               <TextInput
                 style={[
                   Styles.w90,
@@ -246,11 +257,11 @@ export default function ResidentAdd({ route }) {
                   Styles.textfieldbox,
                   Styles.f_20,
                   Styles.mainFont_x,
-                  Styles.border_btn2
+                  Styles.border_btn2,
                 ]}
                 onChangeText={setPassport}
               />
-            }
+            )}
           </View>
           <Text
             style={[

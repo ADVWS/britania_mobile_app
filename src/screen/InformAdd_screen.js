@@ -47,11 +47,10 @@ const InformAdd = ({ route }) => {
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 7],
-      quality: 1,
+      allowsEditing: false,
+      //aspect: [4, 7],
+      //quality: 1,
     });
-    console.log(result)
     if (!result.cancelled) {
       var imageset = mainScript.recoilTranform(imageAdd);
       setDisplay(false);

@@ -145,3 +145,11 @@ export const caseEdit = atom({
     imgUri: [],
   },
 });
+
+export const contact = atom({
+  key: "contact",
+  default: {
+    fullname: "",
+    mobileno: "",
+  },
+});

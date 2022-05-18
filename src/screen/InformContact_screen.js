@@ -35,13 +35,16 @@ const InformContact = ({ route }) => {
   const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner);
   const [caseList, setCaseList] = useRecoilState(Global.caseList);
   const setCaseEdit = useSetRecoilState(Global.caseEdit);
+  const [contact, setContact] = useRecoilState(Global.contact);
+  const issetContact = useSetRecoilState(Global.contact);
+
   
   const [alAddress, setAladdress] = React.useState(false);
   const [alAddressColor, setAladdressColor] = React.useState("#DDD");
-  const [fullname, setFullname] = React.useState("");
+  const [fullname, setFullname] = React.useState(contact.fullname);
   const [alFullname, setAlfullname] = React.useState(false);
   const [alFullnameColor, setAlfullnameColor] = React.useState("#DDD");
-  const [mobileno, setMobileno] = React.useState("");
+  const [mobileno, setMobileno] = React.useState(contact.mobileno);
   const [alMobileno, setAlmobileno] = React.useState(false);
   const [alMobilenoColor, setAlmobilenoColor] = React.useState("#DDD");
   const [textAlert, setTextAlert] = React.useState("");
@@ -76,12 +79,12 @@ const InformContact = ({ route }) => {
     setAlmobileno(false);
     setAlmobilenoColor("#DDD");
     var checker = [];
-    if (fullname === "") {
+    if (contact.fullname === "") {
       checker.push(false);
       setAlfullname(true);
       setAlfullnameColor("red");
     }
-    if (mobileno === "") {
+    if (contact.mobileno === "") {
       checker.push(false);
       setAlmobileno(true);
       setAlmobilenoColor("red");
@@ -91,8 +94,8 @@ const InformContact = ({ route }) => {
       return;
     }
     var _newInform = mainScript.recoilTranform(newInform);
-    _newInform.owner = fullname;
-    _newInform.phoneOwner = mobileno;
+    _newInform.owner = contact.fullname;
+    _newInform.phoneOwner = contact.mobileno;
     _newInform.details = caseList;
     getTime.homecareGetCheckInRangeTimeOptions(Key.TOKEN, (res) => {
       if (res.homecareGetCheckInRangeTimeOptions) {
@@ -147,6 +150,10 @@ const InformContact = ({ route }) => {
   
   const closeModalAlert = () => setAlert(false)
 
+  const logContact = () => {
+
+  }
+
 
   return (
     <View style={[Styles.flex, Styles.al_center, Styles.mainColorF9]}>
@@ -193,7 +200,7 @@ const InformContact = ({ route }) => {
               {LANG.informcontact_text_03}
             </Text>
             <TextInput
-              value={fullname}
+              value={contact.fullname}
               style={[
                 Styles.w100,
                 Styles.p10,
@@ -204,6 +211,9 @@ const InformContact = ({ route }) => {
               ]}
               onChangeText={(val) => {
                 setFullname(val);
+                var contact_val = mainScript.recoilTranform(contact)
+                contact_val.fullname = val
+                issetContact(contact_val)
               }}
             />
             {alFullname && (
@@ -222,7 +232,7 @@ const InformContact = ({ route }) => {
               {LANG.informcontact_text_04}
             </Text>
             <TextInput
-              value={mobileno}
+              value={contact.mobileno}
               style={[
                 Styles.w100,
                 Styles.p10,
@@ -236,6 +246,9 @@ const InformContact = ({ route }) => {
               maxLength={10}
               onChangeText={(val) => {
                 setMobileno(val);
+                var contact_val = mainScript.recoilTranform(contact)
+                contact_val.mobileno = val
+                issetContact(contact_val)
               }}
             />
             {alMobileno && (

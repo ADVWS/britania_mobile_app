@@ -5,6 +5,7 @@ import { Styles } from "../styles";
 import Modal from "react-native-modal";
 import MainHeader from "../component/mainHeader";
 import Edit_btn from "../component/OccupantDetail_component/edit_btn";
+import Edit_btn_notallow from "../component/OccupantDetail_component/edit_btn_notallow";
 import OTP_btn from "../component/OccupantDetail_component/OTP_btn";
 import Status from "../component/OccupantDetail_component/status";
 import * as navigate from "../navigator/RootNavigation";
@@ -29,7 +30,8 @@ const OccupantDetail = ({ route }) => {
       unitMemberId: member.unitMemberId,
       allowHomecare: val,
     };
-    Script.memberUpdateAllowHomecare(edit, KEYS.TOKEN, member.unitid, (res) => {
+    console.log(unitMember.unitId)
+    Script.memberUpdateAllowHomecare(edit, KEYS.TOKEN, unitMember.unitId, (res) => {
       var newMember = mainScript.recoilTranform(member);
       var updatedata = mainScript.recoilTranform(unitMember);
       updatedata.unitMember = res;
@@ -42,11 +44,11 @@ const OccupantDetail = ({ route }) => {
   const openConfirm = () => setAlert(true);
   const setBtnMember = (status) => {
     if (status === "active") {
-      return <Edit_btn member={member} openConfirm={openConfirm} />;
+      return <Edit_btn member={member} openConfirm={openConfirm}/>;
     } else {
       return (
         <>
-          <Edit_btn member={member} openConfirm={openConfirm} />
+          <Edit_btn_notallow member={member} openConfirm={openConfirm}/>
           <OTP_btn member={member} />
         </>
       );

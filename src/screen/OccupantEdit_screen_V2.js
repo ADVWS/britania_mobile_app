@@ -416,9 +416,9 @@ const OccupantEdit = ({ route }) => {
                 ]}
               >
                 <Text>
-                  {rawDate !== ""
+                  {rawDate !== null
                     ? moment(rawDate).format("DD/MM/YYYY")
-                    : rawDate}
+                    : null}
                 </Text>
               </TouchableOpacity>
             )}

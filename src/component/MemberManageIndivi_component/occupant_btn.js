@@ -82,7 +82,7 @@ export default function OccupantBtn({ item }) {
               <Text
                 style={[Styles.mainFont_x, { color: "#8f8f8f", fontSize: 22 }]}
               >
-                {moment(item.expiredDate).format("DD/MM/YYYY")}
+                {item.expiredDate !== null ? moment(item.expiredDate).format("DD/MM/YYYY") : "-"}
               </Text>
             </View>
             <View style={[Styles.mt5, Styles.w60]}>

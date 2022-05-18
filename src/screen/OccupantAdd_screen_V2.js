@@ -252,7 +252,7 @@ export default function OccupantAdd({ route }) {
             {type === "thai" ? LANG.occupantadd_text_06 : LANG.occupantadd_text_11}
           </Text>
           <View style={Styles.al_center}>
-            {type === "thai" ?
+            {type === "thai" &&
             <TextInput
               maxLength={13}
               keyboardType={"number-pad"}
@@ -265,7 +265,9 @@ export default function OccupantAdd({ route }) {
                 Styles.border_btn2,
               ]}
               onChangeText={setIdcard}
-            /> :
+            />
+            }
+            {type === "foreign" &&
             <TextInput
               style={[
                 Styles.w90,

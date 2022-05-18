@@ -23,7 +23,6 @@ export default function Login({ route }) {
   const setUserProfile = useSetRecoilState(Global.userProfile)
   const [unitOwner, setUnitOwner_] = useRecoilState(Global.unitOwner);
   const setUnitOwner = useSetRecoilState(Global.unitOwner);
-  console.log('===>',unitOwner)
   const navigation = useNavigation();
 
   function selectLang(_selectLang) {

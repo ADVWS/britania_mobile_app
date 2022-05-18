@@ -40,6 +40,7 @@ export const updateUnit = async (token, unitid, cb) => {
             profileImage
         }
     }`
+    console.log(UNIT)
     const result = await API.request(UNIT, token);
     const unitMember = result
     unitMember.unitMemberAll = result.unitMemberAll
@@ -69,14 +70,15 @@ export const memberDeleteProfile = async (unitMemberId, key, unitid, cb) => {
     })
 }
 
-export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
+export const memberResendOtp = async (token, mobileNo, unitid, memberid,cb) => {
     const OTP = `
         mutation {
-            memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}"){
+            memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}", unitMemberId: "${memberid}"){
                 id
                 type
                 sendTo
                 refNo
+                unitMemberId
             }
         }
     `;

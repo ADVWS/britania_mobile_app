@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "871921099026",
+    "project_id": "britaniaconnect-170a5",
+    "storage_bucket": "britaniaconnect-170a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871921099026:android:d63b78fc3fa56f86f593cb",
+        "android_client_info": {
+          "package_name": "com.advws.britaniaconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "871921099026-sh4cqs6265dq5a5q0h4fc6h3toblpnl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8OtoYg2FXUEUU01Asxr-eHjjYGBoGc8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "871921099026-sh4cqs6265dq5a5q0h4fc6h3toblpnl4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "871921099026-bebaj83hd8oktr21mr10l3jep3f5qq08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.advws.britaniaconnect"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

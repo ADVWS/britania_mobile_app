@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Key from '../KEYS.json'
 
 const USERLOGOUT = (cb) => {
@@ -30,6 +31,7 @@ const logoutToken = async (cb) => {
       }
       cb(res)
     } catch (error) {
+      console.log(error)
       var res = {
         result: false,
         detail: `Cann't Logout .`

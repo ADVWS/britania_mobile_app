@@ -213,17 +213,21 @@ export const updateUnit = async (token, unitid, otp, cb) => {
     cb(respone)
 }
 
-export const memberResendOtp = async (token, mobileNo, unitid, cb) => {
+export const memberResendOtp = async (token, mobileNo, unitid, memberid,cb) => {
+        console.log(token)
+
         const OTP = `
             mutation {
-                memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}"){
+                memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}, unitMemberId: "${memberid}"){
                     id
                     type
                     sendTo
                     refNo
+                    unitMemberId
                 }
             }
         `;
+        console.log(OTP)
         const result = await API.request(OTP, token);
         cb(result)
 }

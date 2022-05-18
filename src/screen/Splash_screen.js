@@ -19,11 +19,15 @@ export default function Splash() {
   const setLANGTEXT = useSetRecoilState(Global.LANGTEXT)
   const ownerType = useSetRecoilState(Global.ownerType)
 
-  runApp()
+  React.useEffect(()=>{
+    runApp()
+  },[])
 
   function runApp() {
+    console.log('Run App')
     Script.checkToken(Key.TOKEN, (res) => {
       if (res.data) {
+        console.log(res)
         if(res.data.me){
           userProfile(res.data)
           userType(1)
