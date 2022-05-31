@@ -82,6 +82,7 @@ export const memberResendOtp = async (token, mobileNo, unitid, memberid,cb) => {
             }
         }
     `;
+    console.log('memberResendOtp:', OTP)
     const result = await API.request(OTP, token);
     cb(result)
 }

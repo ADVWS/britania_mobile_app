@@ -20,6 +20,7 @@ import OrderList from "../component/InformOrder_component/orderList";
 export default function InformOrder({ route }) {
     const [informDetail, setInformDetail] = useRecoilState(Global.dataInformDetail)
     const [LANG, setLANG] = useRecoilState(Global.Language)
+    console.log(">>>>", informDetail)
     return (
         <View style={[Styles.flex, Styles.al_center]}>
             <View

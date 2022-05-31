@@ -146,7 +146,7 @@ const OccupantDetail = ({ route }) => {
                         { color: "#8f8f8f", fontSize: 22 },
                       ]}
                     >
-                      {moment(member.expiredDate).format("DD/MM/YYYY")}
+                      {member.expiredDate && member.expiredDate != null?moment(member.expiredDate).format("DD/MM/YYYY"):"-"}
                     </Text>
                   </View>
                   <View>

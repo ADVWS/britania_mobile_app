@@ -203,7 +203,7 @@ const ResidentEdit = ({ route }) => {
             LANG={LANG}
           />
         </View>
-        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30, height: '70%' }}>
           <Text
             style={[
               Styles.ml5,

@@ -26,7 +26,7 @@ const Responsible = ({ route }) => {
                     Styles.w100,
                     Styles.h100
                 ]}>
-                <MainHeader name={'เจ้าหน้าที่ Homecare ที่เข้าตรวจสอบ'} backto={'InformOrder'} param={route.params.paramNav}/>
+                <MainHeader name={LANG.homecare_text_17} backto={'InformOrder'} param={route.params.paramNav}/>
                 <ScrollView style={[Styles.w100, Styles.FFF]}>
                     {homecareName !== null ?
                         (<View style={[Styles.w100, Styles.p15, Styles.row]}>

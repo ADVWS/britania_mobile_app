@@ -195,7 +195,7 @@ export default function ResidentAdd({ route }) {
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
-        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30, height: '70%' }}>
           <Text
             style={[
               Styles.ml5,

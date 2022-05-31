@@ -215,7 +215,7 @@ export default function OccupantAdd({ route }) {
           </Text>
           <Radio isSelectType={isSelectType} />
         </View>
-        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30, height: '70%' }}>
           <Text
             style={[
               Styles.ml5,
@@ -424,7 +424,7 @@ export default function OccupantAdd({ route }) {
                 Styles.p15,
                 Styles.jc_center,
               ]}
-              onPress={() => navigate.navigate("OccupantDetail", member)}
+              onPress={() => navigate.navigate("MemberManageIndivi")}
             >
               <Text
                 style={[

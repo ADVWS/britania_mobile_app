@@ -218,7 +218,7 @@ export const memberResendOtp = async (token, mobileNo, unitid, memberid,cb) => {
 
         const OTP = `
             mutation {
-                memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}, unitMemberId: "${memberid}"){
+                memberResendOtp(sendTo: "${mobileNo}", unitId: "${unitid}", unitMemberId: "${memberid}"){
                     id
                     type
                     sendTo

@@ -98,7 +98,8 @@ const OrderList = ({ data, index, route, informDetail }) => {
           Styles.p15,
           Styles.br_5,
           Styles.mainColorF9,
-          Styles.mt10,
+          Styles.mt5,
+          Styles.mb10
         ]}
       >
         <Text
@@ -141,6 +142,8 @@ const OrderList = ({ data, index, route, informDetail }) => {
           {data.files.length > 0 ? (
             <>
               {data.files.map((item) => (
+                <>
+                {item.status === null &&
                 <TouchableOpacity
                   onPress={() => zoomImage(item.homecareImageSrc)}
                 >
@@ -152,6 +155,8 @@ const OrderList = ({ data, index, route, informDetail }) => {
                     ]}
                   />
                 </TouchableOpacity>
+                }
+                </>
               ))}
             </>
           ) : (
@@ -267,6 +272,30 @@ const OrderList = ({ data, index, route, informDetail }) => {
             </TouchableOpacity>
           )}
         {route === "SUCCESS" && data.isRate !== true && (
+          <TouchableOpacity
+            onPress={() => gotoSatisfaction(data.homecareName)}
+            style={[
+              Styles.w100,
+              Styles.p15,
+              Styles.mainColor,
+              Styles.br_5,
+              Styles.al_center,
+              { marginBottom: 20 },
+            ]}
+          >
+            <Text
+              style={[
+                Styles.f_24,
+                Styles.white_text,
+                Styles.mainFont,
+                Styles.mt5,
+              ]}
+            >
+              {LANG.homecare_text_21}
+            </Text>
+          </TouchableOpacity>
+        )}
+        {route === "UNSUCCESS" && data.isRate !== true && data.status == "Close" && (
           <TouchableOpacity
             onPress={() => gotoSatisfaction(data.homecareName)}
             style={[

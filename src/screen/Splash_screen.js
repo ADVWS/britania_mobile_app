@@ -10,7 +10,6 @@ import { useSetRecoilState } from "recoil";
 import * as Global from "../globalState"
 import LANG from "../LANG";
 import Store from "../store";
-import TokenNotification from "../script/TokenNotification";
 
 export default function Splash() {
   const userProfile = useSetRecoilState(Global.userProfile)
@@ -42,11 +41,7 @@ export default function Splash() {
               }
             }
           }
-          var dataNotify = {
-            id: res.data.me.id,
-            token: res.token
-          }
-          setNotify(dataNotify, res.goto)
+          setLanguage(res.goto)
         } else {
           userProfile(res.data)
           userType(2)
@@ -58,18 +53,6 @@ export default function Splash() {
     })
   }
 
-  function setNotify(dataNotify, goto) {
-    Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
-      dataNotify.NOTIFYTOKEN = NOTIFYTOKEN
-      TokenNotification.userUpdateTokenNotification(dataNotify,(res)=>{
-        if(res.userUpdateTokenNotification){
-          setLanguage(goto)
-        } else {
-          setLanguage(goto)
-        }
-      })
-    })
-  }
 
   function setLanguage(goto) {
     Store.getLocalStorege(Key.LANG, (data)=>{

@@ -59,6 +59,25 @@ const getLocalStorege = async (key, cb) => {
   }
 };
 
+const getPushToken = async (cb) => {
+  try {
+    const value = await AsyncStorage.getItem("@Token:notify");
+    if (value !== null) {
+      var res = value
+      cb(res)
+    } else {
+      var res = false
+      cb(res)
+    }
+  } catch (error) {
+    var res = {
+      result: false,
+      detail: `Error, get ${key} is catch`
+    }
+    cb(res)
+  }
+};
+
 const removeLocalStorege = async (key, cb) => {
   try {
     const value = await AsyncStorage.removeItem(key);
@@ -116,5 +135,6 @@ const saveNewToken = async (key, token, cb) => {
 export default {
   setLocalStorege,
   getLocalStorege,
-  removeLocalStorege
+  removeLocalStorege,
+  getPushToken
 }

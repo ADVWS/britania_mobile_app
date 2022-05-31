@@ -7,7 +7,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import * as navigate from "../navigator/RootNavigation";
@@ -15,25 +15,37 @@ import * as navigate from "../navigator/RootNavigation";
 import { Styles } from "../styles";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
-import * as Global from "../globalState"
+import * as Global from "../globalState";
 
 import Modal_alert from "../component/modal_alert";
 import Modal_loading from "../component/modal_loading";
-import Script from "../script/lnputOTP_script";
+import Script, { login } from "../script/lnputOTP_script";
 import { sendOTP } from "../script/OTP_script";
 import Store from "../store";
-import Key from "../KEYS.json"
+import Key from "../KEYS.json";
+
+import * as Notifications from "expo-notifications";
+import Constants from "expo-constants";
+
 import TokenNotification from "../script/TokenNotification";
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 export default function InputOTP({ route }) {
-  var timer = 60
+  var timer = 60;
   const [optData, setoptData] = React.useState(route.params);
   const [refNo, setRefNo] = React.useState(optData.OTP.refNo);
-  const userProfile = useSetRecoilState(Global.userProfile)
-  const userType = useSetRecoilState(Global.userType)
-  const ownerType = useSetRecoilState(Global.ownerType)
-  const [LANG, setLANG] = useRecoilState(Global.Language)
-  const [LANGSELECT, setLANGSELECT] = useRecoilState(Global.LANGTEXT)
+  const userProfile = useSetRecoilState(Global.userProfile);
+  const userType = useSetRecoilState(Global.userType);
+  const ownerType = useSetRecoilState(Global.ownerType);
+  const [LANG, setLANG] = useRecoilState(Global.Language);
+  const [LANGSELECT, setLANGSELECT] = useRecoilState(Global.LANGTEXT);
   const [unit1, setUnit1] = React.useState("");
   const [unit2, setUnit2] = React.useState("");
   const [unit3, setUnit3] = React.useState("");
@@ -52,132 +64,196 @@ export default function InputOTP({ route }) {
   const navigation = useNavigation();
   const [countDown, setCountDown] = React.useState(false);
   const [displayTime, setDisplayTime] = React.useState(timer);
+
+  const [expoPushToken, setExpoPushToken] = React.useState("");
+  const [notification, setNotification] = React.useState(false);
+  const notificationListener = React.useRef();
+  const responseListener = React.useRef();
+
   var setOTPTimer;
-  function _login() {
-    var otp = String(unit1) + String(unit2) + String(unit3) + String(unit4) + String(unit5) + String(unit6)
-    setLoading(false)
-    userType(1)
-    setLoading(true)
+  function _login(NOTIFYTOKEN) {
+    var otp =
+      String(unit1) +
+      String(unit2) +
+      String(unit3) +
+      String(unit4) +
+      String(unit5) +
+      String(unit6);
+    setLoading(false);
+    userType(1);
+    setLoading(true);
     clearInterval(setOTPTimer);
-    Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
-      console.log('NOTIFYTOKEN::::', NOTIFYTOKEN)
-      Script.login(optData, otp, NOTIFYTOKEN.detail, (res) => {
-        console.log(res)
-        if (typeof res === 'object') {
-          var data = JSON.stringify(res.login)
-          Store.setLocalStorege(Key.TOKEN, data, (call) => {
-            setProfileUser(res.login.token)
-          })
-        } else {
-          setLoading(false)
-          setTimeout(() => {
-            setTextAlert(res)
-            setAlert(true)
-          }, 500);
-        }
-      })
-    })
+    console.log("NOTIFYTOKEN::::", NOTIFYTOKEN);
+    Script.login(optData, otp, NOTIFYTOKEN, (res) => {
+      console.log(res);
+      if (typeof res === "object") {
+        var data = JSON.stringify(res.login);
+        Store.setLocalStorege(Key.TOKEN, data, (call) => {
+          setProfileUser(res.login.token);
+        });
+      } else {
+        setLoading(false);
+        setTimeout(() => {
+          setTextAlert(res);
+          setAlert(true);
+        }, 500);
+      }
+    });
   }
 
   function setProfileUser(token) {
     Script.setProfile(token, (res) => {
-      setLoading(false)
-      if (typeof res === 'object') {
-        if(res.me.unitsOwner){
-          if(res.me.unitsOwner === null){
-            ownerType('none')
+      setLoading(false);
+      if (typeof res === "object") {
+        if (res.me.unitsOwner) {
+          if (res.me.unitsOwner === null) {
+            ownerType("none");
           } else {
-            if(res.me.unitsOwner.length > 0){
-              ownerType('owner')
+            if (res.me.unitsOwner.length > 0) {
+              ownerType("owner");
             } else {
-              ownerType('none')
+              ownerType("none");
             }
           }
         }
-        userType(1)
-        userProfile(res)
-        var data = JSON.stringify(res)
+        userType(1);
+        userProfile(res);
+        var data = JSON.stringify(res);
         Store.setLocalStorege(Key.PROFILE, data, (_res) => {
           setTimeout(() => {
-            navigation.reset(({
+            navigation.reset({
               index: 0,
-              routes: [{ name: 'TabFooter' }],
-            }))
+              routes: [{ name: "TabFooter" }],
+            });
           }, 200);
-        })
+        });
       } else {
         setTimeout(() => {
-          setTextAlert(res)
-          setAlert(true)
+          setTextAlert(res);
+          setAlert(true);
         }, 500);
       }
-    })
+    });
   }
 
-  // function setNotify(data, token){
-  //   Store.getLocalStorege(Key.NOTIFY, (NOTIFYTOKEN)=>{
-  //     var dataNotify = {
-  //       id: data.me.id,
-  //       token: token,
-  //       NOTIFYTOKEN: NOTIFYTOKEN
-  //     }
-  //     TokenNotification.userUpdateTokenNotification(dataNotify,(res)=>{
-  //       setTimeout(() => {
-  //         navigation.reset(({
-  //           index: 0,
-  //           routes: [{ name: 'TabFooter' }],
-  //         }))
-  //       }, 200);
-  //     })
-  //   })
-  // }
+  function setUserNotification() {
+    // Store.getPushToken((res) => {
+    //   if (!res) {
+    //     registerForPushNotificationsAsync().then((token) => {
+    //       storekNotifyToken(token);
+    //     });
+    //   }
+    // });
+    registerForPushNotificationsAsync().then((token) => {
+      storekNotifyToken(token);
+    });
+
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        setNotification(notification);
+      });
+
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }
+
+  function storekNotifyToken(token) {
+    Store.setLocalStorege(Key.NOTIFY, token, (res) => {
+      _login(token);
+    });
+  }
+
+  async function registerForPushNotificationsAsync() {
+    let token;
+    if (Constants.isDevice) {
+      const { status: existingStatus } =
+        await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        alert("Failed to get push token for push notification!");
+        return;
+      }
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+    } else {
+      alert("Must use physical device for Push Notifications");
+    }
+
+    if (Platform.OS === "android") {
+      Notifications.setNotificationChannelAsync("default", {
+        name: "default",
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: "#FF231F7C",
+      });
+    }
+
+    return token;
+  }
 
   async function resendOtp() {
-    var valueMobile
-    var valueEmail
+    var valueMobile;
+    var valueEmail;
     if (optData.OTP.type === "mobile") {
-      valueMobile = optData.OTP.sendTo
-      valueEmail = undefined
+      valueMobile = optData.OTP.sendTo;
+      valueEmail = undefined;
     } else if (optData.OTP.type === "email") {
-      valueMobile = undefined
-      valueEmail = optData.OTP.sendTo
+      valueMobile = undefined;
+      valueEmail = optData.OTP.sendTo;
     }
     sendOTP(valueMobile, valueEmail, optData.OTP.type, (res) => {
-      if (typeof res === 'object') {
-        var data = optData
+      if (typeof res === "object") {
+        var data = optData;
         if (optData.OTP.type === "mobile") {
-          data["OTP"] = res.sendMobileOtp
-          setRefNo(res.sendMobileOtp.refNo)
+          data["OTP"] = res.sendMobileOtp;
+          setRefNo(res.sendMobileOtp.refNo);
         } else if (optData.OTP.type === "email") {
-          data["OTP"] = res.sendEmailOtp
-          setRefNo(res.sendEmailOtp.refNo)
+          data["OTP"] = res.sendEmailOtp;
+          setRefNo(res.sendEmailOtp.refNo);
         }
-        setCountDown(true)
+        setCountDown(true);
         setOTPTimer = setInterval(OTPTimer, 1000);
       } else {
         setTimeout(() => {
-          setTextAlert(res)
-          setAlert(true)
+          setTextAlert(res);
+          setAlert(true);
         }, 500);
       }
-    })
+    });
   }
 
   function OTPTimer() {
     timer--;
-    setDisplayTime(timer)
+    setDisplayTime(timer);
     if (timer == 0) {
-      setCountDown(false)
+      setCountDown(false);
       clearInterval(setOTPTimer);
     }
   }
 
-  const closeModalAlert = () => setAlert(false)
+  const closeModalAlert = () => setAlert(false);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View
-        style={[Styles.flex, Styles.al_center, Styles.jc_center, Styles.mainColorF9]}
+        style={[
+          Styles.flex,
+          Styles.al_center,
+          Styles.jc_center,
+          Styles.mainColorF9,
+        ]}
       >
         <View
           style={[
@@ -201,7 +277,10 @@ export default function InputOTP({ route }) {
               Styles.mt60,
             ]}
           >
-            {route.params.OTP.type === "mobile" ? LANG.inputotp_text_01 : LANG.inputotp_text_02} {route.params.OTP.sendTo}
+            {route.params.OTP.type === "mobile"
+              ? LANG.inputotp_text_01
+              : LANG.inputotp_text_02}{" "}
+            {route.params.OTP.sendTo}
           </Text>
           <Text
             style={[Styles.f_24, Styles.mainFont_x, Styles.black_gray_text]}
@@ -340,21 +419,28 @@ export default function InputOTP({ route }) {
             </View>
             <View style={[Styles.al_end, Styles.w100, Styles.mt10]}>
               <View style={[Styles.row, Styles.w100]}>
-                <View style={[{ width: LANGSELECT === 'TH' ? '75%' : '70%'}, Styles.al_end]}>
+                <View
+                  style={[
+                    { width: LANGSELECT === "TH" ? "75%" : "70%" },
+                    Styles.al_end,
+                  ]}
+                >
                   <Text
                     style={[
                       Styles.f_20,
                       Styles.mainFont,
                       Styles.black_gray_text,
-                      {top: 2}
+                      { top: 2 },
                     ]}
                   >
                     {LANG.inputotp_text_05}
                   </Text>
                 </View>
                 {!countDown ? (
-                  <TouchableOpacity style={[Styles.w25, Styles.al_end]}
-                    onPress={() => resendOtp()}>
+                  <TouchableOpacity
+                    style={[Styles.w25, Styles.al_end]}
+                    onPress={() => resendOtp()}
+                  >
                     <Text
                       style={[
                         Styles.f_20,
@@ -363,26 +449,33 @@ export default function InputOTP({ route }) {
                         { textDecorationLine: "underline" },
                       ]}
                     >
-                      <Ionicons name="md-refresh-sharp" size={20} color="#bb6a70" />
+                      <Ionicons
+                        name="md-refresh-sharp"
+                        size={20}
+                        color="#bb6a70"
+                      />
                       {LANG.inputotp_text_06}
                     </Text>
-                  </TouchableOpacity>) : 
-                  (<Text
+                  </TouchableOpacity>
+                ) : (
+                  <Text
                     style={[
                       Styles.f_22,
                       Styles.mainFont,
                       Styles.black_gray_text,
                     ]}
                   >
-                    {LANG.inputotp_text_08} <Text style={[Styles.mainColor_text3]}>{displayTime}</Text> {LANG.inputotp_text_09} 
-                  </Text>)
-                }
+                    {LANG.inputotp_text_08}{" "}
+                    <Text style={[Styles.mainColor_text3]}>{displayTime}</Text>{" "}
+                    {LANG.inputotp_text_09}
+                  </Text>
+                )}
               </View>
             </View>
           </View>
           <TouchableOpacity
             onPress={() => {
-              _login()
+              setUserNotification();
             }}
             style={[
               Styles.mt40,
@@ -406,11 +499,18 @@ export default function InputOTP({ route }) {
             </Text>
           </TouchableOpacity>
         </View>
-        <Modal isVisible={loading} style={Styles.al_center} backdropOpacity={0.25}>
+        <Modal
+          isVisible={loading}
+          style={Styles.al_center}
+          backdropOpacity={0.25}
+        >
           <Modal_loading />
         </Modal>
         <Modal isVisible={alert} style={Styles.al_center}>
-          <Modal_alert textAlert={textAlert} closeModalAlert={closeModalAlert} />
+          <Modal_alert
+            textAlert={textAlert}
+            closeModalAlert={closeModalAlert}
+          />
         </Modal>
       </View>
     </TouchableWithoutFeedback>

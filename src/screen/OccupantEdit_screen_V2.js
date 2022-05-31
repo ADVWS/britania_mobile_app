@@ -230,7 +230,7 @@ const OccupantEdit = ({ route }) => {
         </View>
         {/* {type === "thai" && <ThaiForm item={member} saveDataEdit={saveEdit}/>}
         {type === "foreign" && <ForeignForm item={member} saveDataEdit={saveEdit}/>} */}
-        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30 }}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginBottom: 30, height: '70%' }}>
           <Text
             style={[
               Styles.ml5,
