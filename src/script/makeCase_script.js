@@ -128,6 +128,7 @@ export const homecareAllCase = async (unitOwnerId, token, cb) => {
                         isDateWork
                         isDateFinish
                         homecareName {
+                            homecareEmployeeImageSrc
                             id
                             employeeId
                             firstnameThai

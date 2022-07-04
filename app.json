@@ -2,7 +2,7 @@
   "expo": {
     "name": "Britania-Connect",
     "slug": "Britania-Connect",
-    "version": "1.0.14",
+    "version": "1.0.18",
     "orientation": "portrait",
     "icon": "./assets/icon1.png",
     "splash": {
@@ -26,12 +26,17 @@
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
+      "permissions": [
+        "ACCESS_BACKGROUND_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon1.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.advws.britaniaconnect",
-      "versionCode": 1,
+      "versionCode": 2,
       "googleServicesFile": "./google-services.json"
     },
     "web": {

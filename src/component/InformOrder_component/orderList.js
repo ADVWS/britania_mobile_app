@@ -18,18 +18,24 @@ import mainScript from "../../script";
 import { useRecoilState } from "recoil";
 import * as Global from "../../globalState";
 import Modal from "react-native-modal";
+import moment from "moment";
 
 const OrderList = ({ data, index, route, informDetail }) => {
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT);
   const [zoom, setZoom] = React.useState(false);
   const [izoom, setiZoom] = React.useState("");
+  const [detailId, setDetailId] = React.useState("");
+
 
   var paramNav = route;
 
-  function gotoResponsible(param) {
+  console.log("==>", data.files);
+
+  function gotoResponsible(param, _case) {
     var mechanic = param;
-    navigate.navigate("Responsible", { paramNav, mechanic });
+    var _CASE = _case;
+    navigate.navigate("Responsible", { paramNav, mechanic, _CASE });
   }
 
   function gotoOnsite(param, _case) {
@@ -40,11 +46,20 @@ const OrderList = ({ data, index, route, informDetail }) => {
 
   function gotoRepiairList(param, _case) {
     var mechanic = param;
-    var _CASE = _case;
+    var _CASE = mainScript.recoilTranform(_case);
+    _CASE.detailLog.map((item) => {
+      item.sort = moment(item.date).unix();
+    });
+    var detailLog = _CASE.detailLog;
+    detailLog.sort((b, a) => {
+      return a.sort - b.sort;
+    });
+    _CASE.detailLog = detailLog;
     navigate.navigate("RepiairList", { paramNav, mechanic, _CASE });
   }
 
   function gotoSatisfaction(param) {
+    console.log("gotoSatisfaction==>>>>", param);
     Script.homecareAllCsatQuestion(Key.TOKEN, (res) => {
       var mechanic = param;
       var QUES = res;
@@ -65,7 +80,6 @@ const OrderList = ({ data, index, route, informDetail }) => {
     Image.getSize(uri, (width, height) => {
       setDesiredHeight((desiredWidth / width) * height);
     });
-
     return desiredHeight > 926 ? (
       <Image
         source={require("../../../assets/image_over.png")}
@@ -85,9 +99,11 @@ const OrderList = ({ data, index, route, informDetail }) => {
     );
   };
 
-  function zoomImage(img) {
+  function zoomImage(img, id) {
+    console.log(id)
     setZoom(true);
     setiZoom(img);
+    setDetailId(id)
   }
 
   return (
@@ -99,7 +115,7 @@ const OrderList = ({ data, index, route, informDetail }) => {
           Styles.br_5,
           Styles.mainColorF9,
           Styles.mt5,
-          Styles.mb10
+          Styles.mb10,
         ]}
       >
         <Text
@@ -107,6 +123,7 @@ const OrderList = ({ data, index, route, informDetail }) => {
         >
           {LANG.homecare_text_11} {index}
         </Text>
+
         <View style={[Styles.w100, Styles.row, Styles.mt10]}>
           <View style={[Styles.w50]}>
             <Text style={[Styles.f_22, Styles.mainFont, Styles.spacing5]}>
@@ -133,45 +150,42 @@ const OrderList = ({ data, index, route, informDetail }) => {
         <Text style={[Styles.mainFont, Styles.f_20, { color: "#8f8f8f" }]}>
           {data.description}
         </Text>
-        <Text
-          style={[Styles.f_22, Styles.mainFont, Styles.spacing5, Styles.mt10]}
-        >
-          {LANG.homecare_text_16}
-        </Text>
-        <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
-          {data.files.length > 0 ? (
-            <>
+        {data.files.length > 0 ? (
+          <>
+            <Text
+              style={[
+                Styles.f_22,
+                Styles.mainFont,
+                Styles.spacing5,
+                Styles.mt10,
+              ]}
+            >
+              {LANG.homecare_text_16}
+            </Text>
+            <ScrollView style={[Styles.w100, Styles.mt5]} horizontal={true}>
               {data.files.map((item) => (
                 <>
-                {item.status === null &&
-                <TouchableOpacity
-                  onPress={() => zoomImage(item.homecareImageSrc)}
-                >
-                  <Image
-                    source={{ uri: item.homecareImageSrc }}
-                    style={[
-                      Styles.br_5,
-                      { width: 120, height: 120, marginRight: 10 },
-                    ]}
-                  />
-                </TouchableOpacity>
-                }
+                  {item.status === "Pending" && (
+                    <TouchableOpacity
+                      onPress={() => zoomImage(item.homecareImageSrc, item.id)}
+                    >
+                      <Image
+                        source={{ uri: item.homecareImageSrc }}
+                        style={[
+                          Styles.br_5,
+                          { width: 120, height: 120, marginRight: 10 },
+                        ]}
+                      />
+                    </TouchableOpacity>
+                  )}
                 </>
               ))}
-            </>
-          ) : (
-            <Image
-              source={require("../../../assets/image/image_not_found.png")}
-              style={[
-                Styles.br_5,
-                { width: 120, height: 120, marginRight: 10, opacity: 0.3 },
-              ]}
-            />
-          )}
-        </ScrollView>
+            </ScrollView>
+          </>
+        ) : null}
         {data.status !== "Pending" && (
           <TouchableOpacity
-            onPress={() => gotoResponsible(data.homecareName)}
+            onPress={() => gotoResponsible(data.homecareName, data)}
             style={[
               Styles.w100,
               Styles.p20,
@@ -277,6 +291,7 @@ const OrderList = ({ data, index, route, informDetail }) => {
             style={[
               Styles.w100,
               Styles.p15,
+              Styles.mt10,
               Styles.mainColor,
               Styles.br_5,
               Styles.al_center,
@@ -295,33 +310,35 @@ const OrderList = ({ data, index, route, informDetail }) => {
             </Text>
           </TouchableOpacity>
         )}
-        {route === "UNSUCCESS" && data.isRate !== true && data.status == "Close" && (
-          <TouchableOpacity
-            onPress={() => gotoSatisfaction(data.homecareName)}
-            style={[
-              Styles.w100,
-              Styles.p15,
-              Styles.mainColor,
-              Styles.br_5,
-              Styles.al_center,
-              { marginBottom: 20 },
-            ]}
-          >
-            <Text
+        {route === "UNSUCCESS" &&
+          data.isRate !== true &&
+          data.status == "Close" && (
+            <TouchableOpacity
+              onPress={() => gotoSatisfaction(data.homecareName)}
               style={[
-                Styles.f_24,
-                Styles.white_text,
-                Styles.mainFont,
-                Styles.mt5,
+                Styles.w100,
+                Styles.p15,
+                Styles.mainColor,
+                Styles.br_5,
+                Styles.al_center,
+                { marginBottom: 20 },
               ]}
             >
-              {LANG.homecare_text_21}
-            </Text>
-          </TouchableOpacity>
-        )}
+              <Text
+                style={[
+                  Styles.f_24,
+                  Styles.white_text,
+                  Styles.mainFont,
+                  Styles.mt5,
+                ]}
+              >
+                {LANG.homecare_text_21}
+              </Text>
+            </TouchableOpacity>
+          )}
       </View>
       <Modal
-        onBackdropPress={()=>setZoom(false) }
+        onBackdropPress={() => setZoom(false)}
         isVisible={zoom}
         style={[Styles.al_center, Styles.jc_center]}
       >

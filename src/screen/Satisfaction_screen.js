@@ -23,6 +23,7 @@ import mainScript from "../script";
 import Modal_alert from "../component/modal_alert";
 
 const Satisfaction = ({ route }) => {
+  console.log(route.params.mechanic)
   const [question, setQuestion] = React.useState(route.params.QUES);
   const [LANG, setLANG] = useRecoilState(Global.Language);
   const [LANGTEXT, setLANGTEXT] = useRecoilState(Global.LANGTEXT);
@@ -37,10 +38,11 @@ const Satisfaction = ({ route }) => {
     setRate(rate);
   };
   const setImage = (image) => {
-    if (image && image.image) {
+    console.log(image)
+    if (image && image.homecareEmployeeImageSrc) {
       return (
         <Image
-          source={{ uri: route.params.mechanic.image }}
+          source={{ uri: image.homecareEmployeeImageSrc }}
           style={[Styles.circle, { height: 100, width: 100 }]}
         />
       );
